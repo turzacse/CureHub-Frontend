@@ -11,6 +11,7 @@ import Home from './Pages/Home/Home.jsx';
 import SignUpPage from './Pages/Authentications/SignUp.jsx';
 import LoginPage from './Pages/Authentications/SignIn.jsx';
 import AuthProvider from './Provider/AuthContext.jsx';
+import Dashboard from './layouts/Dashboard.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -32,6 +33,13 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>,
+    children: [
+      
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
