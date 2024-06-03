@@ -42,21 +42,21 @@ const ProductSlider = () => {
     const products = [
         {
             id: 1,
-            title: 'Product 1',
+            title: 'Health careing',
             description: 'Description for product 1',
-            image: 'https://via.placeholder.com/300x200.png?text=Product+1'
+            image: 'https://i.ibb.co/2NmnXnh/1.png'
         },
         {
             id: 2,
-            title: 'Product 2',
+            title: 'Campaign',
             description: 'Description for product 2',
-            image: 'https://via.placeholder.com/300x200.png?text=Product+2'
+            image: 'https://i.ibb.co/Vmyf1ZX/2.png            '
         },
         {
             id: 3,
-            title: 'Product 3',
+            title: 'Pharmacy',
             description: 'Description for product 3',
-            image: 'https://via.placeholder.com/300x200.png?text=Product+3'
+            image: 'https://i.ibb.co/51J9Q8G/3.png'
         }
     ];
 
@@ -65,11 +65,11 @@ const ProductSlider = () => {
             <Slider {...settings}>
                 {products.map(product => (
                     <div key={product.id} className="p-4">
-                        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src={product.image} alt={product.title} className="w-full h-48 sm:h-64 object-cover"/>
-                            <div className="p-6">
-                                <h2 className="text-xl font-bold mb-2">{product.title}</h2>
-                                <p className="text-gray-700">{product.description}</p>
+                        <div className="bg-[#41b3b3] rounded-lg shadow-xl overflow-hidden">
+                            <img src={product.image} alt={product.title} className="md:w-full md:h-[500px] object-cover"/>
+                            <div className="p-6 text-white">
+                                <h2 className="md:text-xl font-bold mb-2">{product.title}</h2>
+                                <p className="">{product.description}</p>
                             </div>
                         </div>
                     </div>

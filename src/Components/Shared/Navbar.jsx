@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import profileImage from '../../assets/Logo/logo4.png'
+import logo1 from '../../assets/Logo/logo1.png'
+import logo2 from '../../assets/Logo/logo2.png'
+import { NavLink } from 'react-router-dom';
+
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +21,10 @@ const Navbar = () => {
     return (
         <nav className="bg-[#006666] text-white">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                <div className="text-2xl font-bold">
-                    <a href="#">MedStore</a>
-                </div>
+                <NavLink to='/' className="text-2xl font-bold">
+                    {/* <a href="#">CureHub</a> */}
+                    <img className='h-[80px] w-[80px] rounded-full' src={logo2} alt="" />
+                </NavLink>
                 <div className="hidden md:flex space-x-6">
                     <a href="#" className="hover:text-blue-400">Home</a>
                     <a href="#" className="hover:text-blue-400">Shop</a>
