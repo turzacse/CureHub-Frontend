@@ -6,12 +6,12 @@ import Sidebar from '../Components/Shared/Sidebar';
 const Dashboard = () => {
     return (
         <div className='bg-[#008080]'>
-            <div className='flex flex-row gap-2'>
+            <div className='flex flex-row md:gap-2'>
                 <div className='w-screen m-4'>
                 <Outlet />
                 </div>
-                <div className=''>
-                <Sidebar />
+                <div className='hidden md:flex'>
+                <Sidebar className='' />
                 </div>
             </div>
             <Footer />

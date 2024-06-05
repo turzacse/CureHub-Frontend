@@ -13,6 +13,8 @@ import LoginPage from './Pages/Authentications/SignIn.jsx';
 import AuthProvider from './Provider/AuthContext.jsx';
 import Dashboard from './layouts/Dashboard.jsx';
 import Medicines from './Pages/Dashboard/Seller/Medicines.jsx';
+import Advertise from './Pages/Dashboard/Seller/Advertise.jsx';
+import Category from './Pages/Dashboard/Seller/Category.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -41,7 +43,15 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/medicines',
         element: <Medicines/>
-      }
+      },
+      {
+        path: '/dashboard/advertise',
+        element: <Advertise/>
+      },
+      {
+        path: '/dashboard/category',
+        element: <Category/>
+      },
     ]
   }
 ]);
