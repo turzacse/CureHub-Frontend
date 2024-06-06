@@ -4,6 +4,7 @@ import { AuthContext } from '../../../Provider/AuthContext';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { IoEyeSharp } from 'react-icons/io5';
 
 
 const image_hosting = '39cd3de230380fc39b116f0d1af689bd';
@@ -145,7 +146,7 @@ const Medicines = () => {
                                 <td className='py-2'>{medicine.category}</td>
                                 <td className='py-2'>{medicine.company}</td>
                                 <td className='py-2'>
-                                    <button onClick={() => handleViewDetails(medicine)} className="bg-gray-500 text-white py-2  rounded-md">View Details</button>
+                                    <button onClick={() => handleViewDetails(medicine)} className=" text-[#A6D71C] text-2xl py-2  rounded-md"><IoEyeSharp /></button>
                                 </td>
                             </tr>
                         ))}

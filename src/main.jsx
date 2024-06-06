@@ -15,6 +15,7 @@ import Dashboard from './layouts/Dashboard.jsx';
 import Medicines from './Pages/Dashboard/Seller/Medicines.jsx';
 import Advertise from './Pages/Dashboard/Seller/Advertise.jsx';
 import Category from './Pages/Dashboard/Seller/Category.jsx';
+import ShopPage from './Pages/Shop/Shop.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />
+      },
+      {
+        path: '/shop',
+        element: <ShopPage/>
       },
       {
         path: '/sign-up',

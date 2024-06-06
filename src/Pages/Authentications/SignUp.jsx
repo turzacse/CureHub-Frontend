@@ -3,17 +3,26 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaRegImage, FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 // import { useAuth } from '../../assets/AuthContext';
 import { auth } from '../../Firebase/firebase.config';
 import { AuthContext } from '../../Provider/AuthContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+
+const image_hosting = '39cd3de230380fc39b116f0d1af689bd';
+const image_hosting_key = `https://api.imgbb.com/1/upload?key=${image_hosting}`;
 
 const SignUpPage = () => {
+
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
         username: '',
-        role: 'user'
+        role: 'user',
+        photo: ''
     });
     const { createUser, updateProfileInfo } = useContext(AuthContext);
 
@@ -25,17 +34,120 @@ const SignUpPage = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleUpload = async (event) => {
+        const selectedFile = event.target.files[0];
         try {
-            const userCredential = await createUser(formData.email, formData.password);
-            await updateProfileInfo(formData.username, formData.photo);
-            // Additional logic such as redirecting to a different page
-            alert('User signed up successfully');
+            const uploadData = new FormData();
+            uploadData.append("image", selectedFile);
+
+            const response = await axios.post(image_hosting_key, uploadData);
+
+            if (response.status === 200) {
+                const imageUrl = response.data.data.url;
+                setFormData((prevState) => ({ ...prevState, photo: imageUrl }));
+                console.log("Image uploaded successfully:", imageUrl);
+            }
         } catch (error) {
-            alert("Failed to sign up: " + error.message);
+            console.error("Error uploading image:", error);
         }
     };
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const userCredential = await createUser(formData.email, formData.password);
+    //         await updateProfileInfo(formData.username, formData.photo);
+    //         const response = await axios.post('https://cure-hub-backend-gules.vercel.app/users', formData);
+    //         console.log(response.data);
+    //         setOpenAdd(false);
+    //         Swal.fire({
+    //             title: 'Success!',
+    //             text: 'SignUP successfully!',
+    //             background: '#008080',
+    //             confirmButtonText: 'OK',
+    //             icon: 'success',
+    //         });
+    //     } catch (error) {
+    //         alert("Failed to sign up: " + error.message);
+    //     }
+    // };
+    // const onSubmit = (data) => {
+    //     console.log(data);
+    //     createUser(data.email, data.password)
+    //     .then(result => {
+    //         const loggedUser = result.user;
+    //         console.log(loggedUser);
+    //         updateProfileInfo(data.username, data.photo)
+    //         .then( () => {
+    //             console.log('Info Update');
+    //             reset();
+    //                     Swal.fire({
+    //                         position: 'top-end',
+    //                         icon: 'success',
+    //                         title: 'User created successfully.',
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                     });
+    //             navigate('/');
+    //         })
+    //         .catch(error => console.log(error))
+    //     })
+
+    //     fetch('https://speedy-send-server.vercel.app/users', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json' 
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    // }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log(data);
+        createUser(formData.email, formData.password)
+        .then(userCredential => {
+            const loggedUser = userCredential.user;
+            console.log(loggedUser);
+            updateProfileInfo(formData.username, formData.photo)
+            .then( () => {
+                console.log('Info Update');
+                setFormData({
+                    email: '',
+                    password: '',
+                    username: '',
+                    role: 'user',
+                    photo: ''
+                });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'User created successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => console.log(error))
+        })
+        .catch(error => alert("Failed to sign up: " + error.message));
+    
+        fetch('https://cure-hub-backend-gules.vercel.app/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json' 
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+    };
+    
 
     return (
        <div className='py-20 px-4'>
@@ -73,7 +185,7 @@ const SignUpPage = () => {
                     id="photo" 
                     name="photo" 
                     accept="image/*" 
-                    onChange={handleChange} 
+                    onChange={handleUpload} 
                     placeholder='Photo'
                     className="w-full px-8 py-2 border rounded-md focus:outline-none focus:border-blue-500"/>
                     <FaRegImage className='absolute top-[12px] left-1 text-2xl text-gray-600' />

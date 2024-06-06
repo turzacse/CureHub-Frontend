@@ -5,7 +5,7 @@ import Sidebar from '../Components/Shared/Sidebar';
 
 const Dashboard = () => {
     return (
-        <div className='bg-[#008080]'>
+        <div className='bg-[#3d7c7c]'>
             <div className='flex flex-row md:gap-2'>
                 <div className='w-screen m-4'>
                 <Outlet />

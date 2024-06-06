@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ const LoginPage = () => {
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [alluser, setAllUser] = useState([]);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -26,6 +27,9 @@ const LoginPage = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        // if(alluser?.map((user) => ((user.email === formData.email) && (user.password === formData.password)))){
+        //     navigate('/');
+        // }
 
         try {
             await signIn(formData.email, formData.password);
@@ -79,7 +83,7 @@ const LoginPage = () => {
                 </div>
                 <button 
                 type="submit" 
-                className="bg-red-500 text-white py-2 mt-4 flex items-center justify-center px-5 rounded-md hover:bg-red-600 ">Sign Up
+                className="bg-red-500 text-white py-2 mt-4 flex items-center justify-center px-5 rounded-md hover:bg-red-600 ">Sign In
                 </button>
             </form>
         </div>
