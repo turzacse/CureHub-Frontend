@@ -2,12 +2,9 @@ import React from 'react';
 
 const QueryCard = ({ query, onClick }) => {
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer" onClick={onClick}>
-            <img src={query.user.profilePicture} alt={query.user.name} className="w-full h-48 object-cover"/>
-            <div className="p-4">
-                <h3 className="text-xl font-bold mb-2">{query.user.name}</h3>
-                <p className="text-gray-700">{query.description}</p>
-            </div>
+        <div className="bg-[#1A6868] rounded-lg shadow-lg overflow-hidden cursor-pointer" onClick={onClick}>
+            <img className='h-[80px] w-[80px] mt-2 rounded-full shadow-2xl mb-2 flex items-center justify-center mx-auto border-[#A6D71C] border-4' src={query.photo} alt="" />
+            <p className='text-white text-center md:mx-4 mt-4 mb-8'>{query.queries}</p>
         </div>
     );
 };

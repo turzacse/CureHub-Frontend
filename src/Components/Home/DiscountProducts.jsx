@@ -1,8 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import 'swiper/swiper-bundle.css'; // Import Swiper styles
 import Swiper from 'swiper'; // Import Swiper bundle with all modules
+import Headline from '../Headline';
 
 const DiscountProducts = () => {
+    const [disCount, setDisCount] = useState([]);
+
+    useEffect(() => {
+        fetch('https://cure-hub-backend-gules.vercel.app/medicine')
+            .then(res => res.json())
+            .then(data => {
+                const discountedItems = data.filter(item => parseFloat(item.discount) > 0);
+                // Check if the new data is different from the current state
+                if (JSON.stringify(discountedItems) !== JSON.stringify(disCount)) {
+                    setDisCount(discountedItems);
+                }
+            });
+    }, [disCount]);
+
+    console.log("discount", disCount);
     useEffect(() => {
         // Initialize Swiper when the component mounts
         const swiper = new Swiper('.swiper-container', {
@@ -21,51 +37,36 @@ const DiscountProducts = () => {
         };
     }, []); // Empty dependency array ensures this effect runs only once
 
-    // Fake data for discount products
-    const discountProducts = [
-        {
-            id: 1,
-            title: 'Product 1',
-            description: 'Description for product 1',
-            image: 'https://via.placeholder.com/300x200.png?text=Product+1',
-            discount: 10 // 10% discount
-        },
-        {
-            id: 2,
-            title: 'Product 2',
-            description: 'Description for product 2',
-            image: 'https://via.placeholder.com/300x200.png?text=Product+2',
-            discount: 20 // 20% discount
-        },
-        {
-            id: 3,
-            title: 'Product 3',
-            description: 'Description for product 3',
-            image: 'https://via.placeholder.com/300x200.png?text=Product+3',
-            discount: 15 // 15% discount
-        }
-    ];
 
     return (
-        <div className="container mx-auto py-10">
-            <h2 className="text-3xl font-bold mb-6">Discount Products</h2>
+        <div className="mx-20 py-10">
+            <Headline headline='Our Discount Products' />
             <div className="swiper-container">
-                <div className="swiper-wrapper flex">
-                    {discountProducts.map(product => (
+                <div className="swiper-wrapper gap-2 flex">
+                    {disCount.map(product => (
                         <div key={product.id} className="swiper-slide">
                             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                <img src={product.image} alt={product.title} className="w-full h-64 object-cover"/>
+                                <img src={product.photo} alt={product.name} className="w-full h-64 object-cover" />
                                 <div className="p-4">
                                     <h3 className="text-xl font-bold mb-2">{product.title}</h3>
                                     <p className="text-gray-700">{product.description}</p>
-                                    <p className="text-red-500 font-bold mt-2">{product.discount}% Discount</p>
+                                    <div className='flex justify-between items-center'>
+                                        <p className="text-red-500 font-bold mt-2">{product.discount}% Discount</p>
+                                        <div className='flex gap-2'>
+                                            Price: 
+                                            <del className='text-gray-400'>{product.price}</del>
+                                            <p className="">
+                                                {product.price - (product.price * product.discount) / 100}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="swiper-button-prev"></div>
-                <div className="swiper-button-next"></div>
+                {/* <div className="swiper-button-prev">Back</div>
+                <div className="swiper-button-next">Next</div> */}
             </div>
         </div>
     );

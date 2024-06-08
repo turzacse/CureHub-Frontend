@@ -7,7 +7,7 @@ const ProductSlider = () => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 100,
         slidesToShow: 1,
         slidesToScroll: 1,
         responsive: [
@@ -61,7 +61,7 @@ const ProductSlider = () => {
     ];
 
     return (
-        <div className="container mx-auto py-10 px-7 md:px-4">
+        <div className=" md:mx-20 mx-2 py-10 px-7 md:px-4">
             <Slider {...settings}>
                 {products.map(product => (
                     <div key={product.id} className="p-4">

@@ -1,81 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import QueryCard from './QueryCard';
+import Headline from '../Headline';
+import { NavLink } from 'react-router-dom';
+import './Query.css'
+
 
 const QueriesSection = () => {
-    // Fake data for recent queries
-    const recentQueries = [
-        {
-            id: 1,
-            user: {
-                name: 'User 1',
-                profilePicture: 'https://via.placeholder.com/150',
-            },
-            description: 'Query description 1'
-        },
-        {
-            id: 2,
-            user: {
-                name: 'User 2',
-                profilePicture: 'https://via.placeholder.com/150',
-            },
-            description: 'Query description 2'
-        },
-        {
-            id: 3,
-            user: {
-                name: 'User 3',
-                profilePicture: 'https://via.placeholder.com/150',
-            },
-            description: 'Query description 3'
-        },
-        {
-            id: 4,
-            user: {
-                name: 'User 1',
-                profilePicture: 'https://via.placeholder.com/150',
-            },
-            description: 'Query description 1'
-        },
-        {
-            id: 5,
-            user: {
-                name: 'User 2',
-                profilePicture: 'https://via.placeholder.com/150',
-            },
-            description: 'Query description 2'
-        },
-        {
-            id: 2,
-            user: {
-                name: 'User 2',
-                profilePicture: 'https://via.placeholder.com/150',
-            },
-            description: 'Query description 2'
-        },
-    ];
+    const [queries, setQueries] = useState([]);
+
+    useEffect(() => {
+        const fetchData = () => {
+            fetch('https://cure-hub-backend-gules.vercel.app/queries')
+                .then(res => res.json())
+                .then(data => {
+                    const shuffledQueries = shuffleArray(data);
+                    setQueries(shuffledQueries.slice(0, 4));
+                });
+        };
+    
+        // Fetch data initially
+        fetchData();
+    
+        // Fetch data every 10 seconds
+        const intervalId = setInterval(fetchData, 2000);
+    
+        // Clean up interval on component unmount
+        return () => clearInterval(intervalId);
+    }, []);
+    
+
+    const shuffleArray = (array) => {
+        // Fisher-Yates (aka Knuth) Shuffle Algorithm
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
+
+    console.log(queries);
+
+    const handleQueryClick = (id) => {
+        // Handle the query click event
+        console.log(`Query ${id} clicked`);
+    };
 
     return (
-        <div className="container mx-auto py-10">
-            <h2 className="text-3xl font-bold mb-6">Recent Queries</h2>
-            <div className="overflow-hidden">
-                <div className="grid grid-cols-5 gap-4">
-                    {recentQueries.slice(0,5).map(query => (
-                        <QueryCard key={query.id} query={query} onClick={() => handleQueryClick(query.id)} />
+        <div className="mx-20 py-10 relative">
+            <Headline className='mb-5' headline='Recent  Queries' />
+            <div className=" ">
+                <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+                    {queries.map(query => (
+                        <QueryCard key={query._id} query={query} onClick={() => handleQueryClick(query._id)} />
                     ))}
                 </div>
             </div>
-            <div className="mt-4 text-center">
-                <a href="/all-queries" className="text-blue-500 hover:underline">See All</a>
-            </div>
+            <h2 className='mt-10 text-center text-xl mb-5 bg-gradient-to-r from-[#6B65F2] via-green-500 to-[#EA499D] font-medium text-transparent bg-clip-text'>To explore more queries & get the queries answer, please click on it</h2>
+            <NavLink to='/query' className=' flex justify-center w-[100px] p-2 mx-auto text-white bg-[#DD4BAF] rounded-lg shadow-2xl hover:bg-[#cf2299]'>
+                SEE ALL
+            </NavLink>
+            {/* <p className='w-[100px] mx-auto bg-[#473742] p-1 flex justify-center rounded-b-xl absolute bottom-10 left-[483px]'>
+
+            </p> */}
         </div>
     );
-};
-
-const handleQueryClick = (queryId) => {
-    // Redirect to query details page
-    console.log(`Redirect to query details page for query ${queryId}`);
-    // Example navigation using React Router:
-    // history.push(`/query/${queryId}`);
 };
 
 export default QueriesSection;

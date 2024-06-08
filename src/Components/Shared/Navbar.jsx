@@ -22,11 +22,15 @@ const Navbar = () => {
     const handleChange = () => {
         setIsOpen(false);
     };
+    const handleDashboard = (e) => {
+        e.preventDefault();
+        navigate('/dashboard')
+    }
 
     const handleLogout = (e) => {
         e.preventDefault();
        logOut();
-       navigate('/sign-up')
+       navigate('/sign-in')
     }
 
     return (
@@ -37,10 +41,10 @@ const Navbar = () => {
                     <img className='h-[80px] w-[80px] rounded-full' src={logo2} alt="" />
                 </NavLink>
                 <div className="hidden md:flex space-x-6">
-                    <a className="hover:text-blue-400">Home</a>
-                    <a className="hover:text-blue-400">Shop</a>
-                    <a className="hover:text-blue-400">About Us</a>
-                    <a className="hover:text-blue-400">Contact</a>
+                    <NavLink to='/' className="hover:text-blue-400">Home</NavLink>
+                    <NavLink to='/shop' className="hover:text-blue-400">Shop</NavLink>
+                    <NavLink to='/about' className="hover:text-blue-400">About Us</NavLink>
+                    <NavLink to='/contact' className="hover:text-blue-400">Contact</NavLink>
                 </div>
                 <div className="flex items-center space-x-4">
                     {user ? (
@@ -53,7 +57,7 @@ const Navbar = () => {
                         />
                         {showMenu && (
                             <div className="absolute top-24 right-0 bg-[#006666] shadow-lg rounded-lg mt-2 py-2 w-48 z-50 text-white">
-                                <button  className="block px-4 py-2 text-white hover:" onClick={() => {}}>Dashboard</button>
+                                <button  className="block px-4 py-2 text-white hover:" onClick={handleDashboard}>Dashboard</button>
                                 <button  className="block px-4 py-2 text-white hover:" onClick={handleLogout} >Logout</button>
                             </div>
                         )}
@@ -75,16 +79,16 @@ const Navbar = () => {
             </div>
             {isOpen && (
                 <div className="md:hidden" onClick={handleChange}>
-                    <a  className="block px-4 py-2 hover:bg-gray-700">Home</a>
-                    <a  className="block px-4 py-2 hover:bg-gray-700">Shop</a>
-                    <a  className="block px-4 py-2 hover:bg-gray-700">About Us</a>
-                    <a  className="block px-4 py-2 hover:bg-gray-700">Contact</a>
+                    <NavLink to='/'  className="block px-4 py-2 hover:bg-gray-700">Home</NavLink>
+                    <NavLink to='/shop'  className="block px-4 py-2 hover:bg-gray-700">Shop</NavLink>
+                    <NavLink to='/about'  className="block px-4 py-2 hover:bg-gray-700">About Us</NavLink>
+                    <NavLink to='/'  className="block px-4 py-2 hover:bg-gray-700">Contact</NavLink>
                     {user ? (
-                        <a  className="block px-4 py-2 hover:bg-gray-700">Profile</a>
+                        <NavLink to='/dashboard'  className="block px-4 py-2 hover:bg-gray-700">Dashboard</NavLink>
                     ) : (
                         <>
-                            <a  className="block px-4 py-2 hover:bg-gray-700">Sign Up</a>
-                            <a  className="block px-4 py-2 hover:bg-gray-700">Sign In</a>
+                            <NavLink to='/sign-up'  className="block px-4 py-2 hover:bg-gray-700">Sign Up</NavLink>
+                            <NavLink to='/sign-in'  className="block px-4 py-2 hover:bg-gray-700">Sign In</NavLink>
                         </>
                     )}
                 </div>

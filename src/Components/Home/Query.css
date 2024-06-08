@@ -1,0 +1,8 @@
+.query-card {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.query-card.show {
+    opacity: 1;
+}

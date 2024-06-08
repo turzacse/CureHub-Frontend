@@ -16,12 +16,16 @@ import Medicines from './Pages/Dashboard/Seller/Medicines.jsx';
 import Advertise from './Pages/Dashboard/Seller/Advertise.jsx';
 import Category from './Pages/Dashboard/Seller/Category.jsx';
 import ShopPage from './Pages/Shop/Shop.jsx';
+import Queries from './Pages/Dashboard/User/Queries.jsx';
+import Error from './Pages/Error/Error.jsx';
+import AllQuery from './Pages/All Query/AllQuery.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <Error/>,
     children: [
       {
         path: '/',
@@ -30,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <ShopPage/>
+      },
+      {
+        path: '/query',
+        element: <AllQuery/>
       },
       {
         path: '/sign-up',
@@ -56,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/category',
         element: <Category/>
+      },
+      {
+        path: '/dashboard/queries',
+        element: <Queries/>
       },
     ]
   }

@@ -85,7 +85,7 @@ const Sidebar = () => {
                     <hr className='shadow-2xl mt-5 mb-2' />
                     <div className='flex gap-2 items-center text-xl font-bold'>
                         <FaPersonCircleQuestion />
-                        <NavLink to='/dashboard/quesries' className=''>Queries</NavLink>
+                        <NavLink to='/dashboard/queries' className=''>Queries</NavLink>
                     </div>
 
                     <div className='flex gap-2 mt-2 items-center text-xl font-bold'>
