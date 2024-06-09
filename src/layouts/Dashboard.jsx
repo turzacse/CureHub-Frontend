@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Components/Shared/Footer';
 import Sidebar from '../Components/Shared/Sidebar';
 import { AuthContext } from '../Provider/AuthContext';
@@ -7,6 +7,7 @@ import DefaultAdmin from '../Pages/Dashboard/Admin/Default';
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext);
+    const location = useLocation();
     console.log(user);
     return (
         <div className='bg-[#3d7c7c]'>

@@ -29,6 +29,21 @@ const Medicines = () => {
         seller: user?.email,
         photo: '',
     });
+
+    const clearFormData = () => {
+        setFormData({
+            name: '',
+            generic: '',
+            description: '',
+            category: '',
+            company: '',
+            unit: '',
+            price: '',
+            discount: '0',
+            seller: user?.email,
+            photo: '',
+        });
+    };
     console.log(formData);
 
     useEffect( () => {
@@ -68,7 +83,12 @@ const Medicines = () => {
         try {
             const response = await axios.post('https://cure-hub-backend-gules.vercel.app/medicine', formData);
             console.log(response.data);
+            const newmedicine = response?.data;
+            // Update medicineData with the new medicine
+            setMedicineData((prevData) => [...prevData, newmedicine]);
+    
             setOpenAdd(false);
+            clearFormData();  // Clear the form data after submission
             Swal.fire({
                 title: 'Success!',
                 text: 'Medicine added successfully!',
@@ -80,7 +100,6 @@ const Medicines = () => {
         catch(error){
             console.error(error);
         }
-        
     }
 
     const handleChange = (e) => {

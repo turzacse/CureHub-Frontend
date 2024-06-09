@@ -49,6 +49,7 @@ const Navbar = () => {
                 <div className="flex items-center space-x-4">
                     {user ? (
                         <>
+                        {/* <input type="checkbox" value="synthwave" className="toggle theme-controller"/> */}
                         <img
                             src={user.photoURL}
                             alt="Profile"

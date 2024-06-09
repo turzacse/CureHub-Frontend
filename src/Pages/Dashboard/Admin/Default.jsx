@@ -10,11 +10,11 @@ const data = [
     { name: 'Total Uses', value: 30 }
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A6D71C'];
 
 const DefaultAdmin = () => {
     return (
-        <div className='flex mt-10'>
+        <div className='flex md:flex-row flex-col justify-center items-center mt-10'>
             <div style={{ width: '50%', height: 300 }}>
                 <ResponsiveContainer>
                     <PieChart>

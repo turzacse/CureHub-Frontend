@@ -21,14 +21,14 @@ const Home = () => {
           <ProductSlider/>
           <CategorySection/> 
           <DiscountProducts/> 
-          <DefaultAdmin/>
+          {/* <DefaultAdmin/> */}
           <QueriesSection/>
           <PopularCategoriesSection/>
           <TestimonialsSection/>
           <FeaturedProductsSection/>
           <HowItWorksSection/>
-          <ShopPage/>
-          <CategoryDetailsMedicinePage/>
+          {/* <ShopPage/>
+          <CategoryDetailsMedicinePage/> */}
         </div>
     );
 };

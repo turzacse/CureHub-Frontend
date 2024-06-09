@@ -46,10 +46,10 @@ const QueriesSection = () => {
     };
 
     return (
-        <div className="mx-20 py-10 relative">
+        <div className="md:mx-20 mx-4 py-10 relative">
             <Headline className='mb-5' headline='Recent  Queries' />
             <div className=" ">
-                <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+                <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
                     {queries.map(query => (
                         <QueryCard key={query._id} query={query} onClick={() => handleQueryClick(query._id)} />
                     ))}

@@ -16,6 +16,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
+        e.preventDefault();
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
