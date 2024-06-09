@@ -19,6 +19,7 @@ import ShopPage from './Pages/Shop/Shop.jsx';
 import Queries from './Pages/Dashboard/User/Queries.jsx';
 import Error from './Pages/Error/Error.jsx';
 import AllQuery from './Pages/All Query/AllQuery.jsx';
+import Question from './Pages/Dashboard/Admin/Question.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/category',
         element: <Category/>
+      },
+      {
+        path: '/dashboard/user-query',
+        element: <Question/>
       },
       {
         path: '/dashboard/queries',

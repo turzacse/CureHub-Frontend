@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';
 import { AuthContext } from '../../Provider/AuthContext';
 import { BsCapsule } from 'react-icons/bs';
-import { FaEye, FaHeadSideMask, FaUsers } from 'react-icons/fa';
+import { FaEye, FaHeadSideMask, FaQuestion, FaUsers } from 'react-icons/fa';
 import { MdCategory, MdCurrencyExchange } from 'react-icons/md';
 import { FcCurrencyExchange } from 'react-icons/fc';
 import { FaBookAtlas, FaPersonCircleQuestion } from 'react-icons/fa6';
@@ -41,6 +41,11 @@ const Sidebar = () => {
                     <div className='flex gap-2 items-center mt-2 text-xl font-bold'>
                         <MdCategory className='text-lime-400' />
                         <NavLink to='/dashboard/category' className=''>Categor</NavLink>
+                    </div>
+
+                    <div className='flex gap-2 items-center mt-2 text-xl font-bold'>
+                        <FaQuestion className='text-red-600' />
+                        <NavLink to='/dashboard/user-query' className=''>User Query</NavLink>
                     </div>
 
                     <div className='flex gap-2 items-center mt-2 text-xl font-bold'>

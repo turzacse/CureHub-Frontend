@@ -11,6 +11,7 @@ import SignUpPage from '../Authentications/SignUp';
 import LoginPage from '../Authentications/SignIn';
 import ShopPage from '../Shop/Shop';
 import CategoryDetailsMedicinePage from '../Shop/CategoryDetailsMedicinePage';
+import DefaultAdmin from '../Dashboard/Admin/Default';
 
 const Home = () => {
     return (
@@ -20,6 +21,7 @@ const Home = () => {
           <ProductSlider/>
           <CategorySection/> 
           <DiscountProducts/> 
+          <DefaultAdmin/>
           <QueriesSection/>
           <PopularCategoriesSection/>
           <TestimonialsSection/>
