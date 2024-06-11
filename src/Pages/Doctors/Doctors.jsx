@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { FaEye } from 'react-icons/fa';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
+import axios from 'axios';
 const formatTime = (time) => {
     const [hours, minutes] = time.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
@@ -15,13 +16,42 @@ const Doctors = () => {
     const [image, setImage] = useState('https://i.ibb.co/HNwNbwh/doc.jpg');
     const [selectedDoctor, setSelectedDoctor] = useState(null);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
-    const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+    const [showAppointmentModal, setShowAppointmentModal] = useState(null);
+    const [userCountry, setUserCountry] = useState('');
+
+    const today = new Date();
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayName = dayNames[today.getDay()];
+    
+    console.log('Today is:', dayName);
 
     useEffect(() => {
         fetch('Doctors.json')
             .then(res => res.json())
-            .then(data => setDoctors(data));
+            .then(data => {
+                const filteredDoctors = data.filter(item => item.offDay !== dayName);
+                setDoctors(filteredDoctors);
+            });
     }, []);
+
+    useEffect(() => {
+        axios.get('https://api.ipify.org/?format=json')
+            .then(response => {
+                const ipAddress = response.data.ip;
+                return axios.get(`https://ipapi.co/${ipAddress}/json/`);
+            })
+            .then(response => {
+                console.log(response.data.country_name);
+                setUserCountry(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching user country:', error);
+                setUserCountry('Unknown');
+            });
+    }, []);
+
+    console.log('country..........', userCountry);
+
 
     const handleDetailsClick = (doctor) => {
         setSelectedDoctor(doctor);
@@ -29,8 +59,10 @@ const Doctors = () => {
     };
 
     const handleAppointmentClick = (doctor) => {
-        setSelectedDoctor(doctor);
-        setShowAppointmentModal(true);
+        // setSelectedDoctor(doctor);
+        // setShowDetailsModal(false);
+        setShowAppointmentModal(doctor);
+        console.log('yessssssssssssssss')
     };
 
     const closeModal = () => {
@@ -42,6 +74,10 @@ const Doctors = () => {
 
     return (
         <div className='text-white md:mx-20 mx-4 py-10'>
+            <div className='text-center mb-10'>
+                <h2 className='text-2xl font-bold text-[#acdf4e]'>Our Available Doctor for Today</h2>
+                <p className='text-[12px] mt-2'>Make your appointment to your desire Doctor</p>
+            </div>
             <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                 {doctors.map((doctor) => (
                     <div className='bg-[#f3cbcb] text-black rounded-lg p-4' key={doctor._id}>
@@ -61,14 +97,14 @@ const Doctors = () => {
             </div>
 
             {/* Details Modal */}
-            {selectedDoctor && (
+            {selectedDoctor  && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-black">
-                    <div className="bg-white p-4 w-1/2 rounded-lg">
+                    <div className="bg-[#199292] p-4 w-1/2 rounded-lg">
                         <div className='flex justify-between'>
                             <h3 className="text-xl font-bold mb-2">{selectedDoctor.name}</h3>
                             <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
                         </div>
-                        <img src={image} alt={selectedDoctor.name} className="w-64 h-64 object-cover mb-4" />
+                        <img src={image} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4" />
                         <p>Department: {selectedDoctor.department}</p>
                         <p>Designation: {selectedDoctor.designation}</p>
                         <p>Degrees:
@@ -86,11 +122,11 @@ const Doctors = () => {
             )}
 
             {/* Appointment Modal */}
-            {/* {selectedDoctor && (
+            {showAppointmentModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-4 w-1/2 rounded-lg">
+                    <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
                         <div className='flex justify-between'>
-                            <h3 className="text-xl font-bold mb-2">Appointment with {selectedDoctor.name}</h3>
+                            <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
                             <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
                         </div>
                         <form>
@@ -114,7 +150,7 @@ const Doctors = () => {
                         </form>
                     </div>
                 </div>
-            )} */}
+            )}
         </div>
     );
 };
