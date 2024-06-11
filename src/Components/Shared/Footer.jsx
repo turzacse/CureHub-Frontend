@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaFacebook, FaInstagramSquare, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -7,7 +9,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Company Information */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">Company</h3>
+                        <NavLink to='/' className="md:text-3xl text-2xl font-bold mb-4">Cure<span className='text-red-400 font-extrabold'>Hub</span></NavLink>
                         <p>
                             Multi-Vendor Medicine Selling E-commerce Website
                             <br />
@@ -44,11 +46,11 @@ const Footer = () => {
                     {/* Social Media */}
                     <div>
                         <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-                        <div className="flex space-x-4">
-                            <a href="#" className="hover:text-blue-400"><i className="fab fa-facebook-f"></i> Facebook</a>
-                            <a href="#" className="hover:text-blue-400"><i className="fab fa-twitter"></i> Twitter</a>
-                            <a href="#" className="hover:text-blue-400"><i className="fab fa-instagram"></i> Instagram</a>
-                            <a href="#" className="hover:text-blue-400"><i className="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <div className="flex space-x-4 text-2xl">
+                            <NavLink ><FaFacebook /></NavLink>
+                            <NavLink ><FaLinkedin /></NavLink>
+                            <NavLink ><FaInstagramSquare /></NavLink>
+                            <NavLink ><FaYoutube /></NavLink>
                         </div>
                     </div>
                 </div>

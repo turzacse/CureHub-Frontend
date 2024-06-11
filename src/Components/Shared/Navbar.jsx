@@ -37,19 +37,18 @@ const Navbar = () => {
         <nav className="bg-[#006666] text-white">
             <div className=" mx-auto px-4 py-4 flex justify-between items-center">
                 <NavLink to='/' className="text-2xl font-bold">
-                    {/* <a >CureHub</a> */}
+                    
                     <img className='h-[80px] w-[80px] rounded-full' src={logo2} alt="" />
                 </NavLink>
                 <div className="hidden md:flex space-x-6">
                     <NavLink to='/' className="hover:text-blue-400">Home</NavLink>
                     <NavLink to='/shop' className="hover:text-blue-400">Shop</NavLink>
-                    <NavLink to='/about' className="hover:text-blue-400">About Us</NavLink>
+                    <NavLink to='/doctors' className="hover:text-blue-400">Doctors</NavLink>
                     <NavLink to='/contact' className="hover:text-blue-400">Contact</NavLink>
                 </div>
                 <div className="flex items-center space-x-4">
                     {user ? (
                         <>
-                        {/* <input type="checkbox" value="synthwave" className="toggle theme-controller"/> */}
                         <img
                             src={user.photoURL}
                             alt="Profile"
@@ -65,7 +64,6 @@ const Navbar = () => {
                     </>
                     ) : (
                         <>
-                            {/* <a href="#" className="hover:text-blue-400">Sign Up</a> */}
                             <a  className="hover:text-blue-400">Sign In</a>
                         </>
                     )}
@@ -79,10 +77,10 @@ const Navbar = () => {
                 </div>
             </div>
             {isOpen && (
-                <div className="md:hidden" onClick={handleChange}>
+                <div className="md:hidden z-50 absolute w-3/4 rounded-lg right-0 shadow-2xl bg-[#006666]" onClick={handleChange}>
                     <NavLink to='/'  className="block px-4 py-2 hover:bg-gray-700">Home</NavLink>
                     <NavLink to='/shop'  className="block px-4 py-2 hover:bg-gray-700">Shop</NavLink>
-                    <NavLink to='/about'  className="block px-4 py-2 hover:bg-gray-700">About Us</NavLink>
+                    <NavLink to='/doctors'  className="block px-4 py-2 hover:bg-gray-700">Doctors</NavLink>
                     <NavLink to='/'  className="block px-4 py-2 hover:bg-gray-700">Contact</NavLink>
                     {user ? (
                         <NavLink to='/dashboard'  className="block px-4 py-2 hover:bg-gray-700">Dashboard</NavLink>
