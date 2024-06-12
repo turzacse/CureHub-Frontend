@@ -21,6 +21,7 @@ import Error from './Pages/Error/Error.jsx';
 import AllQuery from './Pages/All Query/AllQuery.jsx';
 import Question from './Pages/Dashboard/Admin/Question.jsx';
 import Doctors from './Pages/Doctors/Doctors.jsx';
+import DoctorManagement from './Pages/Dashboard/Admin/DoctorsManagement/DoctorManagement.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/category',
         element: <Category/>
+      },
+      {
+        path: '/dashboard/doctors',
+        element: <DoctorManagement/>
       },
       {
         path: '/dashboard/user-query',

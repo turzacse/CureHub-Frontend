@@ -12,6 +12,27 @@ const formatTime = (time) => {
     return `${formattedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
 };
 
+const getDayName = (dayIndex) => {
+    switch (dayIndex) {
+        case 0:
+            return 'Sunday';
+        case 1:
+            return 'Monday';
+        case 2:
+            return 'Tuesday';
+        case 3:
+            return 'Wednesday';
+        case 4:
+            return 'Thursday';
+        case 5:
+            return 'Friday';
+        case 6:
+            return 'Saturday';
+        default:
+            return '';
+    }
+};
+
 
 
 const Doctors = () => {
@@ -23,6 +44,7 @@ const Doctors = () => {
     const [userCountry, setUserCountry] = useState('');
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
+    // const [appoinmentDay, setAppoinmentDay] = useState(new Date());
 
     const today = new Date();
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -74,9 +96,20 @@ const Doctors = () => {
         }
         return slots;
     };
-    const formatDate = (date) => {
-        return date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+
+    const getFormattedDateAndDay = (date) => {
+        const formattedDate = date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const day = date.getDay();
+        const appointmentDay = getDayName(day);
+        
+        return { formattedDate, appointmentDay };
     };
+
+    const { formattedDate, appointmentDay } = getFormattedDateAndDay(currentDate);
+    console.log('data....', formattedDate, appointmentDay);
+
+    // console.log(appoinmentDay);
 
     const handlePrevDay = () => {
         setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)));
@@ -124,7 +157,7 @@ const Doctors = () => {
         setSelectedSlot(null);
     };
 
-
+    console.log(currentDate);
     return (
         <div className='text-white md:mx-20 mx-4 py-10'>
             <div className='text-center mb-10'>
@@ -207,44 +240,54 @@ const Doctors = () => {
                     <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
                         <div className='flex justify-between'>
                             <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
-                            <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
+                            <button onClick={closeModal} className="text-3xl "><IoMdCloseCircleOutline /></button>
                         </div>
                         <form>
-                            <label className="block mb-2">
-                                Name:
-                                <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                            </label>
-                            <label className="block mb-2">
-                                Email:
-                                <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                            </label>
-                            <label className="block mb-2">
-                                Phone:
-                                <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                            </label>
-                            <label className="block mb-2">
-                                Appointment Date:
-                                <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                            </label>
+                            <div className='flex gap-1'>
+                                <label className="block flex-1 mb-2">
+                                    Name:
+                                    <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                </label>
+                                <label className="block mb-2 flex-1">
+                                    Email:
+                                    <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                </label>
+                            </div>
+                            <div className='flex gap-1'>
+                                <label className="block mb-2 flex-1">
+                                    Phone:
+                                    <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                </label>
+                                <label className="block mb-2 flex-1">
+                                    Appointment Date:
+                                    <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                </label>
+                            </div>
                             <div className="mb-2">
-                                
-                                <div className="flex justify-between items-center mb-2">
-                                    <p onClick={handlePrevDay} className="bg-gray-400 text-white py-1 px-3 rounded-md cursor-pointer">←</p>
-                                    <p className="mb-2">Available Slots: {formatDate(currentDate)}</p>
-                                    <p onClick={handleNextDay} className="bg-gray-400 text-white py-1 px-3 rounded-md cursor-pointer">→</p>
-                                </div>
 
-                                {getSlots(showAppointmentModal.start_time, showAppointmentModal.end_time).map((slot, index) => (
-                                    <button
-                                        key={index}
-                                        type="button"
-                                        className={`text-[12px] py-1 px-2 rounded-md mr-2 mb-2 justify-center ${selectedSlot === slot ? 'bg-gray-400' : 'bg-[#1c1d1c] text-white'}`}
-                                        onClick={() => handleSlotClick(slot)}
-                                        disabled={selectedSlot === slot}
-                                    >
-                                        {slot}
-                                    </button>
-                                ))}
+                                <div className="flex justify-between items-center mb-2">
+                                    <p onClick={handlePrevDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">←</p>
+                                    <p className="mb-2">Available Slots: {formattedDate}</p>
+                                    <p onClick={handleNextDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">→</p>
+                                </div>
+                                {showAppointmentModal.offDay === appointmentDay ? (
+                                    <div className="text-2xl text-center font-bold text-red-700">
+                                        Doctor is Unavailable for this day
+                                    </div>
+                                ) : (
+                                    getSlots(showAppointmentModal.start_time, showAppointmentModal.end_time).map((slot, index) => (
+                                        <button
+                                            key={index}
+                                            type="button"
+                                            className={`text-[12px] py-1 px-2 rounded-md mr-2 mb-2 justify-center ${selectedSlot === slot ? 'bg-gray-400' : 'bg-[#1c1d1c] text-white'}`}
+                                            onClick={() => handleSlotClick(slot)}
+                                            disabled={selectedSlot === slot}
+                                        >
+                                            {slot}
+                                        </button>
+                                    ))
+                                )}
+
                             </div>
                             <button type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
                         </form>
