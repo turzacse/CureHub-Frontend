@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../App.css'
+import axios from 'axios';
 
 const medicalDepartments = [
     "Anesthesiology",
@@ -35,6 +36,10 @@ const medicalDepartments = [
     "Vascular Surgery"
 ];
 
+const visit = [300, 400, 500, 600, 700, 800, 1000, 1200, 1500, 2000];
+
+const image_hosting = '39cd3de230380fc39b116f0d1af689bd';
+const image_hosting_key = `https://api.imgbb.com/1/upload?key=${image_hosting}`;
 
 const DoctorForm = ({ onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -60,6 +65,25 @@ const DoctorForm = ({ onClose, onSubmit }) => {
             [name]: value
         });
     };
+
+    const handleUpload = async (event) => {
+        const selectedFile = event.target.files[0];
+        try {
+            const uploadData = new FormData();
+            uploadData.append("image", selectedFile);
+
+            const response = await axios.post(image_hosting_key, uploadData);
+
+            if (response.status === 200) {
+                const imageUrl = response.data.data.url;
+                setFormData((prevState) => ({ ...prevState, doctor_img: imageUrl }));
+                console.log("Image uploaded successfully:", imageUrl);
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+        }
+    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -139,11 +163,26 @@ const DoctorForm = ({ onClose, onSubmit }) => {
                 <div className='flex justify-between gap-2'>
                     <div className='flex-1'>
                         {/* <label>Visit:</label> */}
-                        <input type="text" placeholder='Visit' name="visit" value={formData.visit} onChange={handleChange} required />
+                        {/* <input type="text" placeholder='Visit' name="visit" value={formData.visit} onChange={handleChange} required /> */}
+                        <select
+                            name="visit"
+                            value={formData.visit}
+                            onChange={handleChange}
+                            required
+                            className='py-2 border-2 w-full'
+                        >
+                            <option value="" disabled>Visit</option>
+                            {visit.map(e => (
+                                <option key={e} value={e}>
+                                    {e}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className='flex-1'>
                         {/* <label>Doctor Image URL:</label> */}
-                        <input type="text" placeholder='Image' name="doctor_img" value={formData.doctor_img} onChange={handleChange} required />
+                        <input type="file" className='py-2' placeholder='Image' name="doctor_img" onChange={handleUpload} required />
+                        <label className='font-normal text-sm'>Profile Image</label>
                     </div>
                     <div className='flex-1'>
                         {/* <label>Joining Date:</label> */}

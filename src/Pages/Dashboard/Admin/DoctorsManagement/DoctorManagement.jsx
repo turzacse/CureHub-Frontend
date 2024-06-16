@@ -68,10 +68,10 @@ const DoctorManagement = () => {
                     <div key={department}>
                         <h3 className='md:text-xl text-lg my-2 font-bold'>{department} ({departmentDoctors[department].length})</h3>
                         <ul>
-                            {departmentDoctors[department].map(doctor => (
+                            {departmentDoctors[department]?.map(doctor => (
                                 <div key={doctor._id}>
                                     <li className='md:text-lg text-[14px] font-bold text-[#e05c3b]'>{doctor.name}</li>
-                                    <li className='md:text-sm text-[12px]'>{doctor?.degree.join(' ')}</li>
+                                    <li className='md:text-sm text-[12px]'>{Array.isArray(doctor.degree) ? doctor.degree.join(' ') : doctor.degree}</li>
                                 </div>
                             ))}
                         </ul>
