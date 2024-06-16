@@ -1,6 +1,41 @@
 import React, { useState } from 'react';
 import '../../App.css'
 
+const medicalDepartments = [
+    "Anesthesiology",
+    "Cardiology",
+    "Dermatology",
+    "Emergency Medicine",
+    "Endocrinology",
+    "Family Medicine",
+    "Gastroenterology",
+    "General Surgery",
+    "Geriatrics",
+    "Gynecology",
+    "Hematology",
+    "Infectious Diseases",
+    "Internal Medicine",
+    "Nephrology",
+    "Neurology",
+    "Neurosurgery",
+    "Obstetrics and Gynecology (OB/GYN)",
+    "Oncology",
+    "Ophthalmology",
+    "Orthopedics",
+    "Otolaryngology (ENT)",
+    "Pediatrics",
+    "Plastic Surgery",
+    "Psychiatry",
+    "Pulmonology",
+    "Radiology",
+    "Rheumatology",
+    "Sports Medicine",
+    "Thoracic Surgery",
+    "Urology",
+    "Vascular Surgery"
+];
+
+
 const DoctorForm = ({ onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
         name: '',
@@ -30,6 +65,7 @@ const DoctorForm = ({ onClose, onSubmit }) => {
         e.preventDefault();
         onSubmit(formData);
         onClose();
+        console.log(formData);
     };
 
     return (
@@ -49,7 +85,21 @@ const DoctorForm = ({ onClose, onSubmit }) => {
                 <div className='flex justify-between gap-2'>
                     <div className='flex-1'>
                         {/* <label>Department:</label> */}
-                        <input type="text" placeholder='Department' name="department" value={formData.department} onChange={handleChange} required />
+                        {/* <input type="text" placeholder='Department' name="department" value={formData.department} onChange={handleChange} required /> */}
+                        <select
+                            name="department"
+                            value={formData.department}
+                            onChange={handleChange}
+                            required
+                            className='py-2 border-2'
+                        >
+                            <option value="" disabled>Select Department</option>
+                            {medicalDepartments.map(department => (
+                                <option key={department} value={department}>
+                                    {department}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className='flex-1'>
                         {/* <label>Designation:</label> */}
@@ -76,14 +126,15 @@ const DoctorForm = ({ onClose, onSubmit }) => {
                     </div>
                 </div>
                 <div className='flex justify-between gap-2'>
-                    <div className='flex-1'>
-                        {/* <label>Start Time:</label> */}
-                        <input type="text" placeholder='Start Time' name="start_time" value={formData.start_time} onChange={handleChange} required />
+                    <div className='flex-1 flex gap-2 items-center'>
+                        <label>Start Time</label>
+                        <input type="time" placeholder='Start Time' name="start_time" value={formData.start_time} onChange={handleChange} required />
                     </div>
-                    <div className='flex-1'>
-                        {/* <label>End Time:</label> */}
-                        <input type="text" placeholder='End Time' name="end_time" value={formData.end_time} onChange={handleChange} required />
+                    <div className='flex-1 flex gap-2 items-center'>
+                    <label>End Time</label>
+                        <input type="time" placeholder='End Time' name="end_time" value={formData.end_time} onChange={handleChange} required />
                     </div>
+                     
                 </div>
                 <div className='flex justify-between gap-2'>
                     <div className='flex-1'>
