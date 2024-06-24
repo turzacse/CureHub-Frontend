@@ -23,6 +23,7 @@ import Question from './Pages/Dashboard/Admin/Question.jsx';
 import Doctors from './Pages/Doctors/Doctors.jsx';
 import DoctorManagement from './Pages/Dashboard/Admin/DoctorsManagement/DoctorManagement.jsx';
 import Testimonial from './Pages/Testimonial/Testimonial.jsx';
+import ContactUs from './Pages/ContactUs/ContactUs.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -40,16 +41,20 @@ const router = createBrowserRouter([
         element: <ShopPage/>
       },
       {
-        path: '/testimonial',
-        element: <Testimonial/>
-      },
-      {
         path: '/doctors',
         element: <Doctors/>
       },
       {
+        path: '/testimonial',
+        element: <Testimonial/>
+      },
+      {
         path: '/query',
         element: <AllQuery/>
+      },
+      {
+        path: '/contact-us',
+        element: <ContactUs/>
       },
       {
         path: '/sign-up',

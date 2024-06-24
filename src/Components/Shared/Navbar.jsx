@@ -44,7 +44,7 @@ const Navbar = () => {
                     <NavLink to='/' className="hover:text-blue-400">Home</NavLink>
                     <NavLink to='/shop' className="hover:text-blue-400">Shop</NavLink>
                     <NavLink to='/doctors' className="hover:text-blue-400">Doctors</NavLink>
-                    <NavLink to='/contact' className="hover:text-blue-400">Contact</NavLink>
+                    <NavLink to='/contact-us' className="hover:text-blue-400">Contact</NavLink>
                 </div>
                 <div className="flex items-center space-x-4">
                     {user ? (
