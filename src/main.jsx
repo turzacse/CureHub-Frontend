@@ -22,6 +22,7 @@ import AllQuery from './Pages/All Query/AllQuery.jsx';
 import Question from './Pages/Dashboard/Admin/Question.jsx';
 import Doctors from './Pages/Doctors/Doctors.jsx';
 import DoctorManagement from './Pages/Dashboard/Admin/DoctorsManagement/DoctorManagement.jsx';
+import Testimonial from './Pages/Testimonial/Testimonial.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <ShopPage/>
+      },
+      {
+        path: '/testimonial',
+        element: <Testimonial/>
       },
       {
         path: '/doctors',

@@ -1,0 +1,107 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "testimonial": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel erat eu velit semper luctus.",
+        "rating": 4.5,
+        "image": "https://example.com/images/john_doe.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "testimonial": "Nulla facilisi. Fusce a quam eget justo volutpat euismod nec id mi.",
+        "rating": 4.0,
+        "image": "https://example.com/images/jane_smith.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Alice Johnson",
+        "testimonial": "Sed malesuada nisi id feugiat lacinia. Morbi tristique purus nec leo consequat, at molestie lacus suscipit.",
+        "rating": 4.7,
+        "image": "https://example.com/images/alice_johnson.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Michael Brown",
+        "testimonial": "Integer bibendum metus quis nisl consequat, a consequat libero faucibus.",
+        "rating": 4.2,
+        "image": "https://example.com/images/michael_brown.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Emma Wilson",
+        "testimonial": "Duis auctor dolor sit amet risus scelerisque, vitae volutpat nisl fermentum.",
+        "rating": 4.8,
+        "image": "https://example.com/images/emma_wilson.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Olivia Martinez",
+        "testimonial": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.",
+        "rating": 4.1,
+        "image": "https://example.com/images/olivia_martinez.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Liam Davis",
+        "testimonial": "Mauris sit amet lacus at mauris dictum pellentesque.",
+        "rating": 4.9,
+        "image": "https://example.com/images/liam_davis.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Sophia Garcia",
+        "testimonial": "Nunc sit amet orci eget elit hendrerit vehicula.",
+        "rating": 4.3,
+        "image": "https://example.com/images/sophia_garcia.jpg"
+    },
+    {
+        "id": 9,
+        "name": "William Rodriguez",
+        "testimonial": "Phasellus ac libero nec est viverra dapibus.",
+        "rating": 4.6,
+        "image": "https://example.com/images/william_rodriguez.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Mia Anderson",
+        "testimonial": "Curabitur nec nisi vel sapien tristique aliquet.",
+        "rating": 4.4,
+        "image": "https://example.com/images/mia_anderson.jpg"
+    },
+    {
+        "id": 11,
+        "name": "James Thomas",
+        "testimonial": "Etiam interdum urna nec ligula gravida, a aliquet turpis vulputate.",
+        "rating": 4.5,
+        "image": "https://example.com/images/james_thomas.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Isabella Hernandez",
+        "testimonial": "Proin ut ante ut enim euismod scelerisque.",
+        "rating": 4.7,
+        "image": "https://example.com/images/isabella_hernandez.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Alexander Moore",
+        "testimonial": "Donec facilisis lorem in purus accumsan, a facilisis felis convallis.",
+        "rating": 4.0,
+        "image": "https://example.com/images/alexander_moore.jpg"
+    },
+    {
+        "id": 14,
+        "name": "Ava Jackson",
+        "testimonial": "Vivamus ut felis sit amet elit venenatis facilisis.",
+        "rating": 4.2,
+        "image": "https://example.com/images/ava_jackson.jpg"
+    },
+    {
+        "id": 15,
+        "name": "Benjamin White",
+        "testimonial": "Aliquam erat volutpat. Sed fringilla tellus at velit sagittis, et pharetra libero aliquet.",
+        "rating": 4.3,
+        "image": "https://example.com/images/benjamin_white.jpg"
+    }
+]

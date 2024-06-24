@@ -3,6 +3,7 @@ import QueryCard from './QueryCard';
 import Headline from '../Headline';
 import { NavLink } from 'react-router-dom';
 import './Query.css'
+import SeeAllDetails from '../SeeAllDetails';
 
 
 const QueriesSection = () => {
@@ -55,13 +56,7 @@ const QueriesSection = () => {
                     ))}
                 </div>
             </div>
-            <h2 className='mt-10 text-center text-xl mb-5 bg-gradient-to-r from-[#6B65F2] via-green-500 to-[#EA499D] font-medium text-transparent bg-clip-text'>To explore more queries & get the queries answer, please click on it</h2>
-            <NavLink to='/query' className=' flex justify-center w-[100px] p-2 mx-auto text-white bg-[#DD4BAF] rounded-lg shadow-2xl hover:bg-[#cf2299]'>
-                SEE ALL
-            </NavLink>
-            {/* <p className='w-[100px] mx-auto bg-[#473742] p-1 flex justify-center rounded-b-xl absolute bottom-10 left-[483px]'>
-
-            </p> */}
+            <SeeAllDetails button='SEE ALL' routes='/query' description='To explore more queries & get the queries answer, please click on it' />
         </div>
     );
 };
