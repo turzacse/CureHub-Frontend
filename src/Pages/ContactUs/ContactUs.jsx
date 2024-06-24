@@ -3,8 +3,21 @@ import Headline from '../../Components/Headline';
 import { RiHomeOfficeFill } from 'react-icons/ri';
 import { BsFillTelephoneForwardFill } from 'react-icons/bs';
 import { MdMarkEmailRead } from 'react-icons/md';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            text: `We are working for you, to create amazing somethings. Stay with us, we'll get back you within 48 hrs`,
+            showConfirmButton: true,
+            background: '#008080',
+            color: '#fff'
+            // timer: 1500
+        });
+    }
     return (
         <div className='text-white md:mx-20 mx-4 py-10'>
             <Headline headline='contact us' />
@@ -49,31 +62,30 @@ const ContactUs = () => {
 
 
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
+                    <div className="flex-1 text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Contact Us</h1>
                         <p className="py-6">
                             We're here to help and answer any questions you might have. We look forward to hearing from you.
                         </p>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                        <form className="card-body">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input type="email" placeholder="email" className="input input-bordered" required />
+                    <div className="flex-1 card w-full shrink-0 shadow-2xl">
+                        <form className="card-body text-black">
+                        <div className="form-control">
+                                <input type="text" placeholder="Full Name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input type="password" placeholder="password" className="input input-bordered" required />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                <input type="email" placeholder="Email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <input type="text" placeholder="Subject" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <textarea type="email" placeholder="Write your meassage here" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button
+                                onClick={handleSubmit}
+                                className="btn btn-info text-white ">SUBMIT</button>
                             </div>
                         </form>
                     </div>
