@@ -4,6 +4,7 @@ import Headline from '../Headline';
 import { NavLink } from 'react-router-dom';
 import './Query.css'
 import SeeAllDetails from '../SeeAllDetails';
+import avatart from '../../assets/Image/avatar.jpg';
 
 
 const QueriesSection = () => {

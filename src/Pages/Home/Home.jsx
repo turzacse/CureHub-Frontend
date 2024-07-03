@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductSlider from '../../Components/Home/ProductSlider';
 import CategorySection from '../../Components/Home/CategorySection';
 import DiscountProducts from '../../Components/Home/DiscountProducts';
@@ -14,23 +14,53 @@ import CategoryDetailsMedicinePage from '../Shop/CategoryDetailsMedicinePage';
 import DefaultAdmin from '../Dashboard/Admin/Default';
 
 const Home = () => {
-    return (
-        <div>
-            {/* <SignUpPage/>
+    const [selectedDate, setSelectedDate] = useState('');
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+
+    // Format the selected date to dd-mm-yy format
+    const formattedDate = formatDate(selectedDate);
+    
+    setSelectedDate(formattedDate);
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+
+    // Split the date into parts (year, month, day)
+    const parts = dateString.split('-');
+    const day = parts[2];
+    const month = parts[1];
+    const year = parts[0].slice(-2); // Take last two digits for year
+
+    return `${day}-${month}-${year}`;
+  };
+
+return (
+    <div>
+        {/* <input
+        type="date"
+        className="p-2 rounded outline-none w-full"
+        placeholder="dd-mm-yyyy"
+        value={selectedDate}
+        onChange={handleDateChange}
+      /> */}
+        {/* <SignUpPage/>
             <LoginPage/> */}
-          <ProductSlider/>
-          <CategorySection/> 
-          <DiscountProducts/> 
-          {/* <DefaultAdmin/> */}
-          <QueriesSection/>
-          <PopularCategoriesSection/>
-          <TestimonialsSection/>
-          <FeaturedProductsSection/>
-          <HowItWorksSection/>
-          {/* <ShopPage/>
+        <ProductSlider />
+        <CategorySection />
+        <DiscountProducts />
+        {/* <DefaultAdmin/> */}
+        <QueriesSection />
+        <PopularCategoriesSection />
+        <TestimonialsSection />
+        {/* <FeaturedProductsSection />
+        <HowItWorksSection /> */}
+        {/* <ShopPage/>
           <CategoryDetailsMedicinePage/> */}
-        </div>
-    );
+    </div>
+);
 };
 
 export default Home;

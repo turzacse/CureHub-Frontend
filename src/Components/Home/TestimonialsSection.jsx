@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SeeAllDetails from '../SeeAllDetails';
 import Headline from '../Headline';
+import avatar from '../../assets/Image/avatar.jpg';
 
 const TestimonialsSection = () => {
     const [testimonials, setTestimonials] = useState([]);
@@ -10,7 +11,7 @@ const TestimonialsSection = () => {
         .then(res => res.json())
         .then(data => {
             const shuffledQueries = shuffleArray(data);
-            setTestimonials(shuffledQueries.slice(0, 5));
+            setTestimonials(shuffledQueries.slice(0, 4));
         });
     } ,[]);
 
@@ -43,11 +44,11 @@ const TestimonialsSection = () => {
     return (
         <div className="mx-20 py-10">
             <Headline headline='Testimonial' />
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {testimonials.map(testimonial => (
                     <div key={testimonial.id} className="bg-[#1A6868] rounded-lg shadow-lg overflow-hidden text-white">
                         <div className="p-4">
-                            <img className='rounded-full h-[80px] w-[80px] mx-auto' src="https://i.ibb.co/0rpPRJQ/siam23.jpg" alt="" />
+                            <img className='rounded-full h-[80px] w-[80px] mx-auto' src={avatar} alt="" />
                             <p className="">{testimonial.testimonial}</p>
                             <p className=" font-semibold mt-2">- {testimonial.name}</p>
                         </div>

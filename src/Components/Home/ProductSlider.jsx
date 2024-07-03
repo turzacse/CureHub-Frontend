@@ -2,6 +2,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import img1 from '../../assets/Image/1.png'
+import img2 from '../../assets/Image/2.png'
+import img3 from '../../assets/Image/3.png'
 
 const ProductSlider = () => {
     const settings = {
@@ -44,19 +47,19 @@ const ProductSlider = () => {
             id: 1,
             title: 'Health careing',
             description: 'Description for product 1',
-            image: 'https://i.ibb.co/2NmnXnh/1.png'
+            image: img1
         },
         {
             id: 2,
             title: 'Campaign',
             description: 'Description for product 2',
-            image: 'https://i.ibb.co/Vmyf1ZX/2.png            '
+            image: img2
         },
         {
             id: 3,
             title: 'Pharmacy',
             description: 'Description for product 3',
-            image: 'https://i.ibb.co/51J9Q8G/3.png'
+            image: img3
         }
     ];
 
