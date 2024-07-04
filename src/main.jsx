@@ -20,10 +20,15 @@ import Queries from './Pages/Dashboard/User/Queries.jsx';
 import Error from './Pages/Error/Error.jsx';
 import AllQuery from './Pages/All Query/AllQuery.jsx';
 import Question from './Pages/Dashboard/Admin/Question.jsx';
-import Doctors from './Pages/Doctors/Doctors.jsx';
+// import Doctors from './Pages/Doctors/Doctors.jsx';
 import DoctorManagement from './Pages/Dashboard/Admin/DoctorsManagement/DoctorManagement.jsx';
 import Testimonial from './Pages/Testimonial/Testimonial.jsx';
 import ContactUs from './Pages/ContactUs/ContactUs.jsx';
+import About from './Pages/About/About.jsx';
+import Doctors from './Pages/DoctorsAppoinment/Doctors.jsx';
+import AppointmentGuidelines from './Pages/DoctorsAppoinment/AppointmentGuidelines.jsx';
+import TelemedicineAppointments from './Pages/DoctorsAppoinment/TelemedicineAppointments.jsx';
+import BookingSystem from './Pages/DoctorsAppoinment/BookingSystem.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -55,6 +60,22 @@ const router = createBrowserRouter([
       {
         path: '/contact-us',
         element: <ContactUs/>
+      },
+      {
+        path: '/about',
+        element: <About/>
+      },
+      {
+        path: '/appointment-guideline',
+        element: <AppointmentGuidelines/>
+      },
+      {
+        path: '/telemedicine-appointments',
+        element: <TelemedicineAppointments/>
+      },
+      {
+        path: '/booking-system',
+        element: <BookingSystem/>
       },
       {
         path: '/sign-up',

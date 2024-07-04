@@ -5,6 +5,7 @@ import { FaEye } from 'react-icons/fa';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import PageHeading from '../../Components/PageHeading/PageHeading';
 const formatTime = (time) => {
     const [hours, minutes] = time.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
@@ -157,13 +158,16 @@ const Doctors = () => {
         setSelectedSlot(null);
     };
 
+    const handleBooking = (e) => {
+        e.preventDefault();
+        setShowAppointmentModal(false);
+    }
+
     console.log(currentDate);
     return (
-        <div className='text-white md:mx-20 mx-4 py-10'>
-            <div className='text-center mb-10'>
-                <h2 className='text-2xl font-bold text-[#acdf4e]'>Our Available Doctor for Today</h2>
-                <p className='text-[12px] mt-2'>Make your appointment to your desire Doctor</p>
-            </div>
+        <div className='text-white container mx-auto py-2'>
+            <PageHeading title="Meet Our Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
+            <div className='md:mx-10 mx-4 py-10 '>
             <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                 {doctors.map((doctor) => (
                     <div className='bg-[#f3cbcb] text-black rounded-lg p-4' key={doctor._id}>
@@ -260,7 +264,7 @@ const Doctors = () => {
                                 </label>
                                 <label className="block mb-2 flex-1">
                                     Appointment Date:
-                                    <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                    <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
                                 </label>
                             </div>
                             <div className="mb-2">
@@ -289,11 +293,14 @@ const Doctors = () => {
                                 )}
 
                             </div>
-                            <button type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
+                            <button
+                            onClick={handleBooking}
+                            type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
                         </form>
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 };

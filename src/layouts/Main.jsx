@@ -4,13 +4,14 @@ import Footer from '../Components/Shared/Footer';
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 // #008080
+// #0a3030   its look nice
 const Main = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
     return (
         <div>
           <Navbar/> 
-          <div className='bg-[#0a3030]'>
+          <div className='bg-[#2C3E50]'>
           <Outlet/>
           </div>
           <Footer/>
@@ -19,3 +20,11 @@ const Main = () => {
 };
 
 export default Main;
+
+
+// Teal and Navy
+
+// Primary Color: #20C997 (teal)
+// Secondary Color: #343A40 (dark gray)
+// Accent Color: #FF5733 (coral)
+// Background Color: #2C3E50 (navy)
