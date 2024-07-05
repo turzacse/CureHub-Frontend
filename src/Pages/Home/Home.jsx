@@ -12,6 +12,7 @@ import LoginPage from '../Authentications/SignIn';
 import ShopPage from '../Shop/Shop';
 import CategoryDetailsMedicinePage from '../Shop/CategoryDetailsMedicinePage';
 import DefaultAdmin from '../Dashboard/Admin/Default';
+import Heading from '../../Components/PageHeading/Heading';
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -48,13 +49,16 @@ return (
       /> */}
         {/* <SignUpPage/>
             <LoginPage/> */}
+
+
         <ProductSlider />
         <CategorySection />
         <DiscountProducts />
-        {/* <DefaultAdmin/> */}
         <QueriesSection />
         <PopularCategoriesSection />
         <TestimonialsSection />
+
+
         {/* <FeaturedProductsSection />
         <HowItWorksSection /> */}
         {/* <ShopPage/>

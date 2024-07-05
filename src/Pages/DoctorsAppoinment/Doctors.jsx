@@ -6,6 +6,7 @@ import { IoMdCloseCircleOutline } from 'react-icons/io';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import PageHeading from '../../Components/PageHeading/PageHeading';
+import Heading from '../../Components/PageHeading/Heading';
 const formatTime = (time) => {
     const [hours, minutes] = time.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
@@ -165,9 +166,9 @@ const Doctors = () => {
 
     console.log(currentDate);
     return (
-        <div className='text-white container mx-auto py-2'>
-            <PageHeading title="Meet Our Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
-            <div className='md:mx-10 mx-4 py-10 '>
+        <div className='text-white  mx-auto pb-2'>
+            <Heading title="Meet Our Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
+            <div className='md:mx-10 container mx-4 py-10 '>
             <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                 {doctors.map((doctor) => (
                     <div className='bg-[#f3cbcb] text-black rounded-lg p-4' key={doctor._id}>

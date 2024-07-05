@@ -12,6 +12,7 @@
 import React from 'react';
 import PageHeading from '../../Components/PageHeading/PageHeading';
 import { NavLink } from 'react-router-dom';
+import Heading from '../../Components/PageHeading/Heading';
 
 const BookingSystem = () => {
 
@@ -42,10 +43,10 @@ const BookingSystem = () => {
         }
       ]
     return (
-        <div className=' text-white container mx-auto py-2'>
-            <PageHeading title='Easy Appointment Booking System' subtitle='Schedule Your Visit Effortlessly for Personalized Care' />
+        <div className=' text-white  mx-auto pb-2'>
+            <Heading title='Easy Appointment Booking System' subtitle='Schedule Your Visit Effortlessly for Personalized Care' />
             
-            <div className='my-10 mx-4 md:mx-10 space-y-5 text-justify'>
+            <div className='my-10 mx-4 container md:mx-10 space-y-5 text-justify'>
                 <div className=' space-y-5 text-justify'>
                 {
                     data.map((item, index) => <div key={index}>

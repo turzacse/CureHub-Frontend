@@ -1,12 +1,14 @@
 import React from 'react';
 import PageHeading from '../../Components/PageHeading/PageHeading';
+import Heading from '../../Components/PageHeading/Heading';
 
 const About = () => {
 
     return (
-        <div className=' text-white container mx-auto py-2'>
-            <PageHeading title="About Us" subtitle="Discover Our Commitment to Excellence in Healthcare Services and Community Wellness" />
-           <div className='py-10'>
+        <div className=' text-white  mx-auto pb-2'>
+            {/* <PageHeading title="About Us" subtitle="Discover Our Commitment to Excellence in Healthcare Services and Community Wellness" /> */}
+            <Heading title="About Us" subtitle="Discover Our Commitment to Excellence in Healthcare Services and Community Wellness"  />
+           <div className='container py-10'>
            <div className='md:mx-10 mx-4 text-justify space-y-5'>
                 <div>
                     <h2 className='font-bold md:text-[20px] text-[16px]'>Our Mission</h2>

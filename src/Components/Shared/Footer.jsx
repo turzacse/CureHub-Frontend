@@ -10,7 +10,7 @@ const Footer = () => {
                     {/* Company Information */}
                     <div>
                         <NavLink to='/' className="md:text-3xl text-2xl font-bold mb-4">Cure<span className='text-red-400 font-extrabold'>Hub</span></NavLink>
-                        <p>
+                        <p className=''>
                             Multi-Vendor Medicine Selling E-commerce Website
                             <br />
                             123 Medicine St, Health City, 56789

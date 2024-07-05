@@ -3,13 +3,14 @@ import Navbar from '../Components/Shared/Navbar';
 import Footer from '../Components/Shared/Footer';
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
+import '../index.css'
 // #008080
 // #0a3030   its look nice
 const Main = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
     return (
-        <div>
+        <div className='max-w-full overflow-y-hidden overflow-x-hidden'>
           <Navbar/> 
           <div className='bg-[#2C3E50]'>
           <Outlet/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+// import App from './App.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -29,6 +29,9 @@ import Doctors from './Pages/DoctorsAppoinment/Doctors.jsx';
 import AppointmentGuidelines from './Pages/DoctorsAppoinment/AppointmentGuidelines.jsx';
 import TelemedicineAppointments from './Pages/DoctorsAppoinment/TelemedicineAppointments.jsx';
 import BookingSystem from './Pages/DoctorsAppoinment/BookingSystem.jsx';
+import FAQ from './Pages/FAQ/FAQ.jsx';
+import Service from './Pages/Service/Service.jsx';
+import PatientHistory from './Pages/PatientHistory/PatientHistory.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -44,6 +47,18 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <ShopPage/>
+      },
+      {
+        path: '/faq',
+        element: <FAQ/>
+      },
+      {
+        path: '/service',
+        element: <Service/>
+      },
+      {
+        path: '/patient-history',
+        element: <PatientHistory/>
       },
       {
         path: '/doctors',

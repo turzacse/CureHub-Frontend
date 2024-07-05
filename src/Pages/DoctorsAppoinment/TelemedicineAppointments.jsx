@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHeading from '../../Components/PageHeading/PageHeading';
 import { NavLink } from 'react-router-dom';
+import Heading from '../../Components/PageHeading/Heading';
 
 const TelemedicineAppointments = () => {
 
@@ -41,10 +42,10 @@ const TelemedicineAppointments = () => {
         },
     ]
     return (
-        <div className=' text-white container mx-auto py-2'>
-            <PageHeading title='Telemedicine Appointments' subtitle='Access Quality Care from Anywhere with Convenient Virtual Consultations' />
+        <div className=' text-white  mx-auto pb-2'>
+            <Heading title='Telemedicine Appointments' subtitle='Access Quality Care from Anywhere with Convenient Virtual Consultations' />
             
-            <div className='my-10 mx-4 md:mx-10 space-y-5 text-justify'>
+            <div className='my-10 container mx-4 md:mx-10 space-y-5 text-justify'>
                 <div className=' space-y-5 text-justify'>
                 {
                     data.map((item, index) => <div key={index}>

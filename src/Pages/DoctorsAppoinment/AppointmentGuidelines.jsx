@@ -1,5 +1,6 @@
 import React from 'react';
 import PageHeading from '../../Components/PageHeading/PageHeading';
+import Heading from '../../Components/PageHeading/Heading';
 
 const AppointmentGuidelines = () => {
     const data = [
@@ -52,10 +53,10 @@ const AppointmentGuidelines = () => {
         
     ]
     return (
-        <div className=' text-white container mx-auto py-2'>
-            <PageHeading title='Appointment Guidelines' subtitle='Prepare for Your Visit: Essential Information to Ensure a Smooth and Efficient Appointment Experience' />
+        <div className='  mx-auto pb-2'>
+            <Heading title='Appointment Guidelines' subtitle='Prepare for Your Visit: Essential Information to Ensure a Smooth and Efficient Appointment Experience' />
             
-            <div className='my-10 mx-4 md:mx-10 space-y-5'>
+            <div className='my-10 container text-white mx-4 md:mx-10 space-y-5'>
                 {
                     data.map((item, index) => <div key={index}>
                         <h2 className='font-bold text-[16px] md:text-[20px] mb-2'>{item.title}</h2>
