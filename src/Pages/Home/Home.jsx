@@ -13,6 +13,16 @@ import ShopPage from '../Shop/Shop';
 import CategoryDetailsMedicinePage from '../Shop/CategoryDetailsMedicinePage';
 import DefaultAdmin from '../Dashboard/Admin/Default';
 import Heading from '../../Components/PageHeading/Heading';
+import CTASection from './CTA';
+import BenefitsSection from './BenefitsSection';
+import MembershipPlans from './MembershipPlans';
+import LatestHealthArticles from './LatestHealthArticles';
+import Blog from '../Blog/Blog';
+import HowItWorks from './HowItsWork';
+import KeyServices from './KeyService';
+import CTADoctor from './CTA2';
+import MedicineAdCTA from './CTA3';
+import SuccessStories from './Stories';
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -52,11 +62,22 @@ return (
 
 
         <ProductSlider />
-        <CategorySection />
-        <DiscountProducts />
+        {/* <CategorySection /> */}
+        <KeyServices/>
+       
+        <CTASection/>
+        <MembershipPlans/>
+        <CTADoctor/>
+        <BenefitsSection/>
+        <MedicineAdCTA/>
+        
+        <SuccessStories/>
+        <HowItWorks/>
+        <LatestHealthArticles/>
+        {/* <DiscountProducts />
         <QueriesSection />
         <PopularCategoriesSection />
-        <TestimonialsSection />
+        <TestimonialsSection /> */}
 
 
         {/* <FeaturedProductsSection />

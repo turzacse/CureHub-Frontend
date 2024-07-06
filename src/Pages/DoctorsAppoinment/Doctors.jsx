@@ -47,6 +47,9 @@ const Doctors = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
     // const [appoinmentDay, setAppoinmentDay] = useState(new Date());
+    useEffect( () => {
+        window.scroll(0,0);
+      } ,[])
 
     const today = new Date();
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

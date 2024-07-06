@@ -32,6 +32,8 @@ import BookingSystem from './Pages/DoctorsAppoinment/BookingSystem.jsx';
 import FAQ from './Pages/FAQ/FAQ.jsx';
 import Service from './Pages/Service/Service.jsx';
 import PatientHistory from './Pages/PatientHistory/PatientHistory.jsx';
+import Blog from './Pages/Blog/Blog.jsx';
+import MentalHealthAnalysis from './Pages/HealthAnalysis/MentalHealth.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: '/service',
         element: <Service/>
+      },
+      {
+        path: '/blog',
+        element: <Blog/>
       },
       {
         path: '/patient-history',
@@ -91,6 +97,10 @@ const router = createBrowserRouter([
       {
         path: '/booking-system',
         element: <BookingSystem/>
+      },
+      {
+        path: '/mental-health-analysis',
+        element: <MentalHealthAnalysis/>
       },
       {
         path: '/sign-up',

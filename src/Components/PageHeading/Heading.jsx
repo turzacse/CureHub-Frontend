@@ -5,7 +5,7 @@ const Heading = ({title, subtitle}) => {
     return (
         <div>
             <div
-                className="hero md:h-[200px]"
+                className="hero lg:h-[200px]"
                 style={{
                     backgroundImage: `url(${img})`,
                 }}>

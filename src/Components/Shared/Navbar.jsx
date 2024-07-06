@@ -296,11 +296,12 @@ const Navbar = () => {
     const links = <div className='flex flex-col lg:flex-row justify-center items-center'>
     <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
     <li className='font-semibold'><NavLink to='/dashboard'>Dashboard</NavLink></li>
-    <li className='font-semibold'><NavLink to='/private'>Gallery</NavLink></li>
+    {/* <li className='font-semibold'><NavLink to='/private'>Gallery</NavLink></li> */}
     <li className='font-semibold'><NavLink to='/about'>About</NavLink></li>
     <li className='font-semibold'><NavLink to='/faq'>FAQ</NavLink></li>
     <li className='font-semibold'><NavLink to='/service'>Service</NavLink></li>
     <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li>
+    <li className='font-semibold'><NavLink to='/blog'>Blog</NavLink></li>
     <div className="dropdown bg-[#006666]">
         <li tabIndex={0} role="button" className="font-semibold m-1">Appointment</li>
         <ul tabIndex={0} className="md:dropdown-content md:menu rounded-box z-[1] w-[220px] shadow bg-[#006666]">

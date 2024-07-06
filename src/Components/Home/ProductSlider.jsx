@@ -45,20 +45,20 @@ const ProductSlider = () => {
     const products = [
         {
             id: 1,
-            title: 'Health careing',
-            description: 'Description for product 1',
+            title: 'Welcome to CureHub',
+            description: 'Your One-Stop Solution for Online Medicine, Doctor Appointments, and Telemedicine Services',
             image: img1
         },
         {
             id: 2,
-            title: 'Campaign',
-            description: 'Description for product 2',
+            title: 'Welcome to CureHub',
+            description: 'Your One-Stop Solution for Online Medicine, Doctor Appointments, and Telemedicine Services',
             image: img2
         },
         {
             id: 3,
-            title: 'Pharmacy',
-            description: 'Description for product 3',
+            title: 'Welcome to CureHub',
+            description: 'Your One-Stop Solution for Online Medicine, Doctor Appointments, and Telemedicine Services',
             image: img3
         }
     ];
@@ -70,9 +70,9 @@ const ProductSlider = () => {
                     <div key={product.id} className="p-4">
                         <div className="bg-[#41b3b3] rounded-lg shadow-xl overflow-hidden">
                             <img src={product.image} alt={product.title} className="md:w-full md:h-[500px] object-cover"/>
-                            <div className="p-6 text-white">
-                                <h2 className="md:text-xl font-bold mb-2">{product.title}</h2>
-                                <p className="">{product.description}</p>
+                            <div className="md:p-6 p-2 text-white">
+                                <h2 className="md:text-xl font-bold md:mb-2">{product.title}</h2>
+                                <p className="text-[10px] md:text-[16px]">{product.description}</p>
                             </div>
                         </div>
                     </div>

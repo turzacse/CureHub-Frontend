@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Components/Shared/Navbar';
 import Footer from '../Components/Shared/Footer';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 import '../index.css'
 // #008080
@@ -9,6 +9,9 @@ import '../index.css'
 const Main = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
+  useEffect( () => {
+    window.scroll(0,0);
+  } ,[])
     return (
         <div className='max-w-full overflow-y-hidden overflow-x-hidden'>
           <Navbar/> 
