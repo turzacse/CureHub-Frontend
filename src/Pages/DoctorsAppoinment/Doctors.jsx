@@ -47,9 +47,9 @@ const Doctors = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
     // const [appoinmentDay, setAppoinmentDay] = useState(new Date());
-    useEffect( () => {
-        window.scroll(0,0);
-      } ,[])
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, [])
 
     const today = new Date();
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -107,7 +107,7 @@ const Doctors = () => {
         const formattedDate = date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
         const day = date.getDay();
         const appointmentDay = getDayName(day);
-        
+
         return { formattedDate, appointmentDay };
     };
 
@@ -169,142 +169,163 @@ const Doctors = () => {
 
     console.log(currentDate);
     return (
-        <div className='text-white  mx-auto pb-2'>
+        <div className='text-white  mx-auto'>
             <Heading title="Meet Our Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
-            <div className='md:mx-10 container mx-4 py-10 '>
-            <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
-                {doctors.map((doctor) => (
-                    <div className='bg-[#f3cbcb] text-black rounded-lg p-4' key={doctor._id}>
-                        <img className='mx-auto rounded-full h-[100px] w-[100px]' src={image} alt="" />
-                        <h2>{doctor?.name} || {doctor.department}</h2>
-                        <p>
-                            {doctor?.degree?.map((deg, index) => (
-                                <span key={index}>{deg}{index < doctor.degree.length - 1 ? ', ' : ''}</span>
-                            ))}
-                        </p>
-                        <div className='flex justify-between mt-2'>
-                            <button onClick={() => handleDetailsClick(doctor)} className="bg-[#bd2121] text-white py-2 px-4 rounded-md mr-2 flex justify-center items-center gap-[5px]"><FaEye /> Details</button>
-                            <button onClick={() => handleAppointmentClick(doctor)} className="bg-[#1a9e46] text-white py-2 px-4 rounded-md mr-2 flex justify-center items-center gap-[5px]"><AiOutlineSchedule /> Appoint</button>
-                        </div>
-                    </div>
-                ))}
-            </div>
 
-            {/* Details Modal */}
-            {selectedDoctor && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-black">
-                    <div className="bg-[#199292] p-4 w-1/2 rounded-lg">
-                        <div className='flex justify-between'>
-                            <h3 className="text-xl font-bold mb-2">{selectedDoctor.name}</h3>
-                            <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
+            <div className='lg:container lg:mx-auto  mx-4 py-10 '>
+            <h2 className="text-2xl text-center text-white font-bold mb-10">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+
+                <div className='grid  lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
+                    {doctors.map((doctor) => (
+                        <div className='bg-gray-300 text-black rounded-lg p-4' key={doctor._id}>
+                            <img className='mx-auto rounded-full h-[100px] w-[100px]' src={image} alt="" />
+                            <h2>{doctor?.name} || {doctor.department}</h2>
+                            <p>
+                                {doctor?.degree?.map((deg, index) => (
+                                    <span key={index}>{deg}{index < doctor.degree.length - 1 ? ', ' : ''}</span>
+                                ))}
+                            </p>
+                            <div className='flex justify-between mt-2'>
+                                <button onClick={() => handleDetailsClick(doctor)} className="bg-[#bd2121] text-white py-2 px-4 rounded-md mr-2 flex justify-center items-center gap-[5px]"><FaEye /> Details</button>
+                                <button onClick={() => handleAppointmentClick(doctor)} className="bg-[#1a9e46] text-white py-2 px-4 rounded-md mr-2 flex justify-center items-center gap-[5px]"><AiOutlineSchedule /> Appoint</button>
+                            </div>
                         </div>
-                        <img src={image} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4" />
-                        <p>Department: {selectedDoctor.department}</p>
-                        <p>Designation: {selectedDoctor.designation}</p>
-                        <p>Degrees:
-                            {selectedDoctor?.degree?.map((deg, index) => (
-                                <span key={index}>{deg}{index < selectedDoctor.degree.length - 1 ? ', ' : ''}</span>
-                            ))}
-                        </p>
-                        <p>Email: {selectedDoctor.email}</p>
-                        <p>Phone: {selectedDoctor.phone}</p>
-                        <p className='text-red-400'>Off Day: <del>{selectedDoctor.offDay}</del></p>
-                        <p>Visit: {selectedDoctor.visit}</p>
-                        <p>Available Time: {formatTime(selectedDoctor.start_time)} - {formatTime(selectedDoctor.end_time)}</p>
-                    </div>
+                    ))}
                 </div>
-            )}
 
-            {/* Appointment Modal */}
-            {showAppointmentModal && (
-                // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                //     <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
-                //         <div className='flex justify-between'>
-                //             <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
-                //             <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
-                //         </div>
-                //         <form>
-                //             <label className="block mb-2">
-                //                 Name:
-                //                 <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                //             </label>
-                //             <label className="block mb-2">
-                //                 Email:
-                //                 <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                //             </label>
-                //             <label className="block mb-2">
-                //                 Phone:
-                //                 <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                //             </label>
-                //             <label className="block mb-2">
-                //                 Appointment Date:
-                //                 <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                //             </label>
-                //             <button type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
-                //         </form>
-                //     </div>
-                // </div>
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
-                        <div className='flex justify-between'>
-                            <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
-                            <button onClick={closeModal} className="text-3xl "><IoMdCloseCircleOutline /></button>
+                {/* Details Modal */}
+                {selectedDoctor && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-black">
+                        <div className="bg-[#199292] p-4 w-1/2 rounded-lg">
+                            <div className='flex justify-between'>
+                                <h3 className="text-xl font-bold mb-2">{selectedDoctor.name}</h3>
+                                <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
+                            </div>
+                            <img src={image} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4" />
+                            <p>Department: {selectedDoctor.department}</p>
+                            <p>Designation: {selectedDoctor.designation}</p>
+                            <p>Degrees:
+                                {selectedDoctor?.degree?.map((deg, index) => (
+                                    <span key={index}>{deg}{index < selectedDoctor.degree.length - 1 ? ', ' : ''}</span>
+                                ))}
+                            </p>
+                            <p>Email: {selectedDoctor.email}</p>
+                            <p>Phone: {selectedDoctor.phone}</p>
+                            <p className='text-red-400'>Off Day: <del>{selectedDoctor.offDay}</del></p>
+                            <p>Visit: {selectedDoctor.visit}</p>
+                            <p>Available Time: {formatTime(selectedDoctor.start_time)} - {formatTime(selectedDoctor.end_time)}</p>
                         </div>
-                        <form>
-                            <div className='flex gap-1'>
-                                <label className="block flex-1 mb-2">
-                                    Name:
-                                    <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                                </label>
-                                <label className="block mb-2 flex-1">
-                                    Email:
-                                    <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                                </label>
-                            </div>
-                            <div className='flex gap-1'>
-                                <label className="block mb-2 flex-1">
-                                    Phone:
-                                    <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                                </label>
-                                <label className="block mb-2 flex-1">
-                                    Appointment Date:
-                                    <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
-                                </label>
-                            </div>
-                            <div className="mb-2">
+                    </div>
+                )}
 
-                                <div className="flex justify-between items-center mb-2">
-                                    <p onClick={handlePrevDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">←</p>
-                                    <p className="mb-2">Available Slots: {formattedDate}</p>
-                                    <p onClick={handleNextDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">→</p>
+                {/* Appointment Modal */}
+                {showAppointmentModal && (
+                    // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                    //     <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
+                    //         <div className='flex justify-between'>
+                    //             <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
+                    //             <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
+                    //         </div>
+                    //         <form>
+                    //             <label className="block mb-2">
+                    //                 Name:
+                    //                 <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                    //             </label>
+                    //             <label className="block mb-2">
+                    //                 Email:
+                    //                 <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                    //             </label>
+                    //             <label className="block mb-2">
+                    //                 Phone:
+                    //                 <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                    //             </label>
+                    //             <label className="block mb-2">
+                    //                 Appointment Date:
+                    //                 <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                    //             </label>
+                    //             <button type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
+                    //         </form>
+                    //     </div>
+                    // </div>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                        <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
+                            <div className='flex justify-between'>
+                                <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
+                                <button onClick={closeModal} className="text-3xl "><IoMdCloseCircleOutline /></button>
+                            </div>
+                            <form>
+                                <div className='flex gap-1'>
+                                    <label className="block flex-1 mb-2">
+                                        Name:
+                                        <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                    </label>
+                                    <label className="block mb-2 flex-1">
+                                        Email:
+                                        <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                    </label>
                                 </div>
-                                {showAppointmentModal.offDay === appointmentDay ? (
-                                    <div className="text-2xl text-center font-bold text-red-700">
-                                        Doctor is Unavailable for this day
-                                    </div>
-                                ) : (
-                                    getSlots(showAppointmentModal.start_time, showAppointmentModal.end_time).map((slot, index) => (
-                                        <button
-                                            key={index}
-                                            type="button"
-                                            className={`text-[12px] py-1 px-2 rounded-md mr-2 mb-2 justify-center ${selectedSlot === slot ? 'bg-gray-400' : 'bg-[#1c1d1c] text-white'}`}
-                                            onClick={() => handleSlotClick(slot)}
-                                            disabled={selectedSlot === slot}
-                                        >
-                                            {slot}
-                                        </button>
-                                    ))
-                                )}
+                                <div className='flex gap-1'>
+                                    <label className="block mb-2 flex-1">
+                                        Phone:
+                                        <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                    </label>
+                                    <label className="block mb-2 flex-1">
+                                        Appointment Date:
+                                        <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
+                                    </label>
+                                </div>
+                                <div className="mb-2">
 
-                            </div>
-                            <button
-                            onClick={handleBooking}
-                            type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
-                        </form>
+                                    <div className="flex justify-between items-center mb-2">
+                                        <p onClick={handlePrevDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">←</p>
+                                        <p className="mb-2">Available Slots: {formattedDate}</p>
+                                        <p onClick={handleNextDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">→</p>
+                                    </div>
+                                    {showAppointmentModal.offDay === appointmentDay ? (
+                                        <div className="text-2xl text-center font-bold text-red-700">
+                                            Doctor is Unavailable for this day
+                                        </div>
+                                    ) : (
+                                        getSlots(showAppointmentModal.start_time, showAppointmentModal.end_time).map((slot, index) => (
+                                            <button
+                                                key={index}
+                                                type="button"
+                                                className={`text-[12px] py-1 px-2 rounded-md mr-2 mb-2 justify-center ${selectedSlot === slot ? 'bg-gray-400' : 'bg-[#1c1d1c] text-white'}`}
+                                                onClick={() => handleSlotClick(slot)}
+                                                disabled={selectedSlot === slot}
+                                            >
+                                                {slot}
+                                            </button>
+                                        ))
+                                    )}
+
+                                </div>
+                                <button
+                                    onClick={handleBooking}
+                                    type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
             </div>
+
+            <section className="mt-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white py-16 text-center rounded-t-xl ">
+                <h2 className="md:text-4xl text-2xl font-bold mb-2">Unlock Premium Health Benefits</h2>
+                <p className="mb-5 text-[12px]">
+                    Join CureHub's Membership for Exclusive Access to Top Healthcare Services, Special Discounts, and Personalized Care.
+                </p>
+                <div className="flex flex-col ">
+                    <p>Become a Member Today and Enjoy Comprehensive Health Benefits!</p>
+                    <p>Get Your Membership Now and Stay Ahead in Your Health Journey with CureHub!</p>
+                </div>
+                <button
+                    onClick={() => {
+                        navigate('')
+                    }}
+                    className="bg-white mt-8 text-teal-500 font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-gray-100 transition duration-300">
+                    Membership
+                </button>
+            </section>
         </div>
     );
 };
