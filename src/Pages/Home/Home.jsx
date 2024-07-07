@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductSlider from './ProductSlider';
 import CategorySection from '../../Components/Home/CategorySection';
 import DiscountProducts from '../../Components/Home/DiscountProducts';
@@ -23,9 +23,14 @@ import KeyServices from './KeyService';
 import CTADoctor from './CTA2';
 import MedicineAdCTA from './CTA3';
 import SuccessStories from './Stories';
+import OfferSection from './OfferSection';
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
+
+    useEffect( () => {
+      window.scroll(0,0);
+    } ,[])
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -73,6 +78,7 @@ return (
         
         <SuccessStories/>
         <HowItWorks/>
+        <OfferSection/>
         <LatestHealthArticles/>
         {/* <DiscountProducts />
         <QueriesSection />

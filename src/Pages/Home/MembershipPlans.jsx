@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const plans = [
     {
@@ -39,6 +40,7 @@ const plans = [
 ];
 
 const MembershipPlans = () => {
+    const navigate = useNavigate();
     return (
         <section className=" bg-gray-400 mx-auto py-16 text-center">
             <h2 className="text-3xl font-bold mb-4">Choose the Right Membership Plan for You</h2>
@@ -53,12 +55,17 @@ const MembershipPlans = () => {
                                 <li key={idx} className="mb-2">• {feature}</li>
                             ))}
                         </ul>
-                        <button className="bg-teal-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-300">
-                            GET START
-                        </button>
+
                     </div>
                 ))}
             </div>
+            <button
+            onClick={ () => {
+                navigate('/membership-plan')
+            }}
+            className="bg-teal-500 mt-10 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-300">
+                CHOSE YOUR PLAN
+            </button>
         </section>
     );
 };

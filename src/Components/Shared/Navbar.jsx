@@ -293,7 +293,7 @@ const Navbar = () => {
     const handleLogout = () => {
         logOut();
     }
-    const links = <div className='flex flex-col lg:flex-row justify-center items-center'>
+    const links = <div className='flex flex-col lg:flex-row lg:justify-center lg:items-center'>
     <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
     <li className='font-semibold'><NavLink to='/dashboard'>Dashboard</NavLink></li>
     {/* <li className='font-semibold'><NavLink to='/private'>Gallery</NavLink></li> */}
@@ -305,7 +305,7 @@ const Navbar = () => {
     <li className='font-semibold'><NavLink to='/blog'>Blog</NavLink></li>
     <div className="dropdown bg-[#006666]">
         <li tabIndex={0} role="button" className="font-semibold m-1">Appointment</li>
-        <ul tabIndex={0} className="md:dropdown-content md:menu rounded-box z-[1] w-[220px] shadow bg-[#006666]">
+        <ul tabIndex={0} className="md:dropdown-content md:menu rounded-box z-[1] md:w-[220px] md:shadow bg-[#0a9191]">
             <li>
                 <NavLink to="/doctors" className='font-semibold'>
                     Doctors
@@ -339,18 +339,18 @@ const Navbar = () => {
                             <label tabIndex={0} className="btn btn-ghost lg:hidden">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                             </label>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#05b37e] rounded-box w-52">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#006666] rounded-box w-52">
                                 {links}
                             </ul>
                         </div>
                         <Link>
-                            <img className="h-[80px] rounded-full" src={logo1} alt="" />
+                            <img className="md:h-[80px] h-[40px] rounded-full" src={logo1} alt="" />
                             {/* <h2 className="text-xl font-semibold text-orange-500 hidden md:block">Bangla Bites</h2> */}
                         </Link>
                         {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
                     </div>
-                    <div className="navbar-center hidden lg:flex">
-                        <ul className="menu menu-horizontal px-1 text-[12px]">
+                    <div className="navbar-center  hidden lg:flex">
+                        <ul className="menu bg-[#006666] menu-horizontal text-left px-1 text-[12px]">
                             {links}
                         </ul>
                     </div>

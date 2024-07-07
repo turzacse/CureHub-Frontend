@@ -35,6 +35,7 @@ import PatientHistory from './Pages/PatientHistory/PatientHistory.jsx';
 import Blog from './Pages/Blog/Blog.jsx';
 import MentalHealthAnalysis from './Pages/HealthAnalysis/MentalHealth.jsx';
 import Prescription from './Pages/Prescription/Prescription.jsx';
+import MemberShip from './Pages/MemberShip/MemberShip.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: '/prescription',
         element: <Prescription/>
+      },
+      {
+        path: '/membership-plan',
+        element: <MemberShip/>
       },
       {
         path: '/sign-up',
