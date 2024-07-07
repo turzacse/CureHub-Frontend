@@ -58,7 +58,7 @@ const Doctors = () => {
     console.log('Today is:', dayName);
 
     useEffect(() => {
-        fetch('Doctors.json')
+        fetch('https://cure-hub-backend-gules.vercel.app/doctors')
             .then(res => res.json())
             .then(data => {
                 const filteredDoctors = data.filter(item => item.offDay !== dayName);

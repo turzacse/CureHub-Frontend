@@ -87,29 +87,35 @@ const DoctorForm = ({ onClose, onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        const dataToSubmit = {
+            ...formData,
+            degree: formData.degree.split(',').map(deg => deg.trim())
+        };
+        onSubmit(dataToSubmit);
         onClose();
-        console.log(formData);
+        console.log(dataToSubmit);
     };
 
     return (
-        <div className="popup-form">
+        <div className="popup-form bg-[#199292] p-8">
             <h2 className='font-bold text-xl mb-5 text-center '>CureHub's Doctor</h2>
             <form onSubmit={handleSubmit}>
                 <div className='flex justify-between gap-2'>
-                    <div className='flex-1'>
-                        {/* <label>Name:</label> */}
-                        <input type="text" placeholder='Name' name="name" value={formData.name} onChange={handleChange} required />
+                    <div className='w-1/2 py-1'>
+                        <input 
+                        type="text" 
+                        placeholder='Name' 
+                        className='p-2'
+                        name="name" 
+                        value={formData.name} 
+                        onChange={handleChange} required />
                     </div>
-                    <div className='flex-1'>
-                        {/* <label>Degree:</label> */}
-                        <input type="text" placeholder='Degree' name="degree" value={formData.degree} onChange={handleChange} required />
+                    <div className='flex-1 py-1'>
+                        <input type="text" className='p-2' placeholder='Degree' name="degree" value={formData.degree} onChange={handleChange} required />
                     </div>
                 </div>
-                <div className='flex justify-between gap-2'>
+                <div className='flex justify-between my-1 mb-2 gap-2'>
                     <div className='flex-1'>
-                        {/* <label>Department:</label> */}
-                        {/* <input type="text" placeholder='Department' name="department" value={formData.department} onChange={handleChange} required /> */}
                         <select
                             name="department"
                             value={formData.department}
@@ -126,44 +132,37 @@ const DoctorForm = ({ onClose, onSubmit }) => {
                         </select>
                     </div>
                     <div className='flex-1'>
-                        {/* <label>Designation:</label> */}
-                        <input type="text" placeholder='Designation' name="designation" value={formData.designation} onChange={handleChange} required />
+                        <input type="text" className='p-2' placeholder='Designation' name="designation" value={formData.designation} onChange={handleChange} required />
                     </div>
                     <div className='flex-1'>
-                        {/* <label>Doctor's Code:</label> */}
-                        <input type="text" placeholder={`Doctor's Code`} name="doctors_code" value={formData.doctors_code} onChange={handleChange} required />
+                        <input type="text" className='p-2' placeholder={`Doctor's Code`} name="doctors_code" value={formData.doctors_code} onChange={handleChange} required />
                     </div>
                 </div>
 
-                <div className='flex justify-between gap-2'>
+                <div className='flex mb-2 justify-between gap-2'>
                     <div className='flex-1'>
-                        {/* <label>Email:</label> */}
-                        <input type="email" placeholder='Email' name="email" value={formData.email} onChange={handleChange} required />
+                        <input type="email" className='p-2' placeholder='Email' name="email" value={formData.email} onChange={handleChange} required />
                     </div>
                     <div className='flex-1'>
-                        {/* <label>Phone:</label> */}
-                        <input type="text" placeholder='Phone' name="phone" value={formData.phone} onChange={handleChange} required />
+                        <input type="text" className='p-2' placeholder='Phone' name="phone" value={formData.phone} onChange={handleChange} required />
                     </div>
                     <div className='flex-1'>
-                        {/* <label>Off Day:</label> */}
-                        <input type="text" placeholder='Off Day' name="offDay" value={formData.offDay} onChange={handleChange} required />
+                        <input type="text" className='p-2' placeholder='Off Day' name="offDay" value={formData.offDay} onChange={handleChange} required />
                     </div>
                 </div>
-                <div className='flex justify-between gap-2'>
+                <div className='flex mb-2 justify-between gap-2'>
                     <div className='flex-1 flex gap-2 items-center'>
                         <label>Start Time</label>
-                        <input type="time" placeholder='Start Time' name="start_time" value={formData.start_time} onChange={handleChange} required />
+                        <input type="time" className='p-2' placeholder='Start Time' name="start_time" value={formData.start_time} onChange={handleChange} required />
                     </div>
                     <div className='flex-1 flex gap-2 items-center'>
                     <label>End Time</label>
-                        <input type="time" placeholder='End Time' name="end_time" value={formData.end_time} onChange={handleChange} required />
+                        <input type="time" className='p-2' placeholder='End Time' name="end_time" value={formData.end_time} onChange={handleChange} required />
                     </div>
                      
                 </div>
-                <div className='flex justify-between gap-2'>
+                <div className='flex mb-2 justify-between gap-2'>
                     <div className='flex-1'>
-                        {/* <label>Visit:</label> */}
-                        {/* <input type="text" placeholder='Visit' name="visit" value={formData.visit} onChange={handleChange} required /> */}
                         <select
                             name="visit"
                             value={formData.visit}
@@ -180,21 +179,22 @@ const DoctorForm = ({ onClose, onSubmit }) => {
                         </select>
                     </div>
                     <div className='flex-1'>
-                        {/* <label>Doctor Image URL:</label> */}
-                        <input type="file" className='py-2' placeholder='Image' name="doctor_img" onChange={handleUpload} required />
+                        <input type="file" className='py-2 bg-gray-300 px-2' placeholder='Image' name="doctor_img" onChange={handleUpload} />
                         <label className='font-normal text-sm'>Profile Image</label>
                     </div>
                     <div className='flex-1'>
-                        {/* <label>Joining Date:</label> */}
-                        <input type="date" placeholder='Joining Date' name="joining_date" value={formData.joining_date} onChange={handleChange} required />
+                        <input type="date" className='p-2' placeholder='Joining Date' name="joining_date" value={formData.joining_date} onChange={handleChange} required />
                         <label className='font-normal text-sm'>Joining Date</label>
                     </div>
                 </div>
-                <div>
-                    <button type="submit">Register</button>
-                    <button type="button" onClick={onClose}>Close</button>
+                <div className='flex justify-between'>
+                    <button
+                    // onClick={handleRegister}
+                    className='px-4 w-[100px] py-2 bg-blue-500 rounded-lg text-white' type="submit">Register</button>
+                    
                 </div>
             </form>
+            <button className=' mt-4 w-[100px] px-4 py-2 bg-red-500 rounded-lg text-white'  type="button" onClick={onClose}>Close</button>
         </div>
     );
 };

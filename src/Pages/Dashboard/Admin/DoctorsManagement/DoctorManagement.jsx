@@ -11,7 +11,7 @@ const DoctorManagement = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     useEffect(() => {
-        fetch('/Doctors.json')
+        fetch('https://cure-hub-backend-gules.vercel.app/doctors')
             .then(res => res.json())
             .then(data => {
                 setDoctors(data);
@@ -33,21 +33,43 @@ const DoctorManagement = () => {
             });
     }, []);
 
-    const handleFormSubmit = (newDoctor) => {
-        const updatedDoctors = [...doctors, newDoctor];
-        setDoctors(updatedDoctors);
-
-        const departmentMap = updatedDoctors.reduce((acc, doctor) => {
-            const department = doctor.department;
-            if (!acc[department]) {
-                acc[department] = [];
+    const handleFormSubmit = async (newDoctor) => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/doctors', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newDoctor),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to add doctor');
             }
-            acc[department].push(doctor);
-            return acc;
-        }, {});
-
-        setDepartmentDoctors(departmentMap);
+            else{
+                alert('Success');
+            }
+    
+            const addedDoctor = await response.json();
+            const updatedDoctors = [...doctors, addedDoctor];
+            setDoctors(updatedDoctors);
+    
+            const departmentMap = updatedDoctors.reduce((acc, doctor) => {
+                const department = doctor.department;
+                if (!acc[department]) {
+                    acc[department] = [];
+                }
+                acc[department].push(doctor);
+                return acc;
+            }, {});
+    
+            setDepartmentDoctors(departmentMap);
+        } catch (error) {
+            alert('Error adding doctor:', error);
+            // Handle error appropriately in your UI, e.g., show a message to the user
+        }
     };
+    
 
 
     return (
@@ -80,8 +102,8 @@ const DoctorManagement = () => {
             </div>
 
             {isFormOpen && (
-                <div className="popup-overlay">
-                    <DoctorForm onClose={() => setIsFormOpen(false)} onSubmit={handleFormSubmit} />
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                    <DoctorForm className='' onClose={() => setIsFormOpen(false)} onSubmit={handleFormSubmit} />
                 </div>
             )}
         </div>

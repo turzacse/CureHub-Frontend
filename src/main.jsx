@@ -34,6 +34,7 @@ import Service from './Pages/Service/Service.jsx';
 import PatientHistory from './Pages/PatientHistory/PatientHistory.jsx';
 import Blog from './Pages/Blog/Blog.jsx';
 import MentalHealthAnalysis from './Pages/HealthAnalysis/MentalHealth.jsx';
+import Prescription from './Pages/Prescription/Prescription.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: '/mental-health-analysis',
         element: <MentalHealthAnalysis/>
+      },
+      {
+        path: '/prescription',
+        element: <Prescription/>
       },
       {
         path: '/sign-up',

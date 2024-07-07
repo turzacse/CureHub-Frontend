@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProductSlider from '../../Components/Home/ProductSlider';
+import ProductSlider from './ProductSlider';
 import CategorySection from '../../Components/Home/CategorySection';
 import DiscountProducts from '../../Components/Home/DiscountProducts';
 import QueriesSection from '../../Components/Home/QueriesSection';
