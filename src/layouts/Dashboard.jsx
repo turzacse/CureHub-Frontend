@@ -25,7 +25,7 @@ const Dashboard = () => {
     return (
         <div className='bg-gray-400'>
             <DashboardNav/>
-            <div className='lg:conatiner lg:mx-auto mx-4 flex flex-row md:gap-2'>
+            <div className='lg:conatiner lg:mx-auto mx-4 flex flex-row'>
                 <div className='w-screen'>
                 {currentuser?.role =='admin'  && location.pathname === '/dashboard' && (
                         <div>
