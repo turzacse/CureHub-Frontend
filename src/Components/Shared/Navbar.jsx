@@ -300,6 +300,7 @@ const Navbar = () => {
     <li className='font-semibold'><NavLink to='/about'>About</NavLink></li>
     <li className='font-semibold'><NavLink to='/faq'>FAQ</NavLink></li>
     <li className='font-semibold'><NavLink to='/service'>Service</NavLink></li>
+    <li className='font-semibold'><NavLink to='/telemedicine'>Telemedicine</NavLink></li>
     <li className='font-semibold'><NavLink to='/prescription'>Prescription</NavLink></li>
     <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li>
     <li className='font-semibold'><NavLink to='/blog'>Blog</NavLink></li>

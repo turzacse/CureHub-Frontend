@@ -1,27 +1,46 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Components/Shared/Footer';
 import Sidebar from '../Components/Shared/Sidebar';
 import { AuthContext } from '../Provider/AuthContext';
 import DefaultAdmin from '../Pages/Dashboard/Admin/Default';
+import DashboardNav from '../Components/Shared/DashboardNav';
+import Defaultuser from '../Pages/Dashboard/User/Defaultuser';
+// import DashboardNav from '../Components/Shared/DashboardNav';
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext);
+
     const location = useLocation();
+    const [currentuser, setCurrentUser] = useState();
+    useEffect( () => {
+        fetch('https://cure-hub-backend-gules.vercel.app/users')
+        .then(res => res.json())
+        .then(data => {
+            const cureHubUser = data?.find((item) => item?.email === user?.email);
+            setCurrentUser(cureHubUser);
+        })
+    } ,[])
     console.log(user);
     return (
-        <div className='bg-[#3d7c7c]'>
-            <div className='flex flex-row md:gap-2'>
-                <div className='w-screen m-4'>
-                {user  && location.pathname === '/dashboard' && (
+        <div className='bg-gray-400'>
+            <DashboardNav/>
+            <div className='lg:conatiner lg:mx-auto mx-4 flex flex-row md:gap-2'>
+                <div className='w-screen'>
+                {currentuser?.role =='admin'  && location.pathname === '/dashboard' && (
                         <div>
                             <DefaultAdmin />
                         </div>
-                    )}
+                 )}
+                 {currentuser?.role =='user'  && location.pathname === '/dashboard' && (
+                        <div>
+                            <Defaultuser />
+                        </div>
+                 )}
                 <Outlet />
                 </div>
                 <div className='hidden md:flex'>
-                <Sidebar className='' />
+                {/* <Sidebar className='' /> */}
                 </div>
             </div>
             <Footer />

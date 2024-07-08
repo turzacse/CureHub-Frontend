@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MembershipPlans from '../Home/MembershipPlans';
 import Heading from '../../Components/PageHeading/Heading';
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
+import PaymentForm from '../CheckOut/SSL';
 
 const plans = [
     {
@@ -77,7 +78,7 @@ const MemberShip = () => {
                     <p className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">Join Now</p>
                 </div>
             </div>
-            <section className=" bg-gray-400 md:mx-auto mx-4 py-16 text-center">
+            <section className=" bg-gray-400 md:mx-auto px-4 py-16 text-center">
                 <h2 className="text-3xl font-bold mb-4">Choose the Right Membership Plan for You</h2>
                 <p className="mb-8">Affordable and flexible plans to suit your healthcare needs.</p>
                 <div className="grid container mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -98,7 +99,7 @@ const MemberShip = () => {
                 </div>
 
             </section>
-
+            {/* <PaymentForm/> */}
             <section>
                 <div className="py-8 text-white lg:container lg:mx-auto mx-4">
                     <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>

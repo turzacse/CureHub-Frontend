@@ -36,6 +36,9 @@ import Blog from './Pages/Blog/Blog.jsx';
 import MentalHealthAnalysis from './Pages/HealthAnalysis/MentalHealth.jsx';
 import Prescription from './Pages/Prescription/Prescription.jsx';
 import MemberShip from './Pages/MemberShip/MemberShip.jsx';
+import CheckOut from './Pages/CheckOut/CheckOut.jsx';
+import Telemediine from './Pages/TeleMedicine/Telemediine.jsx';
+import TelemedicineBooking from './Pages/Booking/TelemedicineBooking.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -111,6 +114,18 @@ const router = createBrowserRouter([
       {
         path: '/membership-plan',
         element: <MemberShip/>
+      },
+      {
+        path: '/telemedicine',
+        element: <Telemediine/>
+      },
+      {
+        path: '/telemedicine-booking',
+        element: <TelemedicineBooking/>
+      },
+      {
+        path: '/checkout',
+        element: <CheckOut/>
       },
       {
         path: '/sign-up',

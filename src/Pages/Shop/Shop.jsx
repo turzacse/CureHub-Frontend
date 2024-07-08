@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Headline from '../../Components/Headline';
-import { FaEye, FaShoppingCart } from 'react-icons/fa';
+import { FaCartArrowDown, FaEye, FaShoppingCart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { TbCoinTakaFilled } from 'react-icons/tb';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
@@ -14,7 +14,7 @@ const ShopPage = () => {
     const [selectedMedicine, setSelectedMedicine] = useState(null);
     const [medicines, setMedicines] = useState([]);
     const { user } = useContext(AuthContext);
-    
+
     console.log(user?.email);
 
     useEffect(() => {
@@ -131,50 +131,52 @@ const ShopPage = () => {
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Shop Now</button>
             </section>
             <div className="">
-                
+
                 {/* Hero Section */}
 
 
                 {/* Search and Filter Section */}
-                 <div className="py-20 ">
-                 <section className="lg:container lg:mx-auto mx-4 flex justify-between items-center">
-                    <input type="text" placeholder="Search for medicines..." className="form-input p-2 rounded-lg w-full md:w-1/3" />
-                    <div className="flex gap-4 ml-4">
-                        <select className="form-select p-2 rounded-lg">
-                            <option>Category</option>
-                            <option>Prescription</option>
-                            <option>Over-the-Counter</option>
-                            <option>Supplements</option>
-                        </select>
-                        <select className="form-select p-2 rounded-lg">
-                            <option>Price Range</option>
-                            <option>$0 - $10</option>
-                            <option>$10 - $50</option>
-                            <option>$50 - $100</option>
-                            <option>$100+</option>
-                        </select>
-                        <select className="form-select p-2 rounded-lg">
-                            <option>Brand</option>
-                            <option>Brand A</option>
-                            <option>Brand B</option>
-                            <option>Brand C</option>
-                        </select>
-                    </div>
-                </section>
-                 </div>
+                <div className="py-20 ">
+                    <section className="lg:container lg:mx-auto mx-4 flex justify-between items-center">
+                        <input type="text" placeholder="Search for medicines..." className="form-input p-2 rounded-lg w-full md:w-1/3" />
+                        <div className="flex gap-4 ml-4">
+                            <select className="form-select p-2 rounded-lg">
+                                <option>Category</option>
+                                <option>Prescription</option>
+                                <option>Over-the-Counter</option>
+                                <option>Supplements</option>
+                            </select>
+                            <select className="form-select p-2 rounded-lg">
+                                <option>Price Range</option>
+                                <option>$0 - $10</option>
+                                <option>$10 - $50</option>
+                                <option>$50 - $100</option>
+                                <option>$100+</option>
+                            </select>
+                            <select className="form-select p-2 rounded-lg">
+                                <option>Brand</option>
+                                <option>Brand A</option>
+                                <option>Brand B</option>
+                                <option>Brand C</option>
+                            </select>
+                        </div>
+                    </section>
+                </div>
 
                 {/* Featured Products */}
                 <div className="bg-gray-400 py-20">
                     <section className=" lg:container lg:mx-auto mx-4">
                         {/* <h2 className="text-2xl font-bold mb-4">Featured Products</h2> */}
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
                             {
                                 medicines?.map((medicine) => <div key={medicine._id} className="bg-gray-300 p-4 rounded-lg shadow-md">
-                                    <img src={medicine.photo} alt="Product Name" className="w-[100px] h-[100px] object-cover rounded-t-lg" />
+                                    <img src={medicine.photo} alt="Product Name" className="w-[100px] h-[100px] object-cover " />
                                     <h3 className="text-lg font-bold mt-4">{medicine.name}</h3>
-                                    <p className="text-gray-700">TK{medicine.price}</p>
-                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Add to Cart</button>
+                                    <div className="flex justify-between">
+                                        <p className="text-gray-700">TK{medicine.price}</p>
+                                        <button className="bg-gray-200 hover:bg-gray-300 text-white font-bold py-1 px-2 rounded "><FaCartArrowDown className='text-red-500' /></button>
+                                    </div>
                                 </div>)
                             }
                             {/* Example Product */}
@@ -224,7 +226,7 @@ const ShopPage = () => {
                     </div>
                 </section> */}
             </div>
-           
+
         </div>
     );
 };
