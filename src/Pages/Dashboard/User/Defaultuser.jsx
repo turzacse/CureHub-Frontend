@@ -6,6 +6,7 @@ import { FaRegEye } from 'react-icons/fa';
 import CTADoctor from '../../Home/CTA2';
 import MedicineAdCTA from '../../Home/CTA3';
 import OfferSection from '../../Home/OfferSection';
+import VideoCall from '../../../Components/VideoCall/VideoCall';
 
 
 
@@ -156,6 +157,7 @@ const Defaultuser = () => {
                         <OffersModal isVisible={isOffersModalVisible} onClose={handleCloseOffersModal} />
                     </div>
                 </div>
+                {/* <VideoCall/> */}
 
                 {/* <section>
                     <CTADoctor/>

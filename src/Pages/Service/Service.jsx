@@ -6,6 +6,7 @@ import img4 from '../../assets/Image/Service/4.png'
 import img5 from '../../assets/Image/Service/5.png'
 import img6 from '../../assets/Image/Service/6.png'
 import img7 from '../../assets/Image/Service/7.png'
+import VideoCall from '../../Components/VideoCall/VideoCall';
 
 const services = [
     {
@@ -62,6 +63,7 @@ const ServiceCard = ({ service }) => {
     return (
         //
         <div className='bg-[#2E92A4] w-[300px] shadow-md rounded-lg'>
+            
             <img className='w-full h-[200px] mx-auto rounded-t-lg shadow-sm' src={service.photo} alt="" />
             <div className='px-6 py-4'>
             <h3 className='text-lg text-white font-semibold'>{service.title}</h3>

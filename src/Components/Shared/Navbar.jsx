@@ -283,53 +283,52 @@
 
 
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
 import logo1 from '../../assets/Logo/logo1.png'
 import logo2 from '../../assets/Logo/logo2.png'
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const { user, logOut } = useContext(AuthContext);
     const handleLogout = () => {
         logOut();
     }
     const links = <div className='flex flex-col lg:flex-row lg:justify-center lg:items-center'>
-    <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
-    <li className='font-semibold'><NavLink to='/dashboard'>Dashboard</NavLink></li>
-    {/* <li className='font-semibold'><NavLink to='/private'>Gallery</NavLink></li> */}
-    <li className='font-semibold'><NavLink to='/about'>About</NavLink></li>
-    <li className='font-semibold'><NavLink to='/faq'>FAQ</NavLink></li>
-    <li className='font-semibold'><NavLink to='/service'>Service</NavLink></li>
-    <li className='font-semibold'><NavLink to='/telemedicine'>Telemedicine</NavLink></li>
-    <li className='font-semibold'><NavLink to='/prescription'>Prescription</NavLink></li>
-    <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li>
-    <li className='font-semibold'><NavLink to='/blog'>Blog</NavLink></li>
-    <div className="dropdown bg-[#006666]">
-        <li tabIndex={0} role="button" className="font-semibold m-1">Appointment</li>
-        <ul tabIndex={0} className="md:dropdown-content md:menu rounded-box z-[1] md:w-[220px] md:shadow bg-[#0a9191]">
-            <li>
-                <NavLink to="/doctors" className='font-semibold'>
-                    Doctors
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/booking-system" className='font-semibold'>
-                    Booking System
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/appointment-guideline" className='font-semibold'>
-                    Appointment Guidelines
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/telemedicine-appointments" className='font-semibold'>
-                    Telemedicine Appointment
-                </NavLink>
-            </li>
-        </ul>
+        <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
+        <li className='font-semibold'><NavLink to='/shop'>MedicineShop</NavLink></li>
+        <li className='font-semibold'><NavLink to='/telemedicine'>Telemedicine</NavLink></li>
+        <li>
+            <NavLink to="/doctors" className='font-semibold'>
+                Doctors
+            </NavLink>
+        </li>
+        {/* <li className='font-semibold'><NavLink to='/prescription'>Prescription</NavLink></li> */}
+        {/* <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li> */}
+        <div className="dropdown bg-[#006666]">
+            <li tabIndex={0} role="button" className="font-semibold m-1">CureHub</li>
+            <ul tabIndex={0} className="md:dropdown-content md:menu rounded-box z-[1] md:w-[220px] md:shadow bg-[#0a9191]">
+                <li className='font-semibold'><NavLink to='/about'>About</NavLink></li>
+                <li className='font-semibold'><NavLink to='/faq'>FAQ</NavLink></li>
+                <li className='font-semibold'><NavLink to='/blog'>Blog</NavLink></li>
+                <li>
+                    <NavLink to="/booking-system" className='font-semibold'>
+                        Booking System
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/appointment-guideline" className='font-semibold'>
+                        Appointment Guidelines
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/telemedicine-appointments" className='font-semibold'>
+                        Telemedicine Appointment
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
 
     return (
         <div>
@@ -345,7 +344,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <Link>
-                            <img className="md:h-[80px] h-[40px] rounded-full" src={logo1} alt="" />
+                            <img className="md:h-[60px] h-[40px] rounded-full" src={logo1} alt="" />
                             {/* <h2 className="text-xl font-semibold text-orange-500 hidden md:block">Bangla Bites</h2> */}
                         </Link>
                         {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
@@ -369,14 +368,18 @@ const Navbar = () => {
                                             <img className="rounded-full flex justify-center items-center mx-auto" src={user.photoURL} alt="user profile" />
                                         </div>
                                     </label>
-                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                        <li><button className="text-red-600 font-bold" onClick={handleLogout}>Log Out</button></li>
+                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#006666] rounded-box w-52">
                                         <p className='ml-3'>
                                             <div className="justify-between">
                                                 <h2 className='text-green-500 font-semibold'>{
                                                     user.displayName}</h2>
                                             </div>
                                         </p>
+
+                                        <li><button className="text-white font-bold" onClick={() => {
+                                            navigate('/dashboard')
+                                        }}>Account</button></li>
+                                        <li><button className="text-white font-bold" onClick={handleLogout}>Log Out</button></li>
 
                                     </ul>
                                 </div>

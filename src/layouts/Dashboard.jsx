@@ -6,6 +6,7 @@ import { AuthContext } from '../Provider/AuthContext';
 import DefaultAdmin from '../Pages/Dashboard/Admin/Default';
 import DashboardNav from '../Components/Shared/DashboardNav';
 import Defaultuser from '../Pages/Dashboard/User/Defaultuser';
+import VideoCall from '../Components/VideoCall/VideoCall';
 // import DashboardNav from '../Components/Shared/DashboardNav';
 
 const Dashboard = () => {
@@ -20,11 +21,12 @@ const Dashboard = () => {
             const cureHubUser = data?.find((item) => item?.email === user?.email);
             setCurrentUser(cureHubUser);
         })
-    } ,[])
-    console.log(user);
+    } ,[user])
+    console.log(currentuser);
     return (
         <div className='bg-gray-400'>
             <DashboardNav/>
+            {/* <VideoCall/> */}
             <div className='lg:conatiner lg:mx-auto mx-4 flex flex-row'>
                 <div className='w-screen'>
                 {currentuser?.role =='admin'  && location.pathname === '/dashboard' && (

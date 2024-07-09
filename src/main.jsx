@@ -39,6 +39,7 @@ import MemberShip from './Pages/MemberShip/MemberShip.jsx';
 import CheckOut from './Pages/CheckOut/CheckOut.jsx';
 import Telemediine from './Pages/TeleMedicine/Telemediine.jsx';
 import TelemedicineBooking from './Pages/Booking/TelemedicineBooking.jsx';
+import Cart from './Pages/Cart/Cart.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <CheckOut/>
+      },
+      {
+        path: '/cart',
+        element: <Cart/>
       },
       {
         path: '/sign-up',
