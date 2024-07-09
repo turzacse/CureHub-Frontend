@@ -87,12 +87,12 @@ const TelemedicineBooking = () => {
             />
 
             <main className="py-10 lg:container lg:mx-auto mx-4">
-                <div className="flex gap-4">
-                    <div className='w-1/3'>
+                <div className="flex md:flex-row flex-col gap-4">
+                    <div className='md:w-1/3 w-full'>
                         <Guideline/>
                     </div>
-                    <div className=" w-2/3 mx-auto bg-gray-300 p-8 rounded-lg">
-                    <h2 className="text-2xl font-bold mb-4">Appointment Form || Cure<span className='text-red-500'>Hub</span></h2>
+                    <div className=" md:w-2/3 w-full mx-auto bg-gray-300 p-8 rounded-lg">
+                    <h2 className="md:text-2xl font-bold mb-4">Appointment Form || Cure<span className='text-red-500'>Hub</span></h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="flex gap-2 md:flex-row flex-col">
                             <div className='flex-1'>

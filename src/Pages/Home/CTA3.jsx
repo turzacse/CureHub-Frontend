@@ -12,7 +12,7 @@ const MedicineAdCTA = () => {
             </p>
             <button 
                 onClick={() => {
-                    navigate('/medicines');
+                    navigate('/shop');
                 }}
                 className="bg-white text-green-500 font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-gray-100 transition duration-300">
                 View Medicines
