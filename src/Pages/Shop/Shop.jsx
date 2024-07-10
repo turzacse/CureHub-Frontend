@@ -20,6 +20,7 @@ const ShopPage = () => {
     console.log(user?.email);
 
     useEffect(() => {
+        window.scroll(0,0);
         fetch('https://cure-hub-backend-gules.vercel.app/medicine')
             .then(res => res.json())
             .then(data => setMedicines(data))
@@ -53,9 +54,10 @@ const ShopPage = () => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        medicine_code: medicine._id,
+                        medicine_code: medicine?._id,
                         buyer_email: user.email,
-                        medicine: medicine.name,
+                        medicine: medicine?.name,
+                        price:medicine?.price,
                     })
                 })
                     .then(response => response.json())
