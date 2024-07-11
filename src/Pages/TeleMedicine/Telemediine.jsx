@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Heading from '../../Components/PageHeading/Heading';
 import OurExpertise from './OurExpertise';
 import SpecialOffers from './SpecialOffer';
@@ -6,9 +6,12 @@ import Chose from './Chose';
 import CTAtele from './CTASection';
 
 const Telemediine = () => {
+    useEffect( () => {
+        window.scroll(0,0);
+    } ,[])
     return (
         <div>
-            <Heading title='Telemedicine and Medical Consultancy' subtitle='Convenient, Reliable, and Expert Medical Advice from the Comfort of Your Home' />
+            <Heading title='Telemedicine & Consultancy' subtitle='Convenient, Reliable, and Expert Medical Advice from your Comfort' />
             <div className=" min-h-screen ">
             <div className="">
                 {/* <header className="text-center mb-8">

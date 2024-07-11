@@ -32,8 +32,8 @@ const Chose = () => {
     return (
         <section className=" mx-auto py-16  text-center">
             <div className='lg:container lg:mx-auto mx-4'>
-                <h2 className="text-3xl font-bold text-white mb-4">Why Choose Our Telemedicine Services?</h2>
-                <p className="text-white md:w-3/4 sm:text-justify md:text-center mx-auto mb-8">
+                <h2 className="md:text-4xl text-2xl font-bold text-white md:mb-4 mb-2">Why Choose Our Telemedicine Services?</h2>
+                <p className="text-white md:w-3/4 md:text-lg sm:text-justify md:text-center mx-auto mb-8">
                     Our telemedicine and medical consultancy services offer a seamless way to consult with healthcare professionals without leaving your home. Enjoy the convenience and reliability of our service, which connects you with experienced doctors for comprehensive medical advice and consultation.
                 </p>
                 <div className="grid grid-cols-1 container mx-auto md:grid-cols-2 lg:grid-cols-4 gap-8">

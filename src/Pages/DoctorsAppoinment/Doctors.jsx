@@ -7,6 +7,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import PageHeading from '../../Components/PageHeading/PageHeading';
 import Heading from '../../Components/PageHeading/Heading';
+import { useNavigate } from 'react-router-dom';
 const formatTime = (time) => {
     const [hours, minutes] = time.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
@@ -46,6 +47,7 @@ const Doctors = () => {
     const [userCountry, setUserCountry] = useState('');
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
+    const navigate = useNavigate();
     // const [appoinmentDay, setAppoinmentDay] = useState(new Date());
     useEffect(() => {
         window.scroll(0, 0);
@@ -170,10 +172,10 @@ const Doctors = () => {
     console.log(currentDate);
     return (
         <div className='text-white  mx-auto'>
-            <Heading title="Meet Our Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
+            <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
 
             <div className='lg:container lg:mx-auto  mx-4 py-10 '>
-            <h2 className="text-2xl text-center text-white font-bold mb-10">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+            <h2 className="text-2xl  text-center text-white font-bold mb-10">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
 
                 <div className='grid  lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                     {doctors.map((doctor) => (
@@ -310,21 +312,23 @@ const Doctors = () => {
             </div>
 
             <section className="mt-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white py-16 text-center rounded-t-xl ">
+                <div className='lg:container lg:mx-auto mx-4'>
                 <h2 className="md:text-4xl text-2xl font-bold mb-2">Unlock Premium Health Benefits</h2>
-                <p className="mb-5 text-[12px]">
+                <p className="md:mb-5 mb-2 text-[12px]">
                     Join CureHub's Membership for Exclusive Access to Top Healthcare Services, Special Discounts, and Personalized Care.
                 </p>
-                <div className="flex flex-col ">
+                <div className="flex flex-col text-[12px] md:text-[16px] ">
                     <p>Become a Member Today and Enjoy Comprehensive Health Benefits!</p>
                     <p>Get Your Membership Now and Stay Ahead in Your Health Journey with CureHub!</p>
                 </div>
                 <button
                     onClick={() => {
-                        navigate('')
+                        navigate('/membership-plan')
                     }}
                     className="bg-white mt-8 text-teal-500 font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-gray-100 transition duration-300">
                     Membership
                 </button>
+                </div>
             </section>
         </div>
     );

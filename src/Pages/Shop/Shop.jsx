@@ -177,6 +177,19 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { FaCartArrowDown } from 'react-icons/fa';
 import { AuthContext } from '../../Provider/AuthContext';
+import image from '../../assets/dmed.png'
+
+const data = [
+    "Medicine",
+    "Women Choice",
+    "Diabetic Care",
+    "Baby Care",
+    "Dental Care",
+    "Diapers",
+    "Personal Care",
+    "Devices",
+    "Sexual Wellness"
+];
 
 const ShopPage = () => {
     const [selectedMedicine, setSelectedMedicine] = useState(null);
@@ -186,9 +199,11 @@ const ShopPage = () => {
     const [selectedPrice, setSelectedPrice] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
+    const [activeTab, setActiveTab] = useState(categories[0]);
     const [filteredMedicines, setFilteredMedicines] = useState([]);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -342,6 +357,23 @@ const ShopPage = () => {
                     </div>
                 </section>
             </div>
+
+            <div className="w-full max-w-5xl mx-auto">
+            <div className="flex border-b border-gray-200">
+                {data.map((category) => (
+                    <button
+                        key={category}
+                        onClick={() => setActiveTab(category)}
+                        className={`px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 cursor-pointer focus:outline-none ${activeTab === category ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-white  hover:text-gray-200 hover:border-gray-300'
+                            }`}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
+            </div>
+
+
             <div className="bg-gray-400 md:py-20 py-10">
                 <section className="lg:container lg:mx-auto mx-4">
                     <div className='flex justify-between items-center mb-10'>
@@ -355,10 +387,10 @@ const ShopPage = () => {
                             <FaCartArrowDown className='text-green-500' />
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-4 gap-6">
                         {filteredMedicines.map((medicine) => (
-                            <div key={medicine._id} className="bg-gray-300 p-4 rounded-lg shadow-md">
-                                <img src={medicine.photo} alt="Product Name" className="w-[100px] h-[100px] object-cover" />
+                            <div key={medicine._id} className="bg-[#D3E4E8] p-4 rounded-lg shadow-md">
+                                <img src={medicine.photo || image} alt="Product Name" className="w-[140px] h-[140px] object-cover" />
                                 <h3 className="text-lg font-bold mt-4">{medicine.name}</h3>
                                 <div className="flex justify-between">
                                     <p className="text-gray-700">TK{medicine.price}</p>

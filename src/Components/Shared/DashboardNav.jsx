@@ -12,7 +12,9 @@ const DashboardNav = () => {
     }
     const links = <div className='flex flex-col lg:flex-row lg:justify-center lg:items-center'>
     <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
-    <li className='font-semibold'><NavLink to='/dashboard'>Account</NavLink></li>
+    {/* <li className='font-semibold'><NavLink to='/dashboard'>Account</NavLink></li> */}
+    
+    <li className='font-semibold'><NavLink to='/dashboard/medicines'>Medicine</NavLink></li>
     {/* <li className='font-semibold'><NavLink to='/private'>Gallery</NavLink></li> */}
     {/* <li className='font-semibold'><NavLink to='/about'>About</NavLink></li>
     <li className='font-semibold'><NavLink to='/faq'>FAQ</NavLink></li>

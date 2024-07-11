@@ -54,7 +54,7 @@ const AppointmentGuidelines = () => {
     ]
     return (
         <div className='  mx-auto pb-2'>
-            <Heading title='Appointment Guidelines' subtitle='Prepare for Your Visit: Essential Information to Ensure a Smooth and Efficient Appointment Experience' />
+            <Heading title='Appointment Guidelines' subtitle='Essential Info to Ensure a Smooth & Efficient Appointment' />
             
             <div className='my-10 lg:container lg:mx-auto mx-4 text-white  space-y-5'>
                 {

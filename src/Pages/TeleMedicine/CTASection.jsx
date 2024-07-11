@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 const CTAtele = () => {
     const navigate = useNavigate();
     return (
-        <div className="py-16 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
+        <div className="md:py-16 py-8 bg-gradient-to-r from-teal-400 to-blue-500 text-white">
             <div className="max-w-4xl mx-auto text-center px-8">
-                <h2 className="text-4xl font-bold mb-4">Get Started with Our Telemedicine Services Today!</h2>
-                <p className="text-lg mb-8">
+                <h2 className="md:text-4xl text-2xl font-bold md:mb-4 mb-2">Get Started with Our Telemedicine Services Today!</h2>
+                <p className="md:text-lg mb-8">
                     Experience convenient and quality healthcare from the comfort of your home. Join us now and take control of your health with our expert medical consultations.
                 </p>
                 <button

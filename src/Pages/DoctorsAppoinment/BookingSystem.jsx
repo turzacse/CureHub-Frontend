@@ -44,7 +44,7 @@ const BookingSystem = () => {
       ]
     return (
         <div className=' text-white  mx-auto pb-2'>
-            <Heading title='Easy Appointment Booking System' subtitle='Schedule Your Visit Effortlessly for Personalized Care' />
+            <Heading title='Booking System' subtitle='Schedule Your Visit Effortlessly for Personalized Care' />
             
             <div className='my-10 lg:container lg:mx-auto mx-4 space-y-5 text-justify'>
                 <div className=' space-y-5 text-justify'>

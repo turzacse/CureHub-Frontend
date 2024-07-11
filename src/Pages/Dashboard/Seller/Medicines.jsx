@@ -46,16 +46,16 @@ const Medicines = () => {
     };
     console.log(formData);
 
-    useEffect( () => {
+    useEffect(() => {
         fetch('https://cure-hub-backend-gules.vercel.app/medicine')
-        .then(res => res.json())
-        .then(data => setMedicineData(data.filter((item) => item?.seller === user.email)))
-    } ,[])
-    useEffect( () => {
+            .then(res => res.json())
+            .then(data => setMedicineData(data.filter((item) => item?.seller === user.email)))
+    }, [])
+    useEffect(() => {
         fetch('https://cure-hub-backend-gules.vercel.app/category')
-        .then(res => res.json())
-        .then(data => setCategory(data))
-    } ,[])
+            .then(res => res.json())
+            .then(data => setCategory(data))
+    }, [])
     console.log(Category)
 
     const handleUpload = async (event) => {
@@ -79,14 +79,14 @@ const Medicines = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await axios.post('https://cure-hub-backend-gules.vercel.app/medicine', formData);
             console.log(response.data);
             const newmedicine = response?.data;
             // Update medicineData with the new medicine
             setMedicineData((prevData) => [...prevData, newmedicine]);
-    
+
             setOpenAdd(false);
             clearFormData();  // Clear the form data after submission
             Swal.fire({
@@ -97,7 +97,7 @@ const Medicines = () => {
                 icon: 'success',
             });
         }
-        catch(error){
+        catch (error) {
             console.error(error);
         }
     }
@@ -114,7 +114,7 @@ const Medicines = () => {
         // Add medicine to cart logic
         console.log('Selected medicine:', medicine);
     };
-   
+
 
     const handleViewDetails = (medicine) => {
         setSelectedMedicine(medicine);
@@ -131,7 +131,7 @@ const Medicines = () => {
     const handleAdd = () => {
         setOpenAdd(true);
     }
-   
+
     return (
         <div className="container mx-auto pb-10 px-4 sm:px-6 lg:px-8">
             {/* <h2 className="text-3xl font-bold mb-6 text-center">Shop</h2> */}
@@ -178,7 +178,7 @@ const Medicines = () => {
                     <div className="bg-white p-4 rounded-lg relative w-full max-w-md mx-auto">
                         <button onClick={handleCloseModal} className="absolute top-2 right-2 p-2">&times;</button>
                         <h3 className="text-xl font-bold mb-2">{selectedMedicine.name}</h3>
-                        <img  src={selectedMedicine.photo} alt={selectedMedicine.name} className=" object-cover mb-4 h-[200px] w-[250px] mx-auto" />
+                        <img src={selectedMedicine.photo} alt={selectedMedicine.name} className=" object-cover mb-4 h-[200px] w-[250px] mx-auto" />
                         <p>Company: {selectedMedicine.company}</p>
                         <p className="text-gray-700 font-bold">Price: {selectedMedicine.price}</p>
                         {/* <button
@@ -210,7 +210,7 @@ const Medicines = () => {
                                         name="generic"
                                         value={formData.generic}
                                         onChange={handleChange}
-                                        placeholder='Generic Name'
+                                        placeholder='Frequency'
                                         className="w-full px-2 py-2 border rounded-md focus:outline-none focus:border-blue-500" />
                                 </div>
                                 <div className="mb-4 relative">
@@ -245,7 +245,7 @@ const Medicines = () => {
                                             className="w-full px-2 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                                             {
                                                 Category.map((item) => <option
-                                                value={item.name}
+                                                    value={item.name}
                                                 >
                                                     {item.name}
                                                 </option>)
@@ -261,10 +261,17 @@ const Medicines = () => {
                                             onChange={handleChange}
                                             placeholder='Company'
                                             className="w-full px-2 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                            <option value="Square Pharmaceuticals Ltd.">Square Pharmaceuticals Ltd.</option>
+                                            <option value="Beximco Pharmaceuticals Ltd.">Beximco Pharmaceuticals Ltd.</option>
+                                            <option value="Incepta Pharmaceuticals Ltd.">Incepta Pharmaceuticals Ltd.</option>
+                                            <option value="Renata Limited">Renata Limited</option>
+                                            <option value="ACME Laboratories Ltd.">ACME Laboratories Ltd.</option>
+                                            <option value="Eskayef Pharmaceuticals Ltd. (SK+F)">Eskayef Pharmaceuticals Ltd. (SK+F)</option>
+                                            <option value="Aristopharma Ltd.">Aristopharma Ltd.</option>
+                                            <option value="ACI Limited">ACI Limited</option>
+                                            <option value="Opsonin Pharma Ltd.">Opsonin Pharma Ltd.</option>
+                                            <option value="General Pharmaceuticals Ltd. (GPL)">General Pharmaceuticals Ltd. (GPL)</option>
                                             <option value="Pfizer Inc">Pfizer Inc</option>
-                                            <option value="Johnson & Johnson">Johnson & Johnson</option>
-                                            <option value="Roche Holding AG">Roche Holding AG</option>
-                                            <option value="GlaxoSmithKline">GlaxoSmithKline</option>
                                         </select>
                                     </div>
                                 </div>

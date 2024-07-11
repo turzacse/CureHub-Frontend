@@ -12,7 +12,7 @@ const SpecialOffers = () => {
         },
         {
             title: 'Discounted Rates',
-            description: 'Get up to 20% off on follow-up consultations.',
+            description: 'Get up to 30% off on follow-up consultations.',
             img: icon2
         },
         {
@@ -23,10 +23,10 @@ const SpecialOffers = () => {
     ];
 
     return (
-        <div className="py-12 bg-gray-400">
-            <div className=" mx-auto p-8">
-                <h2 className="text-4xl font-bold text-center mb-6 text-gray-800">Special Offers</h2>
-                <p className="text-center mb-8 text-lg text-gray-600">
+        <div className="md:py-12 py-8 bg-gray-400">
+            <div className=" lg:container lg:mx-auto mx-4">
+                <h2 className="md:text-4xl text-2xl font-bold text-center md:mb-4 mb-2 text-gray-800">Special Offers</h2>
+                <p className="text-center mb-8 md:text-lg text-gray-600">
                     Take advantage of our special offers to get the best value on your healthcare needs.
                 </p>
                 <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -36,8 +36,8 @@ const SpecialOffers = () => {
                             className='h-[80px] w-[80px]'
                             src={offer.img} alt="" />
                             <div>
-                                <h3 className="text-2xl font-bold text-gray-800">{offer.title}</h3>
-                                <p className="mt-2 text-gray-700">{offer.description}</p>
+                                <h3 className="md:text-2xl font-bold text-gray-800">{offer.title}</h3>
+                                <p className="mt-2 text-[12px] md:text-[16px] text-gray-700">{offer.description}</p>
                             </div>
                         </div>
                     ))}

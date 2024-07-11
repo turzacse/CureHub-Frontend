@@ -43,7 +43,7 @@ const TelemedicineAppointments = () => {
     ]
     return (
         <div className=' text-white  mx-auto pb-2'>
-            <Heading title='Telemedicine Appointments' subtitle='Access Quality Care from Anywhere with Convenient Virtual Consultations' />
+            <Heading title='Telemedicine Appointments' subtitle='Quality Care from Anywhere with Convenient Virtual Consultations' />
             
             <div className='my-10 lg:container lg:mx-auto mx-4 space-y-5 text-justify'>
                 <div className=' space-y-5 text-justify'>
@@ -58,8 +58,8 @@ const TelemedicineAppointments = () => {
                 {/* <NavLink className='bg-warning mt-10 px-4 py-2'>Meet Our Expert Doctors & Explore Telemedicine</NavLink> */}
                 <p></p> <br /> 
                  <NavLink
-                 to='/doctors'
-                 className='bg-[#34ABDA] rounded-lg mt-10 px-4 py-3'>Meet Our Expert Doctors & Explore Telemedicine</NavLink>
+                 to='/telemedicine'
+                 className='bg-[#34ABDA] rounded-lg mt-10 px-4 py-3'>Get Telemedicine</NavLink>
 
             </div>
             
