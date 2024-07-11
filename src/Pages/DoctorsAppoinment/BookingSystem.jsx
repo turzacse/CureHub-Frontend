@@ -46,7 +46,7 @@ const BookingSystem = () => {
         <div className=' text-white  mx-auto pb-2'>
             <Heading title='Easy Appointment Booking System' subtitle='Schedule Your Visit Effortlessly for Personalized Care' />
             
-            <div className='my-10 mx-4 container md:mx-10 space-y-5 text-justify'>
+            <div className='my-10 lg:container lg:mx-auto mx-4 space-y-5 text-justify'>
                 <div className=' space-y-5 text-justify'>
                 {
                     data.map((item, index) => <div key={index}>

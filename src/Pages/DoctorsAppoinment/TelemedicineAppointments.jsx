@@ -45,7 +45,7 @@ const TelemedicineAppointments = () => {
         <div className=' text-white  mx-auto pb-2'>
             <Heading title='Telemedicine Appointments' subtitle='Access Quality Care from Anywhere with Convenient Virtual Consultations' />
             
-            <div className='my-10 container mx-4 md:mx-10 space-y-5 text-justify'>
+            <div className='my-10 lg:container lg:mx-auto mx-4 space-y-5 text-justify'>
                 <div className=' space-y-5 text-justify'>
                 {
                     data.map((item, index) => <div key={index}>

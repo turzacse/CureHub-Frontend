@@ -93,9 +93,9 @@ const ShopPage = () => {
 
                 {/* Search and Filter Section */}
                 <div className="py-20 ">
-                    <section className="lg:container lg:mx-auto mx-4 flex justify-between items-center">
+                    <section className="lg:container lg:mx-auto mx-4 flex md:flex-row flex-col gap-4 justify-between items-center">
                         <input type="text" placeholder="Search for medicines..." className="form-input p-2 rounded-lg w-full md:w-1/3" />
-                        <div className="flex gap-4 ml-4">
+                        <div className="flex gap-2">
                             <select className="form-select p-2 rounded-lg">
                                 <option>Category</option>
                                 <option>Prescription</option>
@@ -124,12 +124,12 @@ const ShopPage = () => {
                     <section className=" lg:container lg:mx-auto mx-4">
                         {/* <h2 className="text-2xl font-bold mb-4">Featured Products</h2> */}
                         <div className='flex justify-between items-center mb-10'>
-                            <p className='text-xl font-medium'>Trusted Online Medicine Corner</p>
+                            <p className='md:text-xl text-[14px] font-medium'>Trusted Online Medicine Corner</p>
                             <div 
                             onClick={() => {
                                 navigate('/cart')
                             }}
-                            className='flex items-center px-auto gap-2 bg-gray-200 w-[200px] px-4 py-2 rounded-lg mb-4 text-xl cursor-pointer'>
+                            className='flex items-center px-auto gap-2 bg-gray-200 md:w-[200px] w-[150px] px-4 py-2 rounded-lg  md:text-xl text-[14px] cursor-pointer'>
                                 Show Your Cart
                                 <FaCartArrowDown className='text-green-500' />
                             </div>
