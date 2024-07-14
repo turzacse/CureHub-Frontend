@@ -8,23 +8,17 @@ import Swal from 'sweetalert2';
 // import CTASection from './CTASection';
 
 const TelemedicineBooking = () => {
-    const {user} = useContext(AuthContext);
-    const [currentuser, setCurrentUser] = useState();
+    const {user, curehubUser} = useContext(AuthContext);
 
-    console.log(currentuser);
+    console.log(curehubUser);
 
     useEffect( () => {
-        fetch('https://cure-hub-backend-gules.vercel.app/users')
-        .then(res => res.json())
-        .then(data => {
-            const cureHubUser = data?.find((item) => item?.email === user?.email);
-            setCurrentUser(cureHubUser);
-        })
+        window.scroll(0,0);
     } ,[])
     const [formData, setFormData] = useState({
         // cureHubUser: currentuser?._id,
         name: '' || user?.displayName,
-        email: '' || currentuser?.email,
+        email: '' || curehubUser?.email,
         phone: '',
         specialty: '',
         date: '',
@@ -33,7 +27,7 @@ const TelemedicineBooking = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, cureHubUser: currentuser?._id, [name]: value });
+        setFormData({ ...formData, cureHubUser: curehubUser?._id, [name]: value });
     };
 
     const handleSubmit = async (e) => {
@@ -111,7 +105,7 @@ const TelemedicineBooking = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    value={formData.email || currentuser?.email}
+                                    value={formData.email || curehubUser?.email}
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     required

@@ -1,6 +1,9 @@
 import React from 'react';
 import PageHeading from '../../Components/PageHeading/PageHeading';
 import Heading from '../../Components/PageHeading/Heading';
+import Dash from '../../Components/Dashboard';
+// import Dashboard from '../../Components/Dashboard';
+// import Dashboard from '../../Components/Dashboard';
 
 const About = () => {
 
@@ -50,6 +53,7 @@ const About = () => {
 
             </div>
            </div>
+           <Dash className='bg-black'/>
         </div>
     );
 };

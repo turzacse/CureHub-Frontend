@@ -40,6 +40,7 @@ import CheckOut from './Pages/CheckOut/CheckOut.jsx';
 import Telemediine from './Pages/TeleMedicine/Telemediine.jsx';
 import TelemedicineBooking from './Pages/Booking/TelemedicineBooking.jsx';
 import Cart from './Pages/Cart/Cart.jsx';
+import Dash from './Components/Dashboard.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
         path: '/faq',
         element: <FAQ/>
       },
+      
       {
         path: '/service',
         element: <Service/>
@@ -141,6 +143,10 @@ const router = createBrowserRouter([
         element: <LoginPage />
       }
     ]
+  },
+  {
+    path: '/user',
+    element: <Dash/>
   },
   {
     path: '/dashboard',

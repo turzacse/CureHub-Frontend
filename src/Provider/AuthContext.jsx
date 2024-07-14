@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
+    const [curehubUser, setCurehubUser] = useState();
     
 
     const createUser = (email, password) => {
@@ -46,9 +47,13 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, []);
     console.log(user);
+    useEffect( () => {
+        fetch(`https://cure-hub-backend-gules.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setCurehubUser(data));
+    } , [user]);
 
     const value = {
         user,
+        curehubUser,
         loading,
         createUser,
         signIn,
