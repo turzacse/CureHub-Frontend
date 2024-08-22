@@ -303,6 +303,11 @@ const Navbar = () => {
                 Doctors
             </NavLink>
         </li>
+        <li>
+            <NavLink to="/analysis" className='font-semibold'>
+                Analysis
+            </NavLink>
+        </li>
         {/* <li className='font-semibold'><NavLink to='/prescription'>Prescription</NavLink></li> */}
         {/* <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li> */}
         <div className="dropdown bg-[#006666]">

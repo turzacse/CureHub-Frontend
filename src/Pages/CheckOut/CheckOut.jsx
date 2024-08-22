@@ -1,21 +1,21 @@
 import React from 'react';
 import StripeCheckout from './StripeCheckOut';
+import Heading from '../../Components/PageHeading/Heading';
 // import StripeCheckout from './StripeCheckOut';
 // import StripeCheckout from './StripeCheckout';
 
 const CheckoutPage = () => {
     return (
-        <div className="container mx-auto px-4 py-8">
+       <div >
+        <Heading title='Complete Your Purchase' subtitle='Review your order and enter your payment information to complete your purchase. Thank you for choosing our services!' />
+         <div className="container mx-auto px-4 py-8">
             {/* Title and Subtitle */}
-            <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold mb-4">Complete Your Purchase</h1>
-                <p className="text-lg">Review your order and enter your payment information to complete your purchase. Thank you for choosing our services!</p>
-            </div>
+            
 
             {/* Order Summary */}
-            <div className="mb-8">
+            <div className="mb-8 text-white">
                 <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
-                <div className="bg-gray-400 p-4 rounded shadow-md">
+                <div className="bg-gray-400 text-black p-4 rounded shadow-md">
                     <div className="flex justify-between mb-4">
                         <div>
                             <p className="font-semibold">Item Name</p>
@@ -36,7 +36,7 @@ const CheckoutPage = () => {
 
             {/* Shipping Information */}
             <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Shipping Information</h2>
+                <h2 className="text-2xl font-bold mb-4 text-white">Shipping Information</h2>
                 <div className="bg-gray-400 p-4 rounded shadow-md">
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2">Name</label>
@@ -77,10 +77,11 @@ const CheckoutPage = () => {
 
             {/* Payment Information with Stripe */}
             <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Payment Information</h2>
+                <h2 className="text-2xl font-bold mb-4 text-white">Payment Information</h2>
                 <StripeCheckout />
             </div>
         </div>
+       </div>
     );
 };
 

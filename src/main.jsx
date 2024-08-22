@@ -41,6 +41,7 @@ import Telemediine from './Pages/TeleMedicine/Telemediine.jsx';
 import TelemedicineBooking from './Pages/Booking/TelemedicineBooking.jsx';
 import Cart from './Pages/Cart/Cart.jsx';
 import Dash from './Components/Dashboard.jsx';
+import Analysis from './Pages/Analysis/Analysis.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <ShopPage/>
+      },
+      {
+        
+          path: '/analysis',
+          element: <Analysis/>
+      
       },
       {
         path: '/faq',
