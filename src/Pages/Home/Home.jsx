@@ -25,6 +25,7 @@ import MedicineAdCTA from './CTA3';
 import SuccessStories from './Stories';
 import OfferSection from './OfferSection';
 import AnalysisCTA from './CTA4';
+import GetInTouch from './GetInTouch';
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -92,6 +93,8 @@ return (
         <HowItWorksSection /> */}
         {/* <ShopPage/>
           <CategoryDetailsMedicinePage/> */}
+        <GetInTouch/>
+
     </div>
 );
 };
