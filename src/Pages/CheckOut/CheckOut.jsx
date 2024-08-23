@@ -1,19 +1,66 @@
 import React from 'react';
-import StripeCheckout from './StripeCheckOut';
+// import StripeCheckout from './StripeCheckOut';
 import Heading from '../../Components/PageHeading/Heading';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 // import StripeCheckout from './StripeCheckOut';
 // import StripeCheckout from './StripeCheckout';
+import CheckoutForm from './CheckoutForm'
 
 const CheckoutPage = () => {
+
+    const stripePromise = loadStripe('pk_test_51OMCncJNucR5rk9lv7ZIVo1f6W9pPPlpdlt6tngZxmqxs37leFzfQbUAV8ITZAgt8X07c559eDbMFn9ROLplyEtZ00XjlMdO9d');
     return (
        <div >
         <Heading title='Complete Your Purchase' subtitle='Review your order and enter your payment information to complete your purchase. Thank you for choosing our services!' />
-         <div className="container mx-auto px-4 py-8">
+         <div className="container bg-gray-300 mx-auto px-4 py-8">
             {/* Title and Subtitle */}
+            <Elements stripe={stripePromise}>
+                <CheckoutForm/>
+            </Elements>
             
 
-            {/* Order Summary */}
-            <div className="mb-8 text-white">
+            {/* Payment Information with Stripe */}
+            {/* <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-white">Payment Information</h2>
+            </div> */}
+        </div>
+       </div>
+    );
+};
+
+export default CheckoutPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* Order Summary */}
+            {/* <div className="mb-8 text-white">
                 <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
                 <div className="bg-gray-400 text-black p-4 rounded shadow-md">
                     <div className="flex justify-between mb-4">
@@ -32,10 +79,10 @@ const CheckoutPage = () => {
                         <p className="font-bold text-xl">Total: $114.99</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Shipping Information */}
-            <div className="mb-8">
+            {/* <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-white">Shipping Information</h2>
                 <div className="bg-gray-400 p-4 rounded shadow-md">
                     <div className="mb-4">
@@ -73,16 +120,4 @@ const CheckoutPage = () => {
                         </label>
                     </div>
                 </div>
-            </div>
-
-            {/* Payment Information with Stripe */}
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-white">Payment Information</h2>
-                <StripeCheckout />
-            </div>
-        </div>
-       </div>
-    );
-};
-
-export default CheckoutPage;
+            </div> */} 

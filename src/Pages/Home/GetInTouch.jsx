@@ -23,7 +23,7 @@ const GetInTouch = () => {
                 <h2 className="text-3xl font-bold text-[#006666] text-center">Get in Touch</h2>
                 <p className="text-lg text-gray-700 mt-2 text-center">We're here to help you with any inquiries or issues you may have.</p>
 
-                <div className="flex justify-between gap-4 md:gap-10 items-center flex-col-reverse md:flex-row mt-10 space-y-8 md:space-y-0 md:space-x-8">
+                <div className="flex justify-between gap-4 md:gap-10 items-center flex-col-reverse md:flex-row md:mt-10 mt-4 space-y-8 md:space-y-0 md:space-x-8">
 
                     <div className="w-full md:w-1/2">
                         <form
@@ -41,7 +41,7 @@ const GetInTouch = () => {
                     </div>
 
                     <div className="w-full md:w-1/2 space-y-6">
-                        <img className='h-[400px] rounded-lg flex justify-end' src={doctor[currentImageIndex]} alt="Hello CureHub User" />
+                        <img className='md:h-[400px] h-[300px] rounded-lg flex justify-end items-center ' src={doctor[currentImageIndex]} alt="Hello CureHub User" />
                         {/* <div className="flex items-center">
                             <i className="fas fa-phone-alt text-[#006666] text-xl"></i>
                             <p className="ml-4 text-lg text-gray-700">+123 456 789</p>
