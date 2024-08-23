@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Heading from '../../Components/PageHeading/Heading';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthContext';
@@ -71,6 +71,10 @@ const Analysis = () => {
     const { user } = useContext(AuthContext);
 
     const currentQuestion = questions[currentQuestionIndex];
+
+    useEffect( () => {
+        window.scroll(0,0);
+    } ,[])
 
     const handleSelect = (option) => {
         const questionId = currentQuestion.id;
@@ -165,7 +169,7 @@ const Analysis = () => {
 
     return (
         <div>
-            <Heading title="Analysis" subtitle="Unlock Comprehensive Health Insights with CureHub's Medical Analysis" />
+            <Heading title="Medical Analysis" subtitle="Unlock Comprehensive Health Insights with CureHub's Medical Analysis" />
 
             <div className='md:container py-10 md:mx-10 mx-4 text-center space-y-5 text-white'>
                 {

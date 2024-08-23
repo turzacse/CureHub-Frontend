@@ -24,6 +24,7 @@ import CTADoctor from './CTA2';
 import MedicineAdCTA from './CTA3';
 import SuccessStories from './Stories';
 import OfferSection from './OfferSection';
+import AnalysisCTA from './CTA4';
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -77,6 +78,7 @@ return (
         <MedicineAdCTA/>
         
         <SuccessStories/>
+        <AnalysisCTA/>
         <HowItWorks/>
         <OfferSection/>
         <LatestHealthArticles/>

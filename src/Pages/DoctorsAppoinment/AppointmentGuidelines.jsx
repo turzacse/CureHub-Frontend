@@ -59,7 +59,7 @@ const AppointmentGuidelines = () => {
             <div className='my-10 lg:container lg:mx-auto mx-4 text-white  space-y-5'>
                 {
                     data.map((item, index) => <div key={index}>
-                        <h2 className='font-bold text-[16px] md:text-[20px] mb-2'>{item.title}</h2>
+                        <h2 className='font-bold text-[16px] md:text-[20px] text-info mb-2'>{item.title}</h2>
                         <p>{item.description}</p>
                         <ul>
                             {

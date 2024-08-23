@@ -50,7 +50,7 @@ const BookingSystem = () => {
                 <div className=' space-y-5 text-justify'>
                 {
                     data.map((item, index) => <div key={index}>
-                        <h2 className='font-bold text-[16px] md:text-[20px] mb-2'>{item.title}</h2>
+                        <h2 className='font-bold text-[16px] md:text-[20px] text-info mb-2'>{item.title}</h2>
                         <p>{item.description}</p>
                         
                     </div>)
