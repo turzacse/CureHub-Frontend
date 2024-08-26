@@ -1,287 +1,3 @@
-// // import React, { useContext, useState } from 'react';
-// // import profileImage from '../../assets/Logo/logo4.png'
-// // import logo1 from '../../assets/Logo/logo1.png'
-// // import logo2 from '../../assets/Logo/logo2.png'
-// // import { NavLink, useNavigate } from 'react-router-dom';
-// // import { AuthContext } from '../../Provider/AuthContext';
-
-
-// // const Navbar = () => {
-// //     const [isOpen, setIsOpen] = useState(false);
-// //     const [isLoggedIn, setIsLoggedIn] = useState(false); // Replace with actual authentication logic
-// //     const [showMenu, setShowMenu] = useState(false);
-// //     // const profileImage = 'path/to/profile/image.jpg'; // Replace with actual profile image path
-
-// //     const {user, logOut} = useContext(AuthContext);
-// //     const navigate = useNavigate();
-// //     console.log(user);
-// //     const toggleMenu = () => {
-// //         setIsOpen(!isOpen);
-// //     };
-
-// //     const handleChange = () => {
-// //         setIsOpen(false);
-// //     };
-// //     const handleDashboard = (e) => {
-// //         e.preventDefault();
-// //         navigate('/dashboard')
-// //     }
-
-// //     const handleLogout = (e) => {
-// //         e.preventDefault();
-// //        logOut();
-// //        navigate('/sign-in')
-// //     }
-// //     // #006666 nav color
-// //     return (
-// //         <nav className="bg-[#006666] text-white">
-// //             <div className=" mx-auto px-4 py-4 flex justify-between items-center">
-// //                 <NavLink to='/' className="text-2xl font-bold">
-
-// //                     <img className='h-[80px] w-[80px] rounded-full' src={logo2} alt="" />
-// //                 </NavLink>
-// //                 <div className="hidden md:flex space-x-6">
-// //                     <NavLink to='/' className="hover:text-blue-400">Home</NavLink>
-// //                     <NavLink to='/shop' className="hover:text-blue-400">Shop</NavLink>
-// //                     <NavLink to='/doctors' className="hover:text-blue-400">Doctors</NavLink>
-// //                     <NavLink to='/contact-us' className="hover:text-blue-400">Contact</NavLink>
-// //                 </div>
-// //                 <div className="flex items-center space-x-4">
-// //                     {user ? (
-// //                         <>
-// //                         <img
-// //                             src={user.photoURL}
-// //                             alt="Profile"
-// //                             className="w-16 h-16 rounded-full cursor-pointer"
-// //                             onClick={() => setShowMenu(!showMenu)}
-// //                         />
-// //                         {showMenu && (
-// //                             <div className="absolute top-24 right-0 bg-[#006666] shadow-lg rounded-lg mt-2 py-2 w-48 z-50 text-white">
-// //                                 <button  className="block px-4 py-2 text-white hover:" onClick={handleDashboard}>Dashboard</button>
-// //                                 <button  className="block px-4 py-2 text-white hover:" onClick={handleLogout} >Logout</button>
-// //                             </div>
-// //                         )}
-// //                     </>
-// //                     ) : (
-// //                         <>
-// //                             <a  className="hover:text-blue-400">Sign In</a>
-// //                         </>
-// //                     )}
-// //                 </div>
-// //                 <div className="md:hidden">
-// //                     <button onClick={toggleMenu} className="focus:outline-none">
-// //                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-// //                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-// //                         </svg>
-// //                     </button>
-// //                 </div>
-// //             </div>
-// //             {isOpen && (
-// //                 <div className="md:hidden z-50 absolute w-3/4 rounded-lg right-0 shadow-2xl bg-[#006666]" onClick={handleChange}>
-// //                     <NavLink to='/'  className="block px-4 py-2 hover:bg-gray-700">Home</NavLink>
-// //                     <NavLink to='/shop'  className="block px-4 py-2 hover:bg-gray-700">Shop</NavLink>
-// //                     <NavLink to='/doctors'  className="block px-4 py-2 hover:bg-gray-700">Doctors</NavLink>
-// //                     <NavLink to='/'  className="block px-4 py-2 hover:bg-gray-700">Contact</NavLink>
-// //                     {user ? (
-// //                         <NavLink to='/dashboard'  className="block px-4 py-2 hover:bg-gray-700">Dashboard</NavLink>
-// //                     ) : (
-// //                         <>
-// //                             <NavLink to='/sign-up'  className="block px-4 py-2 hover:bg-gray-700">Sign Up</NavLink>
-// //                             <NavLink to='/sign-in'  className="block px-4 py-2 hover:bg-gray-700">Sign In</NavLink>
-// //                         </>
-// //                     )}
-// //                 </div>
-// //             )}
-// //         </nav>
-// //     );
-// // };
-
-// // export default Navbar;
-// import React, { useContext, useState } from 'react';
-// import { NavLink, useNavigate } from 'react-router-dom';
-// import { AuthContext } from '../../Provider/AuthContext';
-// import logo1 from '../../assets/Logo/logo1.png'
-// import logo2 from '../../assets/Logo/logo2.png'
-
-// const Navbar = () => {
-//     const [isOpen, setIsOpen] = useState(false);
-//     const [showMenu, setShowMenu] = useState(false);
-//     const { user, logOut } = useContext(AuthContext);
-//     const navigate = useNavigate();
-
-//     const toggleMenu = () => {
-//         setIsOpen(!isOpen);
-//     };
-
-//     const handleChange = () => {
-//         setIsOpen(false);
-//     };
-
-//     const handleDashboard = (e) => {
-//         e.preventDefault();
-//         navigate('/dashboard');
-//     };
-
-//     const handleLogout = (e) => {
-//         e.preventDefault();
-//         logOut();
-//         navigate('/sign-in');
-//     };
-
-//     return (
-//         <div className="navbar bg-[#006666] text-white">
-//             <div className="navbar-start">
-//                 <div className="dropdown">
-//                     <div
-//                         tabIndex={0}
-//                         role="button"
-//                         className="btn btn-ghost lg:hidden"
-//                         onClick={toggleMenu}
-//                     >
-//                         <svg
-//                             xmlns="http://www.w3.org/2000/svg"
-//                             className="h-5 w-5"
-//                             fill="none"
-//                             viewBox="0 0 24 24"
-//                             stroke="currentColor"
-//                         >
-//                             <path
-//                                 strokeLinecap="round"
-//                                 strokeLinejoin="round"
-//                                 strokeWidth="2"
-//                                 d="M4 6h16M4 12h8m-8 6h16"
-//                             />
-//                         </svg>
-//                     </div>
-//                     <ul
-//                         tabIndex={0}
-//                         className={`menu menu-sm dropdown-content bg-[#006666] rounded-box z-[1] mt-3 w-52 p-2 shadow ${isOpen ? 'block' : 'hidden'}`}
-//                         onClick={handleChange}
-//                     >
-//                         <li>
-//                             <NavLink to="/" className="block px-4 py-2 hover:bg-gray-700">
-//                                 Home
-//                             </NavLink>
-//                         </li>
-//                         <li>
-//                             <NavLink to="/shop" className="block px-4 py-2 hover:bg-gray-700">
-//                                 Shop
-//                             </NavLink>
-//                         </li>
-//                         <li>
-//                             <NavLink to="/doctors" className="block px-4 py-2 hover:bg-gray-700">
-//                                 Doctors
-//                             </NavLink>
-//                         </li>
-//                         <li>
-//                             <NavLink to="/contact-us" className="block px-4 py-2 hover:bg-gray-700">
-//                                 Contact
-//                             </NavLink>
-//                         </li>
-//                         {user ? (
-//                             <li>
-//                                 <NavLink
-//                                     to="/dashboard"
-//                                     className="block px-4 py-2 hover:bg-gray-700"
-//                                 >
-//                                     Dashboard
-//                                 </NavLink>
-//                             </li>
-//                         ) : (
-//                             <>
-//                                 <li>
-//                                     <NavLink to="/sign-up" className="block px-4 py-2 hover:bg-gray-700">
-//                                         Sign Up
-//                                     </NavLink>
-//                                 </li>
-//                                 <li>
-//                                     <NavLink to="/sign-in" className="block px-4 py-2 hover:bg-gray-700">
-//                                         Sign In
-//                                     </NavLink>
-//                                 </li>
-//                             </>
-//                         )}
-//                     </ul>
-//                 </div>
-//                 <NavLink to='/' className="text-2xl font-bold">
-
-//                     <img className='h-[80px] w-[80px] rounded-full' src={logo2} alt="" />
-//                 </NavLink>
-//             </div>
-//             <div className="navbar-center hidden lg:flex">
-//                 <ul className="menu menu-horizontal px-1">
-//                     <li>
-//                         <NavLink to="/" className="block px-4 py-2 hover:bg-gray-700">
-//                             Home
-//                         </NavLink>
-//                     </li>
-//                     <li>
-//                         <details>
-//                             <summary>Apointment</summary>
-//                             <ul className="p-2 z-10 bg-[#006666] w-[250px] text-white">
-//                                 <li>
-//                                     <NavLink to="/doctors" className="block px-4 py-2 hover:bg-gray-700">
-//                                         Doctors
-//                                     </NavLink>
-
-//                                 </li>
-//                                 <li>
-//                                     <NavLink to="/booking-system" className="block px-4 py-2 hover:bg-gray-700">
-//                                         Booking System
-//                                     </NavLink>
-
-//                                 </li><li>
-//                                     <NavLink to="/appointment-guideline" className="block px-4 py-2 hover:bg-gray-700">
-//                                         Appointment Guidelines
-//                                     </NavLink>
-
-//                                 </li><li>
-//                                     <NavLink to="/telemedicine-appointments" className="block px-4 py-2 hover:bg-gray-700">
-//                                         Telemedicine Appointment
-//                                     </NavLink>
-
-//                                 </li>
-//                             </ul>
-//                         </details>
-//                     </li>
-//                     <li>
-//                         <NavLink
-//                         to='/about'
-//                         className="block px-4 py-2 hover:bg-gray-700"
-//                         >About</NavLink>
-//                     </li>
-//                 </ul>
-//             </div>
-//             <div className="flex items-center navbar-end space-x-4">
-//                      {user ? (
-//                          <>
-//                          <img
-//                              src={user.photoURL}
-//                              alt="Profile"
-//                              className="w-16 h-16 rounded-full cursor-pointer"
-//                              onClick={() => setShowMenu(!showMenu)}
-//                          />
-//                          {showMenu && (
-//                              <div className="absolute top-24 right-0 bg-[#006666] shadow-lg rounded-lg mt-2 py-2 w-48 z-50 text-white">
-//                                  <button  className="block px-4 py-2 text-white hover:" onClick={handleDashboard}>Dashboard</button>
-//                                  <button  className="block px-4 py-2 text-white hover:" onClick={handleLogout} >Logout</button>
-//                              </div>
-//                          )}
-//                      </>
-//                      ) : (
-//                          <>
-//                              <a  className="hover:text-blue-400">Sign In</a>
-//                          </>
-//                      )}
-//                  </div>
-//         </div>
-//     );
-// };
-
-// export default Navbar;
-
-
-
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
@@ -290,9 +6,10 @@ import logo2 from '../../assets/Logo/logo2.png'
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
     const handleLogout = () => {
         logOut();
+        navigate('/');
     }
     const links = <div className='flex flex-col lg:flex-row lg:justify-center lg:items-center'>
         <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
@@ -335,6 +52,14 @@ const Navbar = () => {
             </ul>
         </div>
     </div>
+
+if(loading){
+    return(
+        <div>
+            <p>Loading.......</p>
+        </div>
+    )
+}
 
     return (
         <div>
@@ -392,7 +117,7 @@ const Navbar = () => {
 
                             </>
                         ) : (
-                            <NavLink to='/login' className="btn btn-outline btn-warning">Login</NavLink>
+                            <NavLink to='/sign-in' className="btn btn-outline btn-warning">Login</NavLink>
                         )}
                     </div>
                 </div>

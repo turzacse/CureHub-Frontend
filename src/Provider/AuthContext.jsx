@@ -2,6 +2,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -10,7 +11,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const [curehubUser, setCurehubUser] = useState();
-    
+    // const navigate = useNavigate();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -29,6 +30,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setLoading(true);
+        // navigate('/');
         return signOut(auth);
     }
 
@@ -46,7 +48,7 @@ const AuthProvider = ({ children }) => {
         });
         return () => unsubscribe();
     }, []);
-    console.log(user);
+    console.log('CureHub user=>',curehubUser);
     useEffect( () => {
         fetch(`https://cure-hub-backend-gules.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setCurehubUser(data));
     } , [user]);
@@ -55,6 +57,7 @@ const AuthProvider = ({ children }) => {
         user,
         curehubUser,
         loading,
+        setLoading,
         createUser,
         signIn,
         googleSignIn,

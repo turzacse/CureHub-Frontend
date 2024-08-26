@@ -1,14 +1,17 @@
 
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
 import logo1 from '../../assets/Logo/logo1.png'
 import logo2 from '../../assets/Logo/logo2.png'
 
 const DashboardNav = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { user, logOut, loading } = useContext(AuthContext);
     const handleLogout = () => {
         logOut();
+        navigate('/');
+
     }
     const links = <div className='flex flex-col lg:flex-row lg:justify-center lg:items-center'>
     <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
@@ -49,6 +52,14 @@ const DashboardNav = () => {
         </ul>
     </div>
 </div>
+
+if(loading){
+    return(
+        <div>
+            <p>Loading.......</p>
+        </div>
+    )
+}
 
     return (
         <div>
@@ -102,7 +113,7 @@ const DashboardNav = () => {
 
                             </>
                         ) : (
-                            <NavLink to='/login' className="btn btn-outline btn-warning">Login</NavLink>
+                            <NavLink to='/sign-in' className="btn btn-outline btn-warning">Login</NavLink>
                         )}
                     </div>
                 </div>

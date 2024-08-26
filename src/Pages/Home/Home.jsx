@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductSlider from './ProductSlider';
 import CategorySection from '../../Components/Home/CategorySection';
 import DiscountProducts from '../../Components/Home/DiscountProducts';
@@ -26,9 +26,11 @@ import SuccessStories from './Stories';
 import OfferSection from './OfferSection';
 import AnalysisCTA from './CTA4';
 import GetInTouch from './GetInTouch';
+import { AuthContext } from '../../Provider/AuthContext';
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
+    const { signIn, loading,setLoading } = useContext(AuthContext);
 
     useEffect( () => {
       window.scroll(0,0);
@@ -54,6 +56,11 @@ const Home = () => {
 
     return `${day}-${month}-${year}`;
   };
+  if(loading){
+    return (
+      <p className='text-center'>Processing..........</p>
+    )
+  }
 
 return (
     <div>
