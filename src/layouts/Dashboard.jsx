@@ -27,7 +27,7 @@ const Dashboard = () => {
         <div className='bg-gray-400'>
             <DashboardNav/>
             {/* <VideoCall/> */}
-            <div className='lg:conatiner lg:mx-auto mx-4 flex flex-row'>
+            <div className='lg:conatiner lg:mx-auto flex flex-row'>
                 <div className='w-screen'>
                 {currentuser?.role =='admin'  && location.pathname === '/dashboard' && (
                         <div>

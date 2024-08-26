@@ -16,6 +16,7 @@ const Defaultuser = () => {
     const [isOffersModalVisible, setOffersModalVisible] = useState(false);
     const [telemedicineBooking, setTelemedicineBooking] = useState();
     const [file, setFile] = useState(null);
+    const {usersAppoitment} = useContext(AuthContext);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
@@ -114,7 +115,7 @@ const Defaultuser = () => {
                         <div className='bg-gradient-to-r from-teal-400 to-blue-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
                             <h2 className='text-xl font-bold'>Appointment / Telemedicine</h2>
-                            <p className='text-lg font-semibold'>0 / 1</p>
+                            <p className='text-lg font-semibold'>{usersAppoitment?.length} / 1</p>
                         </div>
                         <div className='bg-gradient-to-r from-orange-400 to-yellow-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 

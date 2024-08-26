@@ -145,7 +145,7 @@ const DefaultAdmin = () => {
                     </LineChart>
                 </ResponsiveContainer>
             </div>
-            <div className='mb-20' style={{ width: '80%', height: 300, marginTop: '50px' }}>
+            <div className='mb-20 w-1/2' style={{ width: '80%', height: 300, marginTop: '50px' }}>
                 <h3 className='text-center text-xl font-semibold mb-4'>Daily Patient Service Usage (August 2024)</h3>
                 <ResponsiveContainer>
                     <LineChart data={dailyData}>

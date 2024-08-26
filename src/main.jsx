@@ -25,7 +25,7 @@ import DoctorManagement from './Pages/Dashboard/Admin/DoctorsManagement/DoctorMa
 import Testimonial from './Pages/Testimonial/Testimonial.jsx';
 import ContactUs from './Pages/ContactUs/ContactUs.jsx';
 import About from './Pages/About/About.jsx';
-import Doctors from './Pages/DoctorsAppoinment/Doctors.jsx';
+import Doctors from './Pages/Doctors/Doctors.jsx';
 import AppointmentGuidelines from './Pages/DoctorsAppoinment/AppointmentGuidelines.jsx';
 import TelemedicineAppointments from './Pages/DoctorsAppoinment/TelemedicineAppointments.jsx';
 import BookingSystem from './Pages/DoctorsAppoinment/BookingSystem.jsx';
@@ -42,6 +42,7 @@ import TelemedicineBooking from './Pages/Booking/TelemedicineBooking.jsx';
 import Cart from './Pages/Cart/Cart.jsx';
 import Dash from './Components/Dashboard.jsx';
 import Analysis from './Pages/Analysis/Analysis.jsx';
+import Appointment from './Pages/Appointment/Appointment.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -178,6 +179,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/user-query',
         element: <Question/>
+      },
+      {
+        path: '/dashboard/patient-appointment',
+        element: <Appointment/>
       },
       {
         path: '/dashboard/queries',

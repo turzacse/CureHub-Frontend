@@ -3,10 +3,11 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
 import logo1 from '../../assets/Logo/logo1.png'
 import logo2 from '../../assets/Logo/logo2.png'
+import { FaBookmark } from 'react-icons/fa';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { user, logOut, loading } = useContext(AuthContext);
+    const { user, logOut, loading, usersAppoitment } = useContext(AuthContext);
     const handleLogout = () => {
         logOut();
         navigate('/');
@@ -46,20 +47,20 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink to="/analysis" className='font-semibold'>
-                       Medical Analysis
+                        Medical Analysis
                     </NavLink>
                 </li>
             </ul>
         </div>
     </div>
 
-if(loading){
-    return(
-        <div>
-            <p>Loading.......</p>
-        </div>
-    )
-}
+    if (loading) {
+        return (
+            <div>
+                <p>Loading.......</p>
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -86,7 +87,28 @@ if(loading){
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <div className="indicator mr-4">
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className=" avatar">
+                                <div className="">
+                                    <FaBookmark className='text-pink-400 cursor-pointer' />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="mt-[25px] z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-400 rounded-box w-52">
+                                
+                                <li><button className="text-gray-800 font-semibold">Cart</button></li>
+
+                                <li><button className="text-gray-800 font-semibold" onClick={() => {
+                                    // navigate('/dashboard')
+                                }}>Appointment 
+                                {
+                                usersAppoitment?.length>0 && <span className='text-red-600 text-xl font-bold'>{usersAppoitment?.length}</span>
+                                }
+                                </button></li>
+                                <li><button className="text-gray-800 font-semibold">Telemedicine</button></li>
+                            </ul>
+                        </div>
+
+                        <div className="indicator ml-2 mr-4">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
                             <span className="badge badge-xs badge-primary indicator-item"></span>
                         </div>
@@ -99,18 +121,19 @@ if(loading){
                                             <img className="rounded-full flex justify-center items-center mx-auto" src={user.photoURL} alt="user profile" />
                                         </div>
                                     </label>
-                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#006666] rounded-box w-52">
+                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-400 rounded-box w-52">
                                         <p className='ml-3'>
                                             <div className="justify-between">
-                                                <h2 className='text-green-500 font-semibold'>{
+                                                <h2 className='text-black font-bold'>{
                                                     user.displayName}</h2>
                                             </div>
+                                            <hr />
                                         </p>
 
-                                        <li><button className="text-white font-bold" onClick={() => {
+                                        <li><button className="text-gray-800 font-semibold" onClick={() => {
                                             navigate('/dashboard')
                                         }}>Account</button></li>
-                                        <li><button className="text-white font-bold" onClick={handleLogout}>Log Out</button></li>
+                                        <li><button className="text-gray-800 font-semibold" onClick={handleLogout}>Log Out</button></li>
 
                                     </ul>
                                 </div>

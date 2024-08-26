@@ -75,7 +75,7 @@ if(loading){
                             </ul>
                         </div>
                         <Link>
-                            <img className="md:h-[80px] h-[40px] rounded-full" src={logo1} alt="" />
+                            <img className="md:h-[60px] h-[40px] rounded-full" src={logo1} alt="" />
                             {/* <h2 className="text-xl font-semibold text-orange-500 hidden md:block">Bangla Bites</h2> */}
                         </Link>
                         {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}

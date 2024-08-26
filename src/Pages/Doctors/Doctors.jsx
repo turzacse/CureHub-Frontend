@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Modal from 'react-modal';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { FaEye } from 'react-icons/fa';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import PageHeading from '../../Components/PageHeading/PageHeading';
 import Heading from '../../Components/PageHeading/Heading';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthContext';
 const formatTime = (time) => {
     const [hours, minutes] = time.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
@@ -36,17 +35,19 @@ const getDayName = (dayIndex) => {
     }
 };
 
-
-
 const Doctors = () => {
     const [doctors, setDoctors] = useState([]);
     const [image, setImage] = useState('https://i.ibb.co/HNwNbwh/doc.jpg');
     const [selectedDoctor, setSelectedDoctor] = useState(null);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const [showAppointmentModal, setShowAppointmentModal] = useState(null);
+    const [appointDoctor, setAppointDoctor] = useState();
     const [userCountry, setUserCountry] = useState('');
     const [selectedSlot, setSelectedSlot] = useState(null);
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [currentDate, setCurrentDate] = useState(new Date());
+    const {user, curehubUser} = useContext(AuthContext);
+    console.log('user ==>', curehubUser);
     const navigate = useNavigate();
     // const [appoinmentDay, setAppoinmentDay] = useState(new Date());
     useEffect(() => {
@@ -57,7 +58,7 @@ const Doctors = () => {
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dayName = dayNames[today.getDay()];
 
-    console.log('Today is:', dayName);
+    // console.log('Today is:', dayName);
 
     useEffect(() => {
         fetch('https://cure-hub-backend-gules.vercel.app/doctors')
@@ -84,7 +85,7 @@ const Doctors = () => {
             });
     }, []);
 
-    console.log('country..........', userCountry);
+    // console.log('country..........', userCountry);
     const getSlots = (startTime, endTime) => {
         const start = new Date();
         const end = new Date();
@@ -113,8 +114,12 @@ const Doctors = () => {
         return { formattedDate, appointmentDay };
     };
 
+    const dateFormate = (date) => {
+
+    }
+
     const { formattedDate, appointmentDay } = getFormattedDateAndDay(currentDate);
-    console.log('data....', formattedDate, appointmentDay);
+    // console.log('data....', formattedDate, appointmentDay);
 
     // console.log(appoinmentDay);
 
@@ -151,6 +156,7 @@ const Doctors = () => {
     };
 
     const handleAppointmentClick = (doctor) => {
+        setAppointDoctor(doctor);
         // setSelectedDoctor(doctor);
         // setShowDetailsModal(false);
         setShowAppointmentModal(doctor);
@@ -164,12 +170,55 @@ const Doctors = () => {
         setSelectedSlot(null);
     };
 
-    const handleBooking = (e) => {
-        e.preventDefault();
-        setShowAppointmentModal(false);
-    }
+    const handlePhoneChange = (e) => {
+        setPhoneNumber(e.target.value);
+    };
 
-    console.log(currentDate);
+    // const handleBooking = (e) => {
+    //     e.preventDefault();
+    //     // const phoneNumber = e.target.phone.value;
+    //     const bookingDetails = {
+    //         doctor: appointDoctor?._id,
+    //         patient: curehubUser?._id,
+    //         doctorNmae: appointDoctor?.name,
+    //         patientName: curehubUser?.usename || 'Unknown',
+    //         appoitedTime: selectedSlot,
+    //         bookingDate: today?.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+    //         patientPhone: phoneNumber,
+
+    //     }
+
+    
+    //     console.log('Booking info:', bookingDetails);
+    //     setShowAppointmentModal(false);
+    // }
+    const handleBooking = async (e) => {
+        e.preventDefault();
+    
+        const bookingDetails = {
+            doctor: appointDoctor?._id,
+            patient: curehubUser?._id,
+            doctorName: appointDoctor?.name,
+            patientName: curehubUser?.username || 'Unknown',
+            appointedTime: selectedSlot,
+            appointedDate: formattedDate,
+            bookingDate: today?.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+            patientPhone: phoneNumber,
+        };
+    
+        try {
+            const response = await axios.post('https://cure-hub-backend-gules.vercel.app/appoinment', bookingDetails);
+            console.log('Booking info:', bookingDetails);
+            console.log('API Response:', response.data);
+    
+            setShowAppointmentModal(false);
+        } catch (error) {
+            console.error('Error sending booking details:', error);
+        }
+    };
+    
+
+    console.log('doctor =>', appointDoctor);
     return (
         <div className='text-white  mx-auto'>
             <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
@@ -222,33 +271,6 @@ const Doctors = () => {
 
                 {/* Appointment Modal */}
                 {showAppointmentModal && (
-                    // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    //     <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
-                    //         <div className='flex justify-between'>
-                    //             <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
-                    //             <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
-                    //         </div>
-                    //         <form>
-                    //             <label className="block mb-2">
-                    //                 Name:
-                    //                 <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                    //             </label>
-                    //             <label className="block mb-2">
-                    //                 Email:
-                    //                 <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                    //             </label>
-                    //             <label className="block mb-2">
-                    //                 Phone:
-                    //                 <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                    //             </label>
-                    //             <label className="block mb-2">
-                    //                 Appointment Date:
-                    //                 <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3" required />
-                    //             </label>
-                    //             <button type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
-                    //         </form>
-                    //     </div>
-                    // </div>
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                         <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
                             <div className='flex justify-between'>
@@ -259,21 +281,31 @@ const Doctors = () => {
                                 <div className='flex gap-1'>
                                     <label className="block flex-1 mb-2">
                                         Name:
-                                        <input type="text" name="name" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                        <input
+                                        value={curehubUser?.username}
+                                        readOnly
+                                        type="text" name="name" className="w-full border border-gray-300 text-black rounded py-2 px-3" required />
                                     </label>
                                     <label className="block mb-2 flex-1">
                                         Email:
-                                        <input type="email" name="email" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                        <input
+                                        value={curehubUser?.email}
+                                        readOnly
+                                        type="email" name="email" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
                                     </label>
                                 </div>
                                 <div className='flex gap-1'>
                                     <label className="block mb-2 flex-1">
                                         Phone:
-                                        <input type="tel" name="phone" className="w-full border border-gray-300 rounded py-2 px-3" required />
+                                        <input
+                                        onChange={handlePhoneChange}
+                                        type="number" name="phone" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
                                     </label>
                                     <label className="block mb-2 flex-1">
                                         Appointment Date:
-                                        <input type="date" name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
+                                        <input
+                                        value={formattedDate}
+                                        readOnly name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
                                     </label>
                                 </div>
                                 <div className="mb-2">
@@ -284,7 +316,7 @@ const Doctors = () => {
                                         <p onClick={handleNextDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">→</p>
                                     </div>
                                     {showAppointmentModal.offDay === appointmentDay ? (
-                                        <div className="text-2xl text-center font-bold text-red-700">
+                                        <div className="text-center font-medium text-red-700">
                                             Doctor is Unavailable for this day
                                         </div>
                                     ) : (
@@ -304,7 +336,7 @@ const Doctors = () => {
                                 </div>
                                 <button
                                     onClick={handleBooking}
-                                    type="submit" className="bg-[#1a9e46] text-white py-2 px-4 rounded-md">Submit</button>
+                                    type="submit" className="bg-warning text-black py-2 px-4 rounded-md">Appointment</button>
                             </form>
                         </div>
                     </div>
