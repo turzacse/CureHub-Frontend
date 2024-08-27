@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthContext';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Heading from '../../../Components/PageHeading/Heading';
 import { FaRegEye } from 'react-icons/fa';
 import CTADoctor from '../../Home/CTA2';
@@ -17,6 +17,7 @@ const Defaultuser = () => {
     const [telemedicineBooking, setTelemedicineBooking] = useState();
     const [file, setFile] = useState(null);
     const {usersAppoitment} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
@@ -110,24 +111,42 @@ const Defaultuser = () => {
 
                             <h2 className='text-xl font-bold'>MemeberShip</h2>
                             <p className='text-lg font-semibold'>No Plan Yet</p>
-                            <p></p>
+                            <button
+                            onClick={() =>{
+                                navigate('/membership-plan')
+                            }}
+                            className='btn btn-sm btn-warning mt-5 px-4 hover:bg-white border-none'>Chose</button>
                         </div>
                         <div className='bg-gradient-to-r from-teal-400 to-blue-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
                             <h2 className='text-xl font-bold'>Appointment / Telemedicine</h2>
                             <p className='text-lg font-semibold'>{usersAppoitment?.length} / 1</p>
+                            <button
+                            onClick={() =>{
+                                navigate('/dashboard/patient-appointment')
+                            }}
+                            className='btn btn-sm btn-warning mt-5 px-4 hover:bg-white border-none'>See</button>
                         </div>
                         <div className='bg-gradient-to-r from-orange-400 to-yellow-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
                             <h2 className='text-xl font-bold'>Cart</h2>
                             <p className='text-lg font-semibold'>5</p>
+                            <button
+                            onClick={() =>{
+                                navigate('/cart')
+                            }}
+                            className='btn btn-sm btn-secondary mt-5 px-4 hover:bg-white border-none hover:text-black'>See</button>
 
                         </div>
                         <div className='bg-gradient-to-r from-pink-400 to-red-400 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
                             <h2 className='text-xl font-bold'>Due Payment</h2>
                             <p className='text-lg font-semibold'>2</p>
-
+                            <button
+                            onClick={() =>{
+                                // navigate('/cart')
+                            }}
+                            className='btn btn-sm btn-primary mt-5 px-4 hover:bg-white border-none hover:text-black'>See</button>
                         </div>
                     </div>
                 </section>
@@ -136,9 +155,9 @@ const Defaultuser = () => {
                 
                 <div className="flex justify-center my-8">
                     <NavLink
-                        to='/membership-plan'
+                        to='/doctors'
                         className="bg-blue-600 text-white px-6 py-3 rounded-md shadow hover:bg-blue-700 focus:outline-none">
-                        Choose Your Membership Plan
+                        Book Appointment with your desire Doctor
                     </NavLink>
                 </div>
 
