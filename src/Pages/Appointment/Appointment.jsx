@@ -177,7 +177,7 @@ const Appointment = () => {
 
     return (
         <div className="min-h-screen ">
-            <Heading title='Doctors Appointment' />
+            {/* <Heading title='Doctors Appointment' /> */}
 
             <section className="container mx-auto px-4 py-10">
                 {/* Summary Cards */}
@@ -324,17 +324,22 @@ const Appointment = () => {
 
                 </div>
 
-                <div className='mt-10 flex flex-col gap-4 md:w-1/3'>
-                    <button
-                        onClick={() => {
-                            navigate('/doctors')
-                        }}
-                        className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book Appointment with your desire Doctor</button>
-                    <button
-                        onClick={() => {
-                            navigate('/telemedicine-booking')
-                        }}
-                        className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book a Telemedicine Appointment</button>
+                <div className='mt-10 flex justify-between'>
+                   <div>
+                   </div>
+                    
+                    <div className='flex md:w-1/3 justify-end flex-col gap-4 '>
+                        <button
+                            onClick={() => {
+                                navigate('/doctors')
+                            }}
+                            className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black flex justify-end'>Book Appointment with your desire Doctor</button>
+                        <button
+                            onClick={() => {
+                                navigate('/telemedicine-booking')
+                            }}
+                            className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book a Telemedicine Appointment</button>
+                    </div>
                 </div>
             </section>
         </div>

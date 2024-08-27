@@ -110,7 +110,7 @@ const Defaultuser = () => {
             <Heading title='Dashboard' subtitle='Manage your appointments, health records, and more.' ></Heading>
             <div className="">
 
-                <section className='text-white'>
+                <section className='text-white mx-4'>
                     <div className='my-10 lg:container lg:mx-auto mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 '>
                         <div className=' bg-gradient-to-r from-[#7870c0] to-[#5449bb] h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
@@ -124,8 +124,8 @@ const Defaultuser = () => {
                         </div>
                         <div className='bg-gradient-to-r from-teal-400 to-blue-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
-                            <h2 className='text-xl font-bold'>Appointment / Telemedicine</h2>
-                            <p className='text-lg font-semibold'>{usersAppoitment?.length} / 1</p>
+                            <h2 className='text-xl font-bold'>Appointment</h2>
+                            <p className='text-lg font-semibold'>{usersAppoitment?.length}</p>
                             <button
                             onClick={() =>{
                                 navigate('/dashboard/patient-appointment')
