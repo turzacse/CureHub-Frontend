@@ -1,22 +1,3 @@
-// import React, { useContext } from 'react';
-// import { AuthContext } from '../../Provider/AuthContext';
-// import Heading from '../../Components/PageHeading/Heading';
-
-// const Appointment = () => {
-//     const {usersAppoitment} = useContext(AuthContext);
-//     return (
-//         <div>
-//             <Heading title='Doctors Appointment' ></Heading>
-//             <section className='md:container md:mx-auto mx-4 py-10'>
-//                 Your Upcomming Appointment number {usersAppoitment?.length}
-//             </section>
-//         </div>
-//     );
-// };
-
-// export default Appointment;
-
-
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
 import Heading from '../../Components/PageHeading/Heading';
@@ -27,10 +8,13 @@ import { IoCalendarNumberSharp } from 'react-icons/io5';
 import { MdCancel, MdDateRange, MdPaid } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Appointment = () => {
     const { curehubUser } = useContext(AuthContext);
     const [usersAppoitment, setUsersAppointment] = useState()
+    const [telemedicine, setTeleMedicine] = useState();
+    const navigate = useNavigate();
 
     const getAllData = async () => {
         try {
@@ -41,13 +25,23 @@ const Appointment = () => {
             // Optionally handle the error here, e.g., show an error message to the user
         }
     };
-    // useEffect(() => {
-    //     fetch(`https://cure-hub-backend-gules.vercel.app/appoinment/patient/${curehubUser?._id}`).then(res => res.json()).then(data => setUsersAppointment(data));
-    // }, [curehubUser]);
+
+    const getTeleMedicine = async () => {
+        try {
+            const response = await axios.get(`https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/${curehubUser?._id}`);
+            setTeleMedicine(response.data);
+        } catch (error) {
+            console.error('Error fetching appointment data:', error);
+            // Optionally handle the error here, e.g., show an error message to the user
+        }
+    };
+
       useEffect( () => {
         getAllData();
+        getTeleMedicine();
         window.scroll(0,0);
       } ,[curehubUser?._id])
+
 
     // Calculate appointment stats
     const upcomingCount = 3;
@@ -75,6 +69,7 @@ const Appointment = () => {
                     appointment: appointment,
                     cancelDate: new Date().toISOString(), // or any other date format
                     appointmentType:'General',
+                    curehubUser: curehubUser?._id,
                 });
     
                 // Delete the appointment
@@ -125,6 +120,54 @@ const Appointment = () => {
                 })
             }
         });
+    };
+
+    const handleTelemedicineCancel = async (appointment) => {
+        try {
+            const { value: isConfirmed } = await Swal.fire({
+                text: "Are you sure you want to cancel your telemedicine appointment?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, cancel it!',
+                cancelButtonText: 'No',
+                background: '#006666', // Set background color
+                color: '#fff',
+            });
+    
+            if (isConfirmed) {
+                // Store cancellation data
+                await axios.post('https://cure-hub-backend-gules.vercel.app/cancel/appoinment', {
+                    appointment: appointment,
+                    cancelDate: new Date().toISOString(), // or any other date format
+                    appointmentType:'Telemedicine',
+                    curehubUser: curehubUser?._id,
+                });
+    
+                // Delete the appointment
+                await axios.delete(`https://cure-hub-backend-gules.vercel.app/telemedicine/delete/${appointment._id}`);
+                getTeleMedicine();
+    
+                // Show success message
+                Swal.fire({
+                    text: 'Your telemedicine appointment has been cancelled.',
+                    icon: 'success',
+                    background: '#006666',
+                    confirmButtonColor: '#3085d6',
+                    color: '#fff',
+                });
+            }
+        } catch (error) {
+            console.error('Error handling cancellation:', error);
+            Swal.fire({
+                text: 'An error occurred while cancelling your appointment. Please try again.',
+                icon: 'error',
+                background: '#006666',
+                confirmButtonColor: '#3085d6',
+                color: '#fff',
+            });
+        }
     };
 
     return (
@@ -209,9 +252,60 @@ const Appointment = () => {
                     )}
                 </div>
 
+                {/* upcomming telemedicine */}
+                <div className="bg-gray-300 mt-5 shadow-lg rounded-lg p-6">
+                    <div className="flex flex-col gap-2 mb-4">
+                        <h2 className="text-2xl font-bold mb-0 pb-0 text-gray-800">Upcoming Telemedicine Appointments</h2>
+                        <p className="text-[12px] mt-0 pt-0 font-bold bg-gradient bg-clip-text text-transparent animate-gradient">
+                            To confirm your appointment, you must pay our fee.
+                        </p>
+                    </div>
+                    {telemedicine?.length === 0 ? (
+                        <p className="text-gray-500">No upcoming appointments.</p>
+                    ) : (
+                        <ul>
+                            {telemedicine?.map((appointment, index) => (
+                                    <li key={index} className="border-b py-4 flex justify-between items-center">
+                                        <div className='flex-1'>
+                                            <h3 className="md:text-lg md:font-semibold font-medium text-gray-700">{appointment?.specialty}</h3>
+                                            <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.date || '28/07/2024'}</p>
+                                        </div>
+                                        <div className="flex-1 flex justify-center">
+                                            <p>12:30:42</p>
+                                        </div>
+                                        {/* <div className="ml-4">
+                                        <CountdownTimer targetDate={targetDate} />
+                            </div> */}
+                                        <div className='flex flex-1 items-center md:gap-5 justify-center text-2xl'>
+                                            <MdCancel className='cursor-pointer text-red-700' onClick={() =>handleTelemedicineCancel(appointment)} />
+                                            <MdPaid className='cursor-pointer text-blue-700' onClick={handlePayClick} />
+                                        </div>
+                                        <div className='flex-1 flex justify-end'>
+                                            <div>
+                                            {/* <p className='text-center text-[5px]font-bold text-purple-600'>Pending</p> */}
+                                            <button className="bg-blue-500  text-white py-1 px-3 rounded-md">
+                                                Track Your Meeting
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    )}
+                </div>
+
                 <div className='mt-10 flex flex-col gap-4 md:w-1/3'>
-                    <button className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book Appointment with your desire Doctor</button>
-                    <button className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book a Telemedicine Appointment</button>
+                    <button
+                    onClick={() => {
+                        navigate('/doctors')
+                    }}
+                    className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book Appointment with your desire Doctor</button>
+                    <button
+                    onClick={() => {
+                        navigate('/telemedicine-booking')
+                    }}
+                    className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book a Telemedicine Appointment</button>
                 </div>
             </section>
         </div>

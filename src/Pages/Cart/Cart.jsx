@@ -6,7 +6,7 @@ import Promotion from './Promotion';
 import Swal from 'sweetalert2';
 
 const Cart = () => {
-    const { user } = useContext(AuthContext);
+    const { user, curehubUser } = useContext(AuthContext);
     const [allSelecteditem, setAllSelecteditem] = useState([]);
     const [myCart, setMyCart] = useState([]);
     const [quantities, setQuantities] = useState({});
@@ -94,6 +94,7 @@ const Cart = () => {
                 buyer_email: user.email,
                 medicine: medicine?.name,
                 price: medicine?.price,
+                cureHubUser: curehubUser?._id,
               })
             })
             .then(response => response.json())

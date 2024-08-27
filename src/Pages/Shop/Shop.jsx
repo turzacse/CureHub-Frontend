@@ -201,7 +201,7 @@ const ShopPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState(categories[0]);
     const [filteredMedicines, setFilteredMedicines] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user,curehubUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -293,6 +293,7 @@ const ShopPage = () => {
                         buyer_email: user.email,
                         medicine: medicine?.name,
                         price: medicine?.price,
+                        cureHubUser: curehubUser?._id,
                     })
                 })
                     .then(response => response.json())
@@ -313,6 +314,7 @@ const ShopPage = () => {
             }
         });
     };
+    console.log('user',curehubUser);
 
     return (
         <div className="">
