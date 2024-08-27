@@ -11,17 +11,22 @@ import VideoCall from '../../../Components/VideoCall/VideoCall';
 
 
 const Defaultuser = () => {
-    const { user } = useContext(AuthContext);
+    const { user,curehubUser } = useContext(AuthContext);
     const [currentuser, setCurrentUser] = useState();
     const [isOffersModalVisible, setOffersModalVisible] = useState(false);
     const [telemedicineBooking, setTelemedicineBooking] = useState();
     const [file, setFile] = useState(null);
     const {usersAppoitment} = useContext(AuthContext);
+    const [cartData, setCartData] = useState();
     const navigate = useNavigate();
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
     const handleFileChange = (e) => setFile(e.target.files[0]);
+
+    useEffect(() => {
+        fetch(`https://cure-hub-backend-gules.vercel.app/carts/${curehubUser?._id}`).then(res=>res.json()).then(data=> setCartData(data));
+    } ,[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -130,7 +135,7 @@ const Defaultuser = () => {
                         <div className='bg-gradient-to-r from-orange-400 to-yellow-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
                             <h2 className='text-xl font-bold'>Cart</h2>
-                            <p className='text-lg font-semibold'>5</p>
+                            <p className='text-lg font-semibold'>{cartData?.length}</p>
                             <button
                             onClick={() =>{
                                 navigate('/cart')
