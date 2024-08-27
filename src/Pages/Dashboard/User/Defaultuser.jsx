@@ -138,7 +138,7 @@ const Defaultuser = () => {
                             <p className='text-lg font-semibold'>{cartData?.length}</p>
                             <button
                             onClick={() =>{
-                                navigate('/cart')
+                                navigate('/dashboard/cart')
                             }}
                             className='btn btn-sm btn-secondary mt-5 px-4 hover:bg-white border-none hover:text-black'>See</button>
 
@@ -149,7 +149,7 @@ const Defaultuser = () => {
                             <p className='text-lg font-semibold'>2</p>
                             <button
                             onClick={() =>{
-                                // navigate('/cart')
+                                // navigate('/dashboard/cart')
                             }}
                             className='btn btn-sm btn-primary mt-5 px-4 hover:bg-white border-none hover:text-black'>See</button>
                         </div>

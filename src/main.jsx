@@ -138,10 +138,7 @@ const router = createBrowserRouter([
         path: '/checkout',
         element: <CheckOut/>
       },
-      {
-        path: '/cart',
-        element: <Cart/>
-      },
+      
       {
         path: '/sign-up',
         element: <SignUpPage />
@@ -183,6 +180,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/patient-appointment',
         element: <Appointment/>
+      },
+      {
+        path: '/dashboard/cart',
+        element: <Cart/>
       },
       {
         path: '/dashboard/queries',

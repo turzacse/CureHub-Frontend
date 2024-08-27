@@ -133,7 +133,7 @@
 //                             <p className='md:text-xl text-[14px] font-medium'>Trusted Online Medicine Corner</p>
 //                             <div
 //                                 onClick={() => {
-//                                     navigate('/cart')
+//                                     navigate('/dashboard/cart')
 //                                 }}
 //                                 className='flex items-center px-auto gap-2 bg-gray-200 md:w-[200px] w-[150px] px-4 py-2 rounded-lg  md:text-xl text-[14px] cursor-pointer'>
 //                                 Show Your Cart
@@ -382,7 +382,7 @@ const ShopPage = () => {
                         <p className='md:text-xl text-[14px] font-medium'>Trusted Online Medicine Corner</p>
                         <div
                             onClick={() => {
-                                navigate('/cart')
+                                navigate('/dashboard/cart')
                             }}
                             className='flex items-center px-auto gap-2 bg-gray-200 md:w-[200px] w-[150px] px-4 py-2 rounded-lg md:text-xl text-[14px] cursor-pointer'>
                             Show Your Cart

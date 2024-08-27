@@ -60,7 +60,8 @@ import { CiLogout } from "react-icons/ci";
 import Defaultuser from '../Pages/Dashboard/User/Defaultuser';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthContext";
-import { FaVideo } from "react-icons/fa";
+import { FaCartArrowDown, FaVideo } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 
 const Dashboard = () => {
@@ -78,7 +79,9 @@ const Dashboard = () => {
             <div className="drawer lg:drawer-open ">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col  ">
-                    <label htmlFor="my-drawer-2" className="drawer-buttona lg:hidden absolute left-0 top-2 btn cursor-pointer bg-gray-300 hover:bg-indigo-200"><IoMdMenu /></label>
+                    <label htmlFor="my-drawer-2" className=" lg:hidden absolute left-0 top-0 btn cursor-pointer py-0 border-none bg-[#006666] text-white "
+                    style={{borderRadius: '0px', height:'20px', borderBottomRightRadius: '8px'}}
+                    ><GiHamburgerMenu /></label>
                     {role == 'user' && location.pathname === '/dashboard' ? (
                         <div>
                             <Defaultuser />
@@ -91,8 +94,6 @@ const Dashboard = () => {
                 <div className="drawer-side lg:h-full lg:bg-[#006666] ">
                     <label htmlFor="my-drawer-2" className="drawer-overlay "></label>
                     <ul className="menu p-4 w-44 lg:w-44 h-screen bg-[#006666] text-white">
-
-
                         <div className="p-4 ">
                             <div className="text-center mb-8">
                                 <img className="w-12 h-12 lg:w-20 lg:h-20 rounded-full mx-auto mb-2" src={curehubUser?.photo} alt="Profile" />
@@ -120,6 +121,10 @@ const Dashboard = () => {
                                 <Link to='/telemedicine' className="py-4 pl-5 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
                                 <FaVideo className="text-xl "/>
                                 <li className="font-semibold"> Telemedicine</li></Link>
+                                <hr className='border-2' />
+                                <Link to='/dashboard/cart' className="py-4 pl-5 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
+                                <FaCartArrowDown className="text-xl text-[#22C55E] hover:text-black"/>
+                                <li className="font-semibold">Cart</li></Link>
                                 <hr className='border-2' />
                             </>
                                 :

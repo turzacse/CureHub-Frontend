@@ -151,7 +151,7 @@ const Cart = () => {
         <div>
             <Heading title='SHOPPING CART' subtitle='Review your selected items and proceed to checkout.' />
 
-            <section className='text-white mx-4 py-10 lg:container lg:mx-auto'>
+            <section className='text-black mx-4 py-10'>
                 {/* My cart {myCart?.length} */}
 
                 <div>
