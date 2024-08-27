@@ -43,6 +43,7 @@ import Cart from './Pages/Cart/Cart.jsx';
 import Dash from './Components/Dashboard.jsx';
 import Analysis from './Pages/Analysis/Analysis.jsx';
 import Appointment from './Pages/Appointment/Appointment.jsx';
+import AllUser from './Pages/AllUser/AllUser.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -184,6 +185,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/cart',
         element: <Cart/>
+      },
+      {
+        path: '/dashboard/alluser',
+        element: <AllUser/>
       },
       {
         path: '/dashboard/queries',

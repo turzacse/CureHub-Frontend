@@ -73,9 +73,9 @@ const DoctorManagement = () => {
 
 
     return (
-        <div>
-            <Headline headline='Doctors'></Headline>
-            <div className='my-10 text-white flex md:flex-row flex-col justify-between gap-4'>
+        <div className='mx-4'>
+            {/* <Headline headline='Doctors'></Headline> */}
+            <div className='my-10  text-white flex md:flex-row flex-col justify-between gap-4'>
                 <h2 className='bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% py-3 rounded-xl font-medium text-lg md:text-xl w-[200px] text-center'>Total Doctor : {doctors?.length}</h2>
 
                 <h2 className='bg-gradient-to-r from-indigo-600 from-10% via-sky-600 via-30% to-emerald-600 to-90% py-3 rounded-xl font-medium text-lg md:text-xl w-[250px] text-center'>Total Departmnet : {Object.keys(departmentDoctors).length}</h2>
