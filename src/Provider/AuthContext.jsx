@@ -12,6 +12,10 @@ const AuthProvider = ({ children }) => {
     const [usersAppoitment, setUsersAppointment] = useState();
     const googleProvider = new GoogleAuthProvider();
     const [curehubUser, setCurehubUser] = useState();
+    const [allCancelAppointment, setAllCancelAppointment] = useState();
+    const [allAppointment, setAllAppointment] = useState();
+    const [allTelemedicineAppointment, setAllTelemedicineAppointment] = useState();
+    const [allCompleteAppointment, setAllCompleteAppointment] = useState();
     // const navigate = useNavigate();
 
     const createUser = (email, password) => {
@@ -58,6 +62,20 @@ const AuthProvider = ({ children }) => {
         fetch(`https://cure-hub-backend-gules.vercel.app/appoinment/patient/${curehubUser?._id}`).then(res => res.json()).then(data => setUsersAppointment(data));
     } , [curehubUser]);
 
+    useEffect( () => {
+        fetch(`https://cure-hub-backend-gules.vercel.app/cancel/getall/appoinment`).then(res => res.json()).then(data => setAllCancelAppointment(data));
+    } , []);
+    useEffect( () => {
+        fetch(`https://cure-hub-backend-gules.vercel.app/appoinment`).then(res => res.json()).then(data => setAllAppointment(data));
+    } , []);
+    useEffect(() => {
+        fetch('https://cure-hub-backend-gules.vercel.app/telemedicine-appointment').then(res => res.json()).then(data => setAllTelemedicineAppointment(data));
+    } ,[])
+    useEffect(() => {
+        fetch('https://cure-hub-backend-gules.vercel.app/complete/getall/appoinment').then(res => res.json()).then(data => setAllCompleteAppointment(data));
+    } ,[])
+
+
     console.log('Appointment=========>', usersAppoitment);
 
     const value = {
@@ -65,6 +83,10 @@ const AuthProvider = ({ children }) => {
         curehubUser,
         loading,
         usersAppoitment,
+        allCancelAppointment,
+        allAppointment,
+        allTelemedicineAppointment,
+        allCompleteAppointment,
         setLoading,
         createUser,
         signIn,

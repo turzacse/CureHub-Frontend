@@ -173,25 +173,6 @@ const Doctors = () => {
     const handlePhoneChange = (e) => {
         setPhoneNumber(e.target.value);
     };
-
-    // const handleBooking = (e) => {
-    //     e.preventDefault();
-    //     // const phoneNumber = e.target.phone.value;
-    //     const bookingDetails = {
-    //         doctor: appointDoctor?._id,
-    //         patient: curehubUser?._id,
-    //         doctorNmae: appointDoctor?.name,
-    //         patientName: curehubUser?.usename || 'Unknown',
-    //         appoitedTime: selectedSlot,
-    //         bookingDate: today?.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-    //         patientPhone: phoneNumber,
-
-    //     }
-
-    
-    //     console.log('Booking info:', bookingDetails);
-    //     setShowAppointmentModal(false);
-    // }
     const handleBooking = async (e) => {
         e.preventDefault();
     

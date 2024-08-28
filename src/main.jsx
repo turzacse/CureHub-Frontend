@@ -44,6 +44,7 @@ import Dash from './Components/Dashboard.jsx';
 import Analysis from './Pages/Analysis/Analysis.jsx';
 import Appointment from './Pages/Appointment/Appointment.jsx';
 import AllUser from './Pages/AllUser/AllUser.jsx';
+import AppointmentManagement from './Pages/AppointmentManagement/AppointmentManagement.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -189,6 +190,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/alluser',
         element: <AllUser/>
+      },
+      {
+        path: '/dashboard/appointment-management',
+        element: <AppointmentManagement/>
       },
       {
         path: '/dashboard/queries',

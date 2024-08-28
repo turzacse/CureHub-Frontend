@@ -212,7 +212,7 @@ const SignUpPage = () => {
                     placeholder = 'Role'
                     className="w-full px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                         <option value="user">User</option>
-                        <option value="doctor">Seller</option>
+                        <option value="doctor">Doctor</option>
                     </select>
                     <BsFillPeopleFill className='absolute top-[8px] left-1 text-2xl text-gray-600' />
                 </div>

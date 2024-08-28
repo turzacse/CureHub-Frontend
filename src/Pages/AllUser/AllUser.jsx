@@ -16,7 +16,7 @@ const AllUser = () => {
     }, []);
 
     return (
-        <div className="bg-gray-400 min-h-screen md:p-8 mt-10 md:mt-5 p-4 overflow-hidden">
+        <div className="bg-gray-800 min-h-screen md:p-8 mt-10 md:mt-5 p-4 overflow-hidden">
             <div className="bg-gray-300 rounded-lg shadow-lg p-6 mb-8">
                 <h1 className="md:text-2xl font-extrabold text-center text-gray-800">
                     User Management Dashboard
