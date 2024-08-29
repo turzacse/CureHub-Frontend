@@ -129,8 +129,15 @@ const DoctorManagement = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [requestedDoctor, setRequestedDoctor] = useState();
     const [activeDoctors, setActiveDoctors] = useState();
+    const [todaysDoctor, setTodaysDoctor] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {telemedicineDoctor} = useContext(AuthContext);
+
+    const today = new Date();
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayName = dayNames[today.getDay()];
+
+    console.log(dayName, today , ' <== Day');
 
     const fetchData = async () => {
         try {
@@ -156,6 +163,8 @@ const DoctorManagement = () => {
         setRequestedDoctor(data);
         const active = doctors?.filter((item) => item?.status == 'Approved');
         setActiveDoctors(active);
+        const todays = doctors?.filter((item) => item?.offDay !== dayName);
+        setTodaysDoctor(todays);
     }, [doctors]);
 
     const handleRequestAccept = async (id) => {
@@ -225,7 +234,7 @@ const DoctorManagement = () => {
     return (
         <div className="p-4">
             {/* Tab Buttons */}
-            <div className="mt-10 grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 mb-4 text-[12px] md:text-[16px] items-center">
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-4 text-[10px] md:text-[16px] items-center">
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'doctors' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('doctors')}
@@ -236,7 +245,7 @@ const DoctorManagement = () => {
                     className={`py-2 px-4 rounded ${activeTab === 'availableToday' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('availableToday')}
                 >
-                    Available Doctor By Today <span className='text-white rounded-full p-1 px-[10px] bg-sky-400 text-sm font-medium shadow-2xl'>{telemedicineDoctor?.length > 0 ? telemedicineDoctor?.length : ''}</span>
+                    Available Doctor By Today <span className='text-white rounded-full p-1 px-[10px] bg-sky-400 text-sm font-medium shadow-2xl'>{todaysDoctor?.length > 0 ? todaysDoctor?.length : ''}</span>
                 </button>
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'telemedicineDoctor' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
@@ -248,7 +257,9 @@ const DoctorManagement = () => {
                     className={`py-2 px-4 rounded ${activeTab === 'pendingRequests' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('pendingRequests')}
                 >
-                    Pending Requests <span className='text-white rounded-full p-1 px-[10px] bg-red-500 text-sm font-medium shadow-2xl'>{requestedDoctor?.length > 0 ? requestedDoctor?.length : ''}</span>
+                    Pending Requests {
+                        requestedDoctor?.length ? <span className='text-white rounded-full p-1 px-[10px] bg-red-500 text-sm font-medium shadow-2xl'>{requestedDoctor?.length}</span> : ''
+                    } 
                 </button>
 
             </div>
@@ -260,7 +271,7 @@ const DoctorManagement = () => {
                 )}
                 {activeTab === 'availableToday' && (
                     <div>
-                        <Available activeDoctors={activeDoctors}/>
+                        <Available todaysDoctor={todaysDoctor}/>
                     </div>
                 )}
 
@@ -280,6 +291,9 @@ const DoctorManagement = () => {
                                             SL
                                         </th>
                                         <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Doctor
+                                        </th>
+                                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                             Doctors Name
                                         </th>
                                         <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -296,26 +310,38 @@ const DoctorManagement = () => {
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="bg-white text-black divide-y divide-gray-200">
+                                {
+                                    requestedDoctor?.length === 0 ? <tbody className='bg-white text-black divide-y divide-gray-200'>
+                                    <tr>
+                                        <td className='text-center py-2' colSpan="7">
+                                            No pending request
+                                        </td>
+                                    </tr>
+                                </tbody> :
+                                    <tbody className="bg-white text-black divide-y divide-gray-200">
                                     {requestedDoctor?.map((appointment, index) => (
                                         <tr key={appointment._id}>
-                                            <td className="px-3 py-4 whitespace-nowrap">
+                                            <td className="px-3 py-2 whitespace-nowrap">
                                                 {index + 1}
                                             </td>
-                                            <td className="px-3 py-4 whitespace-nowrap">
+                                            
+                                            <td className="px-3 py-2 whitespace-nowrap">
+                                            <img className='h-[50px] w-[50px] rounded-full' src={appointment?.doctor_img} alt="" />
+                                            </td>
+                                            <td className="px-3 py-2 whitespace-nowrap">
                                                 {appointment?.name}
                                             </td>
-                                            <td className="px-3 py-4 whitespace-nowrap">
+                                            <td className="px-3 py-2 whitespace-nowrap">
                                                 {appointment?.joining_date}
                                             </td>
-                                            <td className="px-3 py-4 whitespace-nowrap">
+                                            <td className="px-3 py-2 whitespace-nowrap">
                                                 {appointment?.department}
                                             </td>
-                                            <td className="px-3 py-4 whitespace-nowrap">
+                                            <td className="px-3 py-2 whitespace-nowrap">
                                                 {appointment?.telemedicine ? 'Yes' : 'No'}
 
                                             </td>
-                                            <td className="px-3 flex gap-2 py-4 whitespace-nowrap">
+                                            <td className="px-3 flex gap-2 py-2 whitespace-nowrap">
                                                 <button
                                                     onClick={() => {
                                                         setIsModalOpen(true);
@@ -330,6 +356,8 @@ const DoctorManagement = () => {
                                         </tr>
                                     ))}
                                 </tbody>
+                                }
+                                
                             </table>
                         </div>
                     </div>

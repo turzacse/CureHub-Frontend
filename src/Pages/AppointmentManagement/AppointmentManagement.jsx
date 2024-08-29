@@ -3,13 +3,14 @@ import { AuthContext } from '../../Provider/AuthContext';
 import { PieChart, Pie, Tooltip, Legend, Cell } from 'recharts';
 import OngoingTable from './OngoingTable';
 import TeleMedicineTable from './TeleMedicineTable';
+import Canceled from './Canceled';
 
 const AppointmentManagement = () => {
-    const { 
-        allCancelAppointment, 
-        allAppointment, 
-        allTelemedicineAppointment, 
-        allCompleteAppointment 
+    const {
+        allCancelAppointment,
+        allAppointment,
+        allTelemedicineAppointment,
+        allCompleteAppointment
     } = useContext(AuthContext);
 
     // State to manage the active tab
@@ -56,7 +57,7 @@ const AppointmentManagement = () => {
                     className={`py-2 px-4 rounded ${activeTab === 'totalAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('totalAppointments')}
                 >
-                   Appointments
+                    Appointments
                 </button>
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'allAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
@@ -115,64 +116,61 @@ const AppointmentManagement = () => {
                 )}
                 {activeTab === 'allAppointments' && (
                     <div>
-                        <OngoingTable allAppointment={allAppointment}/>
+                        <OngoingTable allAppointment={allAppointment} />
                     </div>
                 )}
                 {activeTab === 'cancelledAppointments' && (
                     <div>
-                    {/* <h2 className='text-2xl font-bold text-warning'>
-                        Telemedicine Appointments ({allTelemedicineAppointment?.length})
-                    </h2> */}
-                    {/* Render telemedicine appointments here */}
-                    <div className="md:mt-20 mt-10 overflow-x-auto text-[10px] md:text-[16px]">
-                        <table className="min-w-full  divide-y divide-gray-200">
-                            <thead className="bg-gray-600 text-white">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                        SL
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                        Patient Name
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                       Booking Date
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                        Cancel Date
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                        Telimedicine ?
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
-                                {allCancelAppointment?.map((appointment, index) => (
-                                    <tr key={appointment._id}>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {index+1}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                        {appointment?.appointment?.patientName || appointment?.appointment?.name}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                        {appointment?.appointment?.bookingDate || 'Telemedicine'}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {appointment.cancelDate.split('T')[0]}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {appointment?.appointmentType == 'Telemedicine' ? 'Yes' : 'No'}
-                                            
-                                        </td>
+                        <Canceled allCancelAppointment={allCancelAppointment}/>
+                        {/* <div className="md:mt-20 mt-10 overflow-x-auto text-[10px] md:text-[16px]">
+                            <table className="min-w-full  divide-y divide-gray-200">
+                                <thead className="bg-gray-600 text-white">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            SL
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Patient Name
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Booking Date
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Cancel Date
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Telimedicine ?
+                                        </th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {allCancelAppointment?.map((appointment, index) => (
+                                        <tr key={appointment._id}>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                {index + 1}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                {appointment?.appointment?.patientName || appointment?.appointment?.name}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                {appointment?.appointment?.bookingDate || 'Telemedicine'}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                {appointment.cancelDate.split('T')[0]}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                {appointment?.appointmentType == 'Telemedicine' ? 'Yes' : 'No'}
+
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div> */}
                     </div>
-                </div>
                 )}
                 {activeTab === 'telemedicineAppointments' && (
-                   <TeleMedicineTable allTelemedicineAppointment ={allTelemedicineAppointment} />
+                    <TeleMedicineTable allTelemedicineAppointment={allTelemedicineAppointment} />
                 )}
                 {activeTab === 'completedAppointments' && (
                     <div>

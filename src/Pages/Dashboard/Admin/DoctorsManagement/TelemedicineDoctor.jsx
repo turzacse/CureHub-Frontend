@@ -26,9 +26,6 @@ const TelemedicineDoctor = () => {
                             Service
                         </th>
                         <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                            Off Day
-                        </th>
-                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
                             Action
                         </th>
                     </tr>
@@ -50,10 +47,6 @@ const TelemedicineDoctor = () => {
                             </td>
                             <td className="px-3 py-4 whitespace-nowrap">
                                 {appointment?.department}
-                            </td>
-                            <td className="px-3  py-4 whitespace-nowrap">
-                               
-
                             </td>
                             <td className="px-3 flex items-center gap-2 py-4 whitespace-nowrap">
                                 <FaExchangeAlt className='fkex items-center justify-center mt-5 cursor-pointer'/>

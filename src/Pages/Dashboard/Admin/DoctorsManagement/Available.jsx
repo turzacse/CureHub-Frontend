@@ -1,8 +1,8 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const Available = ({activeDoctors}) => {
-    console.log(activeDoctors)
+const Available = ({todaysDoctor}) => {
+    console.log(todaysDoctor)
 
     const handleRemove = () => {
         Swal.fire({
@@ -47,7 +47,7 @@ const Available = ({activeDoctors}) => {
                     </tr>
                 </thead>
                 <tbody className="bg-white text-black divide-y divide-gray-200">
-                    {activeDoctors?.map((appointment, index) => (
+                    {todaysDoctor?.map((appointment, index) => (
                         <tr key={appointment._id}>
                             <td className="px-3 py-4 whitespace-nowrap">
                                 {index + 1}

@@ -138,17 +138,17 @@ const Dashboard = () => {
                                 <li className="font-semibold">
                                     Account</li></Link>
                             <hr className='border-1 ' />
-                            <Link to='/dashboard/alluser' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                            <Link to='/dashboard/appointment/doctor' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
-                                    CH User</li></Link>
+                                    Appointment</li></Link>
                             <hr className='border-1' />
                             <Link to='/dashboard/doctors' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
-                                    CH Doctors</li></Link>
+                                    Telemedicine</li></Link>
                             <hr className='border-1' />
-                            <Link to='/dashboard/appointment-management' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                            {/* <Link to='/dashboard/appointment-management' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Appointment</li></Link>
@@ -157,7 +157,7 @@ const Dashboard = () => {
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Order History</li></Link>
-                            <hr className='border-1' />
+                            <hr className='border-1' /> */}
                         </>
                         }
                     </ul>

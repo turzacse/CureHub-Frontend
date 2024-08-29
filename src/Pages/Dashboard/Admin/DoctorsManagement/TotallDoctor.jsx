@@ -7,7 +7,7 @@ const TotallDoctor = ({activeDoctors}) => {
     const handleRemove = () => {
         Swal.fire({
             text: 'We are working on it',
-            background: 'gray',
+            background: '#006666',
             color: 'white'
         })
     }
@@ -15,7 +15,7 @@ const TotallDoctor = ({activeDoctors}) => {
     const handleView = () => {
         Swal.fire({
             text: 'We are working on it',
-            background: 'gray',
+            background: '#006666',
             color: 'white'
         })
     }
@@ -28,6 +28,9 @@ const TotallDoctor = ({activeDoctors}) => {
                     <tr>
                         <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
                             SL
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            Doctor
                         </th>
                         <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
                             Doctors Name
@@ -49,23 +52,26 @@ const TotallDoctor = ({activeDoctors}) => {
                 <tbody className="bg-white text-black divide-y divide-gray-200">
                     {activeDoctors?.map((appointment, index) => (
                         <tr key={appointment._id}>
-                            <td className="px-3 py-4 whitespace-nowrap">
+                            <td className="px-3 py-2 whitespace-nowrap">
                                 {index + 1}
                             </td>
-                            <td className="px-3 py-4 whitespace-nowrap">
+                            <td className="px-3 py-2 whitespace-nowrap">
+                            <img className='h-[50px] w-[50px] rounded-full' src={appointment?.doctor_img} alt="" />
+                            </td>
+                            <td className="px-3 py-2 whitespace-nowrap">
                                 {appointment?.name}
                             </td>
-                            <td className="px-3 py-4 whitespace-nowrap">
+                            <td className="px-3 py-2 whitespace-nowrap">
                                 {appointment?.designation}
                             </td>
-                            <td className="px-3 py-4 whitespace-nowrap">
+                            <td className="px-3 py-2 whitespace-nowrap">
                                 {appointment?.department}
                             </td>
-                            <td className="px-3 text-red-600 font-bold py-4 whitespace-nowrap">
+                            <td className="px-3 text-red-600 font-bold py-2 whitespace-nowrap">
                                 {appointment?.offDay}
 
                             </td>
-                            <td className="px-3 flex gap-2 py-4 whitespace-nowrap">
+                            <td className="px-3 flex items-center gap-2 py-2 whitespace-nowrap">
                                 <button
                                     onClick={() => {
                                         handleView(appointment);
@@ -74,11 +80,12 @@ const TotallDoctor = ({activeDoctors}) => {
                                 </button>
                                 <button
                                     onClick={() => handleRemove(appointment?._id)}
-                                    className='btn btn-sm btn-info'>Remove
+                                    className='btn btn-sm bg-red-500 text-white hover:text-black'>Remove
                                 </button>
                             </td>
                         </tr>
                     ))}
+                    
                 </tbody>
             </table>
         </div>

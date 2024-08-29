@@ -210,7 +210,7 @@ const Doctors = () => {
                 <div className='grid  lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                     {doctors.map((doctor) => (
                         <div className='bg-gray-300 text-black rounded-lg p-4' key={doctor._id}>
-                            <img className='mx-auto rounded-full h-[100px] w-[100px]' src={image} alt="" />
+                            <img className='mx-auto rounded-full h-[100px] w-[100px]' src={doctor?.doctor_img} alt="" />
                             <h2>{doctor?.name} || {doctor.department}</h2>
                             <p>
                                 {doctor?.degree?.map((deg, index) => (
@@ -233,7 +233,7 @@ const Doctors = () => {
                                 <h3 className="text-xl font-bold mb-2">{selectedDoctor.name}</h3>
                                 <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
                             </div>
-                            <img src={image} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4" />
+                            <img src={selectedDoctor?.doctor_img} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4" />
                             <p>Department: {selectedDoctor.department}</p>
                             <p>Designation: {selectedDoctor.designation}</p>
                             <p>Degrees:
