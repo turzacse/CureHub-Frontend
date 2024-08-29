@@ -113,8 +113,12 @@
 // export default DoctorManagement;
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import TotallDoctor from './TotallDoctor';
+import { AuthContext } from '../../../../Provider/AuthContext';
+import TelemedicineDoctor from './TelemedicineDoctor';
+import Available from './Available';
 
 const DoctorManagement = () => {
     // State to manage the active tab
@@ -124,7 +128,9 @@ const DoctorManagement = () => {
     const [departmentDoctors, setDepartmentDoctors] = useState({});
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [requestedDoctor, setRequestedDoctor] = useState();
+    const [activeDoctors, setActiveDoctors] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const {telemedicineDoctor} = useContext(AuthContext);
 
     const fetchData = async () => {
         try {
@@ -148,6 +154,8 @@ const DoctorManagement = () => {
     useEffect(() => {
         const data = doctors?.filter((item) => item?.status == 'Pending');
         setRequestedDoctor(data);
+        const active = doctors?.filter((item) => item?.status == 'Approved');
+        setActiveDoctors(active);
     }, [doctors]);
 
     const handleRequestAccept = async (id) => {
@@ -222,25 +230,25 @@ const DoctorManagement = () => {
                     className={`py-2 px-4 rounded ${activeTab === 'doctors' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('doctors')}
                 >
-                    Doctors
+                    Doctors <span className='text-white rounded-full p-1 px-[10px] bg-green-500 text-sm font-medium shadow-2xl'>{activeDoctors?.length > 0 ? activeDoctors?.length : ''}</span>
                 </button>
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'availableToday' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('availableToday')}
                 >
-                    Available Doctor By Today
+                    Available Doctor By Today <span className='text-white rounded-full p-1 px-[10px] bg-sky-400 text-sm font-medium shadow-2xl'>{telemedicineDoctor?.length > 0 ? telemedicineDoctor?.length : ''}</span>
                 </button>
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'telemedicineDoctor' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('telemedicineDoctor')}
                 >
-                    Telemedicine Doctor
+                    Telemedicine Doctor <span className='text-white rounded-full p-1 px-[10px] bg-indigo-800 text-sm font-medium shadow-2xl'>{telemedicineDoctor?.length > 0 ? telemedicineDoctor?.length : ''}</span>
                 </button>
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'pendingRequests' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
                     onClick={() => setActiveTab('pendingRequests')}
                 >
-                    Pending Requests
+                    Pending Requests <span className='text-white rounded-full p-1 px-[10px] bg-red-500 text-sm font-medium shadow-2xl'>{requestedDoctor?.length > 0 ? requestedDoctor?.length : ''}</span>
                 </button>
 
             </div>
@@ -248,22 +256,17 @@ const DoctorManagement = () => {
             {/* Tab Content */}
             <div className='text-white'>
                 {activeTab === 'doctors' && (
-                    <div>
-                        <h2 className="text-2xl font-bold">Doctors</h2>
-                        <p className="mt-4">Description about all doctors goes here.</p>
-                    </div>
+                    <TotallDoctor activeDoctors={activeDoctors}/>
                 )}
                 {activeTab === 'availableToday' && (
                     <div>
-                        <h2 className="text-2xl font-bold">Available Doctor By Today</h2>
-                        <p className="mt-4">Description about doctors available today goes here.</p>
+                        <Available activeDoctors={activeDoctors}/>
                     </div>
                 )}
 
                 {activeTab === 'telemedicineDoctor' && (
                     <div>
-                        <h2 className="text-2xl font-bold">Telemedicine Doctor</h2>
-                        <p className="mt-4">Description about telemedicine doctors goes here.</p>
+                        <TelemedicineDoctor/>
                     </div>
                 )}
 

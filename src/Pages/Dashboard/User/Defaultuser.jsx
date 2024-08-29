@@ -107,7 +107,7 @@ const Defaultuser = () => {
 
     return (
         <div>
-            <Heading title='Dashboard' subtitle='Manage your appointments, health records, and more.' ></Heading>
+            {/* <Heading title='Dashboard' subtitle='Manage your appointments, health records, and more.' ></Heading> */}
             <div className="">
 
                 <section className='text-white mx-4'>

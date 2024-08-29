@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
     const [allAppointment, setAllAppointment] = useState();
     const [allTelemedicineAppointment, setAllTelemedicineAppointment] = useState();
     const [allCompleteAppointment, setAllCompleteAppointment] = useState();
+    const [telemedicineDoctor, setTelemedicineDoctor] = useState();
     // const navigate = useNavigate();
 
     const createUser = (email, password) => {
@@ -53,26 +54,29 @@ const AuthProvider = ({ children }) => {
         });
         return () => unsubscribe();
     }, []);
-    console.log('CureHub user=>',curehubUser);
-    useEffect( () => {
+    console.log('CureHub user=>', curehubUser);
+    useEffect(() => {
         fetch(`https://cure-hub-backend-gules.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setCurehubUser(data));
-    } , [user]);
+    }, [user]);
 
-    useEffect( () => {
+    useEffect(() => {
         fetch(`https://cure-hub-backend-gules.vercel.app/appoinment/patient/${curehubUser?._id}`).then(res => res.json()).then(data => setUsersAppointment(data));
-    } , [curehubUser]);
+    }, [curehubUser]);
 
-    useEffect( () => {
+    useEffect(() => {
         fetch(`https://cure-hub-backend-gules.vercel.app/cancel/getall/appoinment`).then(res => res.json()).then(data => setAllCancelAppointment(data));
-    } , []);
-    useEffect( () => {
+    }, []);
+    useEffect(() => {
         fetch(`https://cure-hub-backend-gules.vercel.app/appoinment`).then(res => res.json()).then(data => setAllAppointment(data));
-    } , []);
+    }, []);
     useEffect(() => {
         fetch('https://cure-hub-backend-gules.vercel.app/telemedicine-appointment').then(res => res.json()).then(data => setAllTelemedicineAppointment(data));
-    } ,[])
+    }, [])
     useEffect(() => {
         fetch('https://cure-hub-backend-gules.vercel.app/complete/getall/appoinment').then(res => res.json()).then(data => setAllCompleteAppointment(data));
+    }, [])
+    useEffect( () => {
+        fetch('https://cure-hub-backend-gules.vercel.app/doctors/telemedicine').then(res => res.json()).then(data => setTelemedicineDoctor(data))
     } ,[])
 
 
@@ -87,6 +91,7 @@ const AuthProvider = ({ children }) => {
         allAppointment,
         allTelemedicineAppointment,
         allCompleteAppointment,
+        telemedicineDoctor,
         setLoading,
         createUser,
         signIn,
