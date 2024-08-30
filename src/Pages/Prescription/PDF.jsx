@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PDFViewer, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 
 // Replace with your logo import

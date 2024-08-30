@@ -9,3 +9,24 @@ body {
 .myComponent {
     overflow-x: hidden;
 }
+
+
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animated-text {
+    background: linear-gradient(270deg, #cf2c04, #532501, #022f83, #027e75);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-animation 8s ease infinite;
+  }
