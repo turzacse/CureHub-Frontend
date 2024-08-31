@@ -30,3 +30,7 @@ body {
     -webkit-text-fill-color: transparent;
     animation: gradient-animation 8s ease infinite;
   }
+
+  .nice-color {
+    background-color: #14B8A6;
+  }

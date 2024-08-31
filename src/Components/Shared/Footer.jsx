@@ -11,13 +11,13 @@ const Footer = () => {
                     <div>
                         <NavLink to='/' className="md:text-3xl text-2xl font-bold mb-4">Cure<span className='text-red-400 font-extrabold'>Hub</span></NavLink>
                         <p className=''>
-                            Multi-Vendor Medicine Selling E-commerce Website
-                            <br />
+                          <p className='text-[15px]'>Your trusted partner for comprehensive healthcare solutions. At CureHub, we offer a range of services including doctor appointments, telemedicine, online medical services, digital pathology, and medical analysis. Experience the future of healthcare with us.</p>
+                            {/* <br />
                             123 Medicine St, Health City, 56789
                             <br />
                             Email: info@medicine-ecommerce.com
                             <br />
-                            Phone: (123) 456-7890
+                            Phone: (123) 456-7890 */}
                         </p>
                     </div>
 
@@ -25,10 +25,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-xl font-bold mb-4">Quick Links</h3>
                         <ul>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">Home</a></li>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">Shop</a></li>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">About Us</a></li>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">Contact</a></li>
+                            <li className="mb-2"><NavLink to='/' className="hover:text-blue-400">Home</NavLink></li>
+                            <li className="mb-2"><NavLink to='/shop' className="hover:text-blue-400">MediShop</NavLink></li>
+                            <li className="mb-2"><NavLink to='/doctors' className="hover:text-blue-400">Doctors </NavLink></li>
+                            <li className="mb-2"><NavLink to='/telemedicine' className="hover:text-blue-400">Telemedicine</NavLink></li>
                         </ul>
                     </div>
 
@@ -36,10 +36,11 @@ const Footer = () => {
                     <div>
                         <h3 className="text-xl font-bold mb-4">Customer Service</h3>
                         <ul>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">FAQ</a></li>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">Shipping & Returns</a></li>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">Privacy Policy</a></li>
-                            <li className="mb-2"><a href="#" className="hover:text-blue-400">Terms of Service</a></li>
+                            <li className="mb-2"><NavLink to='/about' className="hover:text-blue-400">About Us</NavLink></li>
+                            <li className="mb-2"><NavLink to='/faq' className="hover:text-blue-400">FAQ</NavLink></li>
+                            <li className="mb-2"><a className="hover:text-blue-400">Shipping & Returns</a></li>
+                            <li className="mb-2"><a className="hover:text-blue-400">Privacy Policy</a></li>
+                            <li className="mb-2"><a className="hover:text-blue-400">Terms of Service</a></li>
                         </ul>
                     </div>
 
@@ -55,7 +56,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="mt-8 text-center border-t border-gray-700 pt-4">
-                    <p>&copy; 2024 Multi-Vendor Medicine E-commerce. All rights reserved.</p>
+                    <p>&copy; 2024 Comprehensive healthcare solutions. All rights reserved.</p>
                 </div>
             </div>
         </footer>

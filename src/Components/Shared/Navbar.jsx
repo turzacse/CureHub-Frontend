@@ -12,9 +12,9 @@ const Navbar = () => {
         logOut();
         navigate('/');
     }
-    const links = <div className='flex flex-col lg:flex-row lg:justify-center lg:items-center'>
+    const links = <div className='text-[14px] flex flex-col lg:flex-row lg:justify-center lg:items-center'>
         <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
-        <li className='font-semibold'><NavLink to='/shop'>MedicineShop</NavLink></li>
+        <li className='font-semibold'><NavLink to='/shop'>Medi Shop</NavLink></li>
         <li className='font-semibold'><NavLink to='/telemedicine'>Telemedicine</NavLink></li>
         <li>
             <NavLink to="/doctors" className='font-semibold'>
@@ -30,6 +30,7 @@ const Navbar = () => {
                 <li className='font-semibold'><NavLink to='/about'>About</NavLink></li>
                 <li className='font-semibold'><NavLink to='/faq'>FAQ</NavLink></li>
                 <li className='font-semibold'><NavLink to='/blog'>Blog</NavLink></li>
+                <li className='font-semibold'><NavLink to='/how-it-works'>How It Works</NavLink></li>
                 <li>
                     <NavLink to="/booking-system" className='font-semibold'>
                         Booking System

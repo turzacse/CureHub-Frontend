@@ -46,6 +46,9 @@ import Appointment from './Pages/Appointment/Appointment.jsx';
 import AllUser from './Pages/AllUser/AllUser.jsx';
 import AppointmentManagement from './Pages/AppointmentManagement/AppointmentManagement.jsx';
 import AppointmentDoctor from './Pages/AppointmentDoctor/AppointmentDoctor.jsx';
+import App from './Components/Facebook/App.jsx';
+import Pay from './Components/StripePayment/App.jsx';
+import HowItWorks from './Pages/HowItWorks/HowItWorks.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -63,16 +66,17 @@ const router = createBrowserRouter([
         element: <ShopPage/>
       },
       {
-        
           path: '/analysis',
           element: <Analysis/>
-      
       },
       {
         path: '/faq',
         element: <FAQ/>
       },
-      
+      {
+        path: '/how-it-works',
+        element: <HowItWorks/>
+      },
       {
         path: '/service',
         element: <Service/>
@@ -205,6 +209,15 @@ const router = createBrowserRouter([
         element: <Queries/>
       },
     ]
+  },
+  {
+    path: '/facebook',
+    element: <App/>
+
+  },
+  {
+    path: '/pay',
+    element: <Pay/>
   }
 ]);
 

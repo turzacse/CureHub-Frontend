@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageHeading from '../../Components/PageHeading/PageHeading';
 import Heading from '../../Components/PageHeading/Heading';
 import Dash from '../../Components/Dashboard';
@@ -6,6 +6,9 @@ import Dash from '../../Components/Dashboard';
 // import Dashboard from '../../Components/Dashboard';
 
 const About = () => {
+    useEffect(() => {
+        window.scroll(0,0);
+    } ,[])
 
     return (
         <div className=' text-white  mx-auto pb-2'>

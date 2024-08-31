@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Heading from '../../Components/PageHeading/Heading';
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
 
@@ -51,6 +51,9 @@ const FAQ = () => {
     const handleToggle = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
+    useEffect(() => {
+        window.scroll(0,0);
+    } ,[])
 
     return (
         <div>

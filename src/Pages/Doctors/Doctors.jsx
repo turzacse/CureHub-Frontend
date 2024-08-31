@@ -64,8 +64,8 @@ const Doctors = () => {
         fetch('https://cure-hub-backend-gules.vercel.app/doctors')
             .then(res => res.json())
             .then(data => {
-                const filteredDoctors = data.filter(item => item.offDay !== dayName);
-                setDoctors(filteredDoctors);
+                // const filteredDoctors = data.filter(item => item.offDay !== dayName);
+                setDoctors(data);
             });
     }, []);
 
@@ -205,21 +205,21 @@ const Doctors = () => {
             <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
 
             <div className='lg:container lg:mx-auto  mx-4 py-10 '>
-            <h2 className="text-2xl  text-center text-white font-bold mb-10">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+            <h2 className="md:text-2xl text-lg  text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
 
                 <div className='grid  lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                     {doctors.map((doctor) => (
                         <div className='bg-gray-300 text-black rounded-lg p-4' key={doctor._id}>
                             <img className='mx-auto rounded-full h-[100px] w-[100px]' src={doctor?.doctor_img} alt="" />
-                            <h2>{doctor?.name} || {doctor.department}</h2>
-                            <p>
+                            <h2 className='text-[14px] mt-2 text-center'>{doctor?.name} || {doctor.department}</h2>
+                            <p className='text-[12px] text-center mb-4'>
                                 {doctor?.degree?.map((deg, index) => (
                                     <span key={index}>{deg}{index < doctor.degree.length - 1 ? ', ' : ''}</span>
                                 ))}
                             </p>
                             <div className='flex justify-between mt-2'>
-                                <button onClick={() => handleDetailsClick(doctor)} className="bg-[#bd2121] text-white py-2 px-4 rounded-md mr-2 flex justify-center items-center gap-[5px]"><FaEye /> Details</button>
-                                <button onClick={() => handleAppointmentClick(doctor)} className="bg-[#1a9e46] text-white py-2 px-4 rounded-md mr-2 flex justify-center items-center gap-[5px]"><AiOutlineSchedule /> Appoint</button>
+                                <button onClick={() => handleDetailsClick(doctor)} className="bg-[#bd2121] text-white py-2 px-4 rounded-md mr-2 flex text-[12px] justify-center items-center gap-[5px]"><FaEye /> Details</button>
+                                <button onClick={() => handleAppointmentClick(doctor)} className="bg-[#1a9e46] text-white py-2 px-4 rounded-md mr-2 flex justify-center text-[12px] items-center gap-[5px]"><AiOutlineSchedule /> Appoint</button>
                             </div>
                         </div>
                     ))}
@@ -228,12 +228,13 @@ const Doctors = () => {
                 {/* Details Modal */}
                 {selectedDoctor && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-black">
-                        <div className="bg-[#199292] p-4 w-1/2 rounded-lg">
+                        <div className="bg-[#199292] p-4 md:w-1/3 w-full mx-4 rounded-lg">
                             <div className='flex justify-between'>
-                                <h3 className="text-xl font-bold mb-2">{selectedDoctor.name}</h3>
+                                <h3 className="text-xl font-bold mb-2"></h3>
                                 <button onClick={closeModal} className="text-4xl text-red-600"><IoMdCloseCircleOutline /></button>
                             </div>
-                            <img src={selectedDoctor?.doctor_img} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4" />
+                            <img src={selectedDoctor?.doctor_img} alt={selectedDoctor.name} className="w-[200px] h-[200px] shadow-lg rounded-xl object-cover mb-4 mx-auto" />
+                            <h3 className="text-xl font-bold mb-2">{selectedDoctor.name}</h3>
                             <p>Department: {selectedDoctor.department}</p>
                             <p>Designation: {selectedDoctor.designation}</p>
                             <p>Degrees:
@@ -243,8 +244,8 @@ const Doctors = () => {
                             </p>
                             <p>Email: {selectedDoctor.email}</p>
                             <p>Phone: {selectedDoctor.phone}</p>
-                            <p className='text-red-400'>Off Day: <del>{selectedDoctor.offDay}</del></p>
-                            <p>Visit: {selectedDoctor.visit}</p>
+                            <p className='text-red-800 font-bold'>Off Day: <del>{selectedDoctor.offDay}</del></p>
+                            <p>Visit: {selectedDoctor.visit} TK</p>
                             <p>Available Time: {formatTime(selectedDoctor.start_time)} - {formatTime(selectedDoctor.end_time)}</p>
                         </div>
                     </div>
