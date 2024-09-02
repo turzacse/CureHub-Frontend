@@ -39,8 +39,8 @@ const Footer = () => {
                             <li className="mb-2"><NavLink to='/about' className="hover:text-blue-400">About Us</NavLink></li>
                             <li className="mb-2"><NavLink to='/faq' className="hover:text-blue-400">FAQ</NavLink></li>
                             <li className="mb-2"><a className="hover:text-blue-400">Shipping & Returns</a></li>
-                            <li className="mb-2"><a className="hover:text-blue-400">Privacy Policy</a></li>
-                            <li className="mb-2"><a className="hover:text-blue-400">Terms of Service</a></li>
+                            <li className="mb-2"><NavLink to='/privacy-policy' className="hover:text-blue-400">Privacy Policy</NavLink></li>
+                            <li className="mb-2"><NavLink to={'/term-of-service'} className="hover:text-blue-400">Terms of Service</NavLink></li>
                         </ul>
                     </div>
 

@@ -49,6 +49,8 @@ import AppointmentDoctor from './Pages/AppointmentDoctor/AppointmentDoctor.jsx';
 import App from './Components/Facebook/App.jsx';
 import Pay from './Components/StripePayment/App.jsx';
 import HowItWorks from './Pages/HowItWorks/HowItWorks.jsx';
+import PrivecyPolicy from './Pages/PrivecyPolicy/PrivecyPolicy.jsx';
+import TermOfService from './Pages/TermOfService/TermOfService.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -108,6 +110,14 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About/>
+      },
+      {
+        path: '/privacy-policy',
+        element: <PrivecyPolicy/>
+      },
+      {
+        path: '/term-of-service',
+        element: <TermOfService/>
       },
       {
         path: '/appointment-guideline',
