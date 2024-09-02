@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Heading from '../../Components/PageHeading/Heading';
 
 const termsOfServiceData = [
@@ -51,6 +51,9 @@ const termsOfServiceData = [
   
 
   const TermOfService = () => {
+    useEffect(() => {
+        window.scroll(0,0);
+    } ,[])
     const renderContent = (content) => {
         return content.split('\n').map((line, index) => {
             // Check if the line starts with a hyphen for bullet points

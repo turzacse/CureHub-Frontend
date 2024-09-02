@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Heading from '../../Components/PageHeading/Heading';
 
 const privacyPolicyData = [
@@ -47,6 +47,9 @@ const privacyPolicyData = [
 
 
 const PrivacyPolicy = () => {
+    useEffect(() => {
+        window.scroll(0,0);
+    } ,[])
     const renderContent = (content) => {
         return content.split('\n').map((line, index) => {
             const isBulletPoint = line.startsWith('-');
