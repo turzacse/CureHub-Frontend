@@ -46,7 +46,7 @@ const Doctors = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState('')
     const [currentDate, setCurrentDate] = useState(new Date());
-    const {user, curehubUser} = useContext(AuthContext);
+    const { user, curehubUser } = useContext(AuthContext);
     console.log('user ==>', curehubUser);
     const navigate = useNavigate();
     // const [appoinmentDay, setAppoinmentDay] = useState(new Date());
@@ -175,7 +175,7 @@ const Doctors = () => {
     };
     const handleBooking = async (e) => {
         e.preventDefault();
-    
+
         const bookingDetails = {
             doctor: appointDoctor?._id,
             patient: curehubUser?._id,
@@ -186,18 +186,18 @@ const Doctors = () => {
             bookingDate: today?.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
             patientPhone: phoneNumber,
         };
-    
+
         try {
             const response = await axios.post('https://cure-hub-backend-gules.vercel.app/appoinment', bookingDetails);
             console.log('Booking info:', bookingDetails);
             console.log('API Response:', response.data);
-    
+
             setShowAppointmentModal(false);
         } catch (error) {
             console.error('Error sending booking details:', error);
         }
     };
-    
+
 
     console.log('doctor =>', appointDoctor);
     return (
@@ -205,7 +205,64 @@ const Doctors = () => {
             <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
 
             <div className='lg:container lg:mx-auto  mx-4 py-10 '>
-            <h2 className="md:text-2xl text-lg  text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+                <h2 className="md:text-2xl text-lg  text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+
+                <div className='flex justify-between gap-10'>
+                    <input
+                        className='my-2 p-2 bg-gray-300 w-[315px] rounded-lg text-black'
+                        placeholder='Find your desire doctor by serching here'
+                        type="text"
+                        name="search"
+                        id="" />
+
+                        {/* seacring by day */}
+                    <div className="flex items-center gap-5">
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Sunday</span>
+
+                        </label>
+
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Monday</span>
+
+                        </label>
+
+
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Tuesday</span>
+
+                        </label>
+
+
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Wednesday</span>
+
+                        </label>
+
+
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Thursday</span>
+
+                        </label>
+
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Friday</span>
+
+                        </label>
+
+                        <label className=" flex items-center gap-2 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className="label-text text-white">Saturday </span>
+
+                        </label>
+                    </div>
+                </div>
 
                 <div className='grid  lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                     {doctors.map((doctor) => (
@@ -264,30 +321,30 @@ const Doctors = () => {
                                     <label className="block flex-1 mb-2">
                                         Name:
                                         <input
-                                        value={curehubUser?.username}
-                                        readOnly
-                                        type="text" name="name" className="w-full border border-gray-300 text-black rounded py-2 px-3" required />
+                                            value={curehubUser?.username}
+                                            readOnly
+                                            type="text" name="name" className="w-full border border-gray-300 text-black rounded py-2 px-3" required />
                                     </label>
                                     <label className="block mb-2 flex-1">
                                         Email:
                                         <input
-                                        value={curehubUser?.email}
-                                        readOnly
-                                        type="email" name="email" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
+                                            value={curehubUser?.email}
+                                            readOnly
+                                            type="email" name="email" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
                                     </label>
                                 </div>
                                 <div className='flex gap-1'>
                                     <label className="block mb-2 flex-1">
                                         Phone:
                                         <input
-                                        onChange={handlePhoneChange}
-                                        type="number" name="phone" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
+                                            onChange={handlePhoneChange}
+                                            type="number" name="phone" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
                                     </label>
                                     <label className="block mb-2 flex-1">
                                         Appointment Date:
                                         <input
-                                        value={formattedDate}
-                                        readOnly name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
+                                            value={formattedDate}
+                                            readOnly name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
                                     </label>
                                 </div>
                                 <div className="mb-2">
@@ -327,21 +384,21 @@ const Doctors = () => {
 
             <section className="mt-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white py-16 text-center rounded-t-xl ">
                 <div className='lg:container lg:mx-auto mx-4'>
-                <h2 className="md:text-4xl text-2xl font-bold mb-2">Unlock Premium Health Benefits</h2>
-                <p className="md:mb-5 mb-2 text-[12px]">
-                    Join CureHub's Membership for Exclusive Access to Top Healthcare Services, Special Discounts, and Personalized Care.
-                </p>
-                <div className="flex flex-col text-[12px] md:text-[16px] ">
-                    <p>Become a Member Today and Enjoy Comprehensive Health Benefits!</p>
-                    <p>Get Your Membership Now and Stay Ahead in Your Health Journey with CureHub!</p>
-                </div>
-                <button
-                    onClick={() => {
-                        navigate('/membership-plan')
-                    }}
-                    className="bg-white mt-8 text-teal-500 font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-gray-100 transition duration-300">
-                    Membership
-                </button>
+                    <h2 className="md:text-4xl text-2xl font-bold mb-2">Unlock Premium Health Benefits</h2>
+                    <p className="md:mb-5 mb-2 text-[12px]">
+                        Join CureHub's Membership for Exclusive Access to Top Healthcare Services, Special Discounts, and Personalized Care.
+                    </p>
+                    <div className="flex flex-col text-[12px] md:text-[16px] ">
+                        <p>Become a Member Today and Enjoy Comprehensive Health Benefits!</p>
+                        <p>Get Your Membership Now and Stay Ahead in Your Health Journey with CureHub!</p>
+                    </div>
+                    <button
+                        onClick={() => {
+                            navigate('/membership-plan')
+                        }}
+                        className="bg-white mt-8 text-teal-500 font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-gray-100 transition duration-300">
+                        Membership
+                    </button>
                 </div>
             </section>
         </div>

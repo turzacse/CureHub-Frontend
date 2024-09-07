@@ -10,6 +10,7 @@ const Footer = () => {
                     {/* Company Information */}
                     <div>
                         <NavLink to='/' className="md:text-3xl text-2xl font-bold mb-4">Cure<span className='text-red-400 font-extrabold'>Hub</span></NavLink>
+                        <hr className='mb-2 border-2 w-1/2' />
                         <p className=''>
                           <p className='text-[15px]'>Your trusted partner for comprehensive healthcare solutions. At CureHub, we offer a range of services including doctor appointments, telemedicine, online medical services, digital pathology, and medical analysis. Experience the future of healthcare with us.</p>
                             {/* <br />
@@ -23,30 +24,35 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+                        <h3 className="text-xl font-bold">Quick Links</h3>
+                        <hr className='my-2 border-2 w-1/2' />
                         <ul>
-                            <li className="mb-2"><NavLink to='/' className="hover:text-blue-400">Home</NavLink></li>
-                            <li className="mb-2"><NavLink to='/shop' className="hover:text-blue-400">MediShop</NavLink></li>
-                            <li className="mb-2"><NavLink to='/doctors' className="hover:text-blue-400">Doctors </NavLink></li>
-                            <li className="mb-2"><NavLink to='/telemedicine' className="hover:text-blue-400">Telemedicine</NavLink></li>
+                            <li className="mb-2"><NavLink to='/' className='font-semibold'>Home</NavLink></li>
+                            
+                            <li className="mb-2"><NavLink to='/doctors' className='font-semibold'>Doctors </NavLink></li>
+                            <li className="mb-2"><NavLink to='/telemedicine' className='font-semibold'>Telemedicine</NavLink></li>
+                            <li className="mb-2"><NavLink to='/shop' className='font-semibold'>MediShop</NavLink></li>
+                            <li><NavLink to="/analysis" className='font-semibold'>Medical Analysis</NavLink></li>
                         </ul>
                     </div>
 
                     {/* Customer Service */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">Customer Service</h3>
+                        <h3 className="text-xl font-bold">Customer Service</h3>
+                        <hr className='my-2 border-2 w-1/2' />
                         <ul>
-                            <li className="mb-2"><NavLink to='/about' className="hover:text-blue-400">About Us</NavLink></li>
-                            <li className="mb-2"><NavLink to='/faq' className="hover:text-blue-400">FAQ</NavLink></li>
-                            <li className="mb-2"><a className="hover:text-blue-400">Shipping & Returns</a></li>
-                            <li className="mb-2"><NavLink to='/privacy-policy' className="hover:text-blue-400">Privacy Policy</NavLink></li>
-                            <li className="mb-2"><NavLink to={'/term-of-service'} className="hover:text-blue-400">Terms of Service</NavLink></li>
+                            <li className="mb-2"><NavLink to='/about' className='font-semibold'>About Us</NavLink></li>
+                            <li className="mb-2"><NavLink to='/faq' className='font-semibold'>FAQ</NavLink></li>
+                            <li className="mb-2"><a className='font-semibold'>Shipping & Returns</a></li>
+                            <li className="mb-2"><NavLink to='/privacy-policy' className='font-semibold'>Privacy Policy</NavLink></li>
+                            <li className="mb-2"><NavLink to={'/term-of-service'} className='font-semibold'>Terms of Service</NavLink></li>
                         </ul>
                     </div>
 
                     {/* Social Media */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+                        <h3 className="text-xl font-bold ">Follow Us</h3>
+                        <hr className='my-2 border-2 w-1/2' />
                         <div className="flex space-x-4 text-2xl">
                             <NavLink ><FaFacebook /></NavLink>
                             <NavLink ><FaLinkedin /></NavLink>

@@ -14,13 +14,10 @@ const Navbar = () => {
     }
     const links = <div className='text-[14px] flex flex-col lg:flex-row lg:justify-center lg:items-center'>
         <li className='font-semibold'><NavLink to='/'>Home</NavLink></li>
-        <li className='font-semibold'><NavLink to='/shop'>Medi Shop</NavLink></li>
+        <li><NavLink to="/doctors" className='font-semibold'>Doctors</NavLink></li>
         <li className='font-semibold'><NavLink to='/telemedicine'>Telemedicine</NavLink></li>
-        <li>
-            <NavLink to="/doctors" className='font-semibold'>
-                Doctors
-            </NavLink>
-        </li>
+        <li className='font-semibold'><NavLink to='/shop'>Medi Shop</NavLink></li>
+        <li><NavLink to="/analysis" className='font-semibold'>Medical Analysis</NavLink></li>
 
         {/* <li className='font-semibold'><NavLink to='/prescription'>Prescription</NavLink></li> */}
         {/* <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li> */}
@@ -46,11 +43,7 @@ const Navbar = () => {
                         Telemedicine Appointment
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/analysis" className='font-semibold'>
-                        Medical Analysis
-                    </NavLink>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -66,7 +59,7 @@ const Navbar = () => {
     return (
         <div>
             <div className="shadow-2xl">
-                <div className="navbar bg-[#006666] px-10 text-white">
+                <div className="navbar bg-[#006666] md:px-10 text-white">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -95,15 +88,15 @@ const Navbar = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="mt-[25px] z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-400 rounded-box w-52">
-                                
+
                                 <li><button className="text-gray-800 font-semibold">Cart</button></li>
 
                                 <li><button className="text-gray-800 font-semibold" onClick={() => {
                                     // navigate('/dashboard')
-                                }}>Appointment 
-                                {
-                                usersAppoitment?.length>0 && <span className='text-red-600 text-xl font-bold'>{usersAppoitment?.length}</span>
-                                }
+                                }}>Appointment
+                                    {
+                                        usersAppoitment?.length > 0 && <span className='text-red-600 text-xl font-bold'>{usersAppoitment?.length}</span>
+                                    }
                                 </button></li>
                                 <li><button className="text-gray-800 font-semibold">Telemedicine</button></li>
                             </ul>
