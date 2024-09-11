@@ -3,6 +3,7 @@ import Heading from '../../Components/PageHeading/Heading';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
+import Tab4 from './Tab4';
 
 const tabs = [
     { name: 'Appointment', description: 'Description for Appointment' },
@@ -26,7 +27,7 @@ const HowItWorks = () => {
                         <button
                             key={index}
                             onClick={() => setActiveTab(tab)}
-                            className={`mx-2 py-2 px-4 rounded-lg font-medium transition-colors ${activeTab.name === tab.name
+                            className={` py-2 px-4 rounded-lg font-medium transition-colors ${activeTab.name === tab.name
                                     ? 'bg-blue-500 text-white'
                                     : 'bg-gray-400 text-gray-800'
                                 }`}
@@ -45,6 +46,9 @@ const HowItWorks = () => {
                     }
                     {
                         activeTab.name == 'Medi Shop' && <Tab3/>
+                    }
+                    {
+                        activeTab.name == 'Medical Analysis' && <Tab4/>
                     }
                 </div>
             </section>

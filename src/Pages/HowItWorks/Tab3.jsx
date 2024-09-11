@@ -24,21 +24,6 @@ const Tab3 = () => {
             description: "Expect delivery of your purchased medicines within 24 hours.",
             icon: img2
         },
-        // {
-        //     title: 'Notify',
-        //     description: 'Admin informs the user and doctor about the appointment.',
-        //     icon: img4
-        // },
-        // {
-        //     title: 'Meeting',
-        //     description: 'Attend the appointment via video call on the scheduled date and time.',
-        //     icon: img6
-        // },
-        // {
-        //     title: 'Prescription',
-        //     description: 'Receive your prescription online.',
-        //     icon: img5
-        // }
     ];
 
     return (
