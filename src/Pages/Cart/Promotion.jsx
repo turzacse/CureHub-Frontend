@@ -28,8 +28,8 @@ const Promotion = ({ handleAddmedicine }) => {
                 {/* Call-to-Action Buttons */}
                 <div className="cta-buttons flex flex-col md:flex-row justify-between my-4">
 
-                    <button className="proceed-checkout bg-green-500 text-white px-4 py-2 rounded-md mb-2 md:mb-0 md:mr-2 hover:bg-green-600">
-                        Proceed to Checkout
+                    <button className="proceed-checkout bg-green-500 text-white rounded-md mb-2 md:mb-0 md:mr-2 hover:bg-green-600">
+                        {/* Proceed to Checkout */}
                     </button>
 
                     <button

@@ -151,10 +151,11 @@ const Cart = () => {
         <div>
             <Heading title='SHOPPING CART' subtitle='Review your selected items and proceed to checkout.' />
 
-            <section className='text-black mx-4 py-10'>
+            <section className='text-white mx-4 py-10'>
                 {/* My cart {myCart?.length} */}
 
-                <div>
+                <div className='flex justify-between gap-5'>
+                    <div>
                     {
                         myCart?.map((item) => (
                             <div key={item._id} className='flex gap-4 items-center space-y-4'>
@@ -181,15 +182,28 @@ const Cart = () => {
                             </div>
                         ))
                     }
+                    </div>
+                    <div>
                     {
                         allSelecteditem?.length !== 0 && <div className='my-5'>
-                            <hr className='w-1/3' />
-                            <div className=" mt-5 flex items-center gap-10">
-                                <p className=''>Total Price: {calculateTotalPrice()}</p>
+                           
+                            <div className=" mt-5 gap-10">
+                                <p className=''>Subtotal: {calculateTotalPrice()}</p>
+                                <p className=''>Shipping: 35</p>
+                                <p className=''>TAX + VAT: 15</p>
+
+                                 <hr className='w-1/3' />
+                                <p className=''>Total: {calculateTotalPrice() + 1}</p>
                                 {/* <button className='bg-gray-200 px-4 py-2 text-black rounded-lg'>Proceed to Pay</button> */}
                             </div>
                         </div>
+
+                        
                     }
+                     <button className="proceed-checkout bg-green-500 text-white rounded-md mb-2 md:mb-0 px-4 py-1 md:mr-2 hover:bg-green-600">
+                        Proceed to Checkout
+                    </button>
+                    </div>
                 </div>
                 <Promotion  
                 handleAddmedicine={handleAddmedicine}
