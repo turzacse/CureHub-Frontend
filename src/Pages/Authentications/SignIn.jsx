@@ -5,6 +5,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../Firebase/firebase.config';
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
+import fb from '../../assets/facebook-new.png'
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -49,8 +52,19 @@ const LoginPage = () => {
     return (
         <div className='py-20 px-4'>
             <div className="py-10 bg-[#D1D1D1] md:w-1/2 mx-auto px-4  md:px-0 shadow-2xl rounded-lg">
+            {/* <div className="flex justify-between mb-6 lg:mx-4">
+
+            <div className="max-w-lg mx-auto mt-2">
+                    <button className='flex gap-2 items-center border-black border-1 btn btn-outline px-2'><FcGoogle className='text-4xl font-bold' /> <span className='hidden lg:flex'>Continue with Google</span> </button>
+            </div>
+
+            <div className="max-w-lg mx-auto mt-2">
+                    <button className='flex gap-2 items-center border-black border-1 btn btn-outline px-2'> <span className='hidden lg:flex'>Continue with Facebook</span> <img className='w-[40px] h-[40px] ' src={fb}/></button>
+            </div>
+            </div> */}
             <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
-            <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+            
+            <form onSubmit={handleSubmit} className="max-w-lg mx-auto md:px-4">
                 {/* <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"/>
@@ -88,13 +102,28 @@ const LoginPage = () => {
                         Invalid email or password. Please try again.
                     </div>
                 }
-                <div>
-                    New here? <NavLink to='/sign-up'>Sign Up</NavLink>
+                <div className='flex justify-between'>
+                    <div className='text-[14px] mt-5'>
+                    New here? <NavLink to='/sign-up' className='text-blue-600 '> Sign Up</NavLink>
+                    </div>
+                    <div className="flex justify-between gap-2 mb-6 ">
+
+            <div className="max-w-lg mx-auto mt-2">
+                    <button className='flex items-center border-black border-1 btn btn-outline px-2 text-[10px]'><FcGoogle className='text-2xl font-bold' />Continue <span className='hidden lg:flex text-[10px]'>with Google</span> </button>
+            </div>
+
+            <div className="max-w-lg mx-auto mt-2">
+                    <button className='flex  items-center border-black border-1 btn btn-outline px-2'> <span className='text-[10px]'>Continue</span> <span className='hidden lg:flex text-[10px]'>with Facebook</span> <img className='w-[30px] h-[30px] ' src={fb}/></button>
+            </div>
+            </div>
                 </div>
+
+                
                 <button 
                 type="submit" 
                 className="bg-red-500 text-white py-2 mt-4 flex items-center justify-center px-5 rounded-md hover:bg-red-600 ">Sign In
                 </button>
+
             </form>
         </div>
         </div>
