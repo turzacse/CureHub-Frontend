@@ -30,7 +30,7 @@ const Dashboard = () => {
     console.log(curehubUser, role);
 
     return (
-        <div className="relative min-h-[100vh] bg-gray-800 overflow-hidden">
+        <div className="relative min-h-[100vh] bg-[#aabdcf] overflow-hidden">
 
             <div className="drawer lg:drawer-open ">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
