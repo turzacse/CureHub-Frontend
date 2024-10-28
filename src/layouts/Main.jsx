@@ -54,7 +54,7 @@ const Main = () => {
   return (
     <div className='max-w-full overflow-y-hidden overflow-x-hidden'>
       <Navbar />
-      <div className='bg-[#2C3E50]'>
+      <div className='bg-[#2C3E50] text-black'>
         {showScrollUp && (
           <FaArrowAltCircleUp
             onClick={scrollTop}

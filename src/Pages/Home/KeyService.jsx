@@ -51,7 +51,7 @@ const KeyServices = () => {
                         <div className='p-6 flex items-center'>
                             <img src={service.icon} alt={service.title} className='w-12 h-12 object-contain mr-4' />
                             <div>
-                                <h3 className='text-lg font-semibold mb-2'>{service.title}</h3>
+                                <h3 className='text-lg font-semibold mb-2 text-black'>{service.title}</h3>
                                 <p className='text-gray-700'>{service.description}</p>
                             </div>
                         </div>
