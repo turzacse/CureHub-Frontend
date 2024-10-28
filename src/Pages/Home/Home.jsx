@@ -64,17 +64,6 @@ const Home = () => {
 
 return (
     <div>
-        {/* <input
-        type="date"
-        className="p-2 rounded outline-none w-full"
-        placeholder="dd-mm-yyyy"
-        value={selectedDate}
-        onChange={handleDateChange}
-      /> */}
-        {/* <SignUpPage/>
-            <LoginPage/> */}
-
-
         <ProductSlider />
         {/* <CategorySection /> */}
         <KeyServices/>
@@ -84,12 +73,12 @@ return (
         <CTADoctor/>
         <BenefitsSection/>
         <MedicineAdCTA/>
-        
-        <SuccessStories/>
-        <AnalysisCTA/>
         <HowItWorks/>
-        <OfferSection/>
+        {/* <SuccessStories/> */}
+        <AnalysisCTA/>
         <LatestHealthArticles/>
+        <OfferSection/>
+        
         {/* <DiscountProducts />
         <QueriesSection />
         <PopularCategoriesSection />

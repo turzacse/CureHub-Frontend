@@ -4,6 +4,7 @@ import { PieChart, Pie, Tooltip, Legend, Cell } from 'recharts';
 import OngoingTable from './OngoingTable';
 import TeleMedicineTable from './TeleMedicineTable';
 import Canceled from './Canceled';
+import CompleteAppointment from './CompleteAppointment';
 
 const AppointmentManagement = () => {
     const {
@@ -21,7 +22,7 @@ const AppointmentManagement = () => {
         { name: 'Ongoing', value: allAppointment?.length || 0 },
         { name: 'Cancelled', value: allCancelAppointment?.length || 0 },
         { name: 'Telemedicine', value: allTelemedicineAppointment?.length || 0 },
-        { name: 'Completed', value: allCompleteAppointment?.length || 3 },
+        { name: 'Completed', value: allCompleteAppointment?.length || 0 },
     ];
 
     console.log(allCancelAppointment);
@@ -173,12 +174,12 @@ const AppointmentManagement = () => {
                     <TeleMedicineTable allTelemedicineAppointment={allTelemedicineAppointment} />
                 )}
                 {activeTab === 'completedAppointments' && (
-                    <div>
-                        <h2 className='text-2xl font-bold text-warning'>
-                            Completed Appointments ({allCompleteAppointment?.length})
-                        </h2>
-                        {/* Render completed appointments here */}
-                    </div>
+                    <CompleteAppointment allAppointment={allCompleteAppointment} />
+                    // <div>
+                    //     <h2 className='text-2xl font-bold text-warning'>
+                    //         Completed Appointments ({allCompleteAppointment?.length})
+                    //     </h2>
+                    // </div>
                 )}
             </div>
         </div>

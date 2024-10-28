@@ -16,15 +16,16 @@ const AllUser = () => {
     }, []);
 
     return (
-        <div className="bg-gray-800 min-h-screen md:p-8 mt-10 md:mt-5 p-4 overflow-hidden">
-            <div className="bg-gray-300 rounded-lg shadow-lg p-6 mb-8">
+        <div className="min-h-screen md:p-8 mt-10 md:mt-5 p-4 overflow-hidden">
+            {/* <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
                 <h1 className="md:text-2xl font-extrabold text-center text-gray-800">
                     User Management Dashboard
                 </h1>
                 <p className="md:text-lg text-[12px] text-center text-gray-600 md:mt-2">
                     Overview of all registered users in the system
                 </p>
-            </div>
+            </div> */}
+            <h2 className='text-black mb-5 font-semibold text-2xl'>USERS</h2>
             {
                 isLoading ? <div className="flex justify-center items-center">
                     <span className="loading loading-spinner text-primary"></span>
@@ -40,7 +41,7 @@ const AllUser = () => {
                     <div>
                         {allUser.length > 0 ? (
                             <div className="overflow-x-auto">
-                                <table className="min-w-full bg-gray-300 rounded-lg shadow-lg">
+                                <table className="min-w-full bg-white rounded-lg shadow-lg">
                                     <thead className='text-[12px] md:text-[16px]'>
                                         <tr className="bg-gray-700 text-white">
                                             <th className="py-3 md:px-6 px-1 text-left">SL</th>
@@ -51,7 +52,7 @@ const AllUser = () => {
                                     </thead>
                                     <tbody className='text-[12px] md:text-[16px]'>
                                         {allUser.map((user, index) => (
-                                            <tr key={index} className="hover:bg-gray-100">
+                                            <tr key={index} className="hover:bg-gray-100 text-black">
                                                 <td className="py-3 md:px-6 px-1 border-b">{index + 1}</td>
                                                 <td className="py-3 md:px-6 px-3 border-b">{user?.username || "N/A"}</td>
                                                 <td className="py-3 md:px-6 px-3 border-b">{user?.email}</td>

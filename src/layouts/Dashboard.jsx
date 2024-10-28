@@ -34,7 +34,7 @@ const Dashboard = () => {
 
             <div className="drawer lg:drawer-open ">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col  ">
+                <div className="drawer-content flex flex-col text-black ">
                     <label htmlFor="my-drawer-2" className=" lg:hidden absolute left-0 top-0 btn cursor-pointer py-0 border-none bg-[#006666] text-white "
                         style={{ borderRadius: '0px', height: '20px', borderBottomRightRadius: '8px' }}
                     ><GiHamburgerMenu /></label>
@@ -66,7 +66,7 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side lg:h-full lg:bg-[#006666] ">
                     <label htmlFor="my-drawer-2" className="drawer-overlay "></label>
-                    <ul className="menu p-4 w-44 lg:w-44 h-screen bg-[#006666] text-white">
+                    <ul className="menu p-4 w-44 lg:w-44 h-screen bg-[#006666] text-white uppercase">
                         <div className="p-4 ">
                             <div className="text-center mb-8">
                                 <img className="w-12 h-12 lg:w-20 lg:h-20 rounded-full mx-auto mb-2" src={curehubUser?.photo} alt="Profile" />
@@ -122,6 +122,11 @@ const Dashboard = () => {
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Appointment</li></Link>
+                            <hr className='border-1' />
+                            <Link to='/dashboard' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                                <MdAccountCircle className="text-xl " />
+                                <li className="font-semibold">
+                                    Payments</li></Link>
                             <hr className='border-1' />
                             <Link to='/dashboard' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />

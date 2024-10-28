@@ -79,7 +79,7 @@ const OngoingTable = ({ allAppointment }) => {
     const itemsPerPage = 5;
 
     const parseDate = (dateString) => {
-        const [day, month, year] = dateString.split('/');
+        const [day, month, year] = dateString?.split('/');
         return new Date(`${year}-${month}-${day}`);
     };
 
@@ -87,9 +87,9 @@ const OngoingTable = ({ allAppointment }) => {
         return parseDate(a.appointedDate) - parseDate(b.appointedDate);
     });
 
-    const totalPages = Math.ceil(sortedAppointments.length / itemsPerPage);
+    const totalPages = Math.ceil(sortedAppointments?.length / itemsPerPage);
 
-    const currentItems = sortedAppointments.slice(
+    const currentItems = sortedAppointments?.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -124,8 +124,8 @@ const OngoingTable = ({ allAppointment }) => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                        {currentItems.map((appointment, index) => (
+                    <tbody className="bg-white text-black divide-y divide-gray-200">
+                        {currentItems?.map((appointment, index) => (
                             <tr key={appointment._id}>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     {(currentPage - 1) * itemsPerPage + index + 1}

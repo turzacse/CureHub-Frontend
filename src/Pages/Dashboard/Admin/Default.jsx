@@ -50,9 +50,9 @@ const DefaultAdmin = () => {
         <div className='mt-10 mx-10'>
             <div className='grid grid-cols-4 gap-6'>
                 <DashboardCard title='CH USERS' number={10} link='/dashboard/alluser' color='#6761DA' />
-                <DashboardCard title='CH DOCTORS' number={10} color='#EBA11C' />
-                <DashboardCard title='USERS' number={10} color='#D85958' />
-                <DashboardCard title='USERS' number={10} color='#599C2D' />
+                <DashboardCard title='CH DOCTORS' number={10} link='/dashboard/doctors' color='#EBA11C' />
+                <DashboardCard title='APPOINTMENTS' number={10} link='/dashboard/appointment-management' color='#D85958' />
+                <DashboardCard title='PAYMENTS' number={10}  color='#599C2D' />
                 <DashboardCard title='USERS' number={10} color='#0EAFE9' />
                 <DashboardCard title='USERS' number={10} color='#3B5998' />
                 <DashboardCard title='USERS' number={10} color='#F7511C' />

@@ -62,7 +62,7 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-white text-black divide-y divide-gray-200">
                         {allTelemedicineAppointment?.map((appointment, index) => (
                             <tr key={appointment._id}>
                                 <td className="px-6 py-4 whitespace-nowrap">
