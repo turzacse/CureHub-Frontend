@@ -51,6 +51,7 @@ import Pay from './Components/StripePayment/App.jsx';
 import HowItWorks from './Pages/HowItWorks/HowItWorks.jsx';
 import PrivecyPolicy from './Pages/PrivecyPolicy/PrivecyPolicy.jsx';
 import TermOfService from './Pages/TermOfService/TermOfService.jsx';
+import AdminMessage from './Pages/AdminMessage/AdminMessage.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -215,8 +216,8 @@ const router = createBrowserRouter([
         element: <AppointmentDoctor/>
       },
       {
-        path: '/dashboard/queries',
-        element: <Queries/>
+        path: '/dashboard/all-message',
+        element: <AdminMessage/>
       },
     ]
   },

@@ -53,7 +53,7 @@ const DefaultAdmin = () => {
                 <DashboardCard title='CH DOCTORS' number={10} link='/dashboard/doctors' color='#EBA11C' />
                 <DashboardCard title='APPOINTMENTS' number={10} link='/dashboard/appointment-management' color='#D85958' />
                 <DashboardCard title='PAYMENTS' number={10}  color='#599C2D' />
-                <DashboardCard title='USERS' number={10} color='#0EAFE9' />
+                <DashboardCard title='MESSAGES' number={10} link='/dashboard/all-message' color='#0EAFE9' />
                 <DashboardCard title='USERS' number={10} color='#3B5998' />
                 <DashboardCard title='USERS' number={10} color='#F7511C' />
                 <DashboardCard title='USERS' number={10} color='#006666' />

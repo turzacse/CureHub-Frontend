@@ -128,6 +128,11 @@ const Dashboard = () => {
                                 <li className="font-semibold">
                                     Payments</li></Link>
                             <hr className='border-1' />
+                            <Link to='/dashboard/all-message' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                                <MdAccountCircle className="text-xl " />
+                                <li className="font-semibold">
+                                    Messages</li></Link>
+                            <hr className='border-1' />
                             <Link to='/dashboard' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
