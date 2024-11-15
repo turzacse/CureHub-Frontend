@@ -120,7 +120,7 @@ const Defaultuser = () => {
                             onClick={() =>{
                                 navigate('/membership-plan')
                             }}
-                            className='btn btn-sm btn-warning mt-5 px-4 hover:bg-white border-none'>Chose</button>
+                            className='btn btn-sm btn-warning mt-5 px-4 hover:bg-white border-none uppercase'>Chose</button>
                         </div>
                         <div className='bg-gradient-to-r from-teal-400 to-blue-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
@@ -130,7 +130,7 @@ const Defaultuser = () => {
                             onClick={() =>{
                                 navigate('/dashboard/patient-appointment')
                             }}
-                            className='btn btn-sm btn-warning mt-5 px-4 hover:bg-white border-none'>See</button>
+                            className='btn btn-sm btn-warning mt-5 px-4 hover:bg-white border-none'>SEE</button>
                         </div>
                         <div className='bg-gradient-to-r from-orange-400 to-yellow-500 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
@@ -140,18 +140,18 @@ const Defaultuser = () => {
                             onClick={() =>{
                                 navigate('/dashboard/cart')
                             }}
-                            className='btn btn-sm btn-secondary mt-5 px-4 hover:bg-white border-none hover:text-black'>See</button>
+                            className='btn btn-sm btn-secondary mt-5 px-4 hover:bg-white border-none hover:text-black'>SEE</button>
 
                         </div>
                         <div className='bg-gradient-to-r from-pink-400 to-red-400 h-[200px] rounded-lg shandow flex flex-col justify-center items-center'>
 
-                            <h2 className='text-xl font-bold'>Due Payment</h2>
+                            <h2 className='text-xl font-bold'>MESSAGES</h2>
                             <p className='text-lg font-semibold'>2</p>
                             <button
                             onClick={() =>{
-                                // navigate('/dashboard/cart')
+                                navigate('/dashboard/user-message')
                             }}
-                            className='btn btn-sm btn-primary mt-5 px-4 hover:bg-white border-none hover:text-black'>See</button>
+                            className='btn btn-sm btn-primary mt-5 px-4 hover:bg-white border-none hover:text-black'>SEE</button>
                         </div>
                     </div>
                 </section>

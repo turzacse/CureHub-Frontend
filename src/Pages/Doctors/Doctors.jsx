@@ -46,6 +46,7 @@ const Doctors = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [phoneNumber, setPhoneNumber] = useState('')
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [appointmentSummary, setAppointmentSummary] = useState();
     const { user, curehubUser } = useContext(AuthContext);
     console.log('user ==>', curehubUser);
     const navigate = useNavigate();
@@ -68,6 +69,24 @@ const Doctors = () => {
                 setDoctors(data);
             });
     }, []);
+
+    // Function to fetch appointment summary
+    const fetchAppointmentSummary = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/appoinment/summary');
+            const data = await response.json();
+            // Update state with fetched data
+            setAppointmentSummary(data);
+        } catch (error) {
+            console.error('Error fetching appointment summary:', error);
+        }
+    };
+
+    // useEffect to call the fetch function
+    useEffect(() => {
+        fetchAppointmentSummary();
+    }, []);
+
 
     useEffect(() => {
         axios.get('https://api.ipify.org/?format=json')
@@ -124,8 +143,28 @@ const Doctors = () => {
     // console.log(appoinmentDay);
 
     const handlePrevDay = () => {
-        setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)));
-        setSelectedSlot(null); // Reset selected slot when date changes
+        const today = new Date(); // Current date (e.g., 15th)
+        today.setHours(0, 0, 0, 0); // Reset time to midnight for comparison
+
+        const previousDate = new Date(currentDate);
+        previousDate.setDate(currentDate.getDate() - 1);
+
+        if (previousDate < today) {
+            // Show SweetAlert warning if trying to go to a previous day
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops!',
+                text: 'You cannot go to a previous day to book any Appointment.',
+                confirmButtonText: 'Okay',
+                background: '#004040',
+                color: 'white'
+            });
+            return;
+        }
+
+        // Update the current date and reset the selected slot
+        setCurrentDate(previousDate);
+        setSelectedSlot(null);
     };
 
     const handleNextDay = () => {
@@ -168,13 +207,59 @@ const Doctors = () => {
         setShowAppointmentModal(false);
         setSelectedDoctor(null);
         setSelectedSlot(null);
+        setCurrentDate(new Date());
     };
 
     const handlePhoneChange = (e) => {
         setPhoneNumber(e.target.value);
     };
+    // const handleBooking = async (e) => {
+    //     e.preventDefault();
+
+    //     const bookingDetails = {
+    //         doctor: appointDoctor?._id,
+    //         patient: curehubUser?._id,
+    //         doctorName: appointDoctor?.name,
+    //         patientName: curehubUser?.username || 'Unknown',
+    //         appointedTime: selectedSlot,
+    //         appointedDate: formattedDate,
+    //         bookingDate: today?.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+    //         patientPhone: phoneNumber,
+    //     };
+
+    //     try {
+    //         const response = await axios.post('https://cure-hub-backend-gules.vercel.app/appoinment', bookingDetails);
+    //         console.log('Booking info:', bookingDetails);
+    //         console.log('API Response:', response.data);
+
+    //         setShowAppointmentModal(false);
+    //     } catch (error) {
+    //         console.error('Error sending booking details:', error);
+    //     }
+    // };
+
     const handleBooking = async (e) => {
         e.preventDefault();
+
+        // Validate booking details before sending the API request
+        if (
+            !appointDoctor?._id ||
+            !curehubUser?._id ||
+            !phoneNumber ||
+            !selectedSlot ||
+            !formattedDate
+            
+        ) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Missing Information',
+                text: 'Please fill in all the required fields before appointment booking.',
+                confirmButtonText: 'Okay',
+                background: '#004040',
+                color: 'white'
+            });
+            return;
+        }
 
         const bookingDetails = {
             doctor: appointDoctor?._id,
@@ -189,23 +274,45 @@ const Doctors = () => {
 
         try {
             const response = await axios.post('https://cure-hub-backend-gules.vercel.app/appoinment', bookingDetails);
+
             console.log('Booking info:', bookingDetails);
             console.log('API Response:', response.data);
 
-            setShowAppointmentModal(false);
+            // Show success message when booking is confirmed
+            fetchAppointmentSummary();
+            setSelectedSlot();
+            Swal.fire({
+                icon: 'success',
+                title: 'Appointment Confirmed!',
+                text: 'Your appointment has been successfully booked.',
+                confirmButtonText: 'Great!',
+                background: '#004040',
+                color: 'white'
+            });
+
+            setShowAppointmentModal(false); // Close the modal after confirmation
         } catch (error) {
             console.error('Error sending booking details:', error);
+
+            // Show error message if API call fails
+            Swal.fire({
+                icon: 'error',
+                title: 'Appointment Failed',
+                text: 'Something went wrong while booking your appointment. Please try again later.',
+                confirmButtonText: 'Okay',
+                background: '#004040',
+                color: 'white'
+            });
         }
     };
-
 
     console.log('doctor =>', appointDoctor);
     return (
         <div className='text-white  mx-auto'>
             <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
 
-            <div className='lg:container lg:mx-auto  mx-4 py-10 '>
-                <h2 className="md:text-2xl text-lg  text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+            <div className='lg:container lg:mx-auto   mx-4 py-10 '>
+                <h2 className="md:text-2xl text-lg  text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You! {appointmentSummary?.length}</h2>
 
                 <div className='flex justify-between gap-10'>
                     <input
@@ -215,7 +322,7 @@ const Doctors = () => {
                         name="search"
                         id="" />
 
-                        {/* seacring by day */}
+                    {/* seacring by day */}
                     <div className="flex items-center gap-5">
                         <label className=" flex items-center gap-2 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
@@ -284,7 +391,7 @@ const Doctors = () => {
 
                 {/* Details Modal */}
                 {selectedDoctor && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-black">
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center text-white">
                         <div className="bg-[#199292] p-4 md:w-1/3 w-full mx-4 rounded-lg">
                             <div className='flex justify-between'>
                                 <h3 className="text-xl font-bold mb-2"></h3>
@@ -310,10 +417,10 @@ const Doctors = () => {
 
                 {/* Appointment Modal */}
                 {showAppointmentModal && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
                         <div className="bg-[#199292] p-4 md:w-1/2 mx-4 rounded-lg ">
                             <div className='flex justify-between'>
-                                <h3 className="text-xl font-bold text-black mb-2">Appointment with {showAppointmentModal.name}</h3>
+                                <h3 className="text-xl font-bold text-white mb-2">Appointment with {showAppointmentModal.name}</h3>
                                 <button onClick={closeModal} className="text-3xl "><IoMdCloseCircleOutline /></button>
                             </div>
                             <form>
@@ -323,14 +430,14 @@ const Doctors = () => {
                                         <input
                                             value={curehubUser?.username}
                                             readOnly
-                                            type="text" name="name" className="w-full border border-gray-300 text-black rounded py-2 px-3" required />
+                                            type="text" name="name" className="w-full border border-gray-300 text-white rounded py-2 px-3" required />
                                     </label>
                                     <label className="block mb-2 flex-1">
                                         Email:
                                         <input
                                             value={curehubUser?.email}
                                             readOnly
-                                            type="email" name="email" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
+                                            type="email" name="email" className="w-full border text-white border-gray-300 rounded py-2 px-3" required />
                                     </label>
                                 </div>
                                 <div className='flex gap-1'>
@@ -338,13 +445,13 @@ const Doctors = () => {
                                         Phone:
                                         <input
                                             onChange={handlePhoneChange}
-                                            type="number" name="phone" className="w-full border text-black border-gray-300 rounded py-2 px-3" required />
+                                            type="number" name="phone" className="w-full border text-white border-gray-300 rounded py-2 px-3" required />
                                     </label>
                                     <label className="block mb-2 flex-1">
                                         Appointment Date:
                                         <input
                                             value={formattedDate}
-                                            readOnly name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-black" required />
+                                            readOnly name="date" className="w-full border border-gray-300 rounded py-2 px-3 text-white" required />
                                     </label>
                                 </div>
                                 <div className="mb-2">
@@ -355,27 +462,45 @@ const Doctors = () => {
                                         <p onClick={handleNextDay} className="bg-gray-500 text-white py-1 px-3 rounded-md cursor-pointer">→</p>
                                     </div>
                                     {showAppointmentModal.offDay === appointmentDay ? (
-                                        <div className="text-center font-medium text-red-700">
-                                            Doctor is Unavailable for this day
+                                        <div className="text-center font-medium text-yellow-200 mb-10 mt-5">
+                                            {showAppointmentModal.name} is Unavailable for this day
                                         </div>
                                     ) : (
-                                        getSlots(showAppointmentModal.start_time, showAppointmentModal.end_time).map((slot, index) => (
-                                            <button
-                                                key={index}
-                                                type="button"
-                                                className={`text-[12px] py-1 px-2 rounded-md mr-2 mb-2 justify-center ${selectedSlot === slot ? 'bg-gray-400' : 'bg-[#1c1d1c] text-white'}`}
-                                                onClick={() => handleSlotClick(slot)}
-                                                disabled={selectedSlot === slot}
-                                            >
-                                                {slot}
-                                            </button>
-                                        ))
+                                       getSlots(showAppointmentModal.start_time, showAppointmentModal.end_time)
+                                            .map((slot, index) => {
+                                                // Check if the slot matches any appointment
+                                                const isBooked = appointmentSummary.some(
+                                                    appointment =>
+                                                        appointment?.appointedTime === slot &&
+                                                        appointment?.appointedDate === formattedDate &&
+                                                        appointment?.doctor === showAppointmentModal?._id
+                                                );
+
+                                                return (
+                                                    <button
+                                                        key={index}
+                                                        type="button"
+                                                        className={`text-[12px] py-1 px-2 rounded-md mr-2 mb-2 justify-center 
+                                                        ${selectedSlot === slot
+                                                                ? 'bg-blue-500 text-white' // Highlight for selected slot
+                                                                : isBooked
+                                                                    ? 'bg-red-500 text-white' // Highlight for booked slots
+                                                                    : 'bg-[#1c1d1c] text-white' // Default color for available slots
+                                                            }`}
+                                                        onClick={() => handleSlotClick(slot)}
+                                                        disabled={isBooked} // Disable only booked slots
+                                                    >
+                                                        {slot}
+                                                    </button>
+                                                );
+                                            })
                                     )}
 
                                 </div>
+                                {showAppointmentModal.offDay === appointmentDay ? '' : 
                                 <button
                                     onClick={handleBooking}
-                                    type="submit" className="bg-warning text-black py-2 px-4 rounded-md">Appointment</button>
+                                    type="submit" className="bg-warning text-black py-2 px-4 rounded-md">Appointment</button> }
                             </form>
                         </div>
                     </div>

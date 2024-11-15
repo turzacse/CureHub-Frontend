@@ -52,7 +52,7 @@
 
 // export default GetInTouch;
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import img1 from '../../assets/Image/Doctor/doctor1.png';
 import img2 from '../../assets/Image/Doctor/doctor2.png';
@@ -60,14 +60,17 @@ import img3 from '../../assets/Image/Doctor/doctor3.png';
 import img4 from '../../assets/Image/Doctor/doctor4.png';
 import img5 from '../../assets/Image/Doctor/doctor5.png';
 import img6 from '../../assets/Image/Doctor/doctor6.png';
+import { AuthContext } from '../../Provider/AuthContext';
 
 const GetInTouch = () => {
+    const {curehubUser} = useContext(AuthContext);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
+        userID: curehubUser?._id
     });
 
     const doctor = [img1, img2, img3, img4, img5, img6];
@@ -89,25 +92,28 @@ const GetInTouch = () => {
     };
 
     const sendContactUsData = async (data) => {
-        try {
-            const response = await fetch('https://cure-hub-backend-gules.vercel.app/contact-us', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+        if(curehubUser?._id)
+        {
+            try {
+                const response = await fetch('https://cure-hub-backend-gules.vercel.app/contact-us', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+        
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+        
+                const result = await response.json();
+                setFormData({ name: '', email: '', subject: '', message: '', userID: curehubUser?._id });
+                Swal.fire({ text: `We are received your meassage. We'll get back you within 48 hours. Thank You for stay with us!` });
+                console.log(result); // Optional: Log the response from the server
+            } catch (error) {
+                console.error('Error:', error);
             }
-    
-            const result = await response.json();
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            Swal.fire({ text: `We are received your meassage. We'll get back you within 48 hours. Thank You for stay with us!` });
-            console.log(result); // Optional: Log the response from the server
-        } catch (error) {
-            console.error('Error:', error);
         }
     };
     

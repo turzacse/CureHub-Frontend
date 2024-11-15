@@ -52,6 +52,7 @@ import HowItWorks from './Pages/HowItWorks/HowItWorks.jsx';
 import PrivecyPolicy from './Pages/PrivecyPolicy/PrivecyPolicy.jsx';
 import TermOfService from './Pages/TermOfService/TermOfService.jsx';
 import AdminMessage from './Pages/AdminMessage/AdminMessage.jsx';
+import Usersmessage from './Pages/UsersMesage/Usersmessage.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -218,6 +219,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/all-message',
         element: <AdminMessage/>
+      },
+      {
+        path: '/dashboard/user-message',
+        element: <Usersmessage/>
       },
     ]
   },

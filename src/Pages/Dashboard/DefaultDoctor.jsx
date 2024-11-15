@@ -227,7 +227,7 @@ const DefaultDoctor = () => {
                             </div>
                             <div className='bg-red-500 text-white py-10 text-center rounded-lg'>
                                 <h2 className='font-medium'>Day Off</h2>
-                                <p className='text-3xl text-red-200 font-bold'>Sunday</p>
+                                <p className='text-3xl text-red-200 font-bold'>{doctorData?.offDay}</p>
                             </div>
 
                         </div>

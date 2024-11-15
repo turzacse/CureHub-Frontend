@@ -5,6 +5,7 @@ import Heading from '../../Components/PageHeading/Heading';
 import Guideline from './Guideline';
 import { AuthContext } from '../../Provider/AuthContext';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 // import CTASection from './CTASection';
 
 const TelemedicineBooking = () => {
@@ -29,7 +30,7 @@ const TelemedicineBooking = () => {
         const { name, value } = e.target;
         setFormData({ ...formData, cureHubUser: curehubUser?._id, [name]: value });
     };
-
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -55,6 +56,13 @@ const TelemedicineBooking = () => {
                 text: 'Appointment submitted successfully. \n \n You can show your Appointment details on your Account.',
                 icon: 'success',
                 confirmButtonColor: '#006666',
+                background: '#004040',
+                color: 'white'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Navigate after the confirm button is clicked
+                    navigate('/dashboard/patient-appointment');
+                }
             });
     
             // Optionally handle success feedback to the user or further actions
@@ -87,7 +95,7 @@ const TelemedicineBooking = () => {
                     </div>
                     <div className=" md:w-2/3 w-full mx-auto bg-gray-300 p-8 rounded-lg">
                     <h2 className="md:text-2xl font-bold mb-4">Appointment Form || Cure<span className='text-red-500'>Hub</span></h2>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6 text-gray-50">
                         <div className="flex gap-2 md:flex-row flex-col">
                             <div className='flex-1'>
                                 <label className="block text-gray-700">Name</label>
