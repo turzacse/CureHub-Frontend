@@ -3,6 +3,7 @@ import { AuthContext } from '../../Provider/AuthContext';
 import { AiOutlineDollar } from 'react-icons/ai';
 import Prescription from '../Prescription/Prescription';
 import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
 
 const AppointmentDoctor = () => {
     const [appointmentData, setAppointmentData] = useState([]);
@@ -50,6 +51,12 @@ const AppointmentDoctor = () => {
             .then(res => res.json())
             .then(data => setAllDoctor(data));
     }, []);
+
+
+    const isDoctor = allDoctor?.find((doctor) => doctor?.email == curehubUser?.email );
+    if(!isDoctor){
+        console.log('no');
+    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -162,7 +169,7 @@ const AppointmentDoctor = () => {
         })
        }
       };
-    if (isLoading) {
+    if (isLoading && isDoctor) {
         return (
             <div className='absolute bottom-1/2 left-1/2 flex justify-center items-center'>
                 <span className="loading loading-spinner text-primary"></span>
@@ -179,7 +186,15 @@ const AppointmentDoctor = () => {
 
     return (
         <div className="md:mt-20 mt-10 mx-4 ">
+        {
+            !isDoctor ? <div className='text-center flex flex-col items-center mt-48'> 
+                <h2 className='md:text-lg text-[10px] font-medium animated-text'>You are not Register Yet! For registration click on the below!</h2>
+                <NavLink to='/dashboard' className='btn bg-yellow-300 mt-6 border-none text-gray-600 hover:bg-yellow-400'>Register</NavLink>
+                
+            </div>
+            :
 
+        
             <div className="overflow-x-auto text-[10px] md:text-[16px]">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-600 text-white">
@@ -201,7 +216,7 @@ const AppointmentDoctor = () => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-gray-300 rounded-xl divide-y divide-gray-200">
                         {currentItems.map((appointment, index) => (
                             <tr key={appointment._id}>
                                 <td className="px-3 py-1 whitespace-nowrap">
@@ -265,7 +280,7 @@ const AppointmentDoctor = () => {
                     </nav>
                 </div>
             </div>
-
+        }
             {/* Prescription Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">

@@ -78,7 +78,7 @@ const MemberShip = () => {
                     <p className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">Join Now</p>
                 </div>
             </div>
-            <section className=" bg-gray-400 md:mx-auto px-4 py-16 text-center">
+            <section className=" bg-white md:mx-auto px-4 py-16 text-center">
                 <h2 className="text-3xl font-bold mb-4">Choose the Right Membership Plan for You</h2>
                 <p className="mb-8">Affordable and flexible plans to suit your healthcare needs.</p>
                 <div className="grid container mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -107,7 +107,7 @@ const MemberShip = () => {
                         {FAQ.map((item, index) => (
                             <div key={index} className='mb-4'>
                                 <button
-                                    className='w-full flex justify-between items-center text-left p-4 bg-[#182e33] text-white focus:outline-none rounded-t-lg'
+                                    className='w-full flex justify-between items-center text-left p-4 bg-white text-gray-700 font-bold focus:outline-none rounded-t-lg'
                                     onClick={() => handleToggle(index)}
                                 >
                                     <span>{index + 1}. {item.question}</span>
@@ -119,7 +119,7 @@ const MemberShip = () => {
 
                                 </button>
                                 {activeIndex === index && (
-                                    <div className='p-4 bg-gray-400 rounded-b-lg'>
+                                    <div className='p-4 bg-gray-200 text-black rounded-b-lg'>
                                         {item.answer}
                                     </div>
                                 )}

@@ -171,21 +171,21 @@ const Dashboard = () => {
 
                         {role && role === 'doctor' && <>
                             <hr className='border-1 ' />
-                            <Link to='/dashboard' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                            <Link to='/dashboard' className={`py-2 pl-2 flex gap-2 items-center ${isActive('/dashboard', location.pathname)}`}>
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Account</li></Link>
                             <hr className='border-1 ' />
-                            <Link to='/dashboard/appointment/doctor' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                            <Link to='/dashboard/appointment/doctor' className={`py-2 pl-2 flex gap-2 items-center ${isActive('/dashboard/appointment/doctor', location.pathname)}`}>
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Appointment</li></Link>
                             <hr className='border-1' />
-                            <Link to='/dashboard/doctors' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                            {/* <Link to='/dashboard/doctors' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Telemedicine</li></Link>
-                            <hr className='border-1' />
+                            <hr className='border-1' /> */}
 
                         </>
                         }

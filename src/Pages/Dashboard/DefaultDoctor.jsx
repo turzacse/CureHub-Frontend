@@ -164,7 +164,7 @@ const DefaultDoctor = () => {
     console.log('doctor.................>', doctorData);
 
     return (
-        <div className="my-3 mx-4 py-10 md:px-20 px-2 bg-gray-400 shadow-md rounded-md">
+        <div style={{height: '100%', overflow: 'auto'}} className="my-3 mx-4 py-10 md:px-20 px-2 bg-gray-400 shadow-md rounded-md">
             <div className="flex items-center mb-6">
                 <img src={curehubUser?.photo} alt="Doctor" className="w-24 h-24 rounded-lg" />
                 <div className="ml-6">
@@ -407,15 +407,7 @@ const DefaultDoctor = () => {
                                 Offer Telemedicine Services
                             </label>
                         </div>
-                        {/* <div className='mb-4'>
-                    <label htmlFor="doctor_img" className="block mb-2">Upload Doctor Image</label>
-                    <input
-                        type="file"
-                        name="doctor_img"
-                        onChange={handleUpload}
-                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-300"
-                    />
-                </div> */}
+                        
                         <button
                             type="submit"
                             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
