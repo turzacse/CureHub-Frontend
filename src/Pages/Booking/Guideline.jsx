@@ -2,8 +2,8 @@ import React from 'react';
 
 const Guideline = () => {
     return (
-        <div>
-            <h1 className='md:text-4xl text-2xl font-bold md:mb-8 mb-4 text-[#006666]'>Guideline</h1>
+        <div className='text-gray-300'>
+            <h1 className='md:text-4xl text-2xl font-bold md:mb-8 mb-4 text-gray-300'>Guideline</h1>
             <h2 className='font-bold md:text-xl'>Book Carefully for Your Telemedicine Appointment</h2>
             <p className='text-[14px]'>Ensure a smooth experience by booking your telemedicine appointment thoughtfully. After booking, you'll find all your telemedicine details conveniently accessible on your dashboard or account.</p>
 

@@ -23,7 +23,7 @@ const SpecialOffers = () => {
     ];
 
     return (
-        <div className="md:py-12 py-8 bg-gray-400">
+        <div className="md:py-12 py-8 bg-gray-50">
             <div className=" lg:container lg:mx-auto mx-4">
                 <h2 className="md:text-4xl text-2xl font-bold text-center md:mb-4 mb-2 text-gray-800">Special Offers</h2>
                 <p className="text-center mb-8 md:text-lg text-gray-600">

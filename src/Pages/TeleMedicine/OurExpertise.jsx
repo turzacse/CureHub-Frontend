@@ -1,38 +1,3 @@
-// import React from 'react';
-
-// const OurExpertise = () => {
-//     const specialties = [
-//         'General Medicine',
-//         'Pediatrics',
-//         'Gynecology',
-//         'Dermatology',
-//         'Psychiatry',
-//         'Nutrition and Dietetics'
-//     ];
-
-//     return (
-//         <div className=" py-10 bg-gray-400">
-//             <div className="max-w-4xl mx-auto p-6 bg-gray-300 shadow-lg rounded-lg">
-//                 <h2 className="text-3xl font-bold text-center mb-4">Our Expertise</h2>
-//                 <p className="text-center mb-6">
-//                     We have a diverse team of specialists ready to provide expert medical advice in various fields such as:
-//                 </p>
-//                 <ul className="list-disc list-inside space-y-2">
-//                     {specialties.map((specialty, index) => (
-//                         <li key={index} className="text-lg">
-//                             {specialty}
-//                         </li>
-//                     ))}
-//                 </ul>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default OurExpertise;
-
-
-
 import React from 'react';
 
 const OurExpertise = () => {
@@ -46,7 +11,7 @@ const OurExpertise = () => {
     ];
 
     return (
-        <div className="md:py-12 py-8 bg-gray-400">
+        <div className="md:py-12 py-8 bg-gray-50">
             <div className=" lg:mx-auto mx-4 lg:container ">
                 <h2 className="md:text-4xl text-2xl font-bold text-center md:mb-6 mb-2 text-gray-800">Our Expertise</h2>
                 <p className="text-center mb-8 md:text-lg text-gray-600">

@@ -82,7 +82,7 @@ const TelemedicineBooking = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-400">
+        <div className="min-h-screen">
             <Heading
                 title='Book Your Appointment'
                 subtitle='Get expert medical advice from the comfort of your home'
@@ -95,63 +95,63 @@ const TelemedicineBooking = () => {
                     </div>
                     <div className=" md:w-2/3 w-full mx-auto bg-gray-300 p-8 rounded-lg">
                     <h2 className="md:text-2xl font-bold mb-4">Appointment Form || Cure<span className='text-red-500'>Hub</span></h2>
-                    <form onSubmit={handleSubmit} className="space-y-6 text-gray-50">
+                    <form onSubmit={handleSubmit} className="space-y-6 text-black">
                         <div className="flex gap-2 md:flex-row flex-col">
                             <div className='flex-1'>
-                                <label className="block text-gray-700">Name</label>
+                                <label className="block text-gray-700 font-bold">Name</label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name || user?.displayName}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                    className="w-full bg-white px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     required
                                 />
                             </div>
                             <div className='flex-1'>
-                                <label className="block text-gray-700">Email</label>
+                                <label className="block text-gray-700 font-bold">Email</label>
                                 <input
                                     type="email"
                                     name="email"
                                     value={formData.email || curehubUser?.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                    className="w-full bg-white px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     required
                                 />
                             </div>
                         </div>
                         <div className="flex gap-2 md:flex-row flex-col">
                             <div className='flex-1'>
-                                <label className="block text-gray-700">Phone</label>
+                                <label className="block text-gray-700 font-bold">Phone</label>
                                 <input
                                     type="tel"
                                     name="phone"
                                     value={formData.phone || user?.phone}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none bg-white focus:ring-2 focus:ring-teal-500"
                                     required
                                 />
                             </div>
                             <div className='flex-1'>
-                                <label className="block text-gray-700">Date</label>
+                                <label className="block text-gray-700 font-bold">Date</label>
                                 <input
                                     type="date"
                                     name="date"
                                     value={formData.date}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                    className="w-full bg-white px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                                     required
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-gray-700">Specialty</label>
+                            <label className="block text-gray-700 font-bold">Specialty</label>
                             <select
                                 name="specialty"
                                 value={formData.specialty}
                                 onChange={handleChange}
-                                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                className="w-full bg-white px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                                 required
                             >
                                 <option value="">Select Specialty</option>
@@ -165,18 +165,18 @@ const TelemedicineBooking = () => {
                         </div>
 
                         <div>
-                            <label className="block text-gray-700">Message</label>
+                            <label className="block text-gray-700 font-bold">Message</label>
                             <textarea
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                                className="w-full bg-white px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                                 rows="4"
                             ></textarea>
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md  transition duration-300 ease-in-out"
+                            className="w-full font-bold py-3 px-8 rounded-lg shadow-md  transition duration-300 ease-in-out bg-yellow-300 text-gray-700 uppercase"
                         >
                             Book Appointment
                         </button>

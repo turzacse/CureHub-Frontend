@@ -62,7 +62,7 @@ const FAQ = () => {
                 {faqData.map((item, index) => (
                     <div key={index} className='mb-4'>
                         <button
-                            className='w-full flex justify-between items-center text-left p-4 bg-[#182e33] text-white focus:outline-none rounded-t-lg'
+                            className='w-full flex justify-between items-center text-left p-4 bg-white text-gray-700 font-bold focus:outline-none rounded-t-lg'
                             onClick={() => handleToggle(index)}
                         >
                             <span>{index + 1}. {item.question}</span>
@@ -74,29 +74,29 @@ const FAQ = () => {
 
                         </button>
                         {activeIndex === index && (
-                            <div className='p-4 bg-gray-400 rounded-b-lg'>
+                            <div className='p-4 bg-gray-200 rounded-b-lg'>
                                 {item.answer}
                             </div>
                         )}
                     </div>
                 ))}
-                <div className='text-white uppercase mt-10'>
+                <div className='text-white uppercase my-10'>
                     <p>Do you want to know more? Plese Click the bellow. </p>
                     {/* <button className='bg-[#3394A6] py-2 px-4 rounded-lg mt-4'></button> */}
                     <button className="bg-[#3394A6] py-2 px-4 rounded-lg mt-4" onClick={() => document.getElementById('my_modal_3').showModal()}>SEND MEASSAGE</button>
                     <dialog id="my_modal_3" className="modal">
-                        <div className="modal-box bg-gray-400 text-black">
+                        <div className="modal-box bg-gray-50 text-black">
                             <form method="dialog">
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-red-600 ">✕</button>
                                 <h3 className="font-bold text-lg mb-4">Send your message</h3>
                                 {/* <input type="text" placeholder="Your Message" className="input input-bordered w-full max-w-xs" /> */}
                                 <textarea
                                 
-                                type="text" placeholder="Your Message" className="input input-bordered w-full max-w-xs">
+                                type="text" placeholder="Your Message" className="input input-bordered w-full bg-gray-300 py-2 text-black h-[100px]">
 
                                 </textarea>
                                 <br />
-                                <button type='submit' className='bg-[#3394A6] py-2 px-4 rounded-lg mt-4 text-white min-h-[50px]'>SEND</button>
+                                <button type='submit' className='bg-[#3394A6] rounded-lg mt-4 btn-sm text-white'>SEND</button>
 
                             </form>
                             
