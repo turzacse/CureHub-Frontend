@@ -127,7 +127,7 @@ const GetInTouch = () => {
     
 
     return (
-        <div className='bg-gray-400 py-10'>
+        <div className=' py-10'>
             <div className="md:container md:mx-auto rounded-lg py-16 px-6 bg-gray-300">
                 <h2 className="text-3xl font-bold text-[#006666] text-center">Get in Touch</h2>
                 <p className="text-lg text-gray-700 mt-2 text-center">We're here to help you with any inquiries or issues you may have.</p>

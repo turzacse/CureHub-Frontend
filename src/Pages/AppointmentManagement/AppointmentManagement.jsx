@@ -39,7 +39,7 @@ const AppointmentManagement = () => {
             <text
                 x={x}
                 y={y}
-                fill="white"
+                fill="gray"
                 textAnchor={x > cx ? 'start' : 'end'}
                 dominantBaseline="central"
                 fontSize={20}
@@ -55,31 +55,31 @@ const AppointmentManagement = () => {
             {/* Tab Buttons */}
             <div className="mt-10 md:mt-10 grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-4 mb-4 text-[12px] md:text-[16px] items-center">
                 <button
-                    className={`py-2 px-4 rounded ${activeTab === 'totalAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+                    className={`py-2 px-4 rounded ${activeTab === 'totalAppointments' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('totalAppointments')}
                 >
                     Appointments
                 </button>
                 <button
-                    className={`py-2 px-4 rounded ${activeTab === 'allAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+                    className={`py-2 px-4 rounded ${activeTab === 'allAppointments' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('allAppointments')}
                 >
                     Ongoing
                 </button>
                 <button
-                    className={`py-2 px-4 rounded ${activeTab === 'telemedicineAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+                    className={`py-2 px-4 rounded ${activeTab === 'telemedicineAppointments' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('telemedicineAppointments')}
                 >
                     Telemedicine
                 </button>
                 <button
-                    className={`py-2 px-4 rounded ${activeTab === 'cancelledAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+                    className={`py-2 px-4 rounded ${activeTab === 'cancelledAppointments' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('cancelledAppointments')}
                 >
                     Cancelled
                 </button>
                 <button
-                    className={`py-2 px-4 rounded ${activeTab === 'completedAppointments' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+                    className={`py-2 px-4 rounded ${activeTab === 'completedAppointments' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('completedAppointments')}
                 >
                     Completed
@@ -94,7 +94,7 @@ const AppointmentManagement = () => {
                             Upcoming Appointment (General, Telemdicine) : {allTelemedicineAppointment?.length + allAppointment?.length} ({allAppointment?.length}, {allTelemedicineAppointment?.length})
                         </h2>
                         <div className="mt-10 flex items-center justify-center">
-                            <PieChart className='py-5' width={600} height={300}>
+                            <PieChart className='py-5 ' width={600} height={300}>
                                 <Pie
                                     data={pieChartData}
                                     // cx={300}
@@ -104,6 +104,7 @@ const AppointmentManagement = () => {
                                     outerRadius={120}
                                     fill="#8884d8"
                                     dataKey="value"
+                                    // className='text-black'
                                 >
                                     {pieChartData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

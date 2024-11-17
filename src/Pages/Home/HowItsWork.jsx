@@ -25,10 +25,10 @@ const HowItWorks = () => {
     ];
 
     return (
-        <div className='bg-gray-400 py-12'>
+        <div className=' py-12'>
             <div className='lg:container lg:mx-auto mx-4 '>
-                <h2 className="text-3xl font-bold mb-4 text-center text-black">How CureHub Works</h2>
-                <p className="text-lg mb-8 text-center text-black">Discover How You Can Seamlessly Manage Your Health Journey with CureHub's Comprehensive Services.</p>
+                <h2 className="text-3xl font-bold mb-4 text-center text-white">How CureHub Works</h2>
+                <p className="text-lg mb-8 text-center text-white">Discover How You Can Seamlessly Manage Your Health Journey with CureHub's Comprehensive Services.</p>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8'>
                     {steps.map((step, index) => (
                         <div key={index} className='bg-gray-300 rounded-lg shadow-md overflow-hidden'>

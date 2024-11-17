@@ -180,7 +180,7 @@ const AdminMessage = () => {
                             <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white text-black divide-y divide-gray-200">
+                    <tbody className="bg-gray-300 text-black divide-y divide-gray-200">
                         {currentItems?.map((message, index) => (
                             <tr key={message._id}>
                                 <td className="px-6 py-4 whitespace-nowrap">{(currentPage - 1) * itemsPerPage + index + 1}</td>
@@ -196,8 +196,8 @@ const AdminMessage = () => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <div className='flex gap-2'>
-                                        <button className='btn btn-sm btn-success' onClick={() => handleView(message)}>View</button>
-                                        <button onClick={() => handleDelete(message?._id)} className='btn btn-sm btn-warning'>Delete</button>
+                                        <button className='btn btn-sm btn-success text-gray-200' onClick={() => handleView(message)}>View</button>
+                                        <button onClick={() => handleDelete(message?._id)} className='btn btn-sm btn-warning text-gray-600'>Delete</button>
                                     </div>
                                 </td>
                             </tr>

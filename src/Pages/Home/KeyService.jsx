@@ -41,10 +41,10 @@ const KeyServices = () => {
     ];
 
     return (
-        <div className="bg-gray-400">
+        <div className="">
             <div className='lg:container lg:mx-auto mx-4 py-12 '>
-            <h2 className="text-3xl font-bold mb-4 text-center text-black">Key Services</h2>
-            <p className="text-lg mb-8 text-center text-black">Explore Our Wide Range of Essential Healthcare Services Designed to Meet Your Every Need.</p>
+            <h2 className="text-3xl font-bold mb-4 text-center text-white">Key Services</h2>
+            <p className="text-lg mb-8 text-center text-white">Explore Our Wide Range of Essential Healthcare Services Designed to Meet Your Every Need.</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 {services.map((service, index) => (
                     <div key={index} className='bg-gray-300 rounded-lg shadow-md overflow-hidden transform transition duration-500 hover:scale-105'>

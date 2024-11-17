@@ -42,9 +42,9 @@ const plans = [
 const MembershipPlans = () => {
     const navigate = useNavigate();
     return (
-        <section className=" bg-gray-400 mx-auto py-16 text-center">
-            <h2 className="text-3xl font-bold mb-4">Choose the Right Membership Plan for You</h2>
-            <p className="mb-8">Affordable and flexible plans to suit your healthcare needs.</p>
+        <section className=" mx-auto py-16 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">Choose the Right Membership Plan for You</h2>
+            <p className="mb-8 text-white">Affordable and flexible plans to suit your healthcare needs.</p>
             <div className="grid container mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {plans.map((plan, index) => (
                     <div key={index} className="bg-gray-300 mx-4 p-6 rounded-lg shadow-md">
