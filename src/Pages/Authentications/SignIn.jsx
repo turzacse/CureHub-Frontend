@@ -8,6 +8,7 @@ import { auth } from '../../Firebase/firebase.config';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import fb from '../../assets/facebook-new.png'
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -50,7 +51,7 @@ const LoginPage = () => {
     console.log('Error =>', error);
 
     return (
-        <div className='py-20 px-4'>
+        <div className='py-20 px-4 bg-[#011225]'>
             <div className="py-10 bg-[#D1D1D1] md:w-1/2 mx-auto px-4  md:px-0 shadow-2xl rounded-lg">
             {/* <div className="flex justify-between mb-6 lg:mx-4">
 
@@ -78,8 +79,8 @@ const LoginPage = () => {
                     value={formData.email} 
                     onChange={handleChange} 
                     placeholder='Email'
-                    className="w-full px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500"/>
-                    <MdEmail className='absolute top-[10px] left-1 text-2xl text-gray-600' />
+                    className="w-full px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500 text-white"/>
+                    <MdEmail className='absolute top-[10px] left-1 text-2xl text-gray-50' />
                 </div>
                 {/* <div className="mb-4">
                     <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">Password</label>
@@ -94,8 +95,8 @@ const LoginPage = () => {
                     value={formData.password} 
                     onChange={handleChange}
                     placeholder='Passwoard' 
-                    className="w-full px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500"/>
-                    <RiLockPasswordFill className='absolute top-[8px] left-1 text-2xl text-gray-600' />
+                    className="w-full px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500 text-white"/>
+                    <RiLockPasswordFill className='absolute top-[8px] left-1 text-2xl text-gray-50' />
                 </div>
                 {
                     error && <div className='text-red-500'>
@@ -109,11 +110,33 @@ const LoginPage = () => {
                     <div className="flex justify-between gap-2 mb-6 ">
 
             <div className="max-w-lg mx-auto mt-2">
-                    <button className='flex items-center border-black border-1 btn btn-outline px-2 text-[10px]'><FcGoogle className='text-2xl font-bold' />Continue <span className='hidden lg:flex text-[10px]'>with Google</span> </button>
+                    <button
+                    onClick={() => {
+                        Swal.fire(
+                            {
+                                text: 'Coming Soon !',
+                                icon: 'warning',
+                                background: '#011225',
+                                color: 'white'
+                            }
+                        )
+                    }}
+                    className='flex items-center text-black border-black border-1 btn btn-outline px-2 text-[10px]'><FcGoogle className='text-2xl font-bold' />Continue <span className='hidden lg:flex text-[10px]'>with Google</span> </button>
             </div>
 
             <div className="max-w-lg mx-auto mt-2">
-                    <button className='flex  items-center border-black border-1 btn btn-outline px-2'> <span className='text-[10px]'>Continue</span> <span className='hidden lg:flex text-[10px]'>with Facebook</span> <img className='w-[30px] h-[30px] ' src={fb}/></button>
+                    <button
+                    onClick={() => {
+                        Swal.fire(
+                            {
+                                text: 'Coming Soon !',
+                                icon: 'warning',
+                                background: '#011225',
+                                color: 'white'
+                            }
+                        )
+                    }}
+                    className='flex  items-center border-black border-1 text-black btn btn-outline px-2'> <span className='text-[10px]'>Continue</span> <span className='hidden lg:flex text-[10px]'>with Facebook</span> <img className='w-[30px] h-[30px] ' src={fb}/></button>
             </div>
             </div>
                 </div>

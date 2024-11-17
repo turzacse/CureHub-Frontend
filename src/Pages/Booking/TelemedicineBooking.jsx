@@ -35,7 +35,7 @@ const TelemedicineBooking = () => {
         e.preventDefault();
     
         try {
-            const response = await fetch('https://cure-hub-backend-gules.vercel.app/telemedicine-appoinment', {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/telemedicine-appointment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

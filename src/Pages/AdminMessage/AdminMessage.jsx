@@ -81,15 +81,15 @@ const AdminMessage = () => {
     //         },
     //         body: JSON.stringify({ replymsg })
     //       });
-      
+
     //       const result = await response.json();
-      
+
     //       if (response.ok) {
     //         console.log('Reply added successfully:', result);
     //         fetchMessages();
     //         setIsReplyBox(false);
     //         setReplymsg('');
-            
+
     //       } else {
     //         console.error('Error adding reply:', result.message);
     //       }
@@ -97,8 +97,8 @@ const AdminMessage = () => {
     //       console.error('Request failed:', error);
     //     }
     //   };
-      
-    const handleReply = async (id) => {      
+
+    const handleReply = async (id) => {
         try {
             const response = await fetch(`https://cure-hub-backend-gules.vercel.app/contact-us/${id}/reply`, {
                 method: 'PUT',
@@ -107,20 +107,20 @@ const AdminMessage = () => {
                 },
                 body: JSON.stringify({ replymsg })
             });
-    
+
             const result = await response.json();
-    
+
             if (response.ok) {
                 console.log('Reply added successfully:', result);
                 fetchMessages();
-    
+
                 // Get current date in UTC and add 6 hours for Bangladesh time
                 const now = new Date();
                 now.setHours(now.getUTCHours() + 6);
-    
+
                 // Format the date as dd-mm-yyyy hh:mm:ss for Bangladesh time
                 const formattedTime = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getFullYear()).slice(-2)}, ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-    
+
                 // Update selectedMessage's reply array with the new reply and formatted time
                 setSelectedMessage((prev) => ({
                     ...prev,
@@ -129,7 +129,7 @@ const AdminMessage = () => {
                         { replymsg, time: formattedTime }
                     ]
                 }));
-                
+
                 // Clear the reply input box
                 setIsReplyBox(false);
                 setReplymsg('');
@@ -140,9 +140,27 @@ const AdminMessage = () => {
             console.error('Request failed:', error);
         }
     };
-    
-    
-    
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(messages?.length / itemsPerPage);
+
+    // Get the current items for the page
+    const currentItems = messages?.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
+    // Handle page change
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+
+
 
     return (
         <div className='p-4'>
@@ -163,9 +181,9 @@ const AdminMessage = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white text-black divide-y divide-gray-200">
-                        {messages?.map((message, index) => (
+                        {currentItems?.map((message, index) => (
                             <tr key={message._id}>
-                                <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{message?.name}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{message?.email}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{message?.createdAt}</td>
@@ -188,7 +206,33 @@ const AdminMessage = () => {
                 </table>
             </section>
 
-            
+            <div className="flex lg:bottom-10 lg:left-1/2 justify-center mt-4">
+                <nav className="block">
+                    <ul className="flex pl-0 rounded list-none flex-wrap">
+                        {Array.from({ length: totalPages }, (_, index) => {
+                            if (totalPages <= 5 || index < 2 || index >= totalPages - 2 || Math.abs(index + 1 - currentPage) <= 1) {
+                                return (
+                                    <li key={index} className="page-item">
+                                        <button
+                                            onClick={() => handlePageChange(index + 1)}
+                                            className={`page-link relative block py-1.5 px-3 leading-tight text-gray-800  ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    </li>
+                                );
+                            } else if (index === 2 || index === totalPages - 3) {
+                                return <li key={index} className="page-item"> .  .  . </li>;
+                            } else {
+                                return null;
+                            }
+                        })}
+                    </ul>
+                </nav>
+            </div>
+
+
+
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                     <div className="bg-[#175858] w-[400px] p-6 rounded-lg shadow-lg text-white text-center">
@@ -228,33 +272,33 @@ const AdminMessage = () => {
                                     onChange={handleInputChange}
                                 />
                                 <button
-                                onClick={() => {
-                                    handleReply(selectedMessage?._id)
-                                }}
-                                className='absolute right-1 top-5 text-2xl text-gray-800'>
+                                    onClick={() => {
+                                        handleReply(selectedMessage?._id)
+                                    }}
+                                    className='absolute right-1 top-5 text-2xl text-gray-800'>
                                     <IoSend />
                                 </button>
                             </div>
-                            
+
                         }
                         <div className='flex justify-between mt-4'>
                             {
                                 !isReplyBox ? <button
-                                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-                                onClick={() => {
-                                    setIsReplyBox(true);
-                                }}
-                            >
-                                Reply
-                            </button> :
-                            <button
-                            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-                            onClick={() => {
-                                setIsReplyBox(false);
-                            }}
-                        >
-                            Not Now
-                        </button>
+                                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+                                    onClick={() => {
+                                        setIsReplyBox(true);
+                                    }}
+                                >
+                                    Reply
+                                </button> :
+                                    <button
+                                        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+                                        onClick={() => {
+                                            setIsReplyBox(false);
+                                        }}
+                                    >
+                                        Not Now
+                                    </button>
                             }
                             <button
                                 className="mt-4 px-4 py-2 bg-red-600 text-white rounded"

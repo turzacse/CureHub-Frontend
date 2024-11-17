@@ -56,7 +56,7 @@ import React, { useState } from 'react';
 
 const Canceled = ({ allCancelAppointment }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
+    const itemsPerPage = 10;
 
     // Calculate the total number of pages
     const totalPages = Math.ceil(allCancelAppointment.length / itemsPerPage);
@@ -73,6 +73,7 @@ const Canceled = ({ allCancelAppointment }) => {
     };
 
     return (
+        <section>
         <div className="md:mt-20 mt-10 overflow-x-auto text-[10px] md:text-[16px]">
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-600 text-white">
@@ -117,7 +118,10 @@ const Canceled = ({ allCancelAppointment }) => {
                 </tbody>
             </table>
 
-            <div className="flex lg:absolute lg:bottom-10 lg:left-1/2 justify-center mt-4">
+            
+
+        </div>
+        <div className="flex lg:bottom-10 lg:left-1/2 justify-center mt-4">
                 <nav className="block">
                     <ul className="flex pl-0 rounded list-none flex-wrap">
                         {Array.from({ length: totalPages }, (_, index) => {
@@ -141,8 +145,7 @@ const Canceled = ({ allCancelAppointment }) => {
                     </ul>
                 </nav>
             </div>
-
-        </div>
+        </section>
     );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -6,15 +6,25 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
     const [formData, setFormData] = useState({
         date: '',
         time: '',
-        doctor: '',
+        doctorId: '',
+        doctor: ''
     });
+    const [doctorsList, setDoctorsList] = useState();
+    const [selectedDoctor, setSelectedDoctor] = useState({ id: "", name: "" });
+
+    useEffect(() => {
+        fetch('https://cure-hub-backend-gules.vercel.app/doctors/telemedicine')
+            .then(res => res.json())
+            .then(data => setDoctorsList(data))
+    }, [])
 
     const handleAssignClick = (appointment) => {
         setSelectedAppointment(appointment);
         setFormData({
             date: '',
             time: '',
-            doctor: '',
+            doctorId: '',
+            doctor: ''
         });
         setIsModalOpen(true);
     };
@@ -22,6 +32,13 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
     const handleModalClose = () => {
         setIsModalOpen(false);
         setSelectedAppointment(null);
+    };
+
+    const handleDoctorChange = (event) => {
+        const selectedValue = event.target.value;
+        const [id, name] = selectedValue.split("||"); // Split the value to get ID and name
+        setSelectedDoctor({ id, name }); // Update the state with both ID and name
+        setFormData({ ...formData, doctorId: id, doctor: name }); // Optionally update formData with the doctor's ID
     };
 
     const handleInputChange = (e) => {
@@ -38,6 +55,10 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
         console.log('Form submitted with data:', formData);
         handleModalClose();
     };
+
+    // const handleAppointment = (appointment) => {
+    //     console.log(appointment);
+    // }
 
     return (
         <div>
@@ -78,12 +99,16 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                     {appointment.phone}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
+                                    {
+                                        appointment?.status == 'Assigned' ? <p className='text-green-800 text-sm font-bold'>Assigned</p> : 
+                                    
                                     <button
                                         className='btn btn-sm btn-warning'
                                         onClick={() => handleAssignClick(appointment)}
                                     >
                                         Assign
                                     </button>
+                                    }
                                 </td>
                             </tr>
                         ))}
@@ -100,10 +125,11 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                 Assign Telemedicine Appointment
                             </h3>
                         </div>
-                        <div className="px-6">
+                        <div className="px-6 pt-5">
                             <p><strong>Patient Name:</strong> {selectedAppointment?.name}</p>
                             <p><strong>Requested Date:</strong> {selectedAppointment?.date}</p>
                             <p><strong>Phone:</strong> {selectedAppointment?.phone}</p>
+                            <p><strong>Request for:</strong> {selectedAppointment?.specialty}</p>
                             {/* Add more details here as needed */}
                         </div>
                         <form className='p-6' onSubmit={handleFormSubmit}>
@@ -115,9 +141,9 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                     type="date"
                                     id="date"
                                     name="date"
-                                    value={selectedAppointment?.date ||formData.date}
+                                    value={selectedAppointment?.date || formData.date}
                                     onChange={handleInputChange}
-                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-300 bg-gray-400 rounded-md shadow-sm"
                                     required
                                 />
                             </div>
@@ -131,7 +157,7 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                     name="time"
                                     value={formData.time}
                                     onChange={handleInputChange}
-                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-300 bg-gray-400 rounded-md shadow-sm"
                                     required
                                 />
                             </div>
@@ -139,26 +165,49 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                 <label htmlFor="doctor" className="block text-sm font-medium text-gray-700">
                                     Select Doctor
                                 </label>
-                                <select
+                                {/* <select
                                     id="doctor"
                                     name="doctor"
                                     value={formData.doctor}
                                     onChange={handleInputChange}
-                                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+                                    className="mt-1 p-2 block w-full border border-gray-300 bg-gray-400 rounded-md shadow-sm"
                                     required
                                 >
                                     <option value="">Select a doctor</option>
-                                    {/* Add doctor options here */}
-                                    <option value="doctor1">Dr. Siam</option>
-                                    <option value="doctor2">Dr. Maria</option>
+                                    
+                                    {
+                                        doctorsList?.map((doctor) => 
+                                        <option>{doctor?.name} - {doctor?.department}-{doctor?._id}</option>
+                                        )
+                                    }
+                                    
+                                </select> */}
+                                <select
+                                    id="doctor"
+                                    name="doctor"
+                                    value={`${selectedDoctor.id}||${selectedDoctor.name}`} // Set selected value from state
+                                    onChange={handleDoctorChange}
+                                    className="mt-1 p-2 block w-full border border-gray-300 bg-gray-400 rounded-md shadow-sm"
+                                    required
+                                >
+                                    <option value="">Select a doctor</option>
+                                    {doctorsList?.map((doctor) => (
+                                        <option
+                                            key={doctor?._id}
+                                            value={`${doctor?._id}||${doctor?.name}`} // Combine ID and name in the value
+                                        >
+                                            {doctor?.name} - {doctor?.department}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                             <div className="flex gap-4">
                                 <button
+                                    // onClick={handleAppointment(selectedAppointment)}
                                     type="submit"
                                     className="bg-blue-500 text-white py-2 px-4 rounded"
                                 >
-                                    Save
+                                    Appoint
                                 </button>
                                 <button
                                     type="button"

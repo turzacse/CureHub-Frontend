@@ -46,7 +46,7 @@ const Available = ({todaysDoctor}) => {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-white text-black divide-y divide-gray-200">
+                <tbody className="bg-gray-300 text-black divide-y divide-gray-200">
                     {todaysDoctor?.map((appointment, index) => (
                         <tr key={appointment._id}>
                             <td className="px-3 py-4 whitespace-nowrap">

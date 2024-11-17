@@ -23,7 +23,7 @@ const TotallDoctor = ({activeDoctors}) => {
     return (
         <div>
         <div className="md:mt-20 mt-10 overflow-x-auto text-[10px] md:text-[16px]">
-            <table className="min-w-full  divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-600 text-white">
                     <tr>
                         <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -49,7 +49,7 @@ const TotallDoctor = ({activeDoctors}) => {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-white text-black divide-y divide-gray-200">
+                <tbody className="bg-gray-300 text-black divide-y divide-gray-200">
                     {activeDoctors?.map((appointment, index) => (
                         <tr key={appointment._id}>
                             <td className="px-3 py-2 whitespace-nowrap">
@@ -80,7 +80,7 @@ const TotallDoctor = ({activeDoctors}) => {
                                 </button>
                                 <button
                                     onClick={() => handleRemove(appointment?._id)}
-                                    className='btn btn-sm bg-red-500 text-white hover:text-black'>Remove
+                                    className='btn btn-sm bg-red-500 text-white hover:text-black border-none'>Remove
                                 </button>
                             </td>
                         </tr>

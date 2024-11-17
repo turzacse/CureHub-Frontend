@@ -17,6 +17,10 @@ const AuthProvider = ({ children }) => {
     const [allTelemedicineAppointment, setAllTelemedicineAppointment] = useState();
     const [allCompleteAppointment, setAllCompleteAppointment] = useState();
     const [telemedicineDoctor, setTelemedicineDoctor] = useState();
+
+    const [allUsers, setAllUsers] = useState();
+    const [allDoctors, setAllDoctors] = useState();
+    const [allMessage, setAllMessage] = useState();
     // const navigate = useNavigate();
 
     const createUser = (email, password) => {
@@ -80,6 +84,51 @@ const AuthProvider = ({ children }) => {
     } ,[])
 
 
+    const getAllUsers = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/users');
+            const data = await response.json(); 
+            const users = data?.filter((item) => item?.role !== 'doctor');
+            setAllUsers(users);
+
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            return null; // Return null or handle error as needed
+        }
+    };
+
+    const getAllDoctors = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/doctors');
+            const data = await response.json(); 
+            setAllDoctors(data);
+
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            return null; // Return null or handle error as needed
+        }
+    };
+
+    const getAllMessages = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/contact-us');
+            if (response.ok) {
+                const data = await response.json();
+                setAllMessage(data?.reverse());
+            } else {
+                console.error("Failed to fetch messages. Status:", response.status);
+            }
+        } catch (error) {
+            console.error("Error fetching messages:", error);
+        }
+    };
+
+    useEffect( () => {
+        getAllUsers();
+        getAllDoctors();
+        getAllMessages();
+    } ,[])
+
     console.log('Appointment=========>', usersAppoitment);
 
     const value = {
@@ -92,12 +141,21 @@ const AuthProvider = ({ children }) => {
         allTelemedicineAppointment,
         allCompleteAppointment,
         telemedicineDoctor,
+        allUsers,
+        allDoctors,
+        allMessage,
+        setAllUsers,
+        setAllDoctors,
+        setAllMessage,
         setLoading,
         createUser,
         signIn,
         googleSignIn,
         logOut,
         updateProfileInfo,
+        getAllUsers,
+        getAllDoctors,
+        getAllMessages,
     };
 
     return (

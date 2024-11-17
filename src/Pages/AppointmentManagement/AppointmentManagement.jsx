@@ -90,9 +90,9 @@ const AppointmentManagement = () => {
             <div>
                 {activeTab === 'totalAppointments' && (
                     <div>
-                        {/* <h2 className='text-2xl font-bold text-warning'>
-                            Total Appointments Overview
-                        </h2> */}
+                        <h2 className='text-xl font-bold text-[#006666]'>
+                            Upcoming Appointment (General, Telemdicine) : {allTelemedicineAppointment?.length + allAppointment?.length} ({allAppointment?.length}, {allTelemedicineAppointment?.length})
+                        </h2>
                         <div className="mt-10 flex items-center justify-center">
                             <PieChart className='py-5' width={600} height={300}>
                                 <Pie
