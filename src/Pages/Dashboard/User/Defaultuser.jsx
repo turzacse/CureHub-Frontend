@@ -138,7 +138,7 @@ const Defaultuser = () => {
                             <p className='text-lg font-semibold'>{cartData?.length}</p>
                             <button
                             onClick={() =>{
-                                navigate('/dashboard/cart')
+                                navigate('/cart')
                             }}
                             className='btn btn-sm btn-secondary mt-5 px-4 hover:bg-white border-none hover:text-black'>SEE</button>
 

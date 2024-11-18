@@ -114,6 +114,10 @@ const router = createBrowserRouter([
         element: <About/>
       },
       {
+        path: '/cart',
+        element: <Cart/>
+      },
+      {
         path: '/privacy-policy',
         element: <PrivecyPolicy/>
       },
@@ -199,10 +203,6 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/patient-appointment',
         element: <Appointment/>
-      },
-      {
-        path: '/dashboard/cart',
-        element: <Cart/>
       },
       {
         path: '/dashboard/alluser',

@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
     const [allUsers, setAllUsers] = useState();
     const [allDoctors, setAllDoctors] = useState();
     const [allMessage, setAllMessage] = useState();
+    const [allMedicine, setAllMedicine] = useState();
     // const navigate = useNavigate();
 
     const createUser = (email, password) => {
@@ -122,11 +123,36 @@ const AuthProvider = ({ children }) => {
             console.error("Error fetching messages:", error);
         }
     };
+    // const getAllMedicine = async () => {
+    //     try {
+    //         const response = await fetch('https://cure-hub-backend-gules.vercel.app/medicine');
+    //         const data = await response?.json();
+    //         reverseData = data?.reverse(); // Reverse the data here
+    //         setAllMedicine(reverseData);
+    //         console.log('from auth', reverseData);
+    //     } catch (error) {
+    //         console.error("Error fetching medicine data:", error);
+            
+    //     }
+    // };
+    const getAllMedicine = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/medicine');
+            const data = await response.json(); // Parse the JSON response
+            const reversedData = data.reverse(); // Reverse the data correctly
+            setAllMedicine(reversedData); // Set the reversed data in state
+            console.log('Reversed Data:', reversedData); // Log the reversed data
+        } catch (error) {
+            console.error("Error fetching medicine data:", error);
+        }
+    };
+    
 
     useEffect( () => {
         getAllUsers();
         getAllDoctors();
         getAllMessages();
+        getAllMedicine();
     } ,[])
 
     console.log('Appointment=========>', usersAppoitment);
@@ -144,9 +170,11 @@ const AuthProvider = ({ children }) => {
         allUsers,
         allDoctors,
         allMessage,
+        allMedicine,
         setAllUsers,
         setAllDoctors,
         setAllMessage,
+        setAllMedicine,
         setLoading,
         createUser,
         signIn,
@@ -156,6 +184,7 @@ const AuthProvider = ({ children }) => {
         getAllUsers,
         getAllDoctors,
         getAllMessages,
+        getAllMedicine,
     };
 
     return (

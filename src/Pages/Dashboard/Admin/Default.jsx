@@ -29,7 +29,7 @@ const monthlyData = [
 
 const DefaultAdmin = () => {
 
-    const {allUsers, allDoctors, allTelemedicineAppointment, allAppointment, allMessage} = useContext(AuthContext);
+    const {allUsers, allDoctors, allTelemedicineAppointment, allAppointment, allMessage, allMedicine} = useContext(AuthContext);
     return (
         <div className='mt-10 mx-10'>
             <div className='grid grid-cols-4 gap-6'>
@@ -40,7 +40,7 @@ const DefaultAdmin = () => {
                 <DashboardCard title='MESSAGES' number={allMessage?.length || 0} link='/dashboard/all-message' color='#0EAFE9' />
                 <DashboardCard title='MEMBERSHIP' number={5} color='#3B5998' />
                 <DashboardCard title='ORDER HISTORY' number={8} color='#F7511C' />
-                <DashboardCard title='MEDICAL ANALYSIS' number={5} color='#006666' />
+                <DashboardCard title='MEDICINE' number={ allMedicine?.length || 0} color='#006666' />
 
             </div>
         </div>

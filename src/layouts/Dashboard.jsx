@@ -7,7 +7,7 @@ import Defaultuser from '../Pages/Dashboard/User/Defaultuser';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthContext";
 import { FaCartArrowDown, FaHome, FaVideo } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiMedicines } from "react-icons/gi";
 import DefaultAdmin from "../Pages/Dashboard/Admin/Default";
 import DefaultDoctor from "../Pages/Dashboard/DefaultDoctor";
 import { signOut } from "firebase/auth";
@@ -96,7 +96,7 @@ const Dashboard = () => {
                                     <FaVideo className="text-xl " />
                                     <li className="font-semibold"> Telemedicine</li></Link>
                                 <hr className='border-1' />
-                                <Link to='/dashboard/cart' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
+                                <Link to='/cart' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
                                     <FaCartArrowDown className="text-xl text-[#22C55E] hover:text-black" />
                                     <li className="font-semibold">Cart</li></Link>
                                 <hr className='border-1' />
@@ -160,11 +160,11 @@ const Dashboard = () => {
                                 <li className="font-semibold">
                                     Order History</li></Link>
                             <hr className='border-1' />
-                            <Link to='/dashboard' 
-                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/', location.pathname)}`}>
-                                <IoMdAnalytics className="text-xl " />
+                            <Link to='/dashboard/medicines' 
+                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/medicines', location.pathname)}`}>
+                                <GiMedicines className="text-xl " />
                                 <li className="font-semibold">
-                                    Analysis</li></Link>
+                                    Medicine</li></Link>
                             <hr className='border-1' />
                         </>
                         }
