@@ -144,13 +144,13 @@ const Medicines = () => {
                 background: '#006666',
                 color: 'white'
             });
-    
+
             if (result.isConfirmed) {
                 // Proceed with deletion
                 const response = await fetch(`https://cure-hub-backend-gules.vercel.app/medicine/${medicine._id}`, {
                     method: "DELETE",
                 });
-    
+
                 if (response.ok) {
                     // Success message
                     Swal.fire({
@@ -190,7 +190,7 @@ const Medicines = () => {
             Swal.fire("Error!", "An unexpected error occurred.", "error");
         }
     };
-    
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
@@ -210,12 +210,23 @@ const Medicines = () => {
 
     return (
         <div className="container mx-auto pb-10 px-4 sm:px-6 lg:px-8 pt-20">
-            {/* <h2 className="text-3xl font-bold mb-6 text-center">Shop</h2> */}
-            {/* <Headline headline={'Medicine'} /> */}
             <div className='text-white flex flex-col sm:flex-row justify-between items-start sm:items-center'>
-                <div className='mb-4 sm:mb-0'>
-                    {/* <h2><span className='text-[#ebee48] font-bold'>Seller Name :</span> {user?.displayName} </h2> */}
+                {/* <div className='mb-4 sm:mb-0'>
                     <p className='text-gray-700 text-xl font-bold'>Total Number of Medicine : {allMedicine?.length}</p>
+                    
+                </div> */}
+                <div className="mb-4 sm:mb-0">
+                    <select
+                        onChange={(e) => handleCategoryFilter(e.target.value)}
+                        className="bg-yellow-300 w-full px-4 py-2 rounded-lg shadow-lg text-black"
+                    >
+                        <option value="">All Categories</option>
+                        {Category.map((item, index) => (
+                            <option key={index} value={item.name}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button
                     onClick={handleAdd}
@@ -226,12 +237,13 @@ const Medicines = () => {
                 <table className="w-full ">
                     <thead className='bg-gray-600 h-[60px] text-white'>
                         <tr>
-                        <th className='px-2 py-2 text-left'>SL/No</th>
+                            <th className='px-2 py-2 text-left'>SL/No</th>
                             <th className='px-2 py-2 text-left'>Image</th>
                             <th className='px-2 py-2 text-left'>Name</th>
-                            <th className='px-2 py-2 text-left'>Generic Name</th>
+                            <th className='px-2 py-2 text-left'>Quantity</th>
                             <th className='px-2 py-2 text-left'>Category</th>
                             <th className='px-2 py-2 text-left'>Company</th>
+                            <th className='px-2 py-2 text-left'>Date & Time</th>
                             <th className='px-2 py-2 text-left'>Action</th>
                         </tr>
                     </thead>
@@ -243,9 +255,10 @@ const Medicines = () => {
                                     <img className='w-[50px] h-[50px] rounded-full' src={medicine.photo} alt="" />
                                 </td>
                                 <td className=' py-2 px-2'>{medicine.name}</td>
-                                <td className='py-2 px-2'>{medicine.generic}</td>
+                                <td className='py-2 px-2'>{medicine.unit}</td>
                                 <td className='py-2 px-2'>{medicine.category}</td>
                                 <td className='py-2 px-2'>{medicine.company}</td>
+                                <td className='py-2 px-2'>{medicine.createdAt}</td>
                                 <td className='py-2 px-2 flex justify-center items-center'>
                                     <button onClick={() => handleViewDetails(medicine)} className=" text-[#279b9b] text-2xl py-2 px-2 rounded-md"><IoEyeSharp /></button>
 
@@ -259,7 +272,8 @@ const Medicines = () => {
 
                     <thead className='bg-gray-600 h-[60px] text-white'>
                         <tr>
-                        <th className='px-2 py-2 text-left'></th>
+                            <th className='px-2 py-2 text-left'></th>
+                            <th className='px-2 py-2 text-left'></th>
                             <th className='px-2 py-2 text-left'></th>
                             <th className='px-2 py-2 text-left'></th>
                             <th className='px-2 py-2 text-left'></th>
@@ -297,12 +311,20 @@ const Medicines = () => {
 
             {selectedMedicine && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white p-4 rounded-lg relative w-full max-w-md mx-auto">
-                        <button onClick={handleCloseModal} className="absolute top-2 right-2 p-2">&times;</button>
+                    <div className="bg-gray-300 p-4 rounded-lg relative w-full max-w-md mx-auto">
+                        <button onClick={handleCloseModal} className="absolute top-2 right-2 text-red-600 text-xl font-bold p-2">&times;</button>
                         <h3 className="text-xl font-bold mb-2">{selectedMedicine.name}</h3>
-                        <img src={selectedMedicine.photo} alt={selectedMedicine.name} className=" object-cover mb-4 h-[200px] w-[250px] mx-auto" />
-                        <p>Company: {selectedMedicine.company}</p>
-                        <p className="text-gray-700 font-bold">Price: {selectedMedicine.price}</p>
+                        <div className='h-[120px] w-[180px] rounded-md mx-auto bg-[#156386] p-2'>
+                        <img src={selectedMedicine.photo} alt={selectedMedicine.name} className=" object-cover mb-4 h-full w-full " />
+                        </div>
+                        <p className='text-justify mt-2'>{selectedMedicine?.description}</p>
+                        <p className="text-gray-700 font-bold">Category: {selectedMedicine.category}</p>
+                        <p className="text-gray-700 font-bold">Company: {selectedMedicine.company}</p>
+                        <p className="text-gray-700 font-bold">Actual Price: {selectedMedicine.price} TK</p>
+
+                        <p className="text-gray-700 font-bold">Discount: {selectedMedicine.discount}%</p>
+
+                        <p className="text-blue-500 font-bold">Price: {selectedMedicine.price - (selectedMedicine?.discount * selectedMedicine.price)/100} TK</p>
                         {/* <button
                             className='bg-[#ee3e3e] mt-2 p-2 rounded-lg px-4 text-white w-full sm:w-auto mx-auto'
                             onClick={handleModal}

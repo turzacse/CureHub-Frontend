@@ -27,7 +27,7 @@ const ShopPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState(categories[0]);
     const [filteredMedicines, setFilteredMedicines] = useState([]);
-    const { user,curehubUser } = useContext(AuthContext);
+    const { user, curehubUser, allMedicine, getAllMedicine } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -140,7 +140,25 @@ const ShopPage = () => {
             }
         });
     };
-    console.log('user',curehubUser);
+    console.log('user', curehubUser);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 20;
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(filteredMedicines?.length / itemsPerPage);
+
+    // Get the current items for the page
+    const currentItems = filteredMedicines?.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
+    // Handle page change
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
 
     return (
         <div className="">
@@ -148,12 +166,12 @@ const ShopPage = () => {
                 <h1 className="md:text-4xl text-2xl font-bold md:mb-4">Your Trusted Online Pharmacy</h1>
                 <p className="md:text-xl text-[12px] md:mb-6 mb-3 ">Find and purchase the medications you need with ease and convenience.</p>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => {
-                    window.scroll({
-                        top: 600,
-                        behavior: 'smooth'
-                    });
-                }}
+                    onClick={() => {
+                        window.scroll({
+                            top: 600,
+                            behavior: 'smooth'
+                        });
+                    }}
                 >Shop Now</button>
             </section>
             <div className="md:py-20 py-10">
@@ -194,18 +212,18 @@ const ShopPage = () => {
             </div>
 
             <div className="w-full max-w-5xl mx-auto">
-            <div className="flex border-b border-gray-200">
-                {data.map((category) => (
-                    <button
-                        key={category}
-                        onClick={() => setActiveTab(category)}
-                        className={`px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 cursor-pointer focus:outline-none ${activeTab === category ? 'border-indigo-500 text-yellow-300' : 'border-transparent text-white  hover:text-gray-200 hover:border-gray-300'
-                            }`}
-                    >
-                        {category}
-                    </button>
-                ))}
-            </div>
+                <div className="flex border-b border-gray-200">
+                    {data.map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => setActiveTab(category)}
+                            className={`px-4 py-2 -mb-px text-sm font-medium text-center border-b-2 cursor-pointer focus:outline-none ${activeTab === category ? 'border-indigo-500 text-yellow-300' : 'border-transparent text-white  hover:text-gray-200 hover:border-gray-300'
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
             </div>
 
 
@@ -223,12 +241,12 @@ const ShopPage = () => {
                         </div>
                     </div>
                     <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-4 gap-6">
-                        {filteredMedicines.map((medicine) => (
+                        {currentItems?.map((medicine) => (
                             <div key={medicine._id} className="bg-[#417e8b] p-4 rounded-lg shadow-md">
                                 <FaInfoCircle className='text-yellow-300 text-xl' onClick={{
 
-                                }} 
-                                style={{cursor: 'pointer'}}
+                                }}
+                                    style={{ cursor: 'pointer' }}
                                 />
                                 <img src={medicine.photo || image} alt="Product Name" className="w-[140px] h-[140px] mx-auto rounded-full object-cover" />
                                 <h3 className="text-lg text-gray-50 font-bold mt-4">{medicine.name}</h3>
@@ -242,6 +260,32 @@ const ShopPage = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+
+
+                    <div className="flex lg:bottom-10 lg:left-1/2 justify-center mt-10">
+                        <nav className="block">
+                            <ul className="flex pl-0 rounded list-none flex-wrap">
+                                {Array.from({ length: totalPages }, (_, index) => {
+                                    if (totalPages <= 5 || index < 2 || index >= totalPages - 2 || Math.abs(index + 1 - currentPage) <= 1) {
+                                        return (
+                                            <li key={index} className="page-item">
+                                                <button
+                                                    onClick={() => handlePageChange(index + 1)}
+                                                    className={`page-link relative block py-1.5 px-3 leading-tight text-gray-800  ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-yellow-300'}`}
+                                                >
+                                                    {index + 1}
+                                                </button>
+                                            </li>
+                                        );
+                                    } else if (index === 2 || index === totalPages - 3) {
+                                        return <li key={index} className="page-item"> .  .  . </li>;
+                                    } else {
+                                        return null;
+                                    }
+                                })}
+                            </ul>
+                        </nav>
                     </div>
                 </section>
             </div>

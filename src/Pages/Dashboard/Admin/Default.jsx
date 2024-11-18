@@ -38,9 +38,9 @@ const DefaultAdmin = () => {
                 <DashboardCard title='APPOINTMENTS' number={allTelemedicineAppointment?.length + allAppointment?.length || 0} link='/dashboard/appointment-management' color='#D85958' />
                 <DashboardCard title='PAYMENTS' number={10}  color='#599C2D' />
                 <DashboardCard title='MESSAGES' number={allMessage?.length || 0} link='/dashboard/all-message' color='#0EAFE9' />
-                <DashboardCard title='MEMBERSHIP' number={5} color='#3B5998' />
-                <DashboardCard title='ORDER HISTORY' number={8} color='#F7511C' />
-                <DashboardCard title='MEDICINE' number={ allMedicine?.length || 0} color='#006666' />
+                <DashboardCard title='MEMBERSHIP' link='/dashboard/membership' number={5} color='#3B5998' />
+                <DashboardCard title='ORDER HISTORY' link='/dashboard/order-history' number={8} color='#F7511C' />
+                <DashboardCard title='MEDICINE' link='/dashboard/medicines'  number={ allMedicine?.length || 0} color='#006666' />
 
             </div>
         </div>

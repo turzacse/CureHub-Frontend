@@ -53,6 +53,8 @@ import PrivecyPolicy from './Pages/PrivecyPolicy/PrivecyPolicy.jsx';
 import TermOfService from './Pages/TermOfService/TermOfService.jsx';
 import AdminMessage from './Pages/AdminMessage/AdminMessage.jsx';
 import Usersmessage from './Pages/UsersMesage/Usersmessage.jsx';
+import AdminMemberShip from './Pages/AdminMemberShip/AdminMemberShip.jsx';
+import AdminOrderHistory from './Pages/AdminOrderHistory/AdminOrderHistory.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -223,6 +225,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/user-message',
         element: <Usersmessage/>
+      },
+      {
+        path: '/dashboard/membership',
+        element: <AdminMemberShip/>
+      },
+      {
+        path: '/dashboard/order-history',
+        element: <AdminOrderHistory/>
       },
     ]
   },

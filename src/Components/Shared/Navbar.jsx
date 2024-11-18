@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
 import logo1 from '../../assets/Logo/logo1.png'
 import logo2 from '../../assets/Logo/logo2.png'
-import { FaBookmark } from 'react-icons/fa';
+import { FaBookmark, FaCartArrowDown } from 'react-icons/fa';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -81,7 +81,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <div className="dropdown dropdown-end">
+                        {/* <div className="dropdown dropdown-end">
                             <label tabIndex={0} className=" avatar">
                                 <div className="">
                                     <FaBookmark className='text-pink-400 cursor-pointer' />
@@ -100,6 +100,14 @@ const Navbar = () => {
                                 </button></li>
                                 <li><button className="text-gray-800 font-semibold">Telemedicine</button></li>
                             </ul>
+                        </div> */}
+                        <div>
+                        <FaCartArrowDown onClick={() => {
+                            navigate('/cart')
+                        }}
+                        className='text-xl text-pink-300'
+                        style={{cursor: 'pointer', marginRight: '10px'}}
+                        />
                         </div>
 
                         <div className="indicator ml-2 mr-4">
@@ -115,7 +123,7 @@ const Navbar = () => {
                                             <img className="rounded-full flex justify-center items-center mx-auto" src={user.photoURL} alt="user profile" />
                                         </div>
                                     </label>
-                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-400 rounded-box w-52">
+                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-100 rounded-box w-52 ">
                                         <p className='ml-3'>
                                             <div className="justify-between">
                                                 <h2 className='text-black font-bold'>{
@@ -124,10 +132,10 @@ const Navbar = () => {
                                             <hr />
                                         </p>
 
-                                        <li><button className="text-gray-800 font-semibold" onClick={() => {
+                                        <li><button className="text-gray-800 font-semibold text-md hover:bg-yellow-400" onClick={() => {
                                             navigate('/dashboard')
                                         }}>Account</button></li>
-                                        <li><button className="text-gray-800 font-semibold" onClick={handleLogout}>Log Out</button></li>
+                                        <li><button className="text-red-600 font-semibold text-md hover:bg-yellow-400" onClick={handleLogout}>Log Out</button></li>
 
                                     </ul>
                                 </div>

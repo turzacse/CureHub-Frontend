@@ -148,14 +148,14 @@ const Dashboard = () => {
                                 <li className="font-semibold">
                                     Messages</li></Link>
                             <hr className='border-1' />
-                            <Link to='/dashboard' 
-                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/', location.pathname)}`}>
+                            <Link to='/dashboard/membership' 
+                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/membership', location.pathname)}`}>
                                 <LuBadgeHelp className="text-xl " />
                                 <li className="font-semibold">
                                     MemeberShip</li></Link>
                             <hr className='border-1' />
-                            <Link to='/dashboard' 
-                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/', location.pathname)}`}>
+                            <Link to='/dashboard/order-history' 
+                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/order-history', location.pathname)}`}>
                                 <FaCartArrowDown className="text-xl " />
                                 <li className="font-semibold">
                                     Order History</li></Link>
