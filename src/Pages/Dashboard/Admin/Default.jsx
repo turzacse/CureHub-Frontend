@@ -12,27 +12,18 @@ const data = [
     { name: 'Total Uses', value: 30 }
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A6D71C'];
-
-const monthlyData = [
-    { month: 'January2024', patients: 30 },
-    { month: 'February2024', patients: 40 },
-    { month: 'March2024', patients: 45 },
-    { month: 'April2024', patients: 65 },
-    { month: 'May2024', patients: 58 },
-    { month: 'June2024', patients: 72 },
-    { month: 'July2024', patients: 83 },
-    { month: 'August2024', patients: 48 },
-
-    // You can add more data here as needed
-];
-
 const DefaultAdmin = () => {
 
     const {allUsers, allDoctors, allTelemedicineAppointment, allAppointment, allMessage, allMedicine} = useContext(AuthContext);
     return (
-        <div className='mt-10 mx-10'>
-            <div className='grid grid-cols-4 gap-6'>
+        <div  className='mt-10 mx-10 '>
+            <div
+            style={{
+                maxHeight: 'calc(100vh - 100px)', // Adjust based on your header/footer size
+                overflowY: 'auto',
+                padding: '10px',
+              }}
+            className='grid md:grid-cols-4 grid-cols-1 gap-6'>
                 <DashboardCard title='CH USERS' number={allUsers?.length || 0} link='/dashboard/alluser' color='#6761DA' />
                 <DashboardCard title='CH DOCTORS' number={allDoctors?.length || 0} link='/dashboard/doctors' color='#EBA11C' />
                 <DashboardCard title='APPOINTMENTS' number={allTelemedicineAppointment?.length + allAppointment?.length || 0} link='/dashboard/appointment-management' color='#D85958' />
