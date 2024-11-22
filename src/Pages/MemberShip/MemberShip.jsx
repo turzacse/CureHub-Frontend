@@ -3,11 +3,12 @@ import MembershipPlans from '../Home/MembershipPlans';
 import Heading from '../../Components/PageHeading/Heading';
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
 import PaymentForm from '../CheckOut/SSL';
+import { useNavigate } from 'react-router-dom';
 
 const plans = [
     {
         name: 'Basic Plan',
-        price: 999,
+        price: 299,
         features: [
             'Access to online medicine purchase',
             'Book appointments with general practitioners',
@@ -19,7 +20,7 @@ const plans = [
     },
     {
         name: 'Premium Plan',
-        price: 2999,
+        price: 499,
         features: [
             'All features of the Basic Plan',
             'Unlimited telemedicine consultations',
@@ -31,7 +32,7 @@ const plans = [
     },
     {
         name: 'Family Plan',
-        price: 4999,
+        price: 999,
         features: [
             'All features of the Premium Plan',
             'Coverage for up to 4 family members',
@@ -67,6 +68,20 @@ const MemberShip = () => {
         window.scroll(0, 0);
     }, [])
 
+    const navigate = useNavigate();
+    const  handleMembership = (price, name) => {
+        console.log('clicked')
+        const paymentData = {
+            type: 'Membership Plan',
+            details: name,
+            ammount: price,
+        }
+
+        navigate('/payment', {
+            state: paymentData
+        });
+    }
+
     return (
         <div>
             <Heading title='Membership' />
@@ -91,7 +106,11 @@ const MemberShip = () => {
                                     <li key={idx} className="mb-2">• {feature}</li>
                                 ))}
                             </ul>
-                            <button className="bg-teal-500 mt-10 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-300">
+                            <button
+                            onClick={() => {
+                                handleMembership(plan?.price, plan?.name)
+                            }}
+                            className="bg-teal-500 mt-10 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-300">
                                 Get Started
                             </button>
                         </div>

@@ -102,30 +102,42 @@ const Appointment = () => {
         }
     };
 
-    const handlePayClick = () => {
-        Swal.fire({
-            // title: 'Proceed with payment?',
-            text: "To confirm your appointment, you must pay our service charge or 50% of the total payment.",
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, pay now!',
-            background: '#006666', // Set background color
-            color: '#fff',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    // title: 'Cancelled!',
-                    text: 'Your payment has been successfully processed.',
-                    icon: 'success',
-                    background: '#006666',
-                    confirmButtonColor: '#3085d6',
-                    color: '#fff',
-                })
-            }
+    const handleTelemedicinePayClick = (id) => {
+
+        const paymentData = {
+            type: 'Telemedicine',
+            details: 'Telemedicine Appointment',
+            ammount: 499,
+            appointmentId: id
+        }
+        navigate('/payment', {
+            state: paymentData
         });
+
     };
+
+    // Swal.fire({
+    //     // title: 'Proceed with payment?',
+    //     text: "To confirm your appointment, you must pay our service charge or 50% of the total payment.",
+    //     icon: 'info',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: 'Yes, pay now!',
+    //     background: '#006666', // Set background color
+    //     color: '#fff',
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         Swal.fire({
+    //             // title: 'Cancelled!',
+    //             text: 'Your payment has been successfully processed.',
+    //             icon: 'success',
+    //             background: '#006666',
+    //             confirmButtonColor: '#3085d6',
+    //             color: '#fff',
+    //         })
+    //     }
+    // });
 
     const handleTelemedicineCancel = async (appointment) => {
         try {
@@ -217,7 +229,7 @@ const Appointment = () => {
                 {/* Upcoming Appointments List */}
                 <div className="bg-gray-300 shadow-lg rounded-lg p-6">
                     <div className="flex flex-col gap-2 mb-4">
-                        <h2 className="text-2xl font-bold mb-0 pb-0 text-gray-800">Upcoming Appointments</h2>
+                        <h2 className="md:text-2xl font-bold mb-0 pb-0 text-gray-800">Upcoming Appointments</h2>
                         <p className="text-[12px] mt-0 pt-0 font-bold bg-gradient bg-clip-text text-transparent animate-gradient">
                             To confirm your appointment, you must pay our service charge or 50% of the total payment.
                         </p>
@@ -242,7 +254,9 @@ const Appointment = () => {
                                 </div> */}
                                             <div className='flex flex-1 items-center md:gap-5 justify-center text-2xl'>
                                                 <MdCancel className='cursor-pointer text-red-700' onClick={() => handleCancelClick(appointment)} />
-                                                <MdPaid className='cursor-pointer text-blue-700' onClick={handlePayClick} />
+                                                <MdPaid className='cursor-pointer text-blue-700'
+                                                // onClick={handlePayClick} 
+                                                />
                                             </div>
                                             <div className='flex-1 flex justify-end'>
                                                 <div>
@@ -272,10 +286,21 @@ const Appointment = () => {
                 <div className="bg-gray-300 mt-5 shadow-lg rounded-lg p-6">
 
                     <div className="flex flex-col gap-2 mb-4">
-                        <h2 className="text-2xl font-bold mb-0 pb-0 text-gray-800">Upcoming Telemedicine Appointments</h2>
+                        <h2 className="md:text-2xl font-bold mb-0 pb-0 text-gray-800">Upcoming Telemedicine Appointments</h2>
                         <p className="text-[12px] mt-0 pt-0 font-bold bg-gradient bg-clip-text text-transparent animate-gradient">
                             To confirm your appointment, you must pay our fee.
                         </p>
+                        <p className="text-[12px] mt-0 pt-0 font-bold bg-gradient bg-clip-text text-transparent animate-gradient">
+                            Fee: 499 TK
+                        </p>
+                        {/* <div>
+                            {'The Booking Status will be ---->'}
+                            <ul>
+                                <li>Booked</li>
+                                <li>Paid</li>
+                                <li>Assigned</li>
+                            </ul>
+                        </div> */}
                     </div>
                     {
                         !isLoading ?
@@ -285,29 +310,60 @@ const Appointment = () => {
                                 ) : (
                                     <ul>
                                         {telemedicine?.map((appointment, index) => (
-                                            <li key={index} className="border-b py-4 flex justify-between items-center">
+                                            <li key={index} className="border-b p-4 flex flex-col md:flex-row gap-2 rounded-lg justify-between items-center bg-green-100">
                                                 <div className='flex-1'>
                                                     <h3 className="md:text-lg md:font-semibold font-medium text-gray-700">{appointment?.specialty}</h3>
                                                     <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.date || '28/07/2024'}</p>
                                                 </div>
                                                 <div className="flex-1 flex justify-center">
-                                                    <p>12:30:42</p>
+                                                    <button className='btn btn-info btn-sm'>Track Your Appointment</button>
                                                 </div>
                                                 {/* <div className="ml-4">
                                             <CountdownTimer targetDate={targetDate} />
                                 </div> */}
-                                                <div className='flex flex-1 items-center md:gap-5 justify-center text-2xl'>
-                                                    <MdCancel className='cursor-pointer text-red-700' onClick={() => handleTelemedicineCancel(appointment)} />
-                                                    <MdPaid className='cursor-pointer text-blue-700' onClick={handlePayClick} />
-                                                </div>
                                                 <div className='flex-1 flex justify-end'>
                                                     <div>
                                                         {/* <p className='text-center text-[5px]font-bold text-purple-600'>Pending</p> */}
-                                                        <button className="bg-blue-500  text-white py-1 px-3 rounded-md">
-                                                            Track Your Meeting
-                                                        </button>
+                                                        <p className="bg-blue-500  text-white py-1 px-3 rounded-md">
+                                                            {appointment?.status}
+                                                        </p>
                                                     </div>
                                                 </div>
+                                                <div className='flex flex-1 items-center gap-2 justify-center '>
+
+                                                    {
+                                                       appointment?.status === 'Paid' || appointment?.status === 'Assigned'? 
+                                                       <button
+                                                        
+                                                        className='btn btn-warning px-6 btn-sm cursor-not-allowed'>Pay</button>
+                                                        :
+                                                        <button
+                                                        onClick={() => {
+                                                            handleTelemedicinePayClick(appointment?._id)
+                                                        }}
+
+                                                        className='btn btn-warning px-6 btn-sm'>Pay</button> 
+                                                    }
+
+                                                    
+
+                                                    {
+                                                        appointment?.status === 'Paid' ?
+                                                            <button
+
+                                                                className='btn bg-red-500 border-none text-white px-6 btn-sm hover:bg-red-600 cursor-not-allowed'>Delete</button>
+                                                            :
+                                                            <button
+                                                                onClick={() => handleTelemedicineCancel(appointment)}
+
+                                                                className='btn bg-red-500 border-none text-white px-6 btn-sm hover:bg-red-600'>Delete</button>
+                                                    }
+                                                    {/* <button
+                                                    onClick={() => handleTelemedicineCancel(appointment)}
+                                                   
+                                                    className='btn bg-red-500 border-none text-white px-6 btn-sm hover:bg-red-600'>Delete</button> */}
+                                                </div>
+
                                             </li>
                                         )
                                         )}
@@ -325,20 +381,20 @@ const Appointment = () => {
                 </div>
 
                 <div className='mt-10 flex justify-between'>
-                   <div>
-                   </div>
-                    
+                    <div>
+                    </div>
+
                     <div className='flex md:w-1/3 justify-end flex-col gap-4 '>
                         <button
                             onClick={() => {
                                 navigate('/doctors')
                             }}
-                            className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black flex justify-end'>Book Appointment with your desire Doctor</button>
+                            className='btn btn-md bg-warning hover:bg-yellow-400 border-none text-black flex justify-end'>Book Appointment with your desire Doctor</button>
                         <button
                             onClick={() => {
                                 navigate('/telemedicine-booking')
                             }}
-                            className='btn btn-md btn-outline hover:bg-warning hover:border-none hover:text-black'>Book a Telemedicine Appointment</button>
+                            className='btn btn-md bg-warning hover:bg-yellow-400 border-none text-black flex justify-end'>Book a Telemedicine Appointment</button>
                     </div>
                 </div>
             </section>
@@ -347,5 +403,3 @@ const Appointment = () => {
 };
 
 export default Appointment;
-
-

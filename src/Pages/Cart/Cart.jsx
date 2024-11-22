@@ -4,13 +4,14 @@ import { AuthContext } from '../../Provider/AuthContext';
 import { MdOutlineCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
 import Promotion from './Promotion';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { user, curehubUser } = useContext(AuthContext);
     const [allSelecteditem, setAllSelecteditem] = useState([]);
     const [myCart, setMyCart] = useState([]);
     const [quantities, setQuantities] = useState({});
-    console.log(allSelecteditem);
+    const navigate = useNavigate();
 
     const getCartItem = () => {
         fetch('https://cure-hub-backend-gules.vercel.app/carts')
@@ -147,6 +148,21 @@ const Cart = () => {
         }, 0);
     };
 
+    
+
+    const handleCheckOut = () => {
+        const paymentData = {
+            type: 'Medicine Purchase',
+            details: 'Buy Medicine',
+            ammount: calculateTotalPrice() + 15 + 5,
+
+        }
+
+        navigate('/payment', {
+            state: paymentData
+        });
+    }
+
     return (
         <div>
             <Heading title='SHOPPING CART' subtitle='Review your selected items and proceed to checkout.' />
@@ -189,18 +205,20 @@ const Cart = () => {
                            
                             <div className=" mt-5 gap-10">
                                 <p className=''>Subtotal: {calculateTotalPrice()}</p>
-                                <p className=''>Shipping: 35</p>
-                                <p className=''>TAX + VAT: 15</p>
+                                <p className=''>Shipping: 15</p>
+                                <p className=''>TAX + VAT: 5</p>
 
                                  <hr className='w-1/3' />
-                                <p className=''>Total: {calculateTotalPrice() + 1}</p>
+                                <p className=''>Total: {calculateTotalPrice() + 15 + 5}</p>
                                 {/* <button className='bg-gray-200 px-4 py-2 text-black rounded-lg'>Proceed to Pay</button> */}
                             </div>
                         </div>
 
                         
                     }
-                     <button className="proceed-checkout bg-green-500 text-white rounded-md mb-2 md:mb-0 px-4 py-1 md:mr-2 hover:bg-green-600">
+                     <button
+                     onClick={handleCheckOut}
+                     className="proceed-checkout bg-green-500 text-white rounded-md mb-2 md:mb-0 px-4 py-1 md:mr-2 hover:bg-green-600">
                         Proceed to Checkout
                     </button>
                     </div>

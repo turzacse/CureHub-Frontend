@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.4.4",
-    "@stripe/react-stripe-js": "^2.8.0",
-    "@stripe/stripe-js": "^4.3.0",
+    "@stripe/react-stripe-js": "^2.9.0",
+    "@stripe/stripe-js": "^4.10.0",
     "axios": "^1.7.2",
     "chart.js": "^4.4.4",
     "firebase": "^10.12.2",

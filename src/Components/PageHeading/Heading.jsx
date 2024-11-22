@@ -11,7 +11,7 @@ const Heading = ({title, subtitle}) => {
                 }}>
                 <div className="hero-overlay text-black bg-opacity-30"></div>
                 <div className="hero-content text-neutral-content text-center">
-                    <div className="w-full py-5 text-black">
+                    <div className="w-full py-5 text-gray-800">
                         <h1 className="md:text-4xl uppercase text-xl font-bold mb-2">{title}</h1>
                         <p className="md:text-lg text-[12px]">
                             {subtitle}

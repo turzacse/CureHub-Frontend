@@ -55,6 +55,9 @@ import AdminMessage from './Pages/AdminMessage/AdminMessage.jsx';
 import Usersmessage from './Pages/UsersMesage/Usersmessage.jsx';
 import AdminMemberShip from './Pages/AdminMemberShip/AdminMemberShip.jsx';
 import AdminOrderHistory from './Pages/AdminOrderHistory/AdminOrderHistory.jsx';
+import UserProfile from './Pages/UserProfile/UserProfile.jsx';
+import Payment from './Pages/Payment/Payment.jsx';
+import AdminPayment from './Pages/AdminPayment/AdminPayment.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -118,6 +121,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart/>
+      },
+      {
+        path: '/payment',
+        element: <Payment/>
       },
       {
         path: '/privacy-policy',
@@ -211,6 +218,10 @@ const router = createBrowserRouter([
         element: <AllUser/>
       },
       {
+        path: '/dashboard/payments',
+        element: <AdminPayment/>
+      },
+      {
         path: '/dashboard/appointment-management',
         element: <AppointmentManagement/>
       },
@@ -233,6 +244,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/order-history',
         element: <AdminOrderHistory/>
+      },
+      {
+        path: '/dashboard/user-profile',
+        element: <UserProfile/>
       },
     ]
   },

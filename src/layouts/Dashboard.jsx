@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { MdAccountBox, MdAccountCircle, MdAddBox, MdOutlinePayment } from "react-icons/md";
 import { IoAddCircleSharp, IoCalendarNumber, IoPeople } from "react-icons/io5";
 import { IoMdAnalytics, IoMdLogOut, IoMdMenu } from "react-icons/io";
@@ -44,10 +44,13 @@ const Dashboard = () => {
 
                 {/* Content Area */}
                 <div className="drawer-content flex flex-col text-black h-screen">
-                    <label htmlFor="my-drawer-2" className="lg:hidden absolute left-0 top-0 btn cursor-pointer py-0 border-none bg-[#006666] text-white"
-                        style={{ borderRadius: '0px', height: '20px', borderBottomRightRadius: '8px' }}
+                    <label htmlFor="my-drawer-2" className="lg:hidden absolute left-0 top-0 btn cursor-pointer py-0 border-none w-full bg-[#006666] text-white rounded-none justify-between"
+                        // style={{ borderRadius: '0px', height: '20px' }}
                     >
-                        <GiHamburgerMenu />
+                        <GiHamburgerMenu className="flex justify-start" />
+                        <NavLink to='/' className="text-gray-300 text-lg">Cure<span className="text-yellow-300 ">Hub</span></NavLink>
+
+                        <p></p>
                     </label>
 
                     {isLoading && <div className="flex justify-center items-center">
@@ -83,24 +86,32 @@ const Dashboard = () => {
                         {
                             role && role === 'user' && <>
                                 <hr className='border-1 ' />
-                                <Link to='/dashboard' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
+                                <Link to='/dashboard' 
+                                className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard', location.pathname)}`}>
                                     <MdAccountCircle className="text-xl " />
                                     <li className="font-semibold">
                                         Account</li></Link>
+                                        <hr className='border-1 ' />
+                                <Link to='/dashboard/user-profile' 
+                                className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-profile', location.pathname)}`}>
+                                    <MdAccountCircle className="text-xl " />
+                                    <li className="font-semibold">
+                                        Profile</li></Link>
                                 <hr className='border-1 ' />
-                                <Link to='/dashboard/patient-appointment' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
+                                <Link to='/dashboard/patient-appointment' className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/patient-appointment', location.pathname)}`}>
                                     <IoCalendarNumber className="text-xl " />
                                     <li className="font-semibold">Appointment</li></Link>
-                                <hr className='border-1' />
+                                {/* <hr className='border-1' />
                                 <Link to='/telemedicine' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
                                     <FaVideo className="text-xl " />
-                                    <li className="font-semibold"> Telemedicine</li></Link>
-                                <hr className='border-1' />
+                                    <li className="font-semibold"> Telemedicine</li></Link> */}
+                                {/* <hr className='border-1' />
                                 <Link to='/cart' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
                                     <FaCartArrowDown className="text-xl text-[#22C55E] hover:text-black" />
-                                    <li className="font-semibold">Cart</li></Link>
+                                    <li className="font-semibold">Cart</li></Link> */}
                                 <hr className='border-1' />
-                                <Link to='/dashboard/user-message' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
+                                <Link to='/dashboard/user-message' 
+                                className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-message', location.pathname)}`}>
                                     <FaRegMessage className="text-xl " />
                                     <li className="font-semibold">Message</li></Link>
                                 <hr className='border-1' />
@@ -134,8 +145,8 @@ const Dashboard = () => {
                                 <li className="font-semibold">
                                     Appointment</li></Link>
                             <hr className='border-1' />
-                            <Link to='/dashboard' 
-                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/', location.pathname)}`}
+                            <Link to='/dashboard/payments' 
+                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/payments', location.pathname)}`}
                             >
                                 <MdOutlinePayment className="text-xl " />
                                 <li className="font-semibold">

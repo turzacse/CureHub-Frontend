@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthContext';
 
 const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
+    const {getAllTelemedicineAppintment} = useContext(AuthContext);
     const [formData, setFormData] = useState({
         date: '',
         time: '',
@@ -49,12 +53,68 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
         });
     };
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission
-        console.log('Form submitted with data:', formData);
-        handleModalClose();
-    };
+      
+        // Extract necessary fields from formData
+        const { doctorId, doctor, date, time } = formData;
+      
+        // Create request payload
+        const payload = {
+          doctorId, // from formData
+          doctorName: doctor, // Map doctor to doctorName for API compatibility
+          appointmentDate: date, // Map date to appointmentDate
+          appointmentTime: time, // Map time to appointmentTime
+        };
+      
+        try {
+          // Show a loading Swal
+          Swal.fire({
+            title: 'Updating Appointment',
+            text: `Please wait...`,
+            icon: 'info',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+              Swal.showLoading(); // Show loading spinner
+            },
+          });
+      
+          // Make PUT request to update the telemedicine appointment
+          const response = await axios.put(
+            `https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/${selectedAppointment?._id}`, // Replace `appointmentId` dynamically
+            payload
+          );
+          getAllTelemedicineAppintment();
+          // Success Swal
+          Swal.fire({
+            title: 'Success!',
+            text: 'Appointment updated successfully.',
+            icon: 'success',
+            background: '#006666',
+            color: 'white',
+            timer: 2000, // Automatically close after 2 seconds
+            showConfirmButton: false,
+          }).then(() => {
+            // Close modal after success
+            handleModalClose();
+          });
+      
+          console.log('Appointment updated successfully:', response.data);
+        } catch (error) {
+          // Error Swal
+          Swal.fire({
+            title: 'Error',
+            text: error.response?.data?.message || 'Failed to update appointment. Please try again.',
+            icon: 'error',
+            background: '#ffdddd',
+            color: 'black',
+            confirmButtonText: 'Close',
+          });
+      
+          console.error('Error updating appointment:', error.response?.data || error.message);
+        }
+      };
 
     // const handleAppointment = (appointment) => {
     //     console.log(appointment);
@@ -81,6 +141,9 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                             <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 Status
                             </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody className="bg-gray-300 text-black divide-y divide-gray-200">
@@ -99,8 +162,11 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                     {appointment.phone}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
+                                    {appointment.status}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
                                     {
-                                        appointment?.status == 'Assigned' ? <p className='text-green-800 text-sm font-bold'>Assigned</p> : 
+                                        appointment?.status == 'Paid' ?  
                                     
                                     <button
                                         className='btn btn-sm btn-warning'
@@ -108,6 +174,8 @@ const TeleMedicineTable = ({ allTelemedicineAppointment }) => {
                                     >
                                         Assign
                                     </button>
+                                    :
+                                    <button className=' btn btn-sm btn-warning text-sm font-bold'>View</button> 
                                     }
                                 </td>
                             </tr>
