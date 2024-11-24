@@ -80,7 +80,7 @@ const TotallDoctor = ({activeDoctors}) => {
                                 </button>
                                 <button
                                     onClick={() => handleRemove(appointment?._id)}
-                                    className='btn btn-sm bg-red-500 text-white hover:text-black border-none'>Remove
+                                    className='btn btn-sm bg-red-500 text-white hover:bg-red-600 border-none'>Remove
                                 </button>
                             </td>
                         </tr>

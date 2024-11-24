@@ -83,7 +83,7 @@ const AllUser = () => {
                                                 <tr key={index} className="hover:bg-gray-400 text-black">
                                                     <td className="py-3 md:px-6 px-1 border-b"> {(currentPage - 1) * itemsPerPage + index + 1}</td>
                                                     <td className="py-3 md:px-6 px-3 border-b">
-                                                        <img className='w-[50px] h-[50px] rounded-full' src={user?.photo} alt="" />
+                                                        <img className='h-[50px] w-[50px] rounded-full' src={user?.photo} alt="" />
                                                         {/* {user?.photo || "N/A"} */}
                                                     </td>
                                                     <td className="py-3 md:px-6 px-3 border-b">{user?.username || "N/A"}</td>
