@@ -12,7 +12,7 @@ const Payment = () => {
     const location = useLocation();
     const paymentData = location.state;
     const {curehubUser, user} = useContext(AuthContext);
-
+    console.log(paymentData?.medicines);
     useEffect(() => {
         window.scroll(0,0);
     } ,[])
@@ -40,7 +40,8 @@ const Payment = () => {
                         price={paymentData?.ammount} 
                         type={paymentData?.type} 
                         subtype={paymentData?.details} 
-                        appointmentId= {paymentData?.appointmentId}  
+                        appointmentId= {paymentData?.appointmentId}
+                        medicines = {paymentData?.medicines}  
                         />
                     </Elements>
                 </section>

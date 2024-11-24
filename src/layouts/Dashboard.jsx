@@ -110,6 +110,11 @@ const Dashboard = () => {
                                     <FaCartArrowDown className="text-xl text-[#22C55E] hover:text-black" />
                                     <li className="font-semibold">Cart</li></Link> */}
                                 <hr className='border-1' />
+                                <Link to='/dashboard/user-order' 
+                                className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-order', location.pathname)}`}>
+                                    <FaRegMessage className="text-xl " />
+                                    <li className="font-semibold">My Oder</li></Link>
+                                <hr className='border-1' />
                                 <Link to='/dashboard/user-message' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-message', location.pathname)}`}>
                                     <FaRegMessage className="text-xl " />

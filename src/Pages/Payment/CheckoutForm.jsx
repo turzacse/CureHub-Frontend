@@ -5,7 +5,7 @@ import { AuthContext } from '../../Provider/AuthContext';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-const CheckoutForm = ({ price, type, subtype, appointmentId }) => {
+const CheckoutForm = ({ price, type, subtype, appointmentId, medicines }) => {
     const [clientSecret, setClientSecret] = useState('');
     const { curehubUser, user } = useContext(AuthContext);
     const stripe = useStripe();
@@ -61,39 +61,61 @@ const CheckoutForm = ({ price, type, subtype, appointmentId }) => {
         const paymentData = {
             transactionID: tId,
             amount: price,
-            type:type,
+            type: type,
             email: user?.email,
-            subtype: subtype, 
-        }
+            subtype: subtype,
+        };
+    
         if (type === 'Telemedicine') {
-            paymentData.appointmentId = appointmentId; 
+            paymentData.appointmentId = appointmentId;
         }
-
+        if (type === 'Medicine') {
+            paymentData.medicines = medicines;
+        }
+    
         console.log(paymentData);
+    
         try {
             const response = await axios.post('https://cure-hub-backend-gules.vercel.app/payments', paymentData);
             console.log('Payment added successfully:', response.data);
-            if(type =='Membership Plan'){
-                const plan = subtype
-                const email = user?.email
+    
+            // Perform specific actions based on type
+            if (type === 'Membership Plan') {
+                const plan = subtype;
+                const email = user?.email;
                 updateUserPlan(email, plan);
-            }
-            else if(type == 'Telemedicine'){
-                if(appointmentId){
+            } else if (type === 'Telemedicine') {
+                if (appointmentId) {
                     updateAppointment(appointmentId);
                 }
             }
+    
+            // Show success message and navigate to /dashboard on confirmation
             Swal.fire({
-                text: 'Payment Successfull',
-                icon:'success',
+                text: 'Payment Successful!',
+                icon: 'success',
                 background: '#006666',
-                color: 'white'
-            })
-
+                color: 'white',
+                confirmButtonText: 'OK',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to /dashboard
+                    window.location.href = '/dashboard';
+                }
+            });
         } catch (error) {
             console.error('Error adding payment:', error.response ? error.response.data : error.message);
+    
+            // Show error alert
+            Swal.fire({
+                text: 'Something went wrong. Please try again.',
+                icon: 'error',
+                background: '#FF6666',
+                color: 'white',
+            });
         }
     };
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();

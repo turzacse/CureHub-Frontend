@@ -30,7 +30,7 @@ const Footer = () => {
                             <li className="mb-2"><NavLink to='/' className='font-semibold'>Home</NavLink></li>
                             
                             <li className="mb-2"><NavLink to='/doctors' className='font-semibold'>Doctors </NavLink></li>
-                            <li className="mb-2"><NavLink to='/telemedicine' className='font-semibold'>Telemedicine</NavLink></li>
+                            <li className="mb-2"><NavLink to='/telemedicine-booking' className='font-semibold'>Telemedicine</NavLink></li>
                             <li className="mb-2"><NavLink to='/shop' className='font-semibold'>MediShop</NavLink></li>
                             <li><NavLink to="/analysis" className='font-semibold'>Medical Analysis</NavLink></li>
                         </ul>
@@ -43,7 +43,6 @@ const Footer = () => {
                         <ul>
                             <li className="mb-2"><NavLink to='/about' className='font-semibold'>About Us</NavLink></li>
                             <li className="mb-2"><NavLink to='/faq' className='font-semibold'>FAQ</NavLink></li>
-                            <li className="mb-2"><a className='font-semibold'>Shipping & Returns</a></li>
                             <li className="mb-2"><NavLink to='/privacy-policy' className='font-semibold'>Privacy Policy</NavLink></li>
                             <li className="mb-2"><NavLink to={'/term-of-service'} className='font-semibold'>Terms of Service</NavLink></li>
                         </ul>
@@ -54,10 +53,10 @@ const Footer = () => {
                         <h3 className="text-xl font-bold ">Follow Us</h3>
                         <hr className='my-2 border-2 w-1/2' />
                         <div className="flex space-x-4 text-2xl">
-                            <NavLink ><FaFacebook /></NavLink>
-                            <NavLink ><FaLinkedin /></NavLink>
-                            <NavLink ><FaInstagramSquare /></NavLink>
-                            <NavLink ><FaYoutube /></NavLink>
+                            <NavLink to='https://web.facebook.com/profile.php?id=61568189276585'><FaFacebook /></NavLink>
+                            <NavLink to='https://www.linkedin.com/company/hexabyte-tm-solution' ><FaLinkedin /></NavLink>
+                            <NavLink to='https://www.instagram.com/' ><FaInstagramSquare /></NavLink>
+                            <NavLink to='https://www.youtube.com/' ><FaYoutube /></NavLink>
                         </div>
                     </div>
                 </div>

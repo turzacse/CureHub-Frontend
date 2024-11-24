@@ -14,7 +14,7 @@ const data = [
 
 const DefaultAdmin = () => {
 
-    const {allUsers, allDoctors, allTelemedicineAppointment, allAppointment, allMessage, allMedicine} = useContext(AuthContext);
+    const {allUsers, allDoctors, allTelemedicineAppointment, allAppointment, allMessage, allMedicine,allPayments} = useContext(AuthContext);
     return (
         <div  className='mt-10 mx-10 '>
             <div
@@ -27,7 +27,7 @@ const DefaultAdmin = () => {
                 <DashboardCard title='CH USERS' number={allUsers?.length || 0} link='/dashboard/alluser' color='#6761DA' />
                 <DashboardCard title='CH DOCTORS' number={allDoctors?.length || 0} link='/dashboard/doctors' color='#EBA11C' />
                 <DashboardCard title='APPOINTMENTS' number={allTelemedicineAppointment?.length + allAppointment?.length || 0} link='/dashboard/appointment-management' color='#D85958' />
-                <DashboardCard title='PAYMENTS' link='/dashboard/payments' number={10}  color='#599C2D' />
+                <DashboardCard title='PAYMENTS' link='/dashboard/payments' number={allPayments?.length || 0}  color='#599C2D' />
                 <DashboardCard title='MESSAGES' number={allMessage?.length || 0} link='/dashboard/all-message' color='#0EAFE9' />
                 <DashboardCard title='MEMBERSHIP' link='/dashboard/membership' number={5} color='#3B5998' />
                 <DashboardCard title='ORDER HISTORY' link='/dashboard/order-history' number={8} color='#F7511C' />

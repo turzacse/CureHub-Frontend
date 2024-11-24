@@ -58,6 +58,7 @@ import AdminOrderHistory from './Pages/AdminOrderHistory/AdminOrderHistory.jsx';
 import UserProfile from './Pages/UserProfile/UserProfile.jsx';
 import Payment from './Pages/Payment/Payment.jsx';
 import AdminPayment from './Pages/AdminPayment/AdminPayment.jsx';
+import UserOrder from './Pages/UserOrder/UserOrder.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
 const router = createBrowserRouter([
@@ -248,6 +249,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/user-profile',
         element: <UserProfile/>
+      },
+      {
+        path: '/dashboard/user-order',
+        element: <UserOrder/>
       },
     ]
   },

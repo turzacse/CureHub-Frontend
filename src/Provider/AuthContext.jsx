@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
     const [allTelemedicineAppointment, setAllTelemedicineAppointment] = useState();
     const [allCompleteAppointment, setAllCompleteAppointment] = useState();
     const [telemedicineDoctor, setTelemedicineDoctor] = useState();
+    const [allPayments, setAllPayments] = useState();
 
     const [allUsers, setAllUsers] = useState();
     const [allDoctors, setAllDoctors] = useState();
@@ -136,6 +137,17 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const getAllPayment = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/payments');
+            const data = await response.json(); 
+            const reversedData = data.reverse(); 
+            setAllPayments(reversedData); 
+        } catch (error) {
+            console.error("Error fetching payments data:", error);
+        }
+    }
+
 
     const getAllTelemedicineAppintment = async () => {
         try {
@@ -152,6 +164,7 @@ const AuthProvider = ({ children }) => {
         getAllMessages();
         getAllMedicine();
         getAllTelemedicineAppintment();
+        getAllPayment();
     } ,[])
 
     console.log('Appointment=========>', usersAppoitment);
@@ -170,6 +183,7 @@ const AuthProvider = ({ children }) => {
         allDoctors,
         allMessage,
         allMedicine,
+        allPayments,
         setAllUsers,
         setAllDoctors,
         setAllMessage,
@@ -185,6 +199,7 @@ const AuthProvider = ({ children }) => {
         getAllMessages,
         getAllMedicine,
         getAllTelemedicineAppintment,
+        getAllPayment,
     };
 
     return (

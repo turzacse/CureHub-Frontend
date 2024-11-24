@@ -13,6 +13,9 @@ const Cart = () => {
     const [quantities, setQuantities] = useState({});
     const navigate = useNavigate();
 
+
+    console.log(myCart);
+
     const getCartItem = () => {
         fetch('https://cure-hub-backend-gules.vercel.app/carts')
             .then(res => res.json())
@@ -148,20 +151,31 @@ const Cart = () => {
         }, 0);
     };
 
+    const createMedicineArray = () => {
+        return allSelecteditem.map(itemId => {
+            const item = myCart.find(cartItem => cartItem._id === itemId);
+            return {
+                name: item.medicine,
+                quantity: quantities[itemId] || 1,
+                medicineID: item?.medicine_code
+            };
+        });
+    };
     
 
     const handleCheckOut = () => {
+        const medicineArray = createMedicineArray(); // Generate medicine array
         const paymentData = {
-            type: 'Medicine Purchase',
+            type: 'Medicine',
             details: 'Buy Medicine',
             ammount: calculateTotalPrice() + 15 + 5,
-
-        }
-
+            medicines: medicineArray // Include the generated medicine array
+        };
+    
         navigate('/payment', {
             state: paymentData
         });
-    }
+    };
 
     return (
         <div>
@@ -170,17 +184,17 @@ const Cart = () => {
             <section className='text-white mx-4 py-10'>
                 {/* My cart {myCart?.length} */}
 
-                <div className='flex justify-between gap-5'>
-                    <div>
+                <div className='flex flex-col md:flex-row justify-between md:gap-5 gap-2'>
+                    <div className='bg-gray-50 p-5 text-gray-700 rounded-lg'>
                     {
                         myCart?.map((item) => (
-                            <div key={item._id} className='flex gap-4 items-center space-y-4'>
+                            <div key={item._id} className='flex md:gap-4 gap-2 items-center space-y-4'>
                                 <div className='text-xl cursor-pointer flex items-center mt-4' onClick={() => handleCheckboxClick(item)}>
                                     {allSelecteditem.includes(item._id) ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}
                                 </div>
-                                <p className='w-[100px]'>{item.medicine}</p>
-                                <h2 className='w-[80px]'>Price: {item.price * quantities[item._id]}</h2>
-                                <div className='flex gap-4 font-bold items-center'>
+                                <p className='w-[100px] text-[12px]'>{item.medicine}</p>
+                                <h2 className='w-[80px] text-[12px]'>Price: {item.price * quantities[item._id]}</h2>
+                                <div className='flex gap-4 font-bold items-center text-[12px]'>
                                     <span
                                         className='cursor-pointer'
                                         onClick={() => decreaseQuantity(item._id)}>-</span>
@@ -190,10 +204,10 @@ const Cart = () => {
                                         onClick={() => increaseQuantity(item._id)}>+</span>
                                 </div>
                                 <button
-                                    className='bg-[#b11414] px-4 py-2 rounded-lg text-white'
+                                    className='bg-[#b11414] text-[12px] px-2 py-2 rounded-lg text-white'
                                     onClick={() => handleRemoveFromCart(item)}
                                 >
-                                    Remove From the cart
+                                    Remove
                                 </button>
                             </div>
                         ))
