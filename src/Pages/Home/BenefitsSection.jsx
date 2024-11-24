@@ -30,7 +30,7 @@ const benefits = [
 const BenefitsSection = () => {
     return (
         <section className=" mx-auto py-16  text-center">
-            <h2 className="text-3xl font-bold text-white mb-8">Why Choose CureHub?</h2>
+            <h2 className="md:text-3xl text-2xl font-bold text-white mb-8">Why Choose CureHub?</h2>
             <div className="grid grid-cols-1 container mx-auto md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {benefits.map((benefit, index) => (
                     <div key={index} className="p-6 mx-4 bg-gray-300  shadow-md rounded-md">

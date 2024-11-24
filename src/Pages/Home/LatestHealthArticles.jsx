@@ -35,7 +35,7 @@ const articles = [
 const LatestHealthArticles = () => {
     return (
         <section className="md:container md:mx-auto mx-4 py-16 text-center">
-            <h2 className="text-3xl font-bold mb-4 text-white">Stay Informed with Our Latest Health Articles</h2>
+            <h2 className="md:text-3xl text-2xl font-bold mb-4 text-white">Stay Informed with Our Latest Health Articles</h2>
             <p className="text-lg mb-8 text-white">Explore our collection of health articles, tips, and news.</p>
             <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-4 gap-8">
                 {articles.map((article, index) => (
@@ -50,7 +50,7 @@ const LatestHealthArticles = () => {
             </div>
             <div className='flex justify-center mt-10'>
                 <NavLink to='/blog'
-                className='bg-white w-full md:w-[200px] mx-4 rounded-md px-4 py-2 text-black '>
+                className='bg-yellow-500 hover:bg-yellow-700 text-gray-800 font-semibold py-2 px-4 rounded shadow-lg transition duration-300'>
                     Explore to Read
                 </NavLink>
                 {/* bg-[#0D9488] */}
