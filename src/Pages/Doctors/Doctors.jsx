@@ -312,9 +312,9 @@ const Doctors = () => {
             <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
 
             <div className='lg:container lg:mx-auto   mx-4 py-10 '>
-                <h2 className="md:text-2xl text-lg  text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You! {appointmentSummary?.length}</h2>
+                <h2 className="md:text-2xl text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
 
-                <div className='flex justify-between gap-10'>
+                <div className='flex flex-col md:flex-row justify-between md:gap-10 gap-2 mb-5'>
                     <input
                         className='my-2 p-2 bg-gray-300 w-[315px] rounded-lg text-black'
                         placeholder='Find your desire doctor by serching here'
@@ -323,49 +323,49 @@ const Doctors = () => {
                         id="" />
 
                     {/* seacring by day */}
-                    <div className="flex items-center gap-5">
-                        <label className=" flex items-center gap-2 text-white ">
+                    <div className="grid lg:grid-cols-7 md:grid-cols-4 grid-cols-3 items-center gap-2 text-[12px] md:text-[14px]">
+                        <label className=" flex items-center gap-1 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Sunday</span>
+                            <span className=" text-white">Sunday</span>
 
                         </label>
 
-                        <label className=" flex items-center gap-2 text-white ">
+                        <label className=" flex items-center gap-1 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Monday</span>
-
-                        </label>
-
-
-                        <label className=" flex items-center gap-2 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Tuesday</span>
+                            <span className=" text-white">Monday</span>
 
                         </label>
 
 
-                        <label className=" flex items-center gap-2 text-white ">
+                        <label className=" flex items-center gap-1 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Wednesday</span>
+                            <span className=" text-white">Tuesday</span>
 
                         </label>
 
 
-                        <label className=" flex items-center gap-2 text-white ">
+                        <label className=" flex items-center gap-1 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Thursday</span>
+                            <span className=" text-white">Wednesday</span>
 
                         </label>
 
-                        <label className=" flex items-center gap-2 text-white ">
+
+                        <label className=" flex items-center gap-1 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Friday</span>
+                            <span className=" text-white">Thursday</span>
 
                         </label>
 
-                        <label className=" flex items-center gap-2 text-white ">
+                        <label className=" flex items-center gap-1 text-white ">
                             <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className="label-text text-white">Saturday </span>
+                            <span className=" text-white">Friday</span>
+
+                        </label>
+
+                        <label className=" flex items-center gap-1 text-white ">
+                            <input type="checkbox" className="checkbox checkbox-warning" />
+                            <span className=" text-white">Saturday </span>
 
                         </label>
                     </div>
@@ -376,11 +376,12 @@ const Doctors = () => {
                         <div className='bg-gray-300 text-black rounded-lg p-4' key={doctor._id}>
                             <img className='mx-auto rounded-full h-[100px] w-[100px]' src={doctor?.doctor_img} alt="" />
                             <h2 className='text-[14px] mt-2 text-center'>{doctor?.name} || {doctor.department}</h2>
-                            <p className='text-[12px] text-center mb-4'>
+                            <p className='text-[12px] text-center'>
                                 {doctor?.degree?.map((deg, index) => (
                                     <span key={index}>{deg}{index < doctor.degree.length - 1 ? ', ' : ''}</span>
                                 ))}
                             </p>
+                            <p className='text-[12px] text-center mb-4 text-red-600 font-bold'>Appointment Fee: {doctor?.visit} TK</p>
                             <div className='flex justify-between mt-2'>
                                 <button onClick={() => handleDetailsClick(doctor)} className="bg-[#bd2121] text-white py-2 px-4 rounded-md mr-2 flex text-[12px] justify-center items-center gap-[5px]"><FaEye /> Details</button>
                                 <button onClick={() => handleAppointmentClick(doctor)} className="bg-[#1a9e46] text-white py-2 px-4 rounded-md mr-2 flex justify-center text-[12px] items-center gap-[5px]"><AiOutlineSchedule /> Appoint</button>
@@ -507,7 +508,7 @@ const Doctors = () => {
                 )}
             </div>
 
-            <section className="mt-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white py-16 text-center rounded-t-xl ">
+            <section className="mt-10 bg-gradient-to-r from-teal-400 to-blue-500 text-white py-16 text-center ">
                 <div className='lg:container lg:mx-auto mx-4'>
                     <h2 className="md:text-4xl text-2xl font-bold mb-2">Unlock Premium Health Benefits</h2>
                     <p className="md:mb-5 mb-2 text-[12px]">
@@ -521,7 +522,7 @@ const Doctors = () => {
                         onClick={() => {
                             navigate('/membership-plan')
                         }}
-                        className="bg-white mt-8 text-teal-500 font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-gray-100 transition duration-300">
+                        className="bg-[#BD2121] mt-8 text-white font-semibold py-3 px-6 rounded-md shadow-lg hover:bg-[#801b1b] transition duration-300">
                         Membership
                     </button>
                 </div>
