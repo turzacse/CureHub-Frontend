@@ -164,9 +164,9 @@ const AdminMessage = () => {
 
     return (
         <div className='p-4'>
-            <h2 className='text-xl font-bold text-yellow-800'>MESSAGES</h2>
+            <h2 className='text-xl font-bold text-yellow-800 mt-5'>MESSAGES</h2>
 
-            <section className='mt-10 overflow-x-auto text-[10px] md:text-[16px]'>
+            <section className='md:mt-5 mt-2 overflow-x-auto text-[10px] md:text-[16px]'>
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-600 text-white">
                         <tr>

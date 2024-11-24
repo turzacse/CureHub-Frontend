@@ -16,10 +16,10 @@ const DefaultAdmin = () => {
 
     const {allUsers, allDoctors, allTelemedicineAppointment, allAppointment, allMessage, allMedicine,allPayments} = useContext(AuthContext);
     return (
-        <div  className='mt-10 mx-10 '>
+        <div  className='md:mt-10 mt-12 md:mx-10 '>
             <div
             style={{
-                maxHeight: 'calc(100vh - 100px)', // Adjust based on your header/footer size
+                maxHeight: 'calc(100vh - 60px)', // Adjust based on your header/footer size
                 overflowY: 'auto',
                 padding: '10px',
               }}

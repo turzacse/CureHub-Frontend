@@ -40,7 +40,7 @@ const AllUser = () => {
     console.log(allUser);
 
     return (
-        <div className="min-h-screen md:p-8 mt-10 md:mt-5 p-4 overflow-hidden">
+        <div className="min-h-screen p-4 overflow-hidden">
             {/* <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
                 <h1 className="md:text-2xl font-extrabold text-center text-gray-800">
                     User Management Dashboard
@@ -49,7 +49,7 @@ const AllUser = () => {
                     Overview of all registered users in the system
                 </p>
             </div> */}
-            <h2 className='text-black mb-5 font-semibold text-2xl'>USERS</h2>
+            <h2 className='text-xl font-bold text-yellow-800 mt-5 md:mb-5 mb-2'>USERS</h2>
             {
                 isLoading ? <div className="flex justify-center items-center">
                     <span className="loading loading-spinner text-primary"></span>

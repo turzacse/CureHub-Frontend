@@ -209,16 +209,16 @@ const Medicines = () => {
     };
 
     return (
-        <div className="container mx-auto pb-10 px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="container mx-auto pb-10 px-4 sm:px-6 lg:px-8 pt-10">
             <div className='text-white flex flex-col sm:flex-row justify-between items-start sm:items-center'>
                 {/* <div className='mb-4 sm:mb-0'>
                     <p className='text-gray-700 text-xl font-bold'>Total Number of Medicine : {allMedicine?.length}</p>
                     
                 </div> */}
-                <div className="mb-4 sm:mb-0">
+                <div className="mb-4 w-full md:w-[180px]  sm:mb-0">
                     <select
                         onChange={(e) => handleCategoryFilter(e.target.value)}
-                        className="bg-yellow-300 w-full px-4 py-2 rounded-lg shadow-lg text-black"
+                        className="bg-yellow-300 w-full text-center px-4 py-2 rounded-lg shadow-lg text-black"
                     >
                         <option value="">All Categories</option>
                         {Category.map((item, index) => (

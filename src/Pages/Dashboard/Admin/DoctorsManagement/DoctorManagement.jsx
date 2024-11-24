@@ -119,7 +119,7 @@ const DoctorManagement = () => {
     return (
         <div className="p-4">
             {/* Tab Buttons */}
-            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-4 text-[10px] md:text-[16px] items-center">
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-4 text-[8px] md:text-[16px] items-center">
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'doctors' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('doctors')}
@@ -130,7 +130,7 @@ const DoctorManagement = () => {
                     className={`py-2 px-4 rounded ${activeTab === 'availableToday' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
                     onClick={() => setActiveTab('availableToday')}
                 >
-                    Available Doctor By Today <span className='text-white rounded-full p-1 px-[10px] bg-sky-400 text-sm font-medium shadow-2xl'>{todaysDoctor?.length > 0 ? todaysDoctor?.length : ''}</span>
+                    Today's Doctor <span className='text-white rounded-full p-1 px-[10px] bg-sky-400 text-sm font-medium shadow-2xl'>{todaysDoctor?.length > 0 ? todaysDoctor?.length : ''}</span>
                 </button>
                 <button
                     className={`py-2 px-4 rounded ${activeTab === 'telemedicineDoctor' ? 'bg-blue-500 text-white' : 'bg-yellow-300 text-black'}`}
@@ -143,7 +143,7 @@ const DoctorManagement = () => {
                     onClick={() => setActiveTab('pendingRequests')}
                 >
                     Pending Requests {
-                        requestedDoctor?.length ? <span className='text-white rounded-full p-1 px-[10px] bg-red-500 text-sm font-medium shadow-2xl'>{requestedDoctor?.length}</span> : ''
+                        requestedDoctor?.length ? <span className='text-white rounded-full p-1 px-[10px] bg-red-500 text-sm font-medium shadow-2xl'>{requestedDoctor?.length}</span> : <span className='text-white rounded-full p-1 px-[10px] bg-red-500 text-sm font-medium shadow-2xl'>{requestedDoctor?.length}</span>
                     } 
                 </button>
 

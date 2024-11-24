@@ -64,7 +64,7 @@ const Dashboard = () => {
                     {role == 'admin' && location.pathname === '/dashboard' && <DefaultAdmin />}
                     {role == 'doctor' && location.pathname === '/dashboard' && <DefaultDoctor />}
 
-                    <div className="overflow-auto flex-grow p-4">
+                    <div className="overflow-auto flex-grow py-4 md:px-4">
                         <Outlet />
                     </div>
                 </div>

@@ -89,32 +89,65 @@ const AppointmentManagement = () => {
             {/* Tab Content */}
             <div>
                 {activeTab === 'totalAppointments' && (
+                    // <div>
+                    //     <h2 className='text-xl font-bold text-[#006666]'>
+                    //         Upcoming Appointment (General, Telemdicine) : {(allTelemedicineAppointment?.length || 0) + (allAppointment?.length || 0)} ({allAppointment?.length || 0}, {allTelemedicineAppointment?.length || 0})
+                    //     </h2>
+                    //     <div className="mt-10 flex items-center justify-center">
+                    //         <PieChart className='py-5 ' width={600} height={300}>
+                    //             <Pie
+                    //                 data={pieChartData}
+                    //                 // cx={300}
+                    //                 // cy={150}
+                    //                 labelLine={false}
+                    //                 label={renderCustomizedLabel}
+                    //                 outerRadius={120}
+                    //                 fill="#8884d8"
+                    //                 dataKey="value"
+                    //                 // className='text-black'
+                    //             >
+                    //                 {pieChartData.map((entry, index) => (
+                    //                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    //                 ))}
+                    //             </Pie>
+                    //             <Tooltip />
+                    //             <Legend />
+                    //         </PieChart>
+                    //     </div>
+                    // </div>
                     <div>
-                        <h2 className='text-xl font-bold text-[#006666]'>
-                            Upcoming Appointment (General, Telemdicine) : {(allTelemedicineAppointment?.length || 0) + (allAppointment?.length || 0)} ({allAppointment?.length || 0}, {allTelemedicineAppointment?.length || 0})
+                        <h2 className="text-xl font-bold text-[#006666]">
+                            Upcoming Appointment (General, Telemedicine):{' '}
+                            {(allTelemedicineAppointment?.length || 0) + (allAppointment?.length || 0)} (
+                            {allAppointment?.length || 0}, {allTelemedicineAppointment?.length || 0})
                         </h2>
-                        <div className="mt-10 flex items-center justify-center">
-                            <PieChart className='py-5 ' width={600} height={300}>
+                        <div className=" flex flex-col items-center">
+                            <PieChart className="py-5" width={400} height={300}>
                                 <Pie
                                     data={pieChartData}
-                                    // cx={300}
-                                    // cy={150}
                                     labelLine={false}
                                     label={renderCustomizedLabel}
-                                    outerRadius={120}
+                                    outerRadius="80%"
                                     fill="#8884d8"
                                     dataKey="value"
-                                    // className='text-black'
                                 >
                                     {pieChartData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
                                 <Tooltip />
-                                <Legend />
+                                <Legend
+                                    layout="horizontal"
+                                    verticalAlign="bottom"
+                                    align="center"
+                                    wrapperStyle={{
+                                        fontSize: '12px',
+                                    }}
+                                />
                             </PieChart>
                         </div>
                     </div>
+
                 )}
                 {activeTab === 'allAppointments' && (
                     <div>
@@ -123,7 +156,7 @@ const AppointmentManagement = () => {
                 )}
                 {activeTab === 'cancelledAppointments' && (
                     <div>
-                        <Canceled allCancelAppointment={allCancelAppointment}/>
+                        <Canceled allCancelAppointment={allCancelAppointment} />
                         {/* <div className="md:mt-20 mt-10 overflow-x-auto text-[10px] md:text-[16px]">
                             <table className="min-w-full  divide-y divide-gray-200">
                                 <thead className="bg-gray-600 text-white">
