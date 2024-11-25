@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { MdAccountBox, MdAccountCircle, MdAddBox, MdOutlinePayment } from "react-icons/md";
+import { MdAccountBox, MdAccountCircle, MdAddBox, MdDashboard, MdOutlinePayment } from "react-icons/md";
 import { IoAddCircleSharp, IoCalendarNumber, IoPeople } from "react-icons/io5";
 import { IoMdAnalytics, IoMdLogOut, IoMdMenu } from "react-icons/io";
 import { CiLogout } from "react-icons/ci";
@@ -117,79 +117,79 @@ const Dashboard = () => {
                                     <IoCalendarNumber className="text-xl " />
                                     <li className="font-semibold">Appointment</li></Link>
                                 
-                                <hr className='border-1' />
+                                
                                 <Link to='/dashboard/user-order' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-order', location.pathname)}`}>
                                     <FaRegMessage className="text-xl " />
                                     <li className="font-semibold">My Oder</li></Link>
-                                <hr className='border-1' />
+                                
                                 <Link to='/dashboard/user-message' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-message', location.pathname)}`}>
                                     <FaRegMessage className="text-xl " />
                                     <li className="font-semibold">Message</li></Link>
-                                <hr className='border-1' />
+                                
                             </>
                         }
 
                         {role && role === 'admin' && <>
-                            <hr className='border-1 ' />
+                            
                             <Link to='/dashboard' 
                             className={`py-2 pl-2 flex gap-2 items-center ${isActive('/dashboard', location.pathname)}`}
                             >
-                                <MdAccountBox className="text-xl " />
+                                <MdDashboard className="text-xl " />
                                 <li className="font-semibold">
-                                    Account</li></Link>
-                            <hr className='border-1 ' />
+                                    DASHBOARD</li></Link>
+                            
                             <Link to='/dashboard/alluser' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/alluser', location.pathname)}`}>
                                 <IoPeople className="text-xl " />
                                 <li className="font-semibold">
                                     CH Users</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/doctors' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/doctors', location.pathname)}`}
                             >
                                 <FaUserDoctor className="text-xl " />
                                 <li className="font-semibold">
                                     CH Doctors</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/appointment-management' className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/appointment-management', location.pathname)}`}>
                                 <BsCalendar2Date className="text-xl " />
                                 <li className="font-semibold">
                                     Appointment</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/payments' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/payments', location.pathname)}`}
                             >
                                 <MdOutlinePayment className="text-xl " />
                                 <li className="font-semibold">
                                     Payments</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/all-message' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/all-message', location.pathname)}`}
                             >
                                 <FaMessage className="text-xl " />
                                 <li className="font-semibold">
                                     Messages</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/membership' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/membership', location.pathname)}`}>
                                 <LuBadgeHelp className="text-xl " />
                                 <li className="font-semibold">
                                     MemeberShip</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/order-history' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/order-history', location.pathname)}`}>
                                 <FaCartArrowDown className="text-xl " />
                                 <li className="font-semibold">
                                     Order History</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='/dashboard/medicines' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/medicines', location.pathname)}`}>
                                 <GiMedicines className="text-xl " />
                                 <li className="font-semibold">
                                     Medicine</li></Link>
-                            <hr className='border-1' />
+                            
                         </>
                         }
 
@@ -204,12 +204,12 @@ const Dashboard = () => {
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Appointment</li></Link>
-                            <hr className='border-1' />
+                            
                             {/* <Link to='/dashboard/doctors' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Telemedicine</li></Link>
-                            <hr className='border-1' /> */}
+                             */}
 
                         </>
                         }
@@ -218,23 +218,24 @@ const Dashboard = () => {
                  
                     <div className="absolute bottom-5 w-44">
                         <ul className="p-4 mr-4 bg-[#006666] text-white">
+                        <hr className='border-1' />
                         <Link to='/' 
                             className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/', location.pathname)}`}>
                                 <FaHome className="text-xl " />
                                 <li className="font-semibold">
                                     Home</li></Link>
-                            <hr className='border-1' />
+                            
                             <Link to='#'
                             onClick={() => {
                                 signOut(auth);
                                 navigate('/');
                             }} 
-                            className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/', location.pathname)}`}>
+                            className={`py-2 pl-2 hover:bg-red-600 hover:text-white hover:rounded-md flex gap-2 items-center ${isActive('/', location.pathname)}`}>
                                 <IoMdLogOut className="text-xl " />
                                 <li className="font-semibold">
                                     LogOut</li></Link>
                             
-                            <hr className='border-1' />
+                            
                         </ul>
                     </div>
                 </div>

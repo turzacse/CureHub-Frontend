@@ -72,7 +72,7 @@ const AdminMembership = () => {
                                 <th className="px-6 py-3">End Date</th>
                             </tr>
                         </thead>
-                        <tbody>{renderTableRows()}</tbody>
+                        <tbody className="bg-gray-300">{renderTableRows()}</tbody>
 
                         <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-700 text-white">
                             <tr>
