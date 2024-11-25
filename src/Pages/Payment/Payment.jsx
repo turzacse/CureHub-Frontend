@@ -12,12 +12,12 @@ const Payment = () => {
     const location = useLocation();
     const paymentData = location.state;
     const {curehubUser, user} = useContext(AuthContext);
-    console.log(paymentData?.medicines);
+    // console.log(paymentData?.medicines);
     useEffect(() => {
         window.scroll(0,0);
     } ,[])
 
-    console.log(user);
+    console.log(paymentData);
     return (
         <div>
             <Heading title="Checkout" subtitle="" />

@@ -72,7 +72,11 @@ const CheckoutForm = ({ price, type, subtype, appointmentId, medicines }) => {
         if (type === 'Medicine') {
             paymentData.medicines = medicines;
         }
-    
+        if (type === 'Appointment Booking') {
+            paymentData.appointmentId = appointmentId;
+            paymentData.doctorName = subtype
+        }
+     
         console.log(paymentData);
     
         try {

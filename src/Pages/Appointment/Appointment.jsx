@@ -9,6 +9,7 @@ import { MdCancel, MdDateRange, MdPaid } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import CountDown from '../../Components/CountDown/CountDown';
 
 const Appointment = () => {
     const { curehubUser } = useContext(AuthContext);
@@ -116,28 +117,45 @@ const Appointment = () => {
 
     };
 
-    // Swal.fire({
-    //     // title: 'Proceed with payment?',
-    //     text: "To confirm your appointment, you must pay our service charge or 50% of the total payment.",
-    //     icon: 'info',
-    //     showCancelButton: true,
-    //     confirmButtonColor: '#3085d6',
-    //     cancelButtonColor: '#d33',
-    //     confirmButtonText: 'Yes, pay now!',
-    //     background: '#006666', // Set background color
-    //     color: '#fff',
-    // }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         Swal.fire({
-    //             // title: 'Cancelled!',
-    //             text: 'Your payment has been successfully processed.',
-    //             icon: 'success',
-    //             background: '#006666',
-    //             confirmButtonColor: '#3085d6',
-    //             color: '#fff',
-    //         })
-    //     }
-    // });
+    const handlePayClick = (info) => {
+        console.log(info);
+        Swal.fire({
+            // title: 'Proceed with payment?',
+            text: "To confirm your appointment, you must pay our service charge, 20% of appointment fee.",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, pay now!',
+            background: '#006666',
+            color: '#fff',
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let fee = parseFloat(info?.appointmentFee) * 0.2;
+                const paymentData = {
+                    type: 'Appointment Booking',
+                    details: info?.doctorName,
+                    ammount: fee,
+                    appointmentId: info?._id,
+                }
+
+                navigate('/payment', {
+                    state: paymentData
+                });
+                // Swal.fire({
+                //     // title: 'Cancelled!',
+                //     text: 'Your payment has been successfully processed.',
+                //     icon: 'success',
+                //     background: '#006666',
+                //     confirmButtonColor: '#3085d6',
+                //     color: '#fff',
+                // })
+            }
+        });
+
+    }
+
 
     const handleTelemedicineCancel = async (appointment) => {
         try {
@@ -231,7 +249,7 @@ const Appointment = () => {
                     <div className="flex flex-col gap-2 mb-4">
                         <h2 className="md:text-2xl font-bold mb-0 pb-0 text-gray-800">Upcoming Appointments</h2>
                         <p className="text-[12px] mt-0 pt-0 font-bold bg-gradient bg-clip-text text-transparent animate-gradient">
-                            To confirm your appointment, you must pay our service charge or 50% of the total payment.
+                            To confirm your appointment, you must pay our service charge, 20% of appointment fee.
                         </p>
                     </div>
                     {
@@ -241,26 +259,48 @@ const Appointment = () => {
                             ) : (
                                 <ul>
                                     {usersAppoitment?.map((appointment, index) => (
-                                        <li key={index} className="border-b py-4 flex justify-between items-center">
+                                        <li key={index} className="border-b py-4 flex md:flex-row flex-col gap-2 justify-between items-center">
                                             <div className='flex-1'>
-                                                <h3 className="md:text-lg md:font-semibold font-medium text-gray-700">{appointment?.doctorName}</h3>
+                                                <h3 className="md:text-lg md:font-semibold font-medium text-gray-700 text-center md:text-left">{appointment?.doctorName}</h3>
                                                 <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.appointedDate || '28/07/2024'} at {appointment?.appointedTime}</p>
                                             </div>
                                             <div className="flex-1 flex justify-center">
-                                                <p>12:30:42</p>
+                                            <CountDown appointment={{ appointedDate: appointment?.appointedDate, appointedTime: appointment?.appointedTime }} />
                                             </div>
                                             {/* <div className="ml-4">
                                             <CountdownTimer targetDate={targetDate} />
                                 </div> */}
                                             <div className='flex flex-1 items-center md:gap-5 justify-center text-2xl'>
-                                                <MdCancel className='cursor-pointer text-red-700' onClick={() => handleCancelClick(appointment)} />
-                                                <MdPaid className='cursor-pointer text-blue-700'
-                                                // onClick={handlePayClick} 
-                                                />
+                                                {
+                                                    appointment?.status !== 'Paid' ?
+                                                
+                                                <div className='flex gap-2'>
+                                                
+                                                <button
+                                                onClick={() => {
+                                                    handlePayClick(appointment)
+                                                }}
+                                                
+                                                className='btn btn-info  btn-sm'>
+                                                Pay
+                                                </button>
+                                                <button
+                                                onClick={() => handleCancelClick(appointment)}
+                                                className='btn bg-red-500  btn-sm border-none text-white hover:bg-red-500'>
+                                                    Cancel
+                                                </button>
+                                                </div>
+                                                
+                                                :
+                                                <button className='btn   btn-sm cursor-not-allowed'>
+                                                Paid
+                                                </button>
+
+                                            }
                                             </div>
                                             <div className='flex-1 flex justify-end'>
                                                 <div>
-                                                    <p className='text-center text-[5px]font-bold text-purple-600'>Pending</p>
+                                                    
                                                     <button className="bg-blue-500  text-white py-1 px-3 rounded-md">
                                                         View Details
                                                     </button>
@@ -332,20 +372,20 @@ const Appointment = () => {
                                                 <div className='flex flex-1 items-center gap-2 justify-center '>
 
                                                     {
-                                                       appointment?.status === 'Paid' || appointment?.status === 'Assigned'? 
-                                                       <button
-                                                        
-                                                        className='btn btn-warning px-6 btn-sm cursor-not-allowed'>Pay</button>
-                                                        :
-                                                        <button
-                                                        onClick={() => {
-                                                            handleTelemedicinePayClick(appointment?._id)
-                                                        }}
+                                                        appointment?.status === 'Paid' || appointment?.status === 'Assigned' ?
+                                                            <button
 
-                                                        className='btn btn-warning px-6 btn-sm'>Pay</button> 
+                                                                className='btn btn-warning px-6 btn-sm cursor-not-allowed'>Pay</button>
+                                                            :
+                                                            <button
+                                                                onClick={() => {
+                                                                    handleTelemedicinePayClick(appointment?._id)
+                                                                }}
+
+                                                                className='btn btn-warning px-6 btn-sm'>Pay</button>
                                                     }
 
-                                                    
+
 
                                                     {
                                                         appointment?.status === 'Paid' ?

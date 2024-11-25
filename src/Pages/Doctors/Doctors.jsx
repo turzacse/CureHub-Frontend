@@ -265,11 +265,13 @@ const Doctors = () => {
             doctor: appointDoctor?._id,
             patient: curehubUser?._id,
             doctorName: appointDoctor?.name,
+            appointmentFee: appointDoctor?.visit,
             patientName: curehubUser?.username || 'Unknown',
             appointedTime: selectedSlot,
             appointedDate: formattedDate,
             bookingDate: today?.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
             patientPhone: phoneNumber,
+            status: 'Pending'
         };
 
         try {

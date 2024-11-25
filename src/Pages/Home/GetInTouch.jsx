@@ -109,7 +109,7 @@ const GetInTouch = () => {
         
                 const result = await response.json();
                 setFormData({ name: '', email: '', subject: '', message: '', userID: curehubUser?._id });
-                Swal.fire({ text: `We are received your meassage. We'll get back you within 48 hours. Thank You for stay with us!` });
+                Swal.fire({ text: `We are received your meassage. We'll get back you within 48 hours. Thank You for stay with us!`, background: '#006666' });
                 console.log(result); // Optional: Log the response from the server
             } catch (error) {
                 console.error('Error:', error);
@@ -139,7 +139,7 @@ const GetInTouch = () => {
                                 type="text" 
                                 name="name" 
                                 placeholder="Your Name" 
-                                className="w-full p-3 border bg-gray-600 rounded-md" 
+                                className="w-full p-3 bg-white text-black border rounded-md" 
                                 value={formData.name}
                                 onChange={handleChange}
                             />
@@ -147,7 +147,7 @@ const GetInTouch = () => {
                                 type="email" 
                                 name="email" 
                                 placeholder="Your Email" 
-                                className="w-full bg-gray-600 p-3 border rounded-md" 
+                                className="w-full bg-white text-black p-3 border rounded-md" 
                                 value={formData.email}
                                 onChange={handleChange}
                             />
@@ -155,14 +155,14 @@ const GetInTouch = () => {
                                 type="text" 
                                 name="subject" 
                                 placeholder="Subject" 
-                                className="w-full p-3 bg-gray-600 border rounded-md" 
+                                className="w-full p-3 bg-white text-black border rounded-md" 
                                 value={formData.subject}
                                 onChange={handleChange}
                             />
                             <textarea 
                                 name="message" 
                                 placeholder="Your Message" 
-                                className="w-full bg-gray-600 p-3 border rounded-md h-32" 
+                                className="w-full bg-white text-black p-3 border rounded-md h-32" 
                                 value={formData.message}
                                 onChange={handleChange}
                             ></textarea>
