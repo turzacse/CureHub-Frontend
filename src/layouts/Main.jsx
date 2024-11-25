@@ -5,9 +5,10 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 import '../index.css';
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
+import StarBadge from '../Components/Badge/StaticBadge';
 
 const Main = () => {
-  const { user } = useContext(AuthContext);
+  const { user,curehubUser } = useContext(AuthContext);
   const [showScrollUp, setShowScrollUp] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(true);
 
@@ -52,9 +53,62 @@ const Main = () => {
   }, []);
 
   return (
-    <div className='max-w-full overflow-y-hidden overflow-x-hidden'>
-      <Navbar />
-      <div className='bg-[#114372] text-black'>
+    // <div className='max-w-full overflow-y-hidden overflow-x-hidden'>
+    //   <Navbar />
+    //   <div className='bg-[#114372] text-black'>
+    //     <StarBadge/>
+    //     {showScrollUp && (
+    //       <FaArrowAltCircleUp
+    //         onClick={scrollTop}
+    //         className="fixed pulse-animation"
+    //         style={{
+    //           bottom: "20px",
+    //           right: "20px",
+    //           padding: "5px",
+    //           backgroundColor: "#FD7E14", 
+    //           color: "white",
+    //           borderRadius: "50%",
+    //           cursor: "pointer",
+    //           zIndex: 1000,
+    //           fontSize: "2rem",
+    //           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", 
+    //         }}
+    //       />
+    //     )}
+    //     {showScrollDown && (
+    //       <FaArrowAltCircleDown
+    //         onClick={scrollBottom}
+    //         className="fixed pulse-animation"
+    //         style={{
+    //           bottom: "20px",
+    //           right: "20px",
+    //           padding: "5px",
+    //           backgroundColor: "#20C997", // Coral color
+    //           color: "white",
+    //           borderRadius: "50%",
+    //           cursor: "pointer",
+    //           zIndex: 1000,
+    //           fontSize: "2rem",
+    //           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)", // Optional shadow
+    //         }}
+    //       />
+    //     )}
+    //     <Outlet />
+    //   </div>
+    //   <Footer />
+    // </div>
+    <div className="max-w-full overflow-y-hidden overflow-x-hidden">
+    <Navbar />
+    <div className="bg-[#114372] text-black">
+      {/* Badge and Scroll Arrows */}
+      <div className="fixed right-5 bottom-5 flex flex-col items-center gap-4 z-50">
+        {/* Star Badge */}
+        
+        {
+          curehubUser?.membership && <StarBadge />
+        }
+        
+
         {showScrollUp && (
           <FaArrowAltCircleUp
             onClick={scrollTop}
@@ -91,10 +145,11 @@ const Main = () => {
             }}
           />
         )}
-        <Outlet />
       </div>
-      <Footer />
+      <Outlet />
     </div>
+    <Footer />
+  </div>
   );
 };
 

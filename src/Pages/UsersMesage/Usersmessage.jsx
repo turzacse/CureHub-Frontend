@@ -23,24 +23,38 @@ const Usersmessage = () => {
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, [curehubUser?._id])
+
+    console.log(myMessages)
     return (
-        <div className='pt-10'>
-            <h2 className='uppercase font-bold text-xl text-gray-700'>my messages</h2>
-            {myMessages?.length}
-            <div className='grid grid-cols-4 gap-2'>
+        <div className='p-4'>
+            <h2 className='text-xl font-bold text-yellow-800 mt-5'>MY MESSAGES</h2>
+            
+            <div className='grid md:grid-cols-4 grid-cols-1 gap-2 md:mt-5 mt-2'>
                 {
                     myMessages?.map((item) =>
                         <div
-                            className='bg-white rounded-md h-[200px] shadow-2xl p-4'
+                            className='bg-gray-300 rounded-md  shadow-2xl p-4'
                             key={item?._id}>
-                            <div className='h-[140px]'>
+                            <div className=''>
                                 <h2> <strong>SUBJECT:</strong> {item.subject}</h2>
                                 <p><strong>TIME:</strong> {item?.createdAt}</p>
                                 <p><strong>MESSAGE</strong> <br /> {item?.message}</p>
+                                <p><strong className='uppercase'>Support Reply</strong> <br /> 
+                                {item?.reply?.map((item, index) =>
+                                        <div>
+                                            <p className='flex justify-start text-left'>
+                                            {index+1}. {item?.replymsg}
+                                            </p>
+                                            <p className='flex justify-end text-[12px] text-black'>{item?.time}</p>
+                                        </div>
+                                    )}
+                                </p>
                             </div>
-                            <div className="flex justify-end">
-                                <button className="btn bg-gray-800 btn-sm w-[100px] text-[12px]">NOT REPLIED</button>
+                            <div className="flex justify-end mt-4">
+                                <button className="btn bg-yellow-500 hover:bg-yellow-600 btn-sm w-[100px] text-[12px] text-white border-none">
+                                    {item?.rely?.length == 0 ? 'NOT REPLIED': 'REPLIED'}
+                                </button>
                             </div>
 
                         </div>

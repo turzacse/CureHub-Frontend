@@ -16,6 +16,7 @@ import { FaMessage, FaRegMessage, FaUserDoctor } from "react-icons/fa6";
 import { BsCalendar2Date } from "react-icons/bs";
 import img from '../assets/Logo/logo1.png'
 import { LuBadgeHelp } from "react-icons/lu";
+import { BiSolidPurchaseTag } from "react-icons/bi";
 
 const Dashboard = () => {
     const { user, curehubUser } = useContext(AuthContext);
@@ -100,19 +101,18 @@ const Dashboard = () => {
 
                         {
                             role && role === 'user' && <>
-                                <hr className='border-1 ' />
+                                
                                 <Link to='/dashboard' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard', location.pathname)}`}>
                                     <MdAccountCircle className="text-xl " />
                                     <li className="font-semibold">
                                         Account</li></Link>
-                                        <hr className='border-1 ' />
+                                        
                                 <Link to='/dashboard/user-profile' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-profile', location.pathname)}`}>
                                     <MdAccountCircle className="text-xl " />
                                     <li className="font-semibold">
                                         Profile</li></Link>
-                                <hr className='border-1 ' />
                                 <Link to='/dashboard/patient-appointment' className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/patient-appointment', location.pathname)}`}>
                                     <IoCalendarNumber className="text-xl " />
                                     <li className="font-semibold">Appointment</li></Link>
@@ -120,7 +120,7 @@ const Dashboard = () => {
                                 
                                 <Link to='/dashboard/user-order' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-order', location.pathname)}`}>
-                                    <FaRegMessage className="text-xl " />
+                                    <BiSolidPurchaseTag className="text-xl " />
                                     <li className="font-semibold">My Oder</li></Link>
                                 
                                 <Link to='/dashboard/user-message' 

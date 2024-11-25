@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { IoSend } from 'react-icons/io5';
 import Swal from 'sweetalert2';
+import StarBadge from '../../Components/Badge/StaticBadge';
 
 const AdminMessage = () => {
     const [messages, setMessages] = useState();
