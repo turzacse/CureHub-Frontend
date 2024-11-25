@@ -24,13 +24,30 @@ const Dashboard = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     setIsLoading(true);
+    //     if (curehubUser) {
+    //         setRole(curehubUser?.role);
+    //         setIsLoading(false);
+    //     }
+    // }, [curehubUser]);
     useEffect(() => {
-        setIsLoading(true);
         if (curehubUser) {
             setRole(curehubUser?.role);
-            setIsLoading(false);
+            setIsLoading(false); // Stop loading when role is set
+        } else {
+            setIsLoading(true); // Show loading if no user data
         }
     }, [curehubUser]);
+
+    if (isLoading) {
+        // Show loading state while role is being determined
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="loading loading-ring loading-lg"></div>
+            </div>
+        );
+    }
 
     console.log(curehubUser, role);
 
@@ -42,10 +59,10 @@ const Dashboard = () => {
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
-                {/* Content Area */}
+              
                 <div className="drawer-content flex flex-col text-black h-screen">
                     <label htmlFor="my-drawer-2" className="lg:hidden absolute left-0 top-0 btn cursor-pointer py-0 border-none w-full bg-[#006666] text-white rounded-none justify-between"
-                        // style={{ borderRadius: '0px', height: '20px' }}
+                       
                     >
                         <GiHamburgerMenu className="flex justify-start" />
                         <NavLink to='/' className="text-gray-300 text-lg">Cure<span className="text-yellow-300 ">Hub</span></NavLink>
@@ -76,9 +93,7 @@ const Dashboard = () => {
                         <div className="p-4 ">
                             <div className="text-center mb-4">
                                 <img className="w-12 h-12 lg:w-20 lg:h-20 rounded-full mx-auto mb-2" src={img} alt="Profile" />
-                                {/* <h4 className="text-lg font-bold">
-                                    {curehubUser?.username}
-                                </h4> */}
+                                
 
                             </div>
                         </div>
@@ -101,14 +116,7 @@ const Dashboard = () => {
                                 <Link to='/dashboard/patient-appointment' className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/patient-appointment', location.pathname)}`}>
                                     <IoCalendarNumber className="text-xl " />
                                     <li className="font-semibold">Appointment</li></Link>
-                                {/* <hr className='border-1' />
-                                <Link to='/telemedicine' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
-                                    <FaVideo className="text-xl " />
-                                    <li className="font-semibold"> Telemedicine</li></Link> */}
-                                {/* <hr className='border-1' />
-                                <Link to='/cart' className="py-2 pl-2 hover:bg-gray-400 flex gap-2 items-center hover:text-black">
-                                    <FaCartArrowDown className="text-xl text-[#22C55E] hover:text-black" />
-                                    <li className="font-semibold">Cart</li></Link> */}
+                                
                                 <hr className='border-1' />
                                 <Link to='/dashboard/user-order' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-order', location.pathname)}`}>
@@ -207,7 +215,7 @@ const Dashboard = () => {
                         }
                     </ul>
 
-                    {/* Bottom Logout and Home Links */}
+                 
                     <div className="absolute bottom-5 w-44">
                         <ul className="p-4 mr-4 bg-[#006666] text-white">
                         <Link to='/' 
@@ -225,14 +233,7 @@ const Dashboard = () => {
                                 <IoMdLogOut className="text-xl " />
                                 <li className="font-semibold">
                                     LogOut</li></Link>
-                            {/* <Link to='#' className="pl-2 py-2 block hover:bg-gray-400 hover:text-black"
-                                onClick={() => {
-                                    signOut(auth);
-                                    navigate('/');
-                                }}
-                            >
-                                <li className="font-semibold">LogOut</li>
-                            </Link> */}
+                            
                             <hr className='border-1' />
                         </ul>
                     </div>

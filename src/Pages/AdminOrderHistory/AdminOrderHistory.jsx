@@ -47,7 +47,7 @@ const AdminOrderHistory = () => {
 
     return (
         <div className="p-4">
-            <h2 className='text-xl font-bold text-yellow-800 mt-5'>Order History</h2>
+            <h2 className='text-xl font-bold text-yellow-800 mt-5 uppercase '>Order History</h2>
             <div className="md:mt-5 mt-2 overflow-x-auto text-[10px] md:text-[16px]">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-600 text-white">
@@ -76,7 +76,7 @@ const AdminOrderHistory = () => {
                                     <ul>
                                         {order.details.medicines.map((medicine, i) => (
                                             <li className="text-nowrap" key={i}>
-                                                {medicine.name} (x{medicine.quantity})
+                                                {medicine.name} ({medicine.quantity})
                                             </li>
                                         ))}
                                     </ul>

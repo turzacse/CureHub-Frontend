@@ -22,21 +22,21 @@ const HowItWorks = () => {
         <div >
             <Heading title="HOW IT WORKS" />
             <section className="container mx-auto py-10">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-5 justify-center ">
+                <div className="grid grid-cols-2 md:grid-cols-4 md:gap-5 gap-2 justify-center mx-4 ">
                     {tabs.map((tab, index) => (
                         <button
                             key={index}
                             onClick={() => setActiveTab(tab)}
                             className={` py-2 px-4 rounded-lg font-medium transition-colors ${activeTab.name === tab.name
                                     ? 'bg-blue-500 text-white'
-                                    : 'bg-gray-400 text-gray-800'
+                                    : 'bg-gray-300 text-gray-800'
                                 }`}
                         >
                             {tab.name}
                         </button>
                     ))}
                 </div>
-                <div className="mt-5">
+                <div className="">
                     {/* <p className="text-lg">{activeTab.description}</p> */}
                     {
                         activeTab.name == 'Appointment' && <Tab1/>
