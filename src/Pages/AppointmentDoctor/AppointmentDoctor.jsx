@@ -60,6 +60,16 @@ const AppointmentDoctor = () => {
         console.log('no');
     }
 
+    const fetchCompleteAppointments = async () => {
+        try {
+            const response = await fetch('https://cure-hub-backend-gules.vercel.app/complete/getall/appoinment');
+            const data = await response.json();
+            // setAllCompleteAppointment(data);
+        } catch (error) {
+            console.error('Error fetching appointments:', error);
+        }
+    };
+
     useEffect(() => {
         setIsLoading(true);
         const response = allDoctor.find((doctor) => doctor.userID === curehubUser?._id);
@@ -151,6 +161,7 @@ const AppointmentDoctor = () => {
 
                 const result = await response.json();
                 console.log('Success:', result);
+                fetchCompleteAppointments();
                 Swal.fire({
                     text: `The patient's meeting is over, and the payment has been received.`,
                     background: '#006666',
@@ -219,9 +230,9 @@ const AppointmentDoctor = () => {
                                         <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                             Prescribe
                                         </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        {/* <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                             Action
-                                        </th>
+                                        </th> */}
                                     </tr>
                                 </thead>
                                 <tbody className="bg-gray-300 rounded-xl divide-y divide-gray-200">
@@ -307,14 +318,34 @@ const AppointmentDoctor = () => {
                                                 )}
                                             </td>
 
-                                            <td className="px-3 py-1 whitespace-nowrap">
+                                            {/* <td className="px-3 py-1 whitespace-nowrap">
                                                 <button className='btn btn-sm btn-info'>
                                                     Complete
                                                 </button>
-                                            </td>
+                                            </td> */}
                                         </tr>
                                     ))}
                                 </tbody>
+                                <thead className="bg-gray-600 text-white">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider h-[45px]">
+                                            
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            
+                                        </th>
+                                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            
+                                        </th>
+                                       
+                                    </tr>
+                                </thead>
                             </table>
 
 
@@ -356,6 +387,7 @@ const AppointmentDoctor = () => {
                             <button
                                 onClick={() => {
                                     setIsModalOpen(false);
+                                    fetchCompleteAppointments();
                                 }}
                                 className='btn btn-sm bg-red-600 border-none text-white hover:bg-red-400'>Close</button>
                         </div>

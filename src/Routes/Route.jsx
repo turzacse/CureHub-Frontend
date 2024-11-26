@@ -50,6 +50,7 @@ import UserProfile from "../Pages/UserProfile/UserProfile.jsx";
 import UserOrder from "../Pages/UserOrder/UserOrder.jsx";
 import App from "../Components/Facebook/App.jsx";
 import Pay from "../Components/StripePayment/App.jsx";
+import DoctorTelemedicine from "../Pages/DoctorTelemedicine/DoctorTelemedicine.jsx";
 
 
 
@@ -222,6 +223,10 @@ export const router = createBrowserRouter([
           path: '/dashboard/appointment/doctor',
           element: <AppointmentDoctor/>
         },
+        {
+            path: '/dashboard/telemedicine/doctor',
+            element: <DoctorTelemedicine/>
+          },
         {
           path: '/dashboard/all-message',
           element: <AdminMessage/>

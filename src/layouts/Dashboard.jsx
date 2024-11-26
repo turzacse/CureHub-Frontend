@@ -204,6 +204,10 @@ const Dashboard = () => {
                                 <MdAccountCircle className="text-xl " />
                                 <li className="font-semibold">
                                     Appointment</li></Link>
+                                    <Link to='/dashboard/telemedicine/doctor' className={`py-2 pl-2 flex gap-2 items-center ${isActive('/dashboard/telemedicine/doctor', location.pathname)}`}>
+                                <MdAccountCircle className="text-xl " />
+                                <li className="font-semibold">
+                                    Telemedicine</li></Link>
                             
                             {/* <Link to='/dashboard/doctors' className="py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center">
                                 <MdAccountCircle className="text-xl " />

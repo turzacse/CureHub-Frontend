@@ -265,7 +265,8 @@ const Appointment = () => {
                                                 <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.appointedDate || '28/07/2024'} at {appointment?.appointedTime}</p>
                                             </div>
                                             <div className="flex-1 flex justify-center">
-                                            <CountDown appointment={{ appointedDate: appointment?.appointedDate, appointedTime: appointment?.appointedTime }} />
+                                            
+                                            {appointment?.status}
                                             </div>
                                             {/* <div className="ml-4">
                                             <CountdownTimer targetDate={targetDate} />
@@ -350,7 +351,7 @@ const Appointment = () => {
                                 ) : (
                                     <ul>
                                         {telemedicine?.map((appointment, index) => (
-                                            <li key={index} className="border-b p-4 flex flex-col md:flex-row gap-2 rounded-lg justify-between items-center bg-green-100">
+                                            <li key={index} className="border-b p-4 flex flex-col mb-2 md:flex-row gap-2 rounded-lg justify-between items-center bg-green-100">
                                                 <div className='flex-1'>
                                                     <h3 className="md:text-lg md:font-semibold font-medium text-gray-700">{appointment?.specialty}</h3>
                                                     <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.date || '28/07/2024'}</p>
