@@ -19,6 +19,8 @@ const AppointmentDoctor = () => {
     const [isManualChecked, setIsManualChecked] = useState(false);
     const { curehubUser, allCompleteAppointment } = useContext(AuthContext);
 
+
+
     const sortAppointments = (appointments) => {
         return appointments.sort((a, b) => {
             const [dayA, monthA, yearA] = a.appointedDate.split('/').map(Number);
@@ -53,8 +55,8 @@ const AppointmentDoctor = () => {
     }, []);
 
 
-    const isDoctor = allDoctor?.find((doctor) => doctor?.email == curehubUser?.email );
-    if(!isDoctor){
+    const isDoctor = allDoctor?.find((doctor) => doctor?.email == curehubUser?.email);
+    if (!isDoctor) {
         console.log('no');
     }
 
@@ -122,53 +124,53 @@ const AppointmentDoctor = () => {
 
     const handleSubmit = async () => {
         const formData = {
-        //   meeting: isMeetingChecked,
-          manualPayment: isManualChecked,
-          appointmentFee: doctorFee,
-          appointment_id: selectedAppointment?._id,
-          doctor_id: selectedAppointment?.doctor,
-          patient_id: selectedAppointment?.patient,
-          status: 'Not Prescribed',
-          prescription: {},
+            //   meeting: isMeetingChecked,
+            manualPayment: isManualChecked,
+            appointmentFee: doctorFee - doctorFee * 0.2,
+            appointment_id: selectedAppointment?._id,
+            doctor_id: selectedAppointment?.doctor,
+            patient_id: selectedAppointment?.patient,
+            status: 'Not Prescribed',
+            prescription: {},
         };
-      
+
         console.log('Form Data:', formData);
-       if(isMeetingChecked && isManualChecked){
-        try {
-            const response = await fetch('https://cure-hub-backend-gules.vercel.app/complete/appoinment', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData),
-            });
-        
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
+        if (isMeetingChecked && isManualChecked) {
+            try {
+                const response = await fetch('https://cure-hub-backend-gules.vercel.app/complete/appointment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                console.log('Success:', result);
+                Swal.fire({
+                    text: `The patient's meeting is over, and the payment has been received.`,
+                    background: '#006666',
+                    color: 'white'
+                })
+                setIsPayOpen(false);
+                // Handle the success response as needed
+            } catch (error) {
+                console.error('Error:', error);
+                // Handle the error as needed
             }
-        
-            const result = await response.json();
-            console.log('Success:', result);
+        }
+        else {
             Swal.fire({
-                text: `The patient's meeting is over, and the payment has been received.`,
+                text: `Before proceeding, make sure the patient's meeting and payment are confirmed.`,
                 background: '#006666',
                 color: 'white'
             })
-            setIsPayOpen(false);
-            // Handle the success response as needed
-          } catch (error) {
-            console.error('Error:', error);
-            // Handle the error as needed
-          }
-       }
-       else{
-        Swal.fire({
-            text: `Before proceeding, make sure the patient's meeting and payment are confirmed.`,
-            background: '#006666',
-            color: 'white'
-        })
-       }
-      };
+        }
+    };
     if (isLoading && isDoctor) {
         return (
             <div className='absolute bottom-1/2 left-1/2 flex justify-center items-center'>
@@ -184,103 +186,165 @@ const AppointmentDoctor = () => {
         )
     }
 
+    console.log(appointmentData);
+
     return (
         <div className="md:mt-20 mt-10 mx-4 ">
-        {
-            !isDoctor ? <div className='text-center flex flex-col items-center mt-48'> 
-                <h2 className='md:text-lg text-[10px] font-medium animated-text'>You are not Register Yet! For registration click on the below!</h2>
-                <NavLink to='/dashboard' className='btn bg-yellow-300 mt-6 border-none text-gray-600 hover:bg-yellow-400'>Register</NavLink>
-                
-            </div>
-            :
+            {
+                !isDoctor ? <div className='text-center flex flex-col items-center mt-48'>
+                    <h2 className='md:text-lg text-[10px] font-medium animated-text'>You are not Register Yet! For registration click on the below!</h2>
+                    <NavLink to='/dashboard' className='btn bg-yellow-300 mt-6 border-none text-gray-600 hover:bg-yellow-400'>Register</NavLink>
 
-        
-            <div className="overflow-x-auto text-[10px] md:text-[16px]">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-600 text-white">
-                        <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                SL
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                Patient Info
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                Payment
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                Prescribe
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-gray-300 rounded-xl divide-y divide-gray-200">
-                        {currentItems.map((appointment, index) => (
-                            <tr key={appointment._id}>
-                                <td className="px-3 py-1 whitespace-nowrap">
-                                    {(currentPage - 1) * itemsPerPage + index + 1}
-                                </td>
-                                <td className="px-6 text-[12px] py-4 whitespace-nowrap">
-                                    Name: {appointment?.patientName} <br />
-                                    Date: {appointment?.appointedDate} <br />
-                                    Time: {appointment?.appointedTime}
-                                </td>
-                                {
-                                    allCompleteAppointment?.find((data) => data?.appointment_id == appointment?._id) ? <td className=''>
-                                        <p className=" text-blue-800 font-semibold">Paied & Over</p> 
-                                    
-                                    </td>:<td className="px-6 text-2xl text-red-700 cursor-pointer py-4 whitespace-nowrap">
-                                    <AiOutlineDollar onClick={() => {
-                                        handlePay(appointment);
-                                    }} /> <span className='text-[12px] text-black font-medium'>{doctorFee}TK</span>
-                                </td>
-                                }
-                                
-                                <td className="px-3 py-1 whitespace-nowrap">
+                </div>
+                    :
+
+
+                    <div>
+                        <div className="overflow-x-auto text-[10px] md:text-[16px]">
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead className="bg-gray-600 text-white">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            SL
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Patient Info
+                                        </th>
+                                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Status
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Payment
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Prescribe
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-gray-300 rounded-xl divide-y divide-gray-200">
+                                    {currentItems.map((appointment, index) => (
+                                        <tr key={appointment._id}>
+                                            <td className="px-3 py-1 whitespace-nowrap">
+                                                {(currentPage - 1) * itemsPerPage + index + 1}
+                                            </td>
+                                            <td className="px-6 text-[12px] py-4 whitespace-nowrap">
+                                                Name: {appointment?.patientName} <br />
+                                                Date: {appointment?.appointedDate} <br />
+                                                Time: {appointment?.appointedTime}
+                                            </td>
+                                            <td className="px-3 py-1 whitespace-nowrap">
+                                                {appointment?.status}
+                                            </td>
+                                            {
+                                                allCompleteAppointment?.find((data) => data?.appointment_id == appointment?._id) ? <td className=''>
+                                                    <p className=" text-blue-800 font-semibold text-[12px]">Paied & Over</p>
+
+                                                </td> : <td className={`px-6 text-2xl text-red-700 cursor-pointer py-4 whitespace-nowrap ${appointment?.status !== 'Paid' && 'cursor-not-allowed'} `}>
+                                                    <AiOutlineDollar onClick={() => {
+                                                        if (appointment?.status == 'Paid') {
+                                                            handlePay(appointment);
+                                                        }
+                                                        else {
+                                                            Swal.fire({
+                                                                text: 'Appointment Is Not Confirmed Yet ! ',
+                                                                icon: 'warning',
+                                                                background: '#006666',
+                                                                color: 'white',
+                                                                confirmButtonColor: 'red'
+                                                            })
+                                                        }
+
+                                                    }} /> <span className='text-[12px] text-black font-medium'>{doctorFee}TK</span>
+                                                </td>
+                                            }
+
+                                            {/* <td className="px-3 py-1 whitespace-nowrap">
                                     <button
                                         className='btn btn-sm btn-warning'
-                                        onClick={() => handlePrescriptionClick(appointment)}
+                                        onClick={() =>{
+                                            if(appointment?.status == 'Complete'){
+                                            handlePrescriptionClick(appointment)
+                                            }
+                                            else{
+                                                Swal.fire({
+                                                    text: `${appointment?.status == 'Pending' ? 'Appointment Is Not Confirmed Yet ! ' : 'Appointment Is Not Complete Yet ! '}`,
+                                                    icon: 'warning',
+                                                    background: '#006666',
+                                                    color: 'white',
+                                                    confirmButtonColor: 'red'
+                                                })
+                                            }
+                                        }}
                                     >
                                         Prescription
                                     </button>
-                                </td>
-                                <td className="px-3 py-1 whitespace-nowrap">
-                                    <button className='btn btn-sm btn-info'>
-                                        Complete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <div className="flex justify-center mt-4">
-                    <nav className="block">
-                        <ul className="flex pl-0 rounded list-none flex-wrap">
-                            {Array.from({ length: totalPages }, (_, index) => {
-                                if (totalPages <= 5 || index < 2 || index >= totalPages - 2 || Math.abs(index + 1 - currentPage) <= 1) {
-                                    return (
-                                        <li key={index} className="page-item">
-                                            <button
-                                                onClick={() => handlePageChange(index + 1)}
-                                                className={`page-link relative block py-1.5 px-3 leading-tight text-gray-800 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
-                                            >
-                                                {index + 1}
-                                            </button>
-                                        </li>
-                                    );
-                                } else if (index === 2 || index === totalPages - 3) {
-                                    return <li key={index} className="page-item">...</li>;
-                                } else {
-                                    return null;
-                                }
-                            })}
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        }
+                                </td> */}
+                                            <td className="px-3 py-1 whitespace-nowrap">
+                                                {allCompleteAppointment?.find((data) => data?.appointment_id === appointment?._id)?.prescription ? (
+                                                    <span className="text-sm text-green-600 font-bold ">Prescribed</span> // Show "Prescribed" if prescription exists in allCompleteAppointment
+                                                ) : (
+                                                    <button
+                                                        className="btn btn-sm btn-warning"
+                                                        onClick={() => {
+                                                            if (appointment?.status === 'Complete') {
+                                                                handlePrescriptionClick(appointment); // Call handlePrescriptionClick when status is Complete
+                                                            } else {
+                                                                Swal.fire({
+                                                                    text: `${appointment?.status === 'Pending' ? 'Appointment Is Not Confirmed Yet!' : 'Appointment Is Not Complete Yet!'}`,
+                                                                    icon: 'warning',
+                                                                    background: '#006666',
+                                                                    color: 'white',
+                                                                    confirmButtonColor: 'red',
+                                                                });
+                                                            }
+                                                        }}
+                                                    >
+                                                        Prescription
+                                                    </button>
+                                                )}
+                                            </td>
+
+                                            <td className="px-3 py-1 whitespace-nowrap">
+                                                <button className='btn btn-sm btn-info'>
+                                                    Complete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <div className="flex justify-center mt-4">
+                            <nav className="block">
+                                <ul className="flex pl-0 rounded list-none flex-wrap">
+                                    {Array.from({ length: totalPages }, (_, index) => {
+                                        if (totalPages <= 5 || index < 2 || index >= totalPages - 2 || Math.abs(index + 1 - currentPage) <= 1) {
+                                            return (
+                                                <li key={index} className="page-item">
+                                                    <button
+                                                        onClick={() => handlePageChange(index + 1)}
+                                                        className={`page-link relative block py-1.5 px-3 leading-tight text-gray-800 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                                                    >
+                                                        {index + 1}
+                                                    </button>
+                                                </li>
+                                            );
+                                        } else if (index === 2 || index === totalPages - 3) {
+                                            return <li key={index} className="page-item">...</li>;
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+            }
             {/* Prescription Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">

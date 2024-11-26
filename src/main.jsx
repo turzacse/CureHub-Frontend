@@ -59,213 +59,215 @@ import UserProfile from './Pages/UserProfile/UserProfile.jsx';
 import Payment from './Pages/Payment/Payment.jsx';
 import AdminPayment from './Pages/AdminPayment/AdminPayment.jsx';
 import UserOrder from './Pages/UserOrder/UserOrder.jsx';
+import PrivateRoute from './Routes/PrivateRoute.jsx';
+import { router } from './Routes/Route.jsx';
 // import { AuthProvider } from './assets/AuthContext.jsx';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    errorElement: <Error/>,
-    children: [
-      {
-        path: '/',
-        element: <Home />
-      },
-      {
-        path: '/shop',
-        element: <ShopPage/>
-      },
-      {
-          path: '/analysis',
-          element: <Analysis/>
-      },
-      {
-        path: '/faq',
-        element: <FAQ/>
-      },
-      {
-        path: '/how-it-works',
-        element: <HowItWorks/>
-      },
-      {
-        path: '/service',
-        element: <Service/>
-      },
-      {
-        path: '/blog',
-        element: <Blog/>
-      },
-      {
-        path: '/patient-history',
-        element: <PatientHistory/>
-      },
-      {
-        path: '/doctors',
-        element: <Doctors/>
-      },
-      {
-        path: '/testimonial',
-        element: <Testimonial/>
-      },
-      {
-        path: '/query',
-        element: <AllQuery/>
-      },
-      {
-        path: '/contact-us',
-        element: <ContactUs/>
-      },
-      {
-        path: '/about',
-        element: <About/>
-      },
-      {
-        path: '/cart',
-        element: <Cart/>
-      },
-      {
-        path: '/payment',
-        element: <Payment/>
-      },
-      {
-        path: '/privacy-policy',
-        element: <PrivecyPolicy/>
-      },
-      {
-        path: '/term-of-service',
-        element: <TermOfService/>
-      },
-      {
-        path: '/appointment-guideline',
-        element: <AppointmentGuidelines/>
-      },
-      {
-        path: '/telemedicine-appointments',
-        element: <TelemedicineAppointments/>
-      },
-      {
-        path: '/booking-system',
-        element: <BookingSystem/>
-      },
-      {
-        path: '/mental-health-analysis',
-        element: <MentalHealthAnalysis/>
-      },
-      {
-        path: '/prescription',
-        element: <Prescription/>
-      },
-      {
-        path: '/membership-plan',
-        element: <MemberShip/>
-      },
-      {
-        path: '/telemedicine',
-        element: <Telemediine/>
-      },
-      {
-        path: '/telemedicine-booking',
-        element: <TelemedicineBooking/>
-      },
-      {
-        path: '/checkout',
-        element: <CheckOut/>
-      },
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Main />,
+//     errorElement: <Error/>,
+//     children: [
+//       {
+//         path: '/',
+//         element: <Home />
+//       },
+//       {
+//         path: '/shop',
+//         element: <PrivateRoute><ShopPage/></PrivateRoute>
+//       },
+//       {
+//           path: '/analysis',
+//           element: <Analysis/>
+//       },
+//       {
+//         path: '/faq',
+//         element: <FAQ/>
+//       },
+//       {
+//         path: '/how-it-works',
+//         element: <HowItWorks/>
+//       },
+//       {
+//         path: '/service',
+//         element: <Service/>
+//       },
+//       {
+//         path: '/blog',
+//         element: <Blog/>
+//       },
+//       {
+//         path: '/patient-history',
+//         element: <PatientHistory/>
+//       },
+//       {
+//         path: '/doctors',
+//         element: <PrivateRoute><Doctors/></PrivateRoute>
+//       },
+//       {
+//         path: '/testimonial',
+//         element: <Testimonial/>
+//       },
+//       {
+//         path: '/query',
+//         element: <AllQuery/>
+//       },
+//       {
+//         path: '/contact-us',
+//         element: <ContactUs/>
+//       },
+//       {
+//         path: '/about',
+//         element: <About/>
+//       },
+//       {
+//         path: '/cart',
+//         element: <Cart/>
+//       },
+//       {
+//         path: '/payment',
+//         element: <Payment/>
+//       },
+//       {
+//         path: '/privacy-policy',
+//         element: <PrivecyPolicy/>
+//       },
+//       {
+//         path: '/term-of-service',
+//         element: <TermOfService/>
+//       },
+//       {
+//         path: '/appointment-guideline',
+//         element: <AppointmentGuidelines/>
+//       },
+//       {
+//         path: '/telemedicine-appointments',
+//         element: <TelemedicineAppointments/>
+//       },
+//       {
+//         path: '/booking-system',
+//         element: <BookingSystem/>
+//       },
+//       {
+//         path: '/mental-health-analysis',
+//         element: <MentalHealthAnalysis/>
+//       },
+//       {
+//         path: '/prescription',
+//         element: <Prescription/>
+//       },
+//       {
+//         path: '/membership-plan',
+//         element: <MemberShip/>
+//       },
+//       {
+//         path: '/telemedicine',
+//         element: <Telemediine/>
+//       },
+//       {
+//         path: '/telemedicine-booking',
+//         element: <TelemedicineBooking/>
+//       },
+//       {
+//         path: '/checkout',
+//         element: <CheckOut/>
+//       },
       
-      {
-        path: '/sign-up',
-        element: <SignUpPage />
-      },
-      {
-        path: '/sign-in',
-        element: <LoginPage />
-      }
-    ]
-  },
-  {
-    path: '/user',
-    element: <Dash/>
-  },
-  {
-    path: '/dashboard',
-    element: <Dashboard/>,
-    children: [
-      {
-        path: '/dashboard/medicines',
-        element: <Medicines/>
-      },
-      {
-        path: '/dashboard/advertise',
-        element: <Advertise/>
-      },
-      {
-        path: '/dashboard/category',
-        element: <Category/>
-      },
-      {
-        path: '/dashboard/doctors',
-        element: <DoctorManagement/>
-      },
-      {
-        path: '/dashboard/user-query',
-        element: <Question/>
-      },
-      {
-        path: '/dashboard/patient-appointment',
-        element: <Appointment/>
-      },
-      {
-        path: '/dashboard/alluser',
-        element: <AllUser/>
-      },
-      {
-        path: '/dashboard/payments',
-        element: <AdminPayment/>
-      },
-      {
-        path: '/dashboard/appointment-management',
-        element: <AppointmentManagement/>
-      },
-      {
-        path: '/dashboard/appointment/doctor',
-        element: <AppointmentDoctor/>
-      },
-      {
-        path: '/dashboard/all-message',
-        element: <AdminMessage/>
-      },
-      {
-        path: '/dashboard/user-message',
-        element: <Usersmessage/>
-      },
-      {
-        path: '/dashboard/membership',
-        element: <AdminMemberShip/>
-      },
-      {
-        path: '/dashboard/order-history',
-        element: <AdminOrderHistory/>
-      },
-      {
-        path: '/dashboard/user-profile',
-        element: <UserProfile/>
-      },
-      {
-        path: '/dashboard/user-order',
-        element: <UserOrder/>
-      },
-    ]
-  },
-  {
-    path: '/facebook',
-    element: <App/>
+//       {
+//         path: '/sign-up',
+//         element: <SignUpPage />
+//       },
+//       {
+//         path: '/sign-in',
+//         element: <LoginPage />
+//       }
+//     ]
+//   },
+//   {
+//     path: '/user',
+//     element: <Dash/>
+//   },
+//   {
+//     path: '/dashboard',
+//     element: <PrivateRoute><Dashboard/></PrivateRoute>,
+//     children: [
+//       {
+//         path: '/dashboard/medicines',
+//         element: <Medicines/>
+//       },
+//       {
+//         path: '/dashboard/advertise',
+//         element: <Advertise/>
+//       },
+//       {
+//         path: '/dashboard/category',
+//         element: <Category/>
+//       },
+//       {
+//         path: '/dashboard/doctors',
+//         element: <DoctorManagement/>
+//       },
+//       {
+//         path: '/dashboard/user-query',
+//         element: <Question/>
+//       },
+//       {
+//         path: '/dashboard/patient-appointment',
+//         element: <Appointment/>
+//       },
+//       {
+//         path: '/dashboard/alluser',
+//         element: <AllUser/>
+//       },
+//       {
+//         path: '/dashboard/payments',
+//         element: <AdminPayment/>
+//       },
+//       {
+//         path: '/dashboard/appointment-management',
+//         element: <AppointmentManagement/>
+//       },
+//       {
+//         path: '/dashboard/appointment/doctor',
+//         element: <AppointmentDoctor/>
+//       },
+//       {
+//         path: '/dashboard/all-message',
+//         element: <AdminMessage/>
+//       },
+//       {
+//         path: '/dashboard/user-message',
+//         element: <Usersmessage/>
+//       },
+//       {
+//         path: '/dashboard/membership',
+//         element: <AdminMemberShip/>
+//       },
+//       {
+//         path: '/dashboard/order-history',
+//         element: <AdminOrderHistory/>
+//       },
+//       {
+//         path: '/dashboard/user-profile',
+//         element: <UserProfile/>
+//       },
+//       {
+//         path: '/dashboard/user-order',
+//         element: <UserOrder/>
+//       },
+//     ]
+//   },
+//   {
+//     path: '/facebook',
+//     element: <App/>
 
-  },
-  {
-    path: '/pay',
-    element: <Pay/>
-  }
-]);
+//   },
+//   {
+//     path: '/pay',
+//     element: <Pay/>
+//   }
+// ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

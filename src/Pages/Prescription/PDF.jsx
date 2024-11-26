@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 const PrescriptionPDF = ({ report }) => (
     <PDFViewer style={{ width: '100%', height: '100vh' }}>
         <Document>
-            <Page size="A4" style={styles.page}>
+            <Page size="A5" style={styles.page}>
                 {/* Header with logo and website name */}
                 <View style={styles.header}>
                     <View style={{ flexDirection: 'row', alignItems: 'center',  }}>
