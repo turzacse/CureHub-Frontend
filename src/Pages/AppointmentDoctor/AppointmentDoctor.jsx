@@ -208,8 +208,6 @@ const AppointmentDoctor = () => {
 
                 </div>
                     :
-
-
                     <div>
                         <div className="overflow-x-auto text-[10px] md:text-[16px]">
                             <table className="min-w-full divide-y divide-gray-200">
@@ -294,7 +292,7 @@ const AppointmentDoctor = () => {
                                     </button>
                                 </td> */}
                                             <td className="px-3 py-1 whitespace-nowrap">
-                                                {allCompleteAppointment?.find((data) => data?.appointment_id === appointment?._id)?.prescription ? (
+                                                {allCompleteAppointment?.find((data) => data?.appointment_id === appointment?._id && data?.prescription?.name)?.prescription ? (
                                                     <span className="text-sm text-green-600 font-bold ">Prescribed</span> // Show "Prescribed" if prescription exists in allCompleteAppointment
                                                 ) : (
                                                     <button
@@ -326,6 +324,9 @@ const AppointmentDoctor = () => {
                                         </tr>
                                     ))}
                                 </tbody>
+
+
+
                                 <thead className="bg-gray-600 text-white">
                                     <tr>
                                         <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider h-[45px]">

@@ -8,7 +8,7 @@ import { IoCalendarNumberSharp } from 'react-icons/io5';
 import { MdCancel, MdDateRange, MdPaid } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import CountDown from '../../Components/CountDown/CountDown';
 
 const Appointment = () => {
@@ -29,19 +29,19 @@ const Appointment = () => {
             // Optionally handle the error here, e.g., show an error message to the user
         }
     };
-    
+
     const getTeleMedicine = async () => {
         setIsLoading(true);
-       if(curehubUser?._id){
-        try {
-            const response = await axios.get(`https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/cureHub/${curehubUser?._id}`);
-            setTeleMedicine(response.data);
-            setIsLoading(false);
-        } catch (error) {
-            console.error('Error fetching appointment data:', error);
-            // Optionally handle the error here, e.g., show an error message to the user
+        if (curehubUser?._id) {
+            try {
+                const response = await axios.get(`https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/cureHub/${curehubUser?._id}`);
+                setTeleMedicine(response.data);
+                setIsLoading(false);
+            } catch (error) {
+                console.error('Error fetching appointment data:', error);
+                // Optionally handle the error here, e.g., show an error message to the user
+            }
         }
-       }
     };
 
     useEffect(() => {
@@ -260,15 +260,15 @@ const Appointment = () => {
                                 <p className="text-gray-500">No upcoming appointments.</p>
                             ) : (
                                 <ul>
-                                    {usersAppoitment?.map((appointment, index) => (
+                                    {usersAppoitment?.filter((item) => item?.status !== 'Complete')?.map((appointment, index) => (
                                         <li key={index} className="border-b py-4 flex md:flex-row flex-col gap-2 justify-between items-center">
                                             <div className='flex-1'>
                                                 <h3 className="md:text-lg md:font-semibold font-medium text-gray-700 text-center md:text-left">{appointment?.doctorName}</h3>
                                                 <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.appointedDate || '28/07/2024'} at {appointment?.appointedTime}</p>
                                             </div>
                                             <div className="flex-1 flex justify-center">
-                                            
-                                            {appointment?.status}
+
+                                                {appointment?.status}
                                             </div>
                                             {/* <div className="ml-4">
                                             <CountdownTimer targetDate={targetDate} />
@@ -276,34 +276,34 @@ const Appointment = () => {
                                             <div className='flex flex-1 items-center md:gap-5 justify-center text-2xl'>
                                                 {
                                                     appointment?.status !== 'Paid' ?
-                                                
-                                                <div className='flex gap-2'>
-                                                
-                                                <button
-                                                onClick={() => {
-                                                    handlePayClick(appointment)
-                                                }}
-                                                
-                                                className='btn btn-info  btn-sm'>
-                                                Pay
-                                                </button>
-                                                <button
-                                                onClick={() => handleCancelClick(appointment)}
-                                                className='btn bg-red-500  btn-sm border-none text-white hover:bg-red-500'>
-                                                    Cancel
-                                                </button>
-                                                </div>
-                                                
-                                                :
-                                                <button className='btn   btn-sm cursor-not-allowed'>
-                                                Paid
-                                                </button>
 
-                                            }
+                                                        <div className='flex gap-2'>
+
+                                                            <button
+                                                                onClick={() => {
+                                                                    handlePayClick(appointment)
+                                                                }}
+
+                                                                className='btn btn-info  btn-sm'>
+                                                                Pay
+                                                            </button>
+                                                            <button
+                                                                onClick={() => handleCancelClick(appointment)}
+                                                                className='btn bg-red-500  btn-sm border-none text-white hover:bg-red-500'>
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+
+                                                        :
+                                                        <button className='btn   btn-sm cursor-not-allowed'>
+                                                            Paid
+                                                        </button>
+
+                                                }
                                             </div>
                                             <div className='flex-1 flex justify-end'>
                                                 <div>
-                                                    
+
                                                     <button className="bg-blue-500  text-white py-1 px-3 rounded-md">
                                                         View Details
                                                     </button>
@@ -352,14 +352,34 @@ const Appointment = () => {
                                     <p className="text-gray-500">No upcoming appointments.</p>
                                 ) : (
                                     <ul>
-                                        {telemedicine?.map((appointment, index) => (
+                                        {telemedicine?.filter((item) => item?.status !== 'Completed')?.map((appointment, index) => (
                                             <li key={index} className="border-b p-4 flex flex-col mb-2 md:flex-row gap-2 rounded-lg justify-between items-center bg-green-100">
                                                 <div className='flex-1'>
                                                     <h3 className="md:text-lg md:font-semibold font-medium text-gray-700">{appointment?.specialty}</h3>
                                                     <p className="text-gray-500 text-[12px] md:text-base ">{appointment?.date || '28/07/2024'}</p>
                                                 </div>
                                                 <div className="flex-1 flex justify-center">
-                                                    <button className='btn btn-info btn-sm'>Track Your Appointment</button>
+                                                    {
+                                                        appointment?.meetLink ?
+                                                            <NavLink
+                                                                to={`${appointment?.meetLink}`}
+                                                                className="btn btn-sm btn-warning text-gray-600 uppercase"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer" external links
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    const meetingWindow = window.open(appointment?.meetLink, "_blank");
+                                                                    if (!meetingWindow) {
+                                                                        alert("Please allow popups for this website to open the meeting link.");
+                                                                    }
+                                                                }}
+                                                            >
+                                                                Join Meeting
+                                                            </NavLink>
+                                                            :
+                                                            <button className='btn btn-info btn-sm'>Track Your Appointment</button>
+                                                    }
+                                                    {/* <button className='btn btn-info btn-sm'>Track Your Appointment</button> */}
                                                 </div>
                                                 {/* <div className="ml-4">
                                             <CountdownTimer targetDate={targetDate} />

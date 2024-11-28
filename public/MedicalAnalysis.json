@@ -1,0 +1,189 @@
+{
+    "Gender": {
+        "question": "What is your gender?",
+        "answers": [
+            "Male",
+            "Female",
+            "Other"
+        ]
+    },
+    "Diagnosis": {
+        "question": "Have you been diagnosed with any of the following conditions?",
+        "answers": [
+            "Major Depressive Disorder",
+            "Panic Disorder",
+            "Generalized Anxiety",
+            "Bipolar Disorder",
+            "Other (please specify)"
+        ]
+    },
+    "Symptom Severity (1-10)": {
+        "question": "On a scale of 1 to 10, how severe are your symptoms currently? (1 = No symptoms, 10 = Extremely severe)",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    "Mood Score (1-10)": {
+        "question": "On a scale of 1 to 10, how would you rate your overall mood today? (1 = Very bad, 10 = Excellent)",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    "Sleep Quality (1-10)": {
+        "question": "On a scale of 1 to 10, how would you rate the quality of your sleep recently? (1 = Very poor, 10 = Excellent)",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    "Physical Activity (hrs/week)": {
+        "question": "How many hours of physical activity or exercise do you do in a typical week?",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    "Medication": {
+        "question": "Are you currently taking any of the following medications?",
+        "answers": [
+            "Mood Stabilizers",
+            "Antipsychotics",
+            "SSRIs",
+            "Anxiolytics",
+            "Antidepressants",
+            "Benzodiazepines",
+            "Other (please specify)"
+        ]
+    },
+    "Therapy Type": {
+        "question": "Are you undergoing any of the following therapy types?",
+        "answers": [
+            "Interpersonal Therapy",
+            "Mindfulness-Based Therapy",
+            "Cognitive Behavioral Therapy (CBT)",
+            "Dialectical Behavioral Therapy (DBT)",
+            "Other (please specify)"
+        ]
+    },
+    "Treatment Duration (weeks)": {
+        "question": "How many weeks has your current treatment been ongoing?",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16"
+        ]
+    },
+    "Stress Level (1-10)": {
+        "question": "On a scale of 1 to 10, how stressed are you feeling currently? (1 = No stress, 10 = Extremely stressed)",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    "Outcome": {
+        "question": "How would you describe the outcome of your current treatment so far?",
+        "answers": [
+            "Improved",
+            "No Change",
+            "Deteriorated"
+        ]
+    },
+    "Treatment Progress (1-10)": {
+        "question": "On a scale of 1 to 10, how would you rate your progress in treatment? (1 = No progress, 10 = Excellent progress)",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    "AI-Detected Emotional State": {
+        "question": "How would you describe your current emotional state?",
+        "answers": [
+            "Anxious",
+            "Neutral",
+            "Happy",
+            "Excited",
+            "Stressed",
+            "Depressed",
+            "Other (please specify)"
+        ]
+    },
+    "Adherence to Treatment (%)": {
+        "question": "What percentage of your prescribed treatment plan (e.g., medication, therapy) do you adhere to regularly? (Answer in percentage)",
+        "answers": [
+            "0%",
+            "10%",
+            "20%",
+            "30%",
+            "40%",
+            "50%",
+            "60%",
+            "70%",
+            "80%",
+            "90%",
+            "100%"
+        ]
+    }
+}

@@ -37,7 +37,7 @@ const DoctorTelemedicine = () => {
             const data1 = appointment?.filter((item) => item?.status === 'Completed')
 
             setCompleteTelemedicine(data1);
-            
+
             const data2 = appointment?.filter((item) => item?.status !== 'Completed')
 
             setOngoingTelemedicine(data2);
@@ -152,7 +152,7 @@ const DoctorTelemedicine = () => {
                     const response = await axios.put(
                         `https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/complete/${id}`
                     );
-                    
+
                     // Show success message if the API call succeeds
                     Swal.fire({
                         title: 'Success!',
@@ -181,36 +181,36 @@ const DoctorTelemedicine = () => {
 
     const handleFilter = () => {
         setIsComplete(!isComplete);
-        
+
     }
 
     useEffect(() => {
-        if(isComplete) {
+        if (isComplete) {
             setTableData(completeTelemedicine);
         }
-        else{
+        else {
             setTableData(ongoingTelemedicine);
         }
-    },[completeTelemedicine, ongoingTelemedicine, isComplete])
+    }, [completeTelemedicine, ongoingTelemedicine, isComplete])
 
     console.log(completeTelemedicine, ongoingTelemedicine, tableData);
-    
+
     return (
         <div className="p-4">
             <div className="flex items-center mt-5 justify-between">
-            <h2 className="text-xl font-bold text-yellow-800  uppercase">
-                Telemedicine Appointment
-            </h2>
+                <h2 className="text-xl font-bold text-yellow-800  uppercase">
+                    Telemedicine Appointment
+                </h2>
 
-            <button 
-            onClick={() => {
-                handleFilter();
-            }}
-            className="btn bg-[#3B82F6] hover:bg-[#2b66c5] btn-sm w-[120px] text-white border-none uppercase">
-                {
-                    isComplete? 'Ongoing' : 'Complete'
-                }
-            </button>
+                <button
+                    onClick={() => {
+                        handleFilter();
+                    }}
+                    className="btn bg-[#3B82F6] hover:bg-[#2b66c5] btn-sm w-[120px] text-white border-none uppercase">
+                    {
+                        isComplete ? 'Ongoing' : 'Complete'
+                    }
+                </button>
             </div>
 
             <section className="md:mt-5 mt-2 overflow-x-auto text-[10px] md:text-[16px]">
@@ -282,16 +282,16 @@ const DoctorTelemedicine = () => {
                                                 :
                                                 (
                                                     appointment?.status == 'Completed' ? <button
-                                                    className="btn btn-sm btn-success text-gray-100 uppercase">
+                                                        className="btn btn-sm btn-success text-gray-100 uppercase">
                                                         <FaCircleCheck />
                                                     </button>
-                                                    :
-                                                    <button
-                                                    className="btn btn-sm btn-success text-gray-200 uppercase"
-                                                    onClick={() => handleSetMeeting(appointment)}
-                                                >
-                                                    Set Meeting
-                                                </button>
+                                                        :
+                                                        <button
+                                                            className="btn btn-sm btn-success text-gray-200 uppercase"
+                                                            onClick={() => handleSetMeeting(appointment)}
+                                                        >
+                                                            Set Meeting
+                                                        </button>
                                                 )
                                         }
                                     </div>
@@ -299,24 +299,28 @@ const DoctorTelemedicine = () => {
 
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     {
-                                        appointment?.status !== 'Completed' ? 
-                                        <button
-                                    // onClick={() => {
-                                    //     handleComplete(appointment?._id)
-                                    // }}
-                                    disabled
-                                    className="btn btn-sm btn-info  text-gray-100 uppercase">
-                                        <GoEyeClosed />
-                                    </button>
+                                        !appointment?.meetLink ?
+                                            (
+                                                appointment?.status == 'Completed' ?
+                                                    <button
+                                                        className="btn btn-sm btn-info  text-gray-100 uppercase">
+                                                        <FaCircleCheck />
+                                                    </button> :
+                                                    <button
+                                                        disabled
+                                                        className="btn btn-sm btn-info  text-gray-100 uppercase">
+                                                        <GoEyeClosed />
+                                                    </button>
+                                            )
 
-                                    : 
-                                    <button
-                                    onClick={() => {
-                                        handleComplete(appointment?._id)
-                                    }}
-                                    className="btn btn-sm btn-success text-gray-100 uppercase">
-                                        <FaCircleCheck />
-                                    </button>
+                                            :
+                                            <button
+                                                onClick={() => {
+                                                    handleComplete(appointment?._id)
+                                                }}
+                                                className="btn btn-sm btn-success text-gray-100 uppercase">
+                                                <FaCircleCheck />
+                                            </button>
                                     }
                                 </td>
                             </tr>

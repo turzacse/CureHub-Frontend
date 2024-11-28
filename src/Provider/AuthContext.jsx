@@ -101,7 +101,11 @@ const AuthProvider = ({ children }) => {
         fetch(`https://cure-hub-backend-gules.vercel.app/cancel/getall/appoinment`).then(res => res.json()).then(data => setAllCancelAppointment(data));
     }, []);
     useEffect(() => {
-        fetch(`https://cure-hub-backend-gules.vercel.app/appoinment`).then(res => res.json()).then(data => setAllAppointment(data));
+        fetch(`https://cure-hub-backend-gules.vercel.app/appoinment`).then(res => res.json()).then(data => {
+            const response = data?.filter((item) => item.status !== 'Complete')
+            // setAllAppointment(data)
+            setAllAppointment(response)
+        });
     }, []);
     useEffect(() => {
         fetch('https://cure-hub-backend-gules.vercel.app/telemedicine-appointment').then(res => res.json()).then(data => setAllTelemedicineAppointment(data));

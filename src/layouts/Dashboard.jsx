@@ -90,8 +90,8 @@ const Dashboard = () => {
                 {/* Sidebar */}
                 <div className="drawer-side lg:h-full lg:bg-[#006666]">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-44 lg:w-44 h-screen bg-[#006666] text-white uppercase">
-                        <div className="p-4 ">
+                    <ul className="menu px-4 w-44 lg:w-44 h-screen bg-[#006666] text-white uppercase">
+                        <div className="px-4 py-2 ">
                             <div className="text-center mb-4">
                                 <img className="w-12 h-12 lg:w-20 lg:h-20 rounded-full mx-auto mb-2" src={img} alt="Profile" />
                                 
