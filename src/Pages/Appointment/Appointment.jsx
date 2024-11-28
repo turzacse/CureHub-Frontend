@@ -29,26 +29,28 @@ const Appointment = () => {
             // Optionally handle the error here, e.g., show an error message to the user
         }
     };
-
+    
     const getTeleMedicine = async () => {
         setIsLoading(true);
+       if(curehubUser?._id){
         try {
-            const response = await axios.get(`https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/${curehubUser?._id}`);
+            const response = await axios.get(`https://cure-hub-backend-gules.vercel.app/telemedicine-appointment/cureHub/${curehubUser?._id}`);
             setTeleMedicine(response.data);
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching appointment data:', error);
             // Optionally handle the error here, e.g., show an error message to the user
         }
+       }
     };
 
     useEffect(() => {
         getAllData();
         getTeleMedicine();
         window.scroll(0, 0);
-    }, [curehubUser?._id])
+    }, [curehubUser?._id, curehubUser])
 
-
+    console.log('cure======>', curehubUser)
     // Calculate appointment stats
     const upcomingCount = 3;
     const bookedCount = 14;

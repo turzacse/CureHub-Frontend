@@ -9,6 +9,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [usersAppoitment, setUsersAppointment] = useState();
     const googleProvider = new GoogleAuthProvider();
     const [curehubUser, setCurehubUser] = useState();
@@ -60,10 +61,37 @@ const AuthProvider = ({ children }) => {
         });
         return () => unsubscribe();
     }, []);
-    console.log('CureHub user=>', curehubUser);
+    // console.log('CureHub user=>', curehubUser);
+    // useEffect(() => {
+    //     fetch(`https://cure-hub-backend-gules.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setCurehubUser(data));
+    // }, [user]);
     useEffect(() => {
-        fetch(`https://cure-hub-backend-gules.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setCurehubUser(data));
-    }, [user]);
+        // Ensure user email exists before fetching
+        if (!user?.email) return;
+    
+        // Fetch data from the API
+        const fetchCurehubUser = async () => {
+            setLoading(true); // Start loading
+            setError(null); // Reset error state
+    
+            try {
+                const response = await fetch(`https://cure-hub-backend-gules.vercel.app/users/${user.email}`);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+    
+                const data = await response.json();
+                setCurehubUser(data); // Update the state with fetched data
+            } catch (err) {
+                console.error("Failed to fetch CureHub user:", err);
+                setError(err.message); // Set error state
+            } finally {
+                setLoading(false); // End loading
+            }
+        };
+    
+        fetchCurehubUser();
+    }, [user?.email]);
 
     useEffect(() => {
         fetch(`https://cure-hub-backend-gules.vercel.app/appoinment/patient/${curehubUser?._id}`).then(res => res.json()).then(data => setUsersAppointment(data));
@@ -167,7 +195,7 @@ const AuthProvider = ({ children }) => {
         getAllPayment();
     } ,[])
 
-    console.log('Appointment=========>', usersAppoitment);
+    // console.log('Appointment=========>', usersAppoitment);
 
     const value = {
         user,
