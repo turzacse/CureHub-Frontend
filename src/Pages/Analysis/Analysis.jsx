@@ -4,65 +4,96 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthContext';
 
 const questions = [
+    {
+        question: "What is your gender?",
+        options: ["Male", "Female"]
+    },
+    {
+        question: "Have you been diagnosed with any of the following conditions?",
+        options: [
+            "Major Depressive Disorder",
+            "Panic Disorder",
+            "Generalized Anxiety",
+            "Bipolar Disorder",
+            "Other"
+        ]
+    },
+    {
+        question: "On a scale of 1 to 10, how severe are your symptoms currently?",
+        sub: "(1 = No symptoms, 10 = Extremely severe)",
+        options: ["1-3", "4-6", "7-8", "9", "10"]
+    },
+    {
+        question: "On a scale of 1 to 10, how would you rate your overall mood today?", sub: "(1 = Very bad, 10 = Excellent)",
+        options: ["1-3", "4-6", "7-8", "9", "10"]
+    },
+    {
+        question: "On a scale of 1 to 10, how would you rate the quality of your sleep recently?",
+        sub: "(1 = Very poor, 10 = Excellent)",
+        options: ["1-3", "4-6", "7-8", "9", "10"]
+    },
+    {
+        question: "How many hours of physical activity or exercise do you do in a typical week?",
+        options: ["1-3", "4-6", "7-8", "9", "10"]
+    },
+    {
+        question: "Are you currently taking any of the following medications?",
+        options: [
+            "Mood Stabilizers",
+            "Antipsychotics",
+            "SSRIs",
+            "Anxiolytics",
+            "Antidepressants",
+            "Benzodiazepines",
+            "Other (please specify)"
+        ]
+    },
+    {
+        question: "Are you undergoing any of the following therapy types?",
+        options: [
+            "Interpersonal Therapy",
+            "Mindfulness-Based Therapy",
+            "Cognitive Behavioral Therapy (CBT)",
+            "Dialectical Behavioral Therapy (DBT)",
+            "Other (please specify)"
+        ]
+    },
+    {
+        question: "How many weeks has your current treatment been ongoing?",
+        options: [
+            "1-2", "2-4", "5-8", "9-15", "16 +"
+        ]
+    },
+    {
+        question: "On a scale of 1 to 10, how stressed are you feeling currently?",
+        sub: "(1 = No stress, 10 = Extremely stressed)",
+        options: ["1-3", "4-6", "7-8", "9", "10"]
+    },
+    {
+        question: "How would you describe the outcome of your current treatment so far?",
+        options: ["Improved", "No Change", "Deteriorated"]
+    },
+    {
+        question: "On a scale of 1 to 10, how would you rate your progress in treatment?",
+        sub: "(1 = No progress, 10 = Excellent progress)",
+        options: ["1-3", "4-6", "7-8", "9", "10"]
+    },
+    //OutPut Data
     // {
-    //     id: 'age',
-    //     question: "How old are you?",
-    //     type: 'input',
+    //     question: "How would you describe your current emotional state?",
+    //     options: [
+    //         "Anxious", "Neutral", "Happy", "Excited", "Stressed", "Depressed", "Other (please specify)"
+    //     ]
     // },
     {
-        id: 'chronicConditions',
-        question: 'Do you have any chronic conditions?',
-        options: ['Diabetes', 'Hypertension', 'Heart Disease', 'None', 'Other'],
-        type: 'multiple',
-    },
-    {
-        id: 'symptoms',
-        question: 'What symptoms are you currently experiencing?',
-        options: ['Fatigue', 'Frequent urination', 'Dizziness', 'Chest pain', 'Shortness of breath', 'None of the above', 'Other'],
-        type: 'multiple',
-    },
-    // {
-    //     id: 'medication',
-    //     question: "What are your's current medication?",
-    //     type: 'input',
-    // },
-    {
-        id: 'healthCondition',
-        question: "How would you describe your overall health condition?",
-        options: ['Good', 'Fair', 'Poor'],
-        type: 'single',
-    },
-    {
-        id: 'recentTests',
-        question: 'Have you undergone any recent medical tests?',
-        options: ['Blood Test', 'ECG', 'MRI', 'None', 'Other'],
-        type: 'multiple',
-    },
-    {
-        id: 'lifestyle',
-        question: "What is your lifestyle like?",
-        options: ['Sedentary', 'Moderately active', 'Active', 'Very active'],
-        type: 'single',
-    },
-    {
-        id: 'smoker',
-        question: "Are you a smoker?",
-        options: ['Yes', 'No', 'Former smoker'],
-        type: 'single',
-    },
-    {
-        id: 'alcohol',
-        question: "Do you consume alcohol?",
-        options: ['Yes', 'No', 'Occasionally'],
-        type: 'single',
-    },
-    {
-        id: 'familyHistory',
-        question: "Do you have a family history of any medical conditions?",
-        options: ['Diabetes', 'Hypertension', 'Heart Disease', 'None', 'Other'],
-        type: 'multiple',
-    },
+        question: "What percentage of your prescribed treatment plan (e.g., medication, therapy) ?",
+        sub: " (Answer in percentage)",
+        options: [
+            "1%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%", 
+        ]
+    }
 ];
+
 
 const Analysis = () => {
     const [formData, setFormData] = useState({});
@@ -205,10 +236,11 @@ const Analysis = () => {
                     startAnalysis && (
                         <form onSubmit={(e) => e.preventDefault()}>
                             <div className='mb-4'>
-                                <button className='btn btn-warning mb-4'>
-                                    Step {currentQuestionIndex + 1}
+                                <button className='btn btn-sm btn-warning mb-4'>
+                                    Quary {currentQuestionIndex + 1}
                                 </button>
-                                <label className='block text-white text-2xl font-semibold mb-4'>{currentQuestion.question}</label>
+                                <label className='block text-white text-lg md:text-xl font-semibold mb-1'>{currentQuestion.question}</label>
+                                <label className='block text-white text-[12px] font-semibold mb-4'>{currentQuestion.sub}</label>
                                 {currentQuestion.type === 'input' ? (
                                     <input
                                         type='text'
@@ -225,7 +257,7 @@ const Analysis = () => {
                                                 key={option}
                                                 type='button'
                                                 onClick={() => handleSelect(option)}
-                                                className={`px-4 py-2 rounded-md shadow-sm focus:outline-none ${formData[currentQuestion.id]?.includes(option) ? 'bg-secondary' : 'bg-info text-black'} hover:bg-primary-dark`}
+                                                className={`px-4 text-[12px] md:text-[14px]  py-2 rounded-md shadow-sm focus:outline-none ${formData[currentQuestion.id]?.includes(option) ? 'bg-secondary' : 'bg-info text-black'} hover:bg-primary-dark`}
                                             >
                                                 {option}
                                             </button>
@@ -239,7 +271,7 @@ const Analysis = () => {
                                     <button
                                         type='button'
                                         onClick={handleBack}
-                                        className={`px-6 py-2 text-white rounded-md shadow-sm ${currentQuestionIndex === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-700'}`}
+                                        className={`px-6  btn-sm text-white rounded-md shadow-sm ${currentQuestionIndex === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-700'}`}
                                         disabled={currentQuestionIndex === 0}
                                     >
                                         Back
@@ -250,7 +282,7 @@ const Analysis = () => {
                                             setStartAnalysis(false);
                                             setFormData({})
                                         }}
-                                        className={`px-6 py-2 text-white rounded-md shadow-sm btn bg-red-500 border-none hover:bg-red-400`}
+                                        className={`px-6 py-2 text-white rounded-md shadow-sm btn btn-sm bg-red-500 border-none hover:bg-red-400`}
                                         // disabled={currentQuestionIndex === 0}
                                     >
                                         Cancle
@@ -260,7 +292,7 @@ const Analysis = () => {
                                 <button
                                     type='button'
                                     onClick={handleNext}
-                                    className='px-6 py-2 bg-blue-800 text-white rounded-md shadow-sm hover:bg-primary-dark'
+                                    className='px-6 py-2 bg-blue-800 text-white rounded-md btn btn-sm shadow-sm hover:bg-blue-700 border-none'
                                 >
                                     {currentQuestionIndex === questions.length - 1 ? 'Generate' : 'Next'}
                                 </button>
