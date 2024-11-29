@@ -18,9 +18,6 @@ const Navbar = () => {
         <li className='font-semibold'><NavLink to='/telemedicine'>Telemedicine</NavLink></li>
         <li className='font-semibold'><NavLink to='/shop'>Medi Shop</NavLink></li>
         <li><NavLink to="/analysis" className='font-semibold'>Medical Analysis</NavLink></li>
-
-        {/* <li className='font-semibold'><NavLink to='/prescription'>Prescription</NavLink></li> */}
-        {/* <li className='font-semibold'><NavLink to='/patient-history'>Patient History</NavLink></li> */}
         <div className="dropdown bg-[#006666]">
             <li tabIndex={0} role="button" className="font-semibold m-1">CureHub</li>
             <ul tabIndex={0} className="md:dropdown-content md:menu rounded-box z-[1] md:w-[220px] md:shadow bg-[#0a9191]">
@@ -71,9 +68,7 @@ const Navbar = () => {
                         </div>
                         <Link>
                             <img className="md:h-[60px] h-[40px] rounded-full" src={logo1} alt="" />
-                            {/* <h2 className="text-xl font-semibold text-orange-500 hidden md:block">Bangla Bites</h2> */}
                         </Link>
-                        {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
                     </div>
                     <div className="navbar-center  hidden lg:flex">
                         <ul className="menu bg-[#006666] menu-horizontal text-left px-1 text-[12px]">
@@ -81,26 +76,6 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        {/* <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className=" avatar">
-                                <div className="">
-                                    <FaBookmark className='text-pink-400 cursor-pointer' />
-                                </div>
-                            </label>
-                            <ul tabIndex={0} className="mt-[25px] z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-400 rounded-box w-52">
-
-                                <li><button className="text-gray-800 font-semibold">Cart</button></li>
-
-                                <li><button className="text-gray-800 font-semibold" onClick={() => {
-                                    // navigate('/dashboard')
-                                }}>Appointment
-                                    {
-                                        usersAppoitment?.length > 0 && <span className='text-red-600 text-xl font-bold'>{usersAppoitment?.length}</span>
-                                    }
-                                </button></li>
-                                <li><button className="text-gray-800 font-semibold">Telemedicine</button></li>
-                            </ul>
-                        </div> */}
                         <div>
                         <FaCartArrowDown onClick={() => {
                             navigate('/cart')
@@ -110,10 +85,7 @@ const Navbar = () => {
                         />
                         </div>
 
-                        <div className="indicator ml-2 mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                            <span className="badge badge-xs badge-primary indicator-item"></span>
-                        </div>
+                        
                         {user ? (
                             <>
 
@@ -144,6 +116,7 @@ const Navbar = () => {
                         ) : (
                             <NavLink to='/sign-in' className="btn btn-outline btn-warning">Login</NavLink>
                         )}
+                        
                     </div>
                 </div>
             </div>

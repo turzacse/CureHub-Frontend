@@ -2,7 +2,7 @@ import React from "react";
 
 const StarBadge = () => {
   return (
-    <div className="flex items-end mb-20 justify-center min-h-screen">
+    <div className="flex items-end mb-20 justify-center ">
       {/* Badge Wrapper */}
       <div className="relative group flex flex-col items-center">
         {/* Starburst Shape */}
