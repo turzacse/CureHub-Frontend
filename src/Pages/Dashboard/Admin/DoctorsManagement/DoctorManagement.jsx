@@ -17,6 +17,7 @@ const DoctorManagement = () => {
     const [todaysDoctor, setTodaysDoctor] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {telemedicineDoctor} = useContext(AuthContext);
+    const [selectedData, setSelectedData] = useState();
 
     const today = new Date();
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -79,7 +80,7 @@ const DoctorManagement = () => {
                 });
 
                 if (response.ok) {
-                    
+                    setIsModalOpen(false)
                     // Show success alert
                     Swal.fire({
                         // title: 'Approved!',
@@ -203,7 +204,7 @@ const DoctorManagement = () => {
                                         </td>
                                     </tr>
                                 </tbody> :
-                                    <tbody className="bg-white text-black divide-y divide-gray-200">
+                                    <tbody className="bg-gray-300 text-black divide-y divide-gray-200">
                                     {requestedDoctor?.map((appointment, index) => (
                                         <tr key={appointment._id}>
                                             <td className="px-3 py-2 whitespace-nowrap">
@@ -230,6 +231,7 @@ const DoctorManagement = () => {
                                                 <button
                                                     onClick={() => {
                                                         setIsModalOpen(true);
+                                                        setSelectedData(appointment)
                                                     }}
                                                     className='btn btn-sm btn-warning'> Details
                                                 </button>
@@ -254,22 +256,31 @@ const DoctorManagement = () => {
                     <div className="bg-gray-300  rounded-lg shadow-lg max-w-lg w-full">
                         <div className="px-4 py-5 sm:px-6 bg-gray-800 text-white">
                             <h3 className="text-lg leading-6 font-medium">
-                                Dr. Fahim Montasir Turza
+                               {selectedData?.name}
                             </h3>
                         </div>
-                        <div className="px-6">
-                            <p><strong>Patient Name:</strong> </p>
-                            <p><strong>Requested Date:</strong> </p>
-                            <p><strong>Phone:</strong> </p>
+                        <div className="px-6 py-4">
+                            <p><strong>Designation:</strong> {selectedData?.designation} </p>
+                            <p><strong>Department:</strong> {selectedData?.department} </p>
+                            <p><strong>Requested Joining Date:</strong> {selectedData?.joining_date} </p>
+                            <p><strong>Service Time:</strong> {selectedData?.start_time} to {selectedData?.end_time}</p>
+                            <p><strong>Appointment Fee:</strong> {selectedData?.visit} TK</p>
 
                         </div>
+                        <div className='m-4 flex justify-between'>
+                        <button
+                            onClick={() => handleRequestAccept(selectedData?._id)}
+                            className='btn btn-warning'>
+                            Accecpt Request
+                        </button>
                         <button
                             onClick={() => {
                                 setIsModalOpen(false);
                             }}
-                            className='btn btn-warning'>
+                            className='btn btn-info'>
                             close
                         </button>
+                        </div>
 
                     </div>
                 </div>

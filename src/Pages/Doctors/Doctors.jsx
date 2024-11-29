@@ -65,8 +65,9 @@ const Doctors = () => {
         fetch('https://cure-hub-backend-gules.vercel.app/doctors')
             .then(res => res.json())
             .then(data => {
-                // const filteredDoctors = data.filter(item => item.offDay !== dayName);
-                setDoctors(data);
+                const available = data?.filter((item) => item?.status !== 'Pending')
+                // console.log(available);
+                setDoctors(available);
             });
     }, []);
 
@@ -314,7 +315,8 @@ const Doctors = () => {
             <Heading title="Dedicated Team of Doctors" subtitle="Discover Expertise, Compassion, and Personalized Care" />
 
             <div className='lg:container lg:mx-auto   mx-4 py-10 '>
-                <h2 className="md:text-2xl text-center text-white font-bold md:mb-10 mb-5 ">Meet Our Trusted Doctors, Available Every Day to Care for You!</h2>
+                <h2 className="md:text-2xl text-center text-white font-bold">Connect with Our Expert Doctors, Dedicated to Your Health Every Day!</h2>
+                <p className='text-center text-[16px] w-1/2 mx-auto md:mb-10 mb-5 text-yellow-300'>Find the perfect specialist to guide your care—available every day for consultations, treatments, and support tailored to your needs</p>
 
                 <div className='flex flex-col md:flex-row justify-between md:gap-10 gap-2 mb-5'>
                     <input
@@ -323,61 +325,13 @@ const Doctors = () => {
                         type="text"
                         name="search"
                         id="" />
-
-                    {/* seacring by day */}
-                    <div className="grid lg:grid-cols-7 md:grid-cols-4 grid-cols-3 items-center gap-2 text-[12px] md:text-[14px]">
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Sunday</span>
-
-                        </label>
-
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Monday</span>
-
-                        </label>
-
-
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Tuesday</span>
-
-                        </label>
-
-
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Wednesday</span>
-
-                        </label>
-
-
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Thursday</span>
-
-                        </label>
-
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Friday</span>
-
-                        </label>
-
-                        <label className=" flex items-center gap-1 text-white ">
-                            <input type="checkbox" className="checkbox checkbox-warning" />
-                            <span className=" text-white">Saturday </span>
-
-                        </label>
-                    </div>
                 </div>
 
                 <div className='grid  lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2'>
                     {doctors.map((doctor) => (
                         <div className='bg-gray-300 text-black rounded-lg p-4' key={doctor._id}>
                             <img className='mx-auto rounded-full h-[100px] w-[100px]' src={doctor?.doctor_img} alt="" />
-                            <h2 className='text-[14px] mt-2 text-center'>{doctor?.name} || {doctor.department}</h2>
+                            <h2 className='text-[14px] mt-2 text-center'>{doctor?.name} || {doctor.designation}</h2>
                             <p className='text-[12px] text-center'>
                                 {doctor?.degree?.map((deg, index) => (
                                     <span key={index}>{deg}{index < doctor.degree.length - 1 ? ', ' : ''}</span>

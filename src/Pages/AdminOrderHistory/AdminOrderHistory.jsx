@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { FaCheckCircle } from "react-icons/fa";
 
 const AdminOrderHistory = () => {
     const [orderHistory, setOrderHistory] = useState([]);
@@ -7,42 +9,101 @@ const AdminOrderHistory = () => {
     const [error, setError] = useState(null);
 
     // Fetch order data from the API
+    const fetchOrderHistory = async () => {
+        try {
+            const response = await axios.get(
+                "https://cure-hub-backend-gules.vercel.app/payments/medicine"
+            );
+            const list = response.data.payments;
+            const reversedList = list.reverse();
+            setOrderHistory(reversedList);
+            setLoading(false);
+        } catch (err) {
+            setError("Failed to fetch order history");
+            setLoading(false);
+        }
+    };
     useEffect(() => {
-        const fetchOrderHistory = async () => {
-            try {
-                const response = await axios.get(
-                    "https://cure-hub-backend-gules.vercel.app/payments/medicine"
-                );
-                const list = response.data.payments;
-                const reversedList = list.reverse();
-                setOrderHistory(reversedList);
-                setLoading(false);
-            } catch (err) {
-                setError("Failed to fetch order history");
-                setLoading(false);
-            }
-        };
-
         fetchOrderHistory();
     }, []);
 
     if (loading) {
         return (
-        <div className="w-[400px] mx-auto mt-24">
-            <span className="loading loading-spinner text-primary"></span>
-                    <span className="loading loading-spinner text-secondary"></span>
-                    <span className="loading loading-spinner text-accent"></span>
-                    <span className="loading loading-spinner text-neutral"></span>
-                    <span className="loading loading-spinner text-info"></span>
-                    <span className="loading loading-spinner text-success"></span>
-                    <span className="loading loading-spinner text-warning"></span>
-                    <span className="loading loading-spinner text-error"></span>
-        </div>
+            <div className="w-[400px] mx-auto mt-24">
+                <span className="loading loading-spinner text-primary"></span>
+                <span className="loading loading-spinner text-secondary"></span>
+                <span className="loading loading-spinner text-accent"></span>
+                <span className="loading loading-spinner text-neutral"></span>
+                <span className="loading loading-spinner text-info"></span>
+                <span className="loading loading-spinner text-success"></span>
+                <span className="loading loading-spinner text-warning"></span>
+                <span className="loading loading-spinner text-error"></span>
+            </div>
         );
     }
 
     if (error) {
         return <p className="text-center mt-6 text-red-600">{error}</p>;
+    }
+
+    const handleDelivert = (info) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `Are you sure you want to mark this order as delivered?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            background: '#006666',
+            color: 'white',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Call the PUT API to update the status
+                fetch(`https://cure-hub-backend-gules.vercel.app/payments/medicine/${info._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.updatedCount > 0) {
+                            fetchOrderHistory();
+                            Swal.fire({
+                                title: 'Updated!',
+                                text: `The order has been marked as delivered successfully.`,
+                                icon: 'success',
+                                background: '#006666',
+                                color: 'white',
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Not Found',
+                                text: `No order found !`,
+                                icon: 'error',
+                                background: '#006666',
+                                color: 'white',
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error updating payment:', error);
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Failed to mark the order as delivered. Please try again later.',
+                            icon: 'error',
+                            background: '#006666',
+                            color: 'white',
+                        });
+                    });
+            }
+        });
+    };
+    
+
+    const handleDelete = (info) => {
+        
     }
 
     return (
@@ -65,14 +126,14 @@ const AdminOrderHistory = () => {
                     <tbody className="bg-gray-300 text-black divide-y divide-gray-200">
                         {orderHistory.map((order, index) => (
                             <tr key={order._id} className="hover:bg-gray-100">
-                                <td className="border border-gray-400 px-4 py-2">{index + 1}</td>
-                                <td className="border border-gray-400 px-4 py-2">
-                                    {order.transactionID?.slice(0,4)}****{order.transactionID?.slice(23,30)}
+                                <td className="border border-gray-50 px-4 py-2">{index + 1}</td>
+                                <td className="border border-gray-50 px-4 py-2">
+                                    {order.transactionID?.slice(0, 4)}****{order.transactionID?.slice(23, 30)}
                                 </td>
-                                <td className="border border-gray-400 px-4 py-2">{order.email}</td>
-                                <td className="border border-gray-400 px-4 py-2">{order.amount} TK</td>
-                                <td className="border border-gray-400 px-4 py-2 text-nowrap ">{order.createdAt?.slice(0,11)}</td>
-                                <td className="border border-gray-400 px-4 py-2 text-[12px]">
+                                <td className="border border-gray-50 px-4 py-2">{order.email}</td>
+                                <td className="border border-gray-50 px-4 py-2">{order.amount} TK</td>
+                                <td className="border border-gray-50 px-4 py-2 text-nowrap ">{order.createdAt?.slice(0, 11)}</td>
+                                <td className="border border-gray-50 px-4 py-2 text-[12px]">
                                     <ul>
                                         {order.details.medicines.map((medicine, i) => (
                                             <li className="text-nowrap" key={i}>
@@ -81,11 +142,22 @@ const AdminOrderHistory = () => {
                                         ))}
                                     </ul>
                                 </td>
-                                <td className="border border-gray-400 px-4 py-2">Shipped</td>
-                                <td className="border border-gray-400 px-4 py-2">
-                                    <button className="btn btn-sm bg-red-500 border-none text-white hover:bg-red-600">
-                                        Remove
+                                <td className="border border-gray-50 px-4 py-2 text-green-700 uppercase font-semibold">
+                                  {order?.Status ? 'Delivered' : 'Ordered'}
+                                </td>
+                                <td className=" px-4 py-4 flex justify-center items-center gap-2">
+                                    <button
+                                    onClick={() => {
+                                        if(!order.Status) handleDelivert(order)
+                                    }}
+                                    className={`btn btn-sm bg-green-500 border-none text-white hover:bg-green-600 uppercase ${order?.Status && 'cursor-not-allowed'} `}>
+                                        {order?.Status ? <FaCheckCircle /> : 'delivered?'}
+                                        
+                                        
                                     </button>
+                                    {/* <button className="btn btn-sm bg-red-500 border-none text-white hover:bg-red-600">
+                                        Delete
+                                    </button> */}
                                 </td>
                             </tr>
                         ))}

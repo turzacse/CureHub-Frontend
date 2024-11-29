@@ -9,6 +9,7 @@ import axios from 'axios';
 const DefaultAdmin = () => {
     const [payment, setPayment] = useState(0);
     const [order, setOrder] = useState(0);
+    const [memberships, setMemberships] = useState([]);
 
   useEffect(() => {
     const fetchOrderHistory = async () => {
@@ -28,6 +29,25 @@ const DefaultAdmin = () => {
 
     fetchOrderHistory();
   }, []);
+
+  const fetchMemberships = async () => {
+    try {
+        const response = await axios.get(
+            "https://cure-hub-backend-gules.vercel.app/users"
+        );
+        const allUsers = response.data;
+        const memberUsers = allUsers.filter(user => user.membership); // Filter users with membership
+        setMemberships(memberUsers);
+        // setLoading(false);
+    } catch (err) {
+        setError("Failed to fetch membership data");
+        // setLoading(false);
+    }
+};
+
+useEffect(() => {
+    fetchMemberships();
+}, []);
 
   const getAllPayments = async () => {
     try {
@@ -62,7 +82,7 @@ useEffect(() => {
                 <DashboardCard title='APPOINTMENTS' number={allTelemedicineAppointment?.length + allAppointment?.length || 0} link='/dashboard/appointment-management' color='#D85958' />
                 <DashboardCard title='PAYMENTS' link='/dashboard/payments' number={payment || 0}  color='#599C2D' />
                 <DashboardCard title='MESSAGES' number={allMessage?.length || 0} link='/dashboard/all-message' color='#0EAFE9' />
-                <DashboardCard title='MEMBERSHIP' link='/dashboard/membership' number={5} color='#3B5998' />
+                <DashboardCard title='MEMBERSHIP' link='/dashboard/membership' number={memberships?.length || 0} color='#3B5998' />
                 <DashboardCard title='ORDER HISTORY' link='/dashboard/order-history' number={order || 0} color='#F7511C' />
                 <DashboardCard title='MEDICINE' link='/dashboard/medicines'  number={ allMedicine?.length || 0} color='#006666' />
 

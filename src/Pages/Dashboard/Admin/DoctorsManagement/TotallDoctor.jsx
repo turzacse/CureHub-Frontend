@@ -1,16 +1,65 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../../Provider/AuthContext';
 
 const TotallDoctor = ({activeDoctors}) => {
     console.log(activeDoctors)
 
-    const handleRemove = () => {
+    const {allDoctors, getAllDoctors} = useContext(AuthContext);
+
+    const handleRemove = (id) => {
         Swal.fire({
-            text: 'We are working on it',
+            title: 'Are you sure?',
+            text: 'You won’t be able to undo this action!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes',
             background: '#006666',
-            color: 'white'
-        })
-    }
+            color: 'white',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Call the delete API
+                fetch(`https://cure-hub-backend-gules.vercel.app/doctors/deleteOne/${id}`, {
+                    method: 'DELETE',
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            getAllDoctors();
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'The doctor has been removed successfully.',
+                                icon: 'success',
+                                background: '#006666',
+                                color: 'white',
+                            });
+                            // Optional: Refresh the list or update state after deletion
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: data.message || 'Something went wrong.',
+                                icon: 'error',
+                                background: '#006666',
+                                color: 'white',
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to delete the doctor. Please try again later.',
+                            icon: 'error',
+                            background: '#006666',
+                            color: 'white',
+                        });
+                    });
+            }
+        });
+    };
+    
 
     const handleView = () => {
         Swal.fire({
@@ -71,7 +120,7 @@ const TotallDoctor = ({activeDoctors}) => {
                                 {appointment?.offDay}
 
                             </td>
-                            <td className="px-3 flex items-center gap-2 py-2 whitespace-nowrap">
+                            <td className="px-3 flex items-center gap-2 py-5 whitespace-nowrap">
                                 <button
                                     onClick={() => {
                                         handleView(appointment);
@@ -87,6 +136,32 @@ const TotallDoctor = ({activeDoctors}) => {
                     ))}
                     
                 </tbody>
+
+                <thead className="bg-gray-600 text-white">
+                    <tr>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                           
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                           
+                        </th>
+                        <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            
+                        </th>
+                        <th className="px-3 h-[45px] py-3 text-left text-xs font-medium uppercase tracking-wider">
+                           
+                        </th>
+                    </tr>
+                </thead>
             </table>
         </div>
     </div>

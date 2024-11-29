@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
 import { FaCheck, FaCheckCircle, FaRegCheckCircle } from 'react-icons/fa';
 import { FcCancel } from 'react-icons/fc';
+import Swal from 'sweetalert2';
 
 const medicalDepartments = [
     "Anesthesiology",
@@ -123,7 +124,15 @@ const DefaultDoctor = () => {
                 throw new Error('Failed to add doctor');
             }
             else {
-                alert('Success');
+                Swal.fire({
+                    text: 'Your Joining Request is Submitted to CureHub Authority! Please wait till the Approve.',
+                    icon: 'success',
+                    background: '#006666',
+                    color: 'white',
+                }).then(() => {
+                    window.location.reload(); // Reload the window after the OK button is clicked
+                });
+                
             }
         } catch (error) {
             alert('Error adding doctor:', error);

@@ -179,7 +179,7 @@ const Defaultuser = () => {
                     </NavLink>
                 </div>
 
-                <div className="bg-gray-100 p-6 mt-8 text-center">
+                {/* <div className="bg-gray-100 p-6 mt-8 text-center">
                     <h2 className="text-2xl font-bold mb-4">Upload Your Medical Records</h2>
                     <p className="text-gray-700 mb-6">
                         Upload your medical records and our experts will analyze them to provide you with valuable feedback.
@@ -194,7 +194,7 @@ const Defaultuser = () => {
                         </button>
                         <OffersModal isVisible={isOffersModalVisible} onClose={handleCloseOffersModal} />
                     </div>
-                </div>
+                </div> */}
                 {/* <VideoCall/> */}
 
                 {/* <section>

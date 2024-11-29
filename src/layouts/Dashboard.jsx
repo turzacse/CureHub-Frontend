@@ -102,9 +102,9 @@ const Dashboard = () => {
                                 
                                 <Link to='/dashboard' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard', location.pathname)}`}>
-                                    <MdAccountCircle className="text-xl " />
+                                    <MdDashboard className="text-xl " />
                                     <li className="font-semibold">
-                                        Account</li></Link>
+                                        Dashboard</li></Link>
                                         
                                 <Link to='/dashboard/user-profile' 
                                 className={`py-2 pl-2 hover:bg-gray-400 hover:text-black flex gap-2 items-center ${isActive('/dashboard/user-profile', location.pathname)}`}>

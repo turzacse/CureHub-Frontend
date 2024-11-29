@@ -337,7 +337,7 @@ const Medicines = () => {
                 openAdd && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                         <div className="bg-[#289e9e] p-4 rounded-lg px-6 w-full max-w-lg mx-auto relative">
-                            <h2 className='mb-4 text-white text-xl font-bold'>Seller: {'CureHub'}</h2>
+                            <h2 className='mb-4 text-white text-xl font-bold'> {'CureHub'}</h2>
                             <form onSubmit={handleSubmit} className="">
                                 <div className="mb-4 relative flex flex-col sm:flex-row gap-2">
                                     <input

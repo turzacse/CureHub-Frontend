@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../Firebase/firebase.config';
@@ -21,6 +21,9 @@ const LoginPage = () => {
     const [alluser, setAllUser] = useState([]);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const form = location.state?.form?.pathname || '/';
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -41,7 +44,8 @@ const LoginPage = () => {
 
         try {
             await signInWithEmailAndPassword(auth ,formData.email, formData.password);
-            navigate('/'); // Redirect to homepage or another page after successful login
+            // navigate('/'); 
+            navigate(location?.state ? location.state : '/')
         } catch (error) {
             setError(error.message);
         } finally {
