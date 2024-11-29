@@ -94,8 +94,6 @@ const Dashboard = () => {
                         <div className="px-4 py-2 ">
                             <div className="text-center mb-4">
                                 <img className="w-12 h-12 lg:w-20 lg:h-20 rounded-full mx-auto mb-2" src={img} alt="Profile" />
-                                
-
                             </div>
                         </div>
 

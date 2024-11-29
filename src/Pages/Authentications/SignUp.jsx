@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaRegImage, FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
@@ -9,6 +9,7 @@ import { auth } from '../../Firebase/firebase.config';
 import { AuthContext } from '../../Provider/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import img from '../../assets/Logo/logo1.png'
 
 
 const image_hosting = '39cd3de230380fc39b116f0d1af689bd';
@@ -148,11 +149,15 @@ const SignUpPage = () => {
         })
     };
     
+    useEffect(() => {
+        window.scroll(0,0);
+    } ,[])
 
     return (
        <div className='py-20 px-4 bg-[#011225]'>
          <div className="py-10 bg-[#D1D1D1] md:w-1/2 mx-auto px-4  md:px-0 shadow-2xl rounded-lg">
-            <h2 className="text-3xl font-bold mb-6 text-center">Sign Up</h2>
+         <img className="w-20 h-20 lg:w-24 lg:h-24 rounded-md mx-auto mb-2" src={img} alt="Profile" />
+            <h2 className="text-3xl font-bold mb-6 text-center text-gray-700">Sign Up</h2>
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto ">
                 <div className="mb-4 relative">
                     {/* <label htmlFor="username" className="block text-gray-700 font-semibold mb-2">Username</label> */}
@@ -163,8 +168,8 @@ const SignUpPage = () => {
                     value={formData.username} 
                     onChange={handleChange}
                     placeholder='Full Name' 
-                    className="w-full px-7 text-white py-2 border rounded-md focus:outline-none focus:border-blue-500"/>
-                    <FaUser className='absolute top-2 left-1 text-xl text-gray-50' />
+                    className="w-full bg-white bg-white px-7 text-gray-700 py-2 border rounded-md focus:outline-none focus:border-blue-500"/>
+                    <FaUser className='absolute top-2 left-1 text-xl text-gray-700' />
                 </div>
                 <div className="mb-4 relative">
                     {/* <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label> */}
@@ -175,8 +180,8 @@ const SignUpPage = () => {
                     value={formData.email} 
                     onChange={handleChange} 
                     placeholder='Email'
-                    className="w-full px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500 text-white"/>
-                    <MdEmail className='absolute top-[10px] left-1 text-2xl text-gray-50' />
+                    className="w-full bg-white px-7 py-2 border rounded-md focus:outline-none focus:border-blue-500 text-gray-700"/>
+                    <MdEmail className='absolute top-[10px] left-1 text-2xl text-gray-700' />
                 </div>
                 <div className="mb-4 relative bg-black rounded-md">
                     {/* <label htmlFor="photo" className="block text-gray-700 font-semibold mb-2">Photo</label> */}
@@ -187,8 +192,8 @@ const SignUpPage = () => {
                     accept="image/*" 
                     onChange={handleUpload} 
                     placeholder='Photo'
-                    className="w-full px-8 py-2 border text-white rounded-md focus:outline-none focus:border-blue-500"/>
-                    <FaRegImage className='absolute top-[12px] left-1 text-2xl text-gray-50' />
+                    className="w-full bg-white px-8 py-2 border text-gray-700 rounded-md focus:outline-none focus:border-blue-500"/>
+                    <FaRegImage className='absolute top-[12px] left-1 text-2xl text-gray-700' />
                 </div>
                 <div className="mb-4 relative">
                     {/* <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">Password</label> */}
@@ -199,8 +204,8 @@ const SignUpPage = () => {
                     value={formData.password} 
                     onChange={handleChange}
                     placeholder='Passwoard' 
-                    className="w-full px-7 py-2 text-white border rounded-md focus:outline-none focus:border-blue-500"/>
-                    <RiLockPasswordFill className='absolute top-[8px] left-1 text-2xl text-gray-50' />
+                    className="w-full bg-white px-7 py-2 text-gray-700 border rounded-md focus:outline-none focus:border-blue-500"/>
+                    <RiLockPasswordFill className='absolute top-[8px] left-1 text-2xl text-gray-700' />
                 </div>
                 <div className="mb-4 relative">
                     {/* <label htmlFor="role" className="block text-gray-700 font-semibold mb-2">Role</label> */}
@@ -210,11 +215,11 @@ const SignUpPage = () => {
                     value={formData.role} 
                     onChange={handleChange} 
                     placeholder = 'Role'
-                    className="w-full px-7 py-2 border text-white rounded-md focus:outline-none focus:border-blue-500">
+                    className="w-full bg-white px-7 py-2 border text-gray-700 rounded-md focus:outline-none focus:border-blue-500">
                         <option value="user">User</option>
                         <option value="doctor">Doctor</option>
                     </select>
-                    <BsFillPeopleFill className='absolute top-[8px] left-1 text-2xl text-gray-50' />
+                    <BsFillPeopleFill className='absolute top-[8px] left-1 text-2xl text-gray-700' />
                 </div>
                 <div>
                     Already have an account? <NavLink to='/sign-in' className='text-blue-500'>Sign In</NavLink>

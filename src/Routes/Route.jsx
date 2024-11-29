@@ -158,7 +158,7 @@ export const router = createBrowserRouter([
         },
         {
           path: '/telemedicine-booking',
-          element: <TelemedicineBooking/>
+          element: <PrivateRoute><TelemedicineBooking/></PrivateRoute>
         },
         {
           path: '/checkout',
