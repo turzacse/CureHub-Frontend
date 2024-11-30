@@ -335,7 +335,6 @@ const SignUpPage = () => {
                 email: '',
                 password: '',
                 username: '',
-                role: 'user',
                 photo: ''
             });
             setIsUpload(false);
@@ -368,7 +367,13 @@ const SignUpPage = () => {
             alert("Failed to sign up: " + error.message);
         } finally {
             // Any cleanup logic or final steps can go here
-            navigate('/'); 
+            if(formData?.role == 'user'){
+                navigate('/'); 
+            }
+            else{
+                navigate('/dashboard'); 
+            }
+            
             setImage('');
             console.log('Sign up process completed (success or failure)');
         }
