@@ -316,7 +316,7 @@ const Doctors = () => {
 
             <div className='lg:container lg:mx-auto   mx-4 py-10 '>
                 <h2 className="md:text-2xl text-center text-white font-bold">Connect with Our Expert Doctors, Dedicated to Your Health Every Day!</h2>
-                <p className='text-center text-[16px] w-1/2 mx-auto md:mb-10 mb-5 text-yellow-300'>Find the perfect specialist to guide your care—available every day for consultations, treatments, and support tailored to your needs</p>
+                <p className='text-center text-[16px] md:w-1/2 mx-auto md:mb-10 mb-5 text-yellow-300'>Find the perfect specialist to guide your care—available every day for consultations, treatments, and support tailored to your needs</p>
 
                 <div className='flex flex-col md:flex-row justify-between md:gap-10 gap-2 mb-5'>
                     <input

@@ -31,14 +31,14 @@ const OfferSection = () => {
         setOffersModalVisible(false);
     };
     return (
-        <section className=" bg-gradient-to-r from-teal-400 to-blue-500 text-white p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Special Promotions</h2>
-            <p className="text-lg mb-6">Get up to 50% off on selected medicine!</p>
+        <section className=" bg-gradient-to-r from-teal-400 to-blue-500 text-white  md:py-8 py-4 text-center">
+            <h2 className="md:text-2xl  font-bold md:mb-4">Special Promotions</h2>
+            <p className="md:mb-8 mb-4 text-[12px] md:text-[16px] px-10">Get up to 50% off on selected medicine!</p>
             <button
                 onClick={() => {
                     setOffersModalVisible(true);
                 }}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">View Offers</button>
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 text-[12px] md:text-[16px]">View Offers</button>
                  <OffersModal isVisible={isOffersModalVisible} onClose={handleCloseOffersModal} />
         </section>
     );

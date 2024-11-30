@@ -127,12 +127,12 @@ const GetInTouch = () => {
     
 
     return (
-        <div className=' py-10'>
-            <div className="md:container md:mx-auto rounded-lg py-16 px-6 bg-gray-300">
-                <h2 className="text-3xl font-bold text-[#006666] text-center">Get in Touch</h2>
-                <p className="text-lg text-gray-700 mt-2 text-center">We're here to help you with any inquiries or issues you may have.</p>
+        <div className=' md:py-12 py-0'>
+            <div className="md:container md:mx-auto md:rounded-lg md:py-12 py-8 px-6 bg-gray-300">
+                <h2 className="md:text-2xl font-bold text-[#006666] text-center">Get in Touch</h2>
+                <p className="md:text-lg text-xs md:mb-8  text-center  mx-12 md:mx-0">We're here to help you with any inquiries or issues you may have.</p>
 
-                <div className="flex justify-between gap-4 md:gap-10 items-center flex-col-reverse md:flex-row md:mt-10 mt-4 space-y-8 md:space-y-0 md:space-x-8">
+                <div className="flex justify-between gap-4 md:gap-10 items-center flex-col-reverse md:flex-row md:mt-10 space-y-8 md:space-y-0 md:space-x-8">
                     <div className="w-full md:w-1/2">
                         <form onSubmit={handleSubmit} className="space-y-4 text-white">
                             <input 
@@ -166,7 +166,7 @@ const GetInTouch = () => {
                                 value={formData.message}
                                 onChange={handleChange}
                             ></textarea>
-                            <button className="w-full bg-[#006666] text-white py-3 rounded-md hover:bg-[#004d4d]">Send Message</button>
+                            <button className="w-full bg-[#114372] text-white py-3 rounded-md hover:bg-[#042e55] uppercase">Send Message</button>
                         </form>
                     </div>
 

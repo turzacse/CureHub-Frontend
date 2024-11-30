@@ -29,14 +29,14 @@ const benefits = [
 
 const BenefitsSection = () => {
     return (
-        <section className=" mx-auto py-16  text-center">
-            <h2 className="md:text-3xl text-2xl font-bold text-white mb-8">Why Choose CureHub?</h2>
-            <div className="grid grid-cols-1 container mx-auto md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <section className=" mx-auto md:py-12 py-4 px-4 text-center">
+            <h2 className="md:text-2xl font-bold md:mb-8 mb-4 text-center text-white">Why Choose CureHub?</h2>
+            <div className="grid grid-cols-2 container mx-auto md:grid-cols-2 lg:grid-cols-4 md:gap-8 gap-4">
                 {benefits.map((benefit, index) => (
-                    <div key={index} className="p-6 mx-4 bg-gray-300  shadow-md rounded-md">
+                    <div key={index} className="p-6 bg-gray-300  shadow-md rounded-md">
                         <img src={benefit.icon} alt={benefit.title} className="w-16 h-16 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                        <p className="text-gray-700">{benefit.description}</p>
+                        <h3 className="md:text-xl font-semibold mb-0">{benefit.title}</h3>
+                        <p className="text-gray-700 text-[12px] md:tetx-[16px]">{benefit.description}</p>
                     </div>
                 ))}
             </div>
